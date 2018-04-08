@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Python 字典 | LX Muse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Python : 3.6.3 Python 字典是一系列的键值对，都点像JSON：123car = &amp;#123;&amp;apos;name&amp;apos;:&amp;apos;BMW&amp;apos;,&amp;apos;color&amp;apos;:&amp;apos;Black&amp;apos;&amp;#125;print(car[&amp;apos;name&amp;apos;])print(car[&amp;apos;color&amp;apos;]) 输出：12BMWBlac">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 字典">
+<meta property="og:url" content="http://yoursite.com/2017/12/26/Python 字典/index.html">
+<meta property="og:site_name" content="LX Muse">
+<meta property="og:description" content="Python : 3.6.3 Python 字典是一系列的键值对，都点像JSON：123car = &amp;#123;&amp;apos;name&amp;apos;:&amp;apos;BMW&amp;apos;,&amp;apos;color&amp;apos;:&amp;apos;Black&amp;apos;&amp;#125;print(car[&amp;apos;name&amp;apos;])print(car[&amp;apos;color&amp;apos;]) 输出：12BMWBlac">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-12-26T14:05:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python 字典">
+<meta name="twitter:description" content="Python : 3.6.3 Python 字典是一系列的键值对，都点像JSON：123car = &amp;#123;&amp;apos;name&amp;apos;:&amp;apos;BMW&amp;apos;,&amp;apos;color&amp;apos;:&amp;apos;Black&amp;apos;&amp;#125;print(car[&amp;apos;name&amp;apos;])print(car[&amp;apos;color&amp;apos;]) 输出：12BMWBlac">
+  
+    <link rel="alternate" href="/atom.xml" title="LX Muse" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">LX Muse</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Python 字典" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/26/Python 字典/" class="article-date">
+  <time datetime="2017-12-26T13:49:24.000Z" itemprop="datePublished">2017-12-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python-系列/">Python 系列</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python 字典
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Python : 3.6.3</p>
+<p>Python 字典是一系列的键值对，都点像JSON：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;Black&apos;&#125;</span><br><span class="line">print(car[&apos;name&apos;])</span><br><span class="line">print(car[&apos;color&apos;])</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BMW</span><br><span class="line">Black</span><br></pre></td></tr></table></figure></p>
+<p>字典中可以包含任意数量的键值对，可直接通过键获取值。<br>字典是一种动态结构，可随时在其中添加键值对：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;</span><br><span class="line">print(car[&apos;name&apos;])</span><br><span class="line">print(car[&apos;color&apos;])</span><br><span class="line">car[&apos;color&apos;] = &apos;Red&apos;</span><br><span class="line">car[&apos;price&apos;] = 400000</span><br><span class="line">print(car)</span><br><span class="line">print(car[&apos;name&apos;])</span><br><span class="line">print(car[&apos;color&apos;])</span><br><span class="line">print(car[&apos;price&apos;])</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">BMW</span><br><span class="line">black</span><br><span class="line">&#123;&apos;name&apos;: &apos;BMW&apos;, &apos;color&apos;: &apos;Red&apos;, &apos;price&apos;: 400000&#125;</span><br><span class="line">BMW</span><br><span class="line">Red</span><br><span class="line">400000</span><br></pre></td></tr></table></figure></p>
+<p>添加键值对时，若键已存在，则替换原键对应的值，反之新增键值对。<br>字典默认支持保存混合类型的数值，即一个字典中即可以保存字符串类型的值，还可以同时保存数值类型的值。</p>
+<p>Python 也支持创建一个空的字典：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>字典的键值对删除需要依赖于特殊的关键字 del :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;</span><br><span class="line">print(car[&apos;name&apos;])</span><br><span class="line">print(car[&apos;color&apos;])</span><br><span class="line">del car[&apos;color&apos;]</span><br><span class="line">print(car)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BMW</span><br><span class="line">black</span><br><span class="line">&#123;&apos;name&apos;: &apos;BMW&apos;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>遍历字典所有的键值对：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;</span><br><span class="line"></span><br><span class="line">for key, value in car.items():</span><br><span class="line">	print(&quot;key : &quot; + key)</span><br><span class="line">	print(&quot;value : &quot; + value)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">key : name</span><br><span class="line">value : BMW</span><br><span class="line">key : color</span><br><span class="line">value : black</span><br></pre></td></tr></table></figure></p>
+<p>遍历字典所有的键：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;</span><br><span class="line"></span><br><span class="line">for key in car.keys():</span><br><span class="line">	print(&quot;key : &quot; + key)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">key : name</span><br><span class="line">key : color</span><br></pre></td></tr></table></figure></p>
+<p>遍历字典所有的值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;</span><br><span class="line"></span><br><span class="line">for value in car.values():</span><br><span class="line">	print(&quot;value : &quot; + value)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">value : BMW</span><br><span class="line">value : black</span><br></pre></td></tr></table></figure></p>
+<p>按顺序遍历字典所有的键：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;</span><br><span class="line"></span><br><span class="line">for key in sorted(car.keys()):</span><br><span class="line">	print(&quot;key : &quot; + key)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">key : color</span><br><span class="line">key : name</span><br></pre></td></tr></table></figure></p>
+<p>列表嵌套字典：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">car1 = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;</span><br><span class="line">car2 = &#123;&apos;name&apos;:&apos;Smart&apos;,&apos;color&apos;:&apos;Red&apos;&#125;</span><br><span class="line">car3 = &#123;&apos;name&apos;:&apos;Ford&apos;,&apos;color&apos;:&apos;Green&apos;&#125;</span><br><span class="line">car4 = &#123;&apos;name&apos;:&apos;GMC&apos;&#125;</span><br><span class="line"></span><br><span class="line">cars = [car1, car2, car3, car4]</span><br><span class="line">for car in cars:</span><br><span class="line">	print(car)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;&apos;name&apos;: &apos;BMW&apos;, &apos;color&apos;: &apos;black&apos;&#125;</span><br><span class="line">&#123;&apos;name&apos;: &apos;Smart&apos;, &apos;color&apos;: &apos;Red&apos;&#125;</span><br><span class="line">&#123;&apos;name&apos;: &apos;Ford&apos;, &apos;color&apos;: &apos;Green&apos;&#125;</span><br><span class="line">&#123;&apos;name&apos;: &apos;GMC&apos;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>允许将不同的字典嵌套到一个列表中</p>
+<p>字典嵌套列表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user = &#123;&quot;name&quot;:&quot;Tom&quot;, &quot;cars&quot;:[&quot;BMW&quot;,&quot;Smart&quot;]&#125;</span><br><span class="line">print(user)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&apos;name&apos;: &apos;Tom&apos;, &apos;cars&apos;: [&apos;BMW&apos;, &apos;Smart&apos;]&#125;</span><br></pre></td></tr></table></figure></p>
+<p>字典嵌套字典：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user = &#123;&quot;name&quot;:&quot;Tom&quot;, &quot;car&quot; : &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;&#125;</span><br><span class="line">print(user)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&apos;name&apos;: &apos;Tom&apos;, &apos;car&apos;: &#123;&apos;name&apos;: &apos;BMW&apos;, &apos;color&apos;: &apos;black&apos;&#125;&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/12/26/Python 字典/" data-id="cjfqtnrzc0024b9x7pd2r891x" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/28/Gitflow Workflow 工作流/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Gitflow Workflow 工作流
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/15/Python if 语句/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python if 语句</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Core-API/">Java Core API</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-并发编程系列/">Java 并发编程系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-排序算法/">Java 排序算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-编程逻辑/">Java 编程逻辑</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MyBatis-实践系列/">MyBatis 实践系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL-系列/">MySQL 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python-系列/">Python 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot-系列/">SpringBoot 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot系列/">SpringBoot系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ZooKeeper-系列/">ZooKeeper 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/《深入理解Java虚拟机》学习系列/">《深入理解Java虚拟机》学习系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发管理系列/">开发管理系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构系列/">架构系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/行业知识/">行业知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记/">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI-持续集成/">CI 持续集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CQRS/">CQRS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Event-Sourcing/">Event Sourcing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GS1/">GS1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gitflow-Workflow/">Gitflow Workflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/">JDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JIRA/">JIRA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java虚拟机/">Java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RestTemplate/">RestTemplate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sonatype-Nexus/">Sonatype Nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UDI/">UDI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZooKeeper/">ZooKeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二进制/">二进制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冒泡排序/">冒泡排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成/">持续集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/架构探险/">架构探险</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程/">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/选择排序-插入排序/">选择排序 插入排序</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/CI-持续集成/" style="font-size: 10px;">CI 持续集成</a> <a href="/tags/CQRS/" style="font-size: 12px;">CQRS</a> <a href="/tags/Event-Sourcing/" style="font-size: 12px;">Event Sourcing</a> <a href="/tags/GS1/" style="font-size: 14px;">GS1</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitflow-Workflow/" style="font-size: 10px;">Gitflow Workflow</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java虚拟机/" style="font-size: 10px;">Java虚拟机</a> <a href="/tags/MyBatis/" style="font-size: 18px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 14px;">MySQL</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Sonatype-Nexus/" style="font-size: 10px;">Sonatype Nexus</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/UDI/" style="font-size: 10px;">UDI</a> <a href="/tags/ZooKeeper/" style="font-size: 10px;">ZooKeeper</a> <a href="/tags/二进制/" style="font-size: 10px;">二进制</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/多线程/" style="font-size: 14px;">多线程</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/架构探险/" style="font-size: 10px;">架构探险</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/选择排序-插入排序/" style="font-size: 10px;">选择排序 插入排序</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/08/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/13/计算机中的二进制/">计算中的二进制</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/11/关于版本控制/">关于版本控制</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/11/GS1 医疗行业应用/">GS1 医疗行业应用</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/10/GS1 数据载体体系/">GS1 数据载体体系</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 chenlx<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
