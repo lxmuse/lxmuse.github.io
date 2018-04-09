@@ -62,6 +62,187 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-MyBatis 之 配置文件 TypeHandler 元素" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/11/MyBatis 之 配置文件 TypeHandler 元素/" class="article-date">
+  <time datetime="2015-08-11T08:49:24.000Z" itemprop="datePublished">2015-08-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/MyBatis-实践系列/">MyBatis 实践系列</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/11/MyBatis 之 配置文件 TypeHandler 元素/">MyBatis 之 配置文件 TypeHandler 元素</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>MyBatis 版本：MyBatis 3.3.0</p>
+<p>MyBatis 官方网站（英文）：<a href="http://www.mybatis.org/mybatis-3/" target="_blank" rel="noopener">MyBatis 英文官网</a><br>MyBatis 官方网站（中文）：<a href="http://www.mybatis.org/mybatis-3/zh/" target="_blank" rel="noopener">MyBatis 中文官网</a><br>MyBatis 源码：<a href="https://github.com/mybatis/mybatis-3" target="_blank" rel="noopener">MyBatis 源码</a></p>
+<h5 id="MyBatis-配置文件层次结构"><a href="#MyBatis-配置文件层次结构" class="headerlink" title="MyBatis 配置文件层次结构"></a>MyBatis 配置文件层次结构</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;&gt;</span><br><span class="line">&lt;configuration&gt; &lt;!--配置--&gt;</span><br><span class="line">  &lt;properties/&gt; &lt;!--属性--&gt;</span><br><span class="line">  &lt;settings/&gt; &lt;!--设置--&gt;</span><br><span class="line">  &lt;typeAliases/&gt; &lt;!--类型命名--&gt;</span><br><span class="line">  &lt;typeHandlers/&gt; &lt;!--类型处理器--&gt;</span><br><span class="line">  &lt;objetFactory/&gt; &lt;!--对象工厂--&gt;</span><br><span class="line">  &lt;plugins/&gt; &lt;!--插件--&gt;</span><br><span class="line">  &lt;environments&gt; &lt;!--配置环境--&gt;</span><br><span class="line">    &lt;environment&gt; &lt;!--环境变量--&gt;</span><br><span class="line">      &lt;transactionManager/&gt; &lt;!--事务管理器--&gt;</span><br><span class="line">      &lt;dataSource/&gt; &lt;!--数据源--&gt;</span><br><span class="line">    &lt;/environment&gt;</span><br><span class="line">  &lt;/environments&gt;</span><br><span class="line">  &lt;databaseIdProvider/&gt; &lt;!--数据库厂商标识--&gt;</span><br><span class="line">  &lt;mappers/&gt; &lt;!--映射器--&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="TypeHandler-元素"><a href="#TypeHandler-元素" class="headerlink" title="TypeHandler 元素"></a>TypeHandler 元素</h5><p>无论是 MyBatis 在预处理语句（PreparedStatement）中设置一个参数时，还是从结果集中取出一个值时， 都会用类型处理器将获取的值以合适的方式转换成 Java 类型。</p>
+<p>TypeHandler 的作用就是将参数从 javaType 转化为 jdbcType，或者从数据库取出结果时把 jdbcType 转化为 javaType。</p>
+<p>TypeHandler 可分为：</p>
+<ul>
+<li>系统定义的 TypeHandler</li>
+<li>自定义的 TypeHandler</li>
+</ul>
+<h6 id="系统定义的-TypeHandler"><a href="#系统定义的-TypeHandler" class="headerlink" title="系统定义的 TypeHandler"></a>系统定义的 TypeHandler</h6><p>MyBatis org.apache.ibatis.type.TypeHandlerRegistry 类中定义了所有的系统定义的 TypeHandler:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">public TypeHandlerRegistry() &#123;</span><br><span class="line">    this.register((Class)Boolean.class, (TypeHandler)(new BooleanTypeHandler()));</span><br><span class="line">    this.register((Class)Boolean.TYPE, (TypeHandler)(new BooleanTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.BOOLEAN, (TypeHandler)(new BooleanTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.BIT, (TypeHandler)(new BooleanTypeHandler()));</span><br><span class="line">    this.register((Class)Byte.class, (TypeHandler)(new ByteTypeHandler()));</span><br><span class="line">    this.register((Class)Byte.TYPE, (TypeHandler)(new ByteTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.TINYINT, (TypeHandler)(new ByteTypeHandler()));</span><br><span class="line">    this.register((Class)Short.class, (TypeHandler)(new ShortTypeHandler()));</span><br><span class="line">    this.register((Class)Short.TYPE, (TypeHandler)(new ShortTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.SMALLINT, (TypeHandler)(new ShortTypeHandler()));</span><br><span class="line">    this.register((Class)Integer.class, (TypeHandler)(new IntegerTypeHandler()));</span><br><span class="line">    this.register((Class)Integer.TYPE, (TypeHandler)(new IntegerTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.INTEGER, (TypeHandler)(new IntegerTypeHandler()));</span><br><span class="line">    this.register((Class)Long.class, (TypeHandler)(new LongTypeHandler()));</span><br><span class="line">    this.register((Class)Long.TYPE, (TypeHandler)(new LongTypeHandler()));</span><br><span class="line">    this.register((Class)Float.class, (TypeHandler)(new FloatTypeHandler()));</span><br><span class="line">    this.register((Class)Float.TYPE, (TypeHandler)(new FloatTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.FLOAT, (TypeHandler)(new FloatTypeHandler()));</span><br><span class="line">    this.register((Class)Double.class, (TypeHandler)(new DoubleTypeHandler()));</span><br><span class="line">    this.register((Class)Double.TYPE, (TypeHandler)(new DoubleTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.DOUBLE, (TypeHandler)(new DoubleTypeHandler()));</span><br><span class="line">    this.register((Class)String.class, (TypeHandler)(new StringTypeHandler()));</span><br><span class="line">    this.register((Class)String.class, JdbcType.CHAR, (TypeHandler)(new StringTypeHandler()));</span><br><span class="line">    this.register((Class)String.class, JdbcType.CLOB, (TypeHandler)(new ClobTypeHandler()));</span><br><span class="line">    this.register((Class)String.class, JdbcType.VARCHAR, (TypeHandler)(new StringTypeHandler()));</span><br><span class="line">    this.register((Class)String.class, JdbcType.LONGVARCHAR, (TypeHandler)(new ClobTypeHandler()));</span><br><span class="line">    this.register((Class)String.class, JdbcType.NVARCHAR, (TypeHandler)(new NStringTypeHandler()));</span><br><span class="line">    this.register((Class)String.class, JdbcType.NCHAR, (TypeHandler)(new NStringTypeHandler()));</span><br><span class="line">    this.register((Class)String.class, JdbcType.NCLOB, (TypeHandler)(new NClobTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.CHAR, (TypeHandler)(new StringTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.VARCHAR, (TypeHandler)(new StringTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.CLOB, (TypeHandler)(new ClobTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.LONGVARCHAR, (TypeHandler)(new ClobTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.NVARCHAR, (TypeHandler)(new NStringTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.NCHAR, (TypeHandler)(new NStringTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.NCLOB, (TypeHandler)(new NClobTypeHandler()));</span><br><span class="line">    this.register((Class)Object.class, JdbcType.ARRAY, (TypeHandler)(new ArrayTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.ARRAY, (TypeHandler)(new ArrayTypeHandler()));</span><br><span class="line">    this.register((Class)BigInteger.class, (TypeHandler)(new BigIntegerTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.BIGINT, (TypeHandler)(new LongTypeHandler()));</span><br><span class="line">    this.register((Class)BigDecimal.class, (TypeHandler)(new BigDecimalTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.REAL, (TypeHandler)(new BigDecimalTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.DECIMAL, (TypeHandler)(new BigDecimalTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.NUMERIC, (TypeHandler)(new BigDecimalTypeHandler()));</span><br><span class="line">    this.register((Class)Byte[].class, (TypeHandler)(new ByteObjectArrayTypeHandler()));</span><br><span class="line">    this.register((Class)Byte[].class, JdbcType.BLOB, (TypeHandler)(new BlobByteObjectArrayTypeHandler()));</span><br><span class="line">    this.register((Class)Byte[].class, JdbcType.LONGVARBINARY, (TypeHandler)(new BlobByteObjectArrayTypeHandler()));</span><br><span class="line">    this.register((Class)byte[].class, (TypeHandler)(new ByteArrayTypeHandler()));</span><br><span class="line">    this.register((Class)byte[].class, JdbcType.BLOB, (TypeHandler)(new BlobTypeHandler()));</span><br><span class="line">    this.register((Class)byte[].class, JdbcType.LONGVARBINARY, (TypeHandler)(new BlobTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.LONGVARBINARY, (TypeHandler)(new BlobTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.BLOB, (TypeHandler)(new BlobTypeHandler()));</span><br><span class="line">    this.register(Object.class, this.UNKNOWN_TYPE_HANDLER);</span><br><span class="line">    this.register(Object.class, JdbcType.OTHER, this.UNKNOWN_TYPE_HANDLER);</span><br><span class="line">    this.register(JdbcType.OTHER, this.UNKNOWN_TYPE_HANDLER);</span><br><span class="line">    this.register((Class)Date.class, (TypeHandler)(new DateTypeHandler()));</span><br><span class="line">    this.register((Class)Date.class, JdbcType.DATE, (TypeHandler)(new DateOnlyTypeHandler()));</span><br><span class="line">    this.register((Class)Date.class, JdbcType.TIME, (TypeHandler)(new TimeOnlyTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.TIMESTAMP, (TypeHandler)(new DateTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.DATE, (TypeHandler)(new DateOnlyTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.TIME, (TypeHandler)(new TimeOnlyTypeHandler()));</span><br><span class="line">    this.register((Class)java.sql.Date.class, (TypeHandler)(new SqlDateTypeHandler()));</span><br><span class="line">    this.register((Class)Time.class, (TypeHandler)(new SqlTimeTypeHandler()));</span><br><span class="line">    this.register((Class)Timestamp.class, (TypeHandler)(new SqlTimestampTypeHandler()));</span><br><span class="line">    this.register((Class)Character.class, (TypeHandler)(new CharacterTypeHandler()));</span><br><span class="line">    this.register((Class)Character.TYPE, (TypeHandler)(new CharacterTypeHandler()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>汇总起来如下表格：</p>
+<table>
+<thead>
+<tr>
+<th>类型处理器</th>
+<th>Java 类型</th>
+<th>JDBC 类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BooleanTypeHandler</td>
+<td>java.lang.Boolean，boolean</td>
+<td>数据库兼容的 BOOLEAN</td>
+</tr>
+<tr>
+<td>ByteTypeHandler</td>
+<td>java.lang.Byte，byte</td>
+<td>数据库兼容的 NUMERIC 或 BYTE</td>
+</tr>
+<tr>
+<td>ShortTypeHandler</td>
+<td>java.lang.Short，short</td>
+<td>数据库兼容的 NUMERIC 或 SHORT INTEGER</td>
+</tr>
+<tr>
+<td>IntegerTypeHandler</td>
+<td>java.lang.Integer，int</td>
+<td>数据库兼容的 NUMERIC 或 INTEGER</td>
+</tr>
+<tr>
+<td>LongTypeHandler</td>
+<td>java.lang.Long，long</td>
+<td>数据库兼容的 NUMERIC 或 LONG INTEGER</td>
+</tr>
+<tr>
+<td>FloatTypeHandler</td>
+<td>java.lang.Float，float</td>
+<td>数据库兼容的 NUMERIC 或 FLOAT</td>
+</tr>
+<tr>
+<td>DoubleTypeHandler</td>
+<td>java.lang.Double，double</td>
+<td>数据库兼容的 NUMBERIC 或 DOUBLE</td>
+</tr>
+<tr>
+<td>BigDecimalTypeHandler</td>
+<td>java.math.BigDecimal</td>
+<td>数据库兼容的 NUMBERIC 或 DECIMAL</td>
+</tr>
+<tr>
+<td>StringTypeHandler</td>
+<td>java.lang.String</td>
+<td>CHAR,VARCHAR</td>
+</tr>
+<tr>
+<td>ClobTypeHandler</td>
+<td>java.lang.String</td>
+<td>CLOB,LONGVARCHAR</td>
+</tr>
+<tr>
+<td>NStringTypeHandler</td>
+<td>java.lang.String</td>
+<td>NVARCHAR,NCHAR</td>
+</tr>
+<tr>
+<td>NClobTypeHandler</td>
+<td>java.lang.String</td>
+<td>NCLOB</td>
+</tr>
+<tr>
+<td>ByteArrayTypeHandler</td>
+<td>byte[]</td>
+<td>数据库兼容的字节流类型</td>
+</tr>
+<tr>
+<td>BlobTypeHandler</td>
+<td>byte[]</td>
+<td>BLOB，LONGVARBINARY</td>
+</tr>
+<tr>
+<td>DateTypeHandler</td>
+<td>java.util.Date</td>
+<td>TIMESTAMP</td>
+</tr>
+<tr>
+<td>DateOnlyTypeHandler</td>
+<td>java.util.Date</td>
+<td>DATE</td>
+</tr>
+<tr>
+<td>TimeOnlyTypeHandler</td>
+<td>java.util.Date</td>
+<td>TIME</td>
+</tr>
+<tr>
+<td>SqlTimestampTypehandler</td>
+<td>java.sql.Timestamp</td>
+<td>TIMESTAMP</td>
+</tr>
+<tr>
+<td>SqlDateTypeHandler</td>
+<td>java.sql.Date</td>
+<td>DATE</td>
+</tr>
+<tr>
+<td>SqlTimeTypeHandler</td>
+<td>java.sql.Time</td>
+<td>TIME</td>
+</tr>
+<tr>
+<td>ObjectTypeHandler</td>
+<td>Any</td>
+<td>OTHER或未指定类型</td>
+</tr>
+<tr>
+<td>EnumTypeHandler</td>
+<td>Enumeration Type</td>
+<td>VARCHAR 或任何兼容的字符串类型，存储枚举的名称</td>
+</tr>
+<tr>
+<td>EnumOrdinalTypeHandler</td>
+<td>Enumeration Type</td>
+<td>任何兼容的NUMERIC 或 DOUBLE 类型，存储枚举的索引</td>
+</tr>
+</tbody>
+</table>
+<h6 id="自定义的-TypeHandler"><a href="#自定义的-TypeHandler" class="headerlink" title="自定义的 TypeHandler"></a>自定义的 TypeHandler</h6><p>自定义的 TypeHandler 比较少用，后续单独分析。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 TypeHandler 元素/" data-id="cjfrz7g4g001wrjx7vt8se3no" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-MyBatis 之 配置文件 TypeAliases 元素" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/08/11/MyBatis 之 配置文件 TypeAliases 元素/" class="article-date">
@@ -270,7 +451,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 TypeAliases 元素/" data-id="cjfrso1c40023n6x7pms52u00" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 TypeAliases 元素/" data-id="cjfrz7g4h001yrjx7hk4zx682" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
@@ -344,7 +525,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 Properties 元素/" data-id="cjfrso1c7002bn6x71r7mw70q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 Properties 元素/" data-id="cjfrz7g4d001prjx7jwaoc8jn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
@@ -447,7 +628,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/10/MyBatis 之 入门/" data-id="cjfrso1c2001zn6x7pxu4we4v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/10/MyBatis 之 入门/" data-id="cjfrz7g5m0049rjx7n5tymvi8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
@@ -502,7 +683,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/10/MyBatis 之 JDBC 编程/" data-id="cjfrso1c0001tn6x7jz8tyh8k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/10/MyBatis 之 JDBC 编程/" data-id="cjfrz7g4a001irjx708n6uvre" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
@@ -566,7 +747,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/11/10/Hexo博客环境准备篇/" data-id="cjfrso1b5000in6x7tsp6oi8p" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/11/10/Hexo博客环境准备篇/" data-id="cjfrz7g450019rjx730wxzm8s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
@@ -613,7 +794,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/CI-持续集成/" style="font-size: 10px;">CI 持续集成</a> <a href="/tags/CQRS/" style="font-size: 12px;">CQRS</a> <a href="/tags/Event-Sourcing/" style="font-size: 12px;">Event Sourcing</a> <a href="/tags/GS1/" style="font-size: 14px;">GS1</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitflow-Workflow/" style="font-size: 10px;">Gitflow Workflow</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java虚拟机/" style="font-size: 10px;">Java虚拟机</a> <a href="/tags/MyBatis/" style="font-size: 18px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 14px;">MySQL</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Sonatype-Nexus/" style="font-size: 10px;">Sonatype Nexus</a> <a href="/tags/Spring-Framework/" style="font-size: 12px;">Spring Framework</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/UDI/" style="font-size: 10px;">UDI</a> <a href="/tags/ZooKeeper/" style="font-size: 10px;">ZooKeeper</a> <a href="/tags/二进制/" style="font-size: 10px;">二进制</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/多线程/" style="font-size: 14px;">多线程</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/架构探险/" style="font-size: 10px;">架构探险</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/选择排序-插入排序/" style="font-size: 10px;">选择排序 插入排序</a>
+      <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/CI-持续集成/" style="font-size: 10px;">CI 持续集成</a> <a href="/tags/CQRS/" style="font-size: 12px;">CQRS</a> <a href="/tags/Event-Sourcing/" style="font-size: 12px;">Event Sourcing</a> <a href="/tags/GS1/" style="font-size: 14px;">GS1</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitflow-Workflow/" style="font-size: 10px;">Gitflow Workflow</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java虚拟机/" style="font-size: 10px;">Java虚拟机</a> <a href="/tags/MyBatis/" style="font-size: 18px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 14px;">MySQL</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Sonatype-Nexus/" style="font-size: 10px;">Sonatype Nexus</a> <a href="/tags/Spring-Framework/" style="font-size: 14px;">Spring Framework</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/UDI/" style="font-size: 10px;">UDI</a> <a href="/tags/ZooKeeper/" style="font-size: 10px;">ZooKeeper</a> <a href="/tags/二进制/" style="font-size: 10px;">二进制</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/多线程/" style="font-size: 14px;">多线程</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/架构探险/" style="font-size: 10px;">架构探险</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/选择排序-插入排序/" style="font-size: 10px;">选择排序 插入排序</a>
     </div>
   </div>
 
@@ -639,11 +820,11 @@
           </li>
         
           <li>
-            <a href="/2018/01/11/关于版本控制/">关于版本控制</a>
+            <a href="/2018/01/11/GS1 医疗行业应用/">GS1 医疗行业应用</a>
           </li>
         
           <li>
-            <a href="/2018/01/11/GS1 医疗行业应用/">GS1 医疗行业应用</a>
+            <a href="/2018/01/11/关于版本控制/">关于版本控制</a>
           </li>
         
           <li>
