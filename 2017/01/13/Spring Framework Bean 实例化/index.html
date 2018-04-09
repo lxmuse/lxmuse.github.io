@@ -5,20 +5,20 @@
   
 
   
-  <title>CI 持续集成服务器搭建-准备篇 | LX Muse</title>
+  <title>Spring Framework Bean 实例化 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="操作系统：CentOS 6.5 64bitIP 地址：192.168.1.204JDK 版本：JDK 1.7 更换 yum 镜像源备份原文件，下载阿里 yum 镜像源文件，重命名下载的阿里 yum 镜像源文件1234[root@localhost Desktop]# cd /etc/yum.repos.d/[root@localhost yum.repos.d]# mv CentOS-Base.r">
-<meta name="keywords" content="CI 持续集成">
+  <meta name="description" content="Spring Framework：4.3.14.RELEASE 本文主要是论述 Spring Framework IOC 容器中 Bean 的实例化。 Bean 的实例化主要是两种方式：  通过构造函数实例化 通过静态方法实例化  通过构造函数实例化 通过构造函数实例化，前提条件是 Bean 含有一个无参构造器，可以是隐式无参构造器，也可以是显式无参构造器。 12345678910111213pu">
+<meta name="keywords" content="Spring Framework">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CI 持续集成服务器搭建-准备篇">
-<meta property="og:url" content="http://yoursite.com/2016/12/26/CI 持续集成服务器搭建-准备篇/index.html">
+<meta property="og:title" content="Spring Framework Bean 实例化">
+<meta property="og:url" content="http://yoursite.com/2017/01/13/Spring Framework Bean 实例化/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="操作系统：CentOS 6.5 64bitIP 地址：192.168.1.204JDK 版本：JDK 1.7 更换 yum 镜像源备份原文件，下载阿里 yum 镜像源文件，重命名下载的阿里 yum 镜像源文件1234[root@localhost Desktop]# cd /etc/yum.repos.d/[root@localhost yum.repos.d]# mv CentOS-Base.r">
+<meta property="og:description" content="Spring Framework：4.3.14.RELEASE 本文主要是论述 Spring Framework IOC 容器中 Bean 的实例化。 Bean 的实例化主要是两种方式：  通过构造函数实例化 通过静态方法实例化  通过构造函数实例化 通过构造函数实例化，前提条件是 Bean 含有一个无参构造器，可以是隐式无参构造器，也可以是显式无参构造器。 12345678910111213pu">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2017-12-30T01:34:02.000Z">
+<meta property="og:updated_time" content="2018-04-09T09:33:59.307Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CI 持续集成服务器搭建-准备篇">
-<meta name="twitter:description" content="操作系统：CentOS 6.5 64bitIP 地址：192.168.1.204JDK 版本：JDK 1.7 更换 yum 镜像源备份原文件，下载阿里 yum 镜像源文件，重命名下载的阿里 yum 镜像源文件1234[root@localhost Desktop]# cd /etc/yum.repos.d/[root@localhost yum.repos.d]# mv CentOS-Base.r">
+<meta name="twitter:title" content="Spring Framework Bean 实例化">
+<meta name="twitter:description" content="Spring Framework：4.3.14.RELEASE 本文主要是论述 Spring Framework IOC 容器中 Bean 的实例化。 Bean 的实例化主要是两种方式：  通过构造函数实例化 通过静态方法实例化  通过构造函数实例化 通过构造函数实例化，前提条件是 Bean 含有一个无参构造器，可以是隐式无参构造器，也可以是显式无参构造器。 12345678910111213pu">
   
     <link rel="alternate" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -65,14 +65,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-CI 持续集成服务器搭建-准备篇" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Spring Framework Bean 实例化" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/12/26/CI 持续集成服务器搭建-准备篇/" class="article-date">
-  <time datetime="2016-12-26T13:49:24.000Z" itemprop="datePublished">2016-12-26</time>
+    <a href="/2017/01/13/Spring Framework Bean 实例化/" class="article-date">
+  <time datetime="2017-01-13T12:49:24.000Z" itemprop="datePublished">2017-01-13</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/开发管理系列/">开发管理系列</a>
+    <a class="article-category-link" href="/categories/Spring-Framework/">Spring Framework</a>
   </div>
 
   </div>
@@ -83,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      CI 持续集成服务器搭建-准备篇
+      Spring Framework Bean 实例化
     </h1>
   
 
@@ -91,28 +91,32 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>操作系统：CentOS 6.5 64bit<br>IP 地址：192.168.1.204<br>JDK 版本：JDK 1.7</p>
-<h3 id="更换-yum-镜像源"><a href="#更换-yum-镜像源" class="headerlink" title="更换 yum 镜像源"></a>更换 yum 镜像源</h3><p>备份原文件，下载阿里 yum 镜像源文件，重命名下载的阿里 yum 镜像源文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Desktop]# cd /etc/yum.repos.d/</span><br><span class="line">[root@localhost yum.repos.d]# mv CentOS-Base.repo CentOS-Base.repo.backup</span><br><span class="line">[root@localhost yum.repos.d]# wget http://mirrors.aliyun.com/repo/Centos-6.repo</span><br><span class="line">[root@localhost yum.repos.d]# mv Centos-6.repo CentOS-Base.repo</span><br></pre></td></tr></table></figure></p>
-<h3 id="更新系统"><a href="#更新系统" class="headerlink" title="更新系统"></a>更新系统</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost yum.repos.d]# yum update</span><br><span class="line">[root@localhost yum.repos.d]# yum clean all</span><br><span class="line">[root@localhost yum.repos.d]# yum makecache</span><br></pre></td></tr></table></figure>
-<h3 id="设置静态-IP-地址"><a href="#设置静态-IP-地址" class="headerlink" title="设置静态 IP 地址"></a>设置静态 IP 地址</h3><p>编辑网卡配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# vi /etc/sysconfig/network-scripts/ifcfg-eth0</span><br></pre></td></tr></table></figure></p>
-<p>设置静态 IP 地址：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DR=192.168.1.204</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">GATEWAY=192.168.1.1</span><br><span class="line">USERCTL=no</span><br><span class="line">PEERDNS=yes</span><br></pre></td></tr></table></figure></p>
-<p>也可通过图形界面设置网络：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# setup</span><br></pre></td></tr></table></figure></p>
-<p>重启网络服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# service network restart</span><br></pre></td></tr></table></figure></p>
-<h3 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h3><p>执行安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm –ivh jdk-7u60-linux-x64.rpm</span><br></pre></td></tr></table></figure></p>
-<p>默认安装目录：/usr/java/jdk1.7.0_60</p>
-<p>配置环境变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# vi /etc/profile</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#set jdk environment</span><br><span class="line">export JAVA_HOME=/usr/java/jdk1.7.0_60</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br></pre></td></tr></table></figure>
-<p>使配置立即生效：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# vi /etc/profile</span><br></pre></td></tr></table></figure></p>
-<p>验证安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# java -version</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java version &quot;1.7.0_60&quot;</span><br><span class="line">Java(TM) SE Runtime Environment (build 1.7.0_60-b19)</span><br><span class="line">Java HotSpot(TM) 64-Bit_Server VM (build 24.60-b09, mixed mode)</span><br></pre></td></tr></table></figure>
+        <p>Spring Framework：4.3.14.RELEASE</p>
+<p>本文主要是论述 Spring Framework IOC 容器中 Bean 的实例化。</p>
+<p>Bean 的实例化主要是两种方式：</p>
+<ul>
+<li>通过构造函数实例化</li>
+<li>通过静态方法实例化</li>
+</ul>
+<p><strong>通过构造函数实例化</strong></p>
+<p>通过构造函数实例化，前提条件是 Bean 含有一个无参构造器，可以是隐式无参构造器，也可以是显式无参构造器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class ExampleBeanOne &#123;</span><br><span class="line"></span><br><span class="line">	private String name;</span><br><span class="line"></span><br><span class="line">	public void setName(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String hello() &#123;</span><br><span class="line">		return &quot;Hello &quot; + name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class ExampleBeanTwo &#123;</span><br><span class="line"></span><br><span class="line">	private String name;</span><br><span class="line">	</span><br><span class="line">	public ExampleBeanTwo() &#123;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public ExampleBeanTwo(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public String hello() &#123;</span><br><span class="line">		return &quot;Hello &quot; + name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;exampleBeanOne&quot; class=&quot;com.example.spring.ExampleBeanOne&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;name&quot; value=&quot;ExampleBeanOne&quot;&gt;&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean id=&quot;exampleBeanTwo&quot; class=&quot;com.example.spring.ExampleBeanTwo&quot;&gt;</span><br><span class="line">    &lt;constructor-arg value=&quot;ExampleBeanTwo&quot;&gt;&lt;/constructor-arg&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>通过静态方法实例化</strong></p>
+<p>通过静态方法实例化，前提条件是有一个静态方法可以实例化 Bean，可以是自身提供的静态方法，也可以是其他类提供的静态方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class ExampleBeanThree &#123;</span><br><span class="line"></span><br><span class="line">	private static ExampleBeanThree exampleBeanThree = new ExampleBeanThree(&quot;ExampleBeanThree&quot;);</span><br><span class="line">	</span><br><span class="line">	private String name;</span><br><span class="line">	</span><br><span class="line">	public static ExampleBeanThree createInstance() &#123;</span><br><span class="line">		return exampleBeanThree;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	private ExampleBeanThree(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public String hello() &#123;</span><br><span class="line">		return &quot;Hello &quot; + name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class ExampleBeanFive &#123;</span><br><span class="line">	private String name;</span><br><span class="line">	</span><br><span class="line">	public ExampleBeanFive() &#123;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public ExampleBeanFive(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public String hello() &#123;</span><br><span class="line">		return &quot;Hello &quot; + name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class ExampleBeanSix &#123;</span><br><span class="line">	</span><br><span class="line">	private static ExampleBeanFive exampleBeanFive = new ExampleBeanFive(&quot;ExampleBeanFive&quot;);</span><br><span class="line">	</span><br><span class="line">	public ExampleBeanFive createClientInstance() &#123;</span><br><span class="line">		return exampleBeanFive;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;exampleBeanThree&quot; class=&quot;com.example.spring.ExampleBeanThree&quot; factory-method=&quot;createInstance&quot;&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean id=&quot;exampleBeanSix&quot; class=&quot;com.example.spring.ExampleBeanSix&quot;&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean id=&quot;exampleBeanFive&quot; factory-bean=&quot;exampleBeanSix&quot; factory-method=&quot;createClientInstance&quot;&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>代码请参考example-03:<br><a href="https://github.com/lxmuse/lxmuse-spring.git" target="_blank" rel="noopener">lxmuse-spring-example-03</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/26/CI 持续集成服务器搭建-准备篇/" data-id="cjfs1ii4p00023sx7qwlrt1wo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/13/Spring Framework Bean 实例化/" data-id="cjfs1ii5t002f3sx7nu4t5b6x" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CI-持续集成/">CI 持续集成</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Framework/">Spring Framework</a></li></ul>
 
     </footer>
   </div>
@@ -120,19 +124,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2017/01/10/为什么使用 Spring Framework/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/11/14/需求分析与系统设计实践/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          为什么使用 Spring Framework
+          需求分析与系统设计
         
       </div>
     </a>
   
   
-    <a href="/2016/12/03/Java Comparable VS Comparator /" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/01/12/Spring Framework Bean 命名/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Java Comparable VS Comparator</div>
+      <div class="article-nav-title">Spring Framework Bean 命名</div>
     </a>
   
 </nav>

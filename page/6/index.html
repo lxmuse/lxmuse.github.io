@@ -62,6 +62,198 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-MyBatis 之 映射器 select 元素" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/12/MyBatis 之 映射器 select 元素/" class="article-date">
+  <time datetime="2015-08-12T02:49:24.000Z" itemprop="datePublished">2015-08-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/MyBatis-实践系列/">MyBatis 实践系列</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/12/MyBatis 之 映射器 select 元素/">MyBatis 之 映射器 select 元素</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>MyBatis 版本：MyBatis 3.3.0</p>
+<p>MyBatis 官方网站（英文）：<a href="http://www.mybatis.org/mybatis-3/" target="_blank" rel="noopener">MyBatis 英文官网</a><br>MyBatis 官方网站（中文）：<a href="http://www.mybatis.org/mybatis-3/zh/" target="_blank" rel="noopener">MyBatis 中文官网</a><br>MyBatis 源码：<a href="https://github.com/mybatis/mybatis-3" target="_blank" rel="noopener">MyBatis 源码</a></p>
+<h5 id="映射器元素"><a href="#映射器元素" class="headerlink" title="映射器元素"></a>映射器元素</h5><table>
+<thead>
+<tr>
+<th>元素名称</th>
+<th>描述</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>select</td>
+<td>查询语句</td>
+<td>可以自定义参数，返回结果集等</td>
+</tr>
+<tr>
+<td>insert</td>
+<td>插入语句</td>
+<td>执行后返回一个整数，代表插入的条数</td>
+</tr>
+<tr>
+<td>update</td>
+<td>更新语句</td>
+<td>执行后返回一个整数，代表更新的条数</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>删除语句</td>
+<td>执行后返回一个整数，代表删除的条数</td>
+</tr>
+<tr>
+<td>parameterMap</td>
+<td>定义参数映射关系</td>
+<td>不推荐使用</td>
+</tr>
+<tr>
+<td>sql</td>
+<td>允许定义一部分的SQL，方便引用</td>
+<td></td>
+</tr>
+<tr>
+<td>resultMap</td>
+<td>描述从数据库结果集中来加载对象</td>
+<td></td>
+</tr>
+<tr>
+<td>cache</td>
+<td>给定命名空间的缓存配置</td>
+<td></td>
+</tr>
+<tr>
+<td>cache-ref</td>
+<td>其他命名空间的缓存配置的引用</td>
+</tr>
+</tbody>
+</table>
+<h5 id="select-元素"><a href="#select-元素" class="headerlink" title="select 元素"></a>select 元素</h5><table>
+<thead>
+<tr>
+<th>元素名称</th>
+<th>描述</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>和 Mapper 命名空间一起组合唯一性</td>
+<td></td>
+</tr>
+<tr>
+<td>parameterType</td>
+<td>可以是类全限定名或类别名</td>
+<td></td>
+</tr>
+<tr>
+<td>parameterMap</td>
+<td>不推荐使用</td>
+<td></td>
+</tr>
+<tr>
+<td>resultType</td>
+<td>类的全限定名或类别名，可依据 JavaBean 的规范映射</td>
+<td>不可以和 resultMap 同时使用</td>
+</tr>
+<tr>
+<td>resultMap</td>
+<td>映射集的引用</td>
+<td>不可以和 resultType 同时使用</td>
+</tr>
+<tr>
+<td>flushCache</td>
+<td>在调用 SQL 后，是否要求 MyBatis 清空之前查询的本地缓存和二级缓存</td>
+<td>布尔值，默认值 false</td>
+</tr>
+<tr>
+<td>useCache</td>
+<td>启动二级缓存的开关，是否要求 MyBatis 将此次结果缓存</td>
+<td>布尔值，默认值 true</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>设置超时时间，单位为秒</td>
+<td>默认值是 JDBC 驱动所设置的秒数</td>
+</tr>
+<tr>
+<td>fetchSize</td>
+<td>获取记录的总条数设定</td>
+<td>默认值是 JDBC 驱动所设置的条数</td>
+</tr>
+<tr>
+<td>statementType</td>
+<td>JDBC Statement，取值为 STATEMENT（Statement），PREPARED（PreparedStatement），CallableStatement</td>
+<td>默认值是 PREPARED</td>
+</tr>
+<tr>
+<td>resultType</td>
+<td>JDBC resultSet，取值为 FORWARD_ONLY（游标允许向前访问），SCROLL_SENSITIVE（双向滚动，但不及时更新），SCROLL_INSENSITIVE（双向滚动，及时更新）</td>
+<td>默认值是 JDBC 驱动所设置的</td>
+</tr>
+<tr>
+<td>databaseId</td>
+<td>参考 databaseIdProvider</td>
+<td>一般不需要修改</td>
+</tr>
+<tr>
+<td>resultOrdered</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>resultSets</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="select-元素传递多个参数"><a href="#select-元素传递多个参数" class="headerlink" title="select 元素传递多个参数"></a>select 元素传递多个参数</h5><h6 id="使用-Map-传递参数"><a href="#使用-Map-传递参数" class="headerlink" title="使用 Map 传递参数"></a>使用 Map 传递参数</h6><p>Mapper：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;User&gt; findUserByMap(Map&lt;String, String&gt; params)</span><br></pre></td></tr></table></figure></p>
+<p>Mapper XML：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;findUserByMap&quot; parameterType=&quot;map&quot; resultMap=&quot;BaseResultMap&quot;&gt;</span><br><span class="line">	SELECT id, user_name FROM user_info</span><br><span class="line">    WHERE user_name LIKE CONCAT(&apos;%&apos;, #&#123;userName&#125;, &apos;%&apos;)</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure></p>
+<p>使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, String&gt; paramsMap = new HashMap&lt;String, String&gt;();</span><br><span class="line">paramsMap.put(&quot;userName&quot;, &quot;me&quot;)；</span><br><span class="line">userMapper.findUserByMap(paramsMap);</span><br></pre></td></tr></table></figure></p>
+<p>该方式存在一个弊端：业务可读性不强</p>
+<h6 id="使用注解传递参数"><a href="#使用注解传递参数" class="headerlink" title="使用注解传递参数"></a>使用注解传递参数</h6><p>注解接口 @Param (org.apache.ibatis.annotations.Param)</p>
+<p>Mapper：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;User&gt; findUserByAnnotations(@Param(&quot;userName&quot;) String userName)</span><br></pre></td></tr></table></figure></p>
+<p>Mapper XML：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;findUserByAnnotations&quot; parameterType=&quot;map&quot; resultMap=&quot;BaseResultMap&quot;&gt;</span><br><span class="line">	SELECT id, user_name FROM user_info</span><br><span class="line">    WHERE user_name LIKE CONCAT(&apos;%&apos;, #&#123;userName&#125;, &apos;%&apos;)</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure></p>
+<p>使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String userName = &quot;me&quot;;</span><br><span class="line">userMapper.findUserByAnnotations(userName);</span><br></pre></td></tr></table></figure></p>
+<p>该方式存在一个弊端：当参数数量很多时，可读性将下降</p>
+<h6 id="使用-JavaBean-传递参数"><a href="#使用-JavaBean-传递参数" class="headerlink" title="使用 JavaBean 传递参数"></a>使用 JavaBean 传递参数</h6><p>Mapper：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;User&gt; findUserByParams(UserParam userParam)</span><br></pre></td></tr></table></figure></p>
+<p>Mapper XML：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;findUserByParams&quot; parameterType=&quot;com.example.param.UserParam&quot; resultMap=&quot;BaseResultMap&quot;&gt;</span><br><span class="line">	SELECT id, user_name FROM user_info</span><br><span class="line">    WHERE user_name LIKE CONCAT(&apos;%&apos;, #&#123;userName&#125;, &apos;%&apos;)</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure></p>
+<p>使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UserParam userParam = new UserParam();</span><br><span class="line">userParam.setUserName(&quot;me&quot;);</span><br><span class="line">userMapper.findUserByParams(userParam);</span><br></pre></td></tr></table></figure></p>
+<p>当参数少于等于 3 个时可以使用注解方式传递参数，反之使用 JavaBean 方式传递参数</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/08/12/MyBatis 之 映射器 select 元素/" data-id="cjfs1ii5e001c3sx7en9pngum" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-MyBatis 之 配置文件 TypeHandler 元素" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/08/11/MyBatis 之 配置文件 TypeHandler 元素/" class="article-date">
@@ -231,7 +423,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 TypeHandler 元素/" data-id="cjfrzi0tt001i86x7pa2hjjfg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 TypeHandler 元素/" data-id="cjfs1ii5h001k3sx74mp27pz6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
@@ -451,7 +643,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 TypeAliases 元素/" data-id="cjfrzi0ts001g86x7qtucsjev" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 TypeAliases 元素/" data-id="cjfs1ii5g001i3sx70yjaqzqw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
@@ -525,7 +717,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 Properties 元素/" data-id="cjfrzi0tr001d86x7yceypyfi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 Properties 元素/" data-id="cjfs1ii5f001e3sx78xpxkjbs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
@@ -628,7 +820,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/10/MyBatis 之 入门/" data-id="cjfrzi0to001986x7fappcr38" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/10/MyBatis 之 入门/" data-id="cjfs1ii5d00183sx719r1yoch" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
@@ -683,7 +875,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/10/MyBatis 之 JDBC 编程/" data-id="cjfrzi0tl001286x7do3fchad" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/10/MyBatis 之 JDBC 编程/" data-id="cjfs1ii5b00133sx7crsyvckv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
@@ -747,7 +939,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/11/10/Hexo博客环境准备篇/" data-id="cjfrzi0td000i86x7igyw0e6s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/11/10/Hexo博客环境准备篇/" data-id="cjfs1ii52000g3sx7ho5gsiic" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
@@ -794,7 +986,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/CI-持续集成/" style="font-size: 10px;">CI 持续集成</a> <a href="/tags/CQRS/" style="font-size: 12px;">CQRS</a> <a href="/tags/Event-Sourcing/" style="font-size: 12px;">Event Sourcing</a> <a href="/tags/GS1/" style="font-size: 14px;">GS1</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitflow-Workflow/" style="font-size: 10px;">Gitflow Workflow</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java虚拟机/" style="font-size: 10px;">Java虚拟机</a> <a href="/tags/MyBatis/" style="font-size: 18px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 14px;">MySQL</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Sonatype-Nexus/" style="font-size: 10px;">Sonatype Nexus</a> <a href="/tags/Spring-Framework/" style="font-size: 14px;">Spring Framework</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/UDI/" style="font-size: 10px;">UDI</a> <a href="/tags/ZooKeeper/" style="font-size: 10px;">ZooKeeper</a> <a href="/tags/二进制/" style="font-size: 10px;">二进制</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/多线程/" style="font-size: 14px;">多线程</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/架构探险/" style="font-size: 10px;">架构探险</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/选择排序-插入排序/" style="font-size: 10px;">选择排序 插入排序</a>
+      <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/CI-持续集成/" style="font-size: 10px;">CI 持续集成</a> <a href="/tags/CQRS/" style="font-size: 11.67px;">CQRS</a> <a href="/tags/Event-Sourcing/" style="font-size: 11.67px;">Event Sourcing</a> <a href="/tags/GS1/" style="font-size: 13.33px;">GS1</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitflow-Workflow/" style="font-size: 10px;">Gitflow Workflow</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java虚拟机/" style="font-size: 10px;">Java虚拟机</a> <a href="/tags/MyBatis/" style="font-size: 18.33px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Sonatype-Nexus/" style="font-size: 10px;">Sonatype Nexus</a> <a href="/tags/Spring-Framework/" style="font-size: 15px;">Spring Framework</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/UDI/" style="font-size: 10px;">UDI</a> <a href="/tags/ZooKeeper/" style="font-size: 10px;">ZooKeeper</a> <a href="/tags/二进制/" style="font-size: 10px;">二进制</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/多线程/" style="font-size: 13.33px;">多线程</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/架构探险/" style="font-size: 10px;">架构探险</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/选择排序-插入排序/" style="font-size: 10px;">选择排序 插入排序</a>
     </div>
   </div>
 
