@@ -98,7 +98,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/13/计算机中的二进制/" data-id="cjft2nrnx0042nhx7yc1hthay" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/13/计算机中的二进制/" data-id="cjftcpsed004wi8x7xyaptmzq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二进制/">二进制</a></li></ul>
@@ -110,10 +110,204 @@
 
 
   
+    <article id="post-SpringBoot 属性外置" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/18/SpringBoot 属性外置/" class="article-date">
+  <time datetime="2018-01-18T13:49:24.000Z" itemprop="datePublished">2018-01-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/18/SpringBoot 属性外置/">SpringBoot 属性外置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SpringBoot：1.5.10.RELEASE</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/18/SpringBoot 属性外置/" data-id="cjftcpsdv0040i8x7uyqcvjqu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-SpringBoot 简单特性" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/18/SpringBoot 简单特性/" class="article-date">
+  <time datetime="2018-01-18T11:49:24.000Z" itemprop="datePublished">2018-01-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/18/SpringBoot 简单特性/">SpringBoot 简单特性</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SpringBoot：1.5.10.RELEASE</p>
+<p><strong>定制SpringApplication</strong></p>
+<p>以关闭 Banner 为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import org.springframework.boot.Banner;</span><br><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class MyApplication &#123;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication application = new SpringApplication(MyApplication.class);</span><br><span class="line">		application.setBannerMode(Banner.Mode.OFF);</span><br><span class="line">		application.run(args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者 application.yml 中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spring: </span><br><span class="line">	main:</span><br><span class="line">		banner-mode: &quot;off&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>流式API</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import org.springframework.boot.Banner;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line">import org.springframework.boot.builder.SpringApplicationBuilder;</span><br><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class MyApplication &#123;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		new SpringApplicationBuilder()</span><br><span class="line">			.sources(MyApplication.class)</span><br><span class="line">			.bannerMode(Banner.Mode.OFF)</span><br><span class="line">			.run(args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/18/SpringBoot 简单特性/" data-id="cjftcpsdz0046i8x7pj9tatfq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-SpringBoot 配置类和自动配置" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/17/SpringBoot 配置类和自动配置/" class="article-date">
+  <time datetime="2018-01-17T13:49:24.000Z" itemprop="datePublished">2018-01-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/17/SpringBoot 配置类和自动配置/">SpringBoot 配置类和自动配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SpringBoot：1.5.10.RELEASE</p>
+<p>SpringBoot 推荐基于 Java 维护元数据信息，但是也支持基于 XML 维护元数据信息。</p>
+<p>配置类通过 @Configuration 注解可以进行自动扫描</p>
+<p>SpringBoot 支持多个配置类单独配置，可通过 @Import 注解进行集中导入或者通过 @ComponentScan 自动扫描</p>
+<p>如果想集成基于 XML 维护元数据，可通过 @ImportResource 注解进行集成</p>
+<p>自动配置需要使用 @EnableAutoConfiguration 注解 </p>
+<p>@SpringBootApplication 注解组合了上述注解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">package com.example.myproject;</span><br><span class="line"></span><br><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication; </span><br><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class Application &#123;</span><br><span class="line">	public static void main(String[] args) &#123; </span><br><span class="line">		SpringApplication.run(Application.class, args);</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>@SpringBootApplication 组合了 @Configuration @EnableAutoCofiguration @ComponentScan 三个注解</p>
+<p>可通过如下方式去除自动配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import org.springframework.boot.autoconfigure.*; </span><br><span class="line">import org.springframework.boot.autoconfigure.jdbc.*; import org.springframework.context.annotation.*;</span><br><span class="line"></span><br><span class="line">@Configuration @EnableAutoConfiguration(exclude=&#123;DataSourceAutoConfiguration.class&#125;) </span><br><span class="line">public class MyConfiguration &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>@EnableAutoConfiguration 可以通过 exclude 进行排除</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/17/SpringBoot 配置类和自动配置/" data-id="cjftcpse10048i8x7lunrf543" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-SpringBoot 代码结构" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/17/SpringBoot 代码结构/" class="article-date">
+  <time datetime="2018-01-17T12:49:24.000Z" itemprop="datePublished">2018-01-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/17/SpringBoot 代码结构/">SpringBoot 代码结构</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SpringBoot：1.5.10.RELEASE</p>
+<p><strong>不要使用默认包</strong></p>
+<p>default package 不能使用，SpringBoot 特性是自动扫描，自动装配，对代码结构有一定的约定，default package 结构可能影响自动扫描，自动装配</p>
+<p><strong>启动类的位置</strong></p>
+<p>官方推荐启动类位于根目录，因为 @EnableAutoConfiguration 注解是基于当前类所在包，扫描当前类所在包及子包</p>
+<p>典型布局：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">com</span><br><span class="line"> +- example</span><br><span class="line">     +- myproject</span><br><span class="line">         +- Application.java</span><br><span class="line">         |</span><br><span class="line">         +- domain</span><br><span class="line">         |   +- Customer.java</span><br><span class="line">         |   +- CustomerRepository.java</span><br><span class="line">         |</span><br><span class="line">         +- service</span><br><span class="line">         |   +- CustomerService.java</span><br><span class="line">         |</span><br><span class="line">         +- web</span><br><span class="line">             +- CustomerController.java</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">package com.example.myproject;</span><br><span class="line"></span><br><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.EnableAutoConfiguration; </span><br><span class="line">import org.springframework.context.annotation.ComponentScan;</span><br><span class="line">import org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line">@Configuration</span><br><span class="line">@EnableAutoConfiguration</span><br><span class="line">@ComponentScan</span><br><span class="line">public class Application &#123;</span><br><span class="line">	public static void main(String[] args) &#123; </span><br><span class="line">		SpringApplication.run(Application.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/17/SpringBoot 代码结构/" data-id="cjftcpsdk003gi8x7kl54zhbo" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Spring Boot 使用" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/01/17/Spring Boot 使用/" class="article-date">
-  <time datetime="2018-01-17T12:49:24.000Z" itemprop="datePublished">2018-01-17</time>
+  <time datetime="2018-01-17T11:49:24.000Z" itemprop="datePublished">2018-01-17</time>
 </a>
     
   <div class="article-category">
@@ -147,7 +341,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/17/Spring Boot 使用/" data-id="cjft2nrn4002dnhx7mfctm6kh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/17/Spring Boot 使用/" data-id="cjftcpsd7002ui8x7xdcnwfx2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
@@ -190,7 +384,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/11/关于版本控制/" data-id="cjft2nrnw0040nhx7286cx1jd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/11/关于版本控制/" data-id="cjftcpsec004ui8x75oxiprdw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
@@ -233,7 +427,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/11/GS1 医疗行业应用/" data-id="cjft2nrmb000gnhx76a2frzg8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/11/GS1 医疗行业应用/" data-id="cjftcpsca0014i8x7uwcpzd2y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GS1/">GS1</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UDI/">UDI</a></li></ul>
@@ -305,7 +499,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/10/GS1 数据载体体系/" data-id="cjft2nrp6007tnhx7f0puu8ql" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/10/GS1 数据载体体系/" data-id="cjftcpsfh007yi8x79zvfqadb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GS1/">GS1</a></li></ul>
@@ -366,211 +560,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/10/GS1 编码体系/" data-id="cjft2nrpw0081nhx79yf9kc5v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/10/GS1 编码体系/" data-id="cjftcpsfp008fi8x7wyrzodsg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GS1/">GS1</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-MySQL You can&#39;t specify target table &#39;x&#39; for update in FROM clause" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/08/MySQL You can't specify target table 'x' for update in FROM clause/" class="article-date">
-  <time datetime="2018-01-08T15:49:24.000Z" itemprop="datePublished">2018-01-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/MySQL-系列/">MySQL 系列</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/08/MySQL You can't specify target table 'x' for update in FROM clause/">MySQL You can&#39;t specify target table &#39;x&#39; for update in FROM clause</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天执行如下SQL时：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (</span><br><span class="line">     SELECT barcode_id FROM materials_barcode_info WHERE barcode_length != LENGTH(barcode_example)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
-<p>提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Err] 1093 - You can&apos;t specify target table &apos;materials_barcode_info&apos; for update in FROM clause</span><br></pre></td></tr></table></figure></p>
-<p>本意是想将条码规则表中条码规则中样例实际长度和条码规则中长度不一致的条码规则进行逻辑删除</p>
-<p>单独执行 <code>SELECT barcode_id from materials_barcode_info where barcode_length != LENGTH(barcode_example)</code> 运行正确</p>
-<p>单独执行 <code>update materials_barcode_info set del_flag = 1 where barcode_id in (&#39;x&#39;,&#39;x&#39;)</code> 运行正确</p>
-<p>MySQL 对子查询的使用存在限制：</p>
-<p><a href="https://dev.mysql.com/doc/refman/5.7/en/subquery-restrictions.html" target="_blank" rel="noopener">https://dev.mysql.com/doc/refman/5.7/en/subquery-restrictions.html</a></p>
-<p>即不能在一个SQL中先查询同一张表中的某些记录然后再更新同一张表中的某些记录</p>
-<p>修改一下SQL，再嵌套一层</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (</span><br><span class="line">     SELECT barcode_id FROM (</span><br><span class="line">         SELECT barcode_id FROM materials_barcode_info WHERE barcode_length != LENGTH(barcode_example)</span><br><span class="line">     ) a</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/08/MySQL You can't specify target table 'x' for update in FROM clause/" data-id="cjft2nrms001inhx79f1itmue" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-MySQL 末尾空格的查询问题" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/08/MySQL 末尾空格的查询问题/" class="article-date">
-  <time datetime="2018-01-08T14:49:24.000Z" itemprop="datePublished">2018-01-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/MySQL-系列/">MySQL 系列</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/08/MySQL 末尾空格的查询问题/">MySQL 末尾空格的查询问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>MySQL 中如果字段类型是 char 或 varchar 类型，在字符串比较时 MySQL 使用 PADSPACE 校对规则，会忽略字段末尾的空格字符</p>
-<p>比如有这样一个 SQL 语句 ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from table where user = &apos;wxp    &apos;；</span><br></pre></td></tr></table></figure>
-<p>但是可以查询到数据库中 user 为 wxp 的那一行</p>
-<p>那么若想做到精确匹配，可以有如下解决方法：</p>
-<p>第一种方法：使用 like </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from table where user like &apos;wxp     &apos;；</span><br></pre></td></tr></table></figure>
-<p>第二种方法：使用 BINARY </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from table where user = BINARY&apos;wxp    &apos;;</span><br></pre></td></tr></table></figure>
-<p>第三种方法：添加 len 函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slect * form table where user = &apos;wxp   &apos; and LENGTH(user) = LENGTH(&apos;wxp    &apos;)</span><br></pre></td></tr></table></figure>
-<p>官方手册说明（5.0版本）：<br><a href="http://dev.mysql.com/doc/refman/5.0/en/char.html" target="_blank" rel="noopener">http://dev.mysql.com/doc/refman/5.0/en/char.html</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">11.1.6.1. The CHAR and VARCHAR Types</span><br><span class="line"> All MySQL collations are of type PADSPACE. This means that all CHAR, VARCHAR, and TEXT values in MySQL are compared without regard to any trailing spaces. “Comparison” in this context does not include the LIKE pattern-matching operator, for which trailing spaces are significant.</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/08/MySQL 末尾空格的查询问题/" data-id="cjft2nrmt001mnhx7gl41mf2z" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-SpringBoot 启动源码解析系列六：执行启动方法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/02/SpringBoot 启动源码解析系列六：执行启动方法/" class="article-date">
-  <time datetime="2018-01-02T15:22:24.000Z" itemprop="datePublished">2018-01-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/SpringBoot-系列/">SpringBoot 系列</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/02/SpringBoot 启动源码解析系列六：执行启动方法/">SpringBoot 启动源码解析系列六：执行启动方法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public ConfigurableApplicationContext run(String... args) &#123;</span><br><span class="line">    StopWatch stopWatch = new StopWatch();</span><br><span class="line">    stopWatch.start();</span><br><span class="line">    ConfigurableApplicationContext context = null;</span><br><span class="line">    FailureAnalyzers analyzers = null;</span><br><span class="line">    this.configureHeadlessProperty();</span><br><span class="line">    SpringApplicationRunListeners listeners = this.getRunListeners(args);</span><br><span class="line">    listeners.starting();</span><br><span class="line"></span><br><span class="line">    try &#123;</span><br><span class="line">        ApplicationArguments applicationArguments = new DefaultApplicationArguments(args);</span><br><span class="line">        ConfigurableEnvironment environment = this.prepareEnvironment(listeners, applicationArguments);</span><br><span class="line">        Banner printedBanner = this.printBanner(environment);</span><br><span class="line">        context = this.createApplicationContext();</span><br><span class="line">        new FailureAnalyzers(context);</span><br><span class="line">        this.prepareContext(context, environment, listeners, applicationArguments, printedBanner);</span><br><span class="line">        this.refreshContext(context);</span><br><span class="line">        this.afterRefresh(context, applicationArguments);</span><br><span class="line">        listeners.finished(context, (Throwable)null);</span><br><span class="line">        stopWatch.stop();</span><br><span class="line">        if (this.logStartupInfo) &#123;</span><br><span class="line">            (new StartupInfoLogger(this.mainApplicationClass)).logStarted(this.getApplicationLog(), stopWatch);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return context;</span><br><span class="line">    &#125; catch (Throwable var9) &#123;</span><br><span class="line">        this.handleRunFailure(context, listeners, (FailureAnalyzers)analyzers, var9);</span><br><span class="line">        throw new IllegalStateException(var9);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>核心步骤一：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SpringApplicationRunListeners listeners = this.getRunListeners(args);</span><br><span class="line">listeners.starting();</span><br></pre></td></tr></table></figure></p>
-<p>核心步骤二：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ConfigurableEnvironment environment = this.prepareEnvironment(listeners, applicationArguments);</span><br></pre></td></tr></table></figure></p>
-<p>核心步骤三：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">context = this.createApplicationContext();</span><br></pre></td></tr></table></figure></p>
-<p>核心步骤四：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.prepareContext(context, environment, listeners, applicationArguments, printedBanner);</span><br></pre></td></tr></table></figure></p>
-<p>核心步骤五：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.refreshContext(context);</span><br></pre></td></tr></table></figure></p>
-<p>核心步骤六：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.afterRefresh(context, applicationArguments);</span><br></pre></td></tr></table></figure></p>
-<p>核心步骤七：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">listeners.finished(context, (Throwable)null);</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列六：执行启动方法/" data-id="cjft2nrni0038nhx7jmqji2sf" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-SpringBoot 启动源码解析系列五：找到程序入口类并实例化" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/02/SpringBoot 启动源码解析系列五：找到程序入口类并实例化/" class="article-date">
-  <time datetime="2018-01-02T15:18:24.000Z" itemprop="datePublished">2018-01-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/SpringBoot-系列/">SpringBoot 系列</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/02/SpringBoot 启动源码解析系列五：找到程序入口类并实例化/">SpringBoot 启动源码解析系列五：找到程序入口类并实例化</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>SpringApplication initialize 方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private void initialize(Object[] sources) &#123;</span><br><span class="line">    if (sources != null &amp;&amp; sources.length &gt; 0) &#123;</span><br><span class="line">        this.sources.addAll(Arrays.asList(sources));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    this.webEnvironment = this.deduceWebEnvironment();</span><br><span class="line">    this.setInitializers(this.getSpringFactoriesInstances(ApplicationContextInitializer.class));</span><br><span class="line">    this.setListeners(this.getSpringFactoriesInstances(ApplicationListener.class));</span><br><span class="line">    this.mainApplicationClass = this.deduceMainApplicationClass();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>deduceMainApplicationClass 方法即用于查找 main 方法类，并实例化：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">private Class&lt;?&gt; deduceMainApplicationClass() &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            StackTraceElement[] stackTrace = (new RuntimeException()).getStackTrace();</span><br><span class="line">            StackTraceElement[] var2 = stackTrace;</span><br><span class="line">            int var3 = stackTrace.length;</span><br><span class="line"></span><br><span class="line">            for(int var4 = 0; var4 &lt; var3; ++var4) &#123;</span><br><span class="line">                StackTraceElement stackTraceElement = var2[var4];</span><br><span class="line">                if (&quot;main&quot;.equals(stackTraceElement.getMethodName())) &#123;</span><br><span class="line">                    return Class.forName(stackTraceElement.getClassName());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (ClassNotFoundException var6) &#123;</span><br><span class="line">            ;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列五：找到程序入口类并实例化/" data-id="cjft2nrng0033nhx74ur0j5be" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
 
     </footer>
   </div>
@@ -640,19 +633,19 @@
           </li>
         
           <li>
-            <a href="/2018/01/17/Spring Boot 使用/">SpringBoot 使用</a>
+            <a href="/2018/01/18/SpringBoot 属性外置/">SpringBoot 属性外置</a>
           </li>
         
           <li>
-            <a href="/2018/01/11/关于版本控制/">关于版本控制</a>
+            <a href="/2018/01/18/SpringBoot 简单特性/">SpringBoot 简单特性</a>
           </li>
         
           <li>
-            <a href="/2018/01/11/GS1 医疗行业应用/">GS1 医疗行业应用</a>
+            <a href="/2018/01/17/SpringBoot 配置类和自动配置/">SpringBoot 配置类和自动配置</a>
           </li>
         
           <li>
-            <a href="/2018/01/10/GS1 数据载体体系/">GS1 数据载体体系</a>
+            <a href="/2018/01/17/SpringBoot 代码结构/">SpringBoot 代码结构</a>
           </li>
         
       </ul>

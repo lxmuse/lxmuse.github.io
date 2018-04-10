@@ -62,6 +62,458 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-MyBatis 之 配置文件 TypeAliases 元素" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/11/MyBatis 之 配置文件 TypeAliases 元素/" class="article-date">
+  <time datetime="2015-08-11T06:49:24.000Z" itemprop="datePublished">2015-08-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/MyBatis-实践系列/">MyBatis 实践系列</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/11/MyBatis 之 配置文件 TypeAliases 元素/">MyBatis 之 配置文件 TypeAliases 元素</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>MyBatis 版本：MyBatis 3.3.0</p>
+<p>MyBatis 官方网站（英文）：<a href="http://www.mybatis.org/mybatis-3/" target="_blank" rel="noopener">MyBatis 英文官网</a><br>MyBatis 官方网站（中文）：<a href="http://www.mybatis.org/mybatis-3/zh/" target="_blank" rel="noopener">MyBatis 中文官网</a><br>MyBatis 源码：<a href="https://github.com/mybatis/mybatis-3" target="_blank" rel="noopener">MyBatis 源码</a></p>
+<h5 id="MyBatis-配置文件层次结构"><a href="#MyBatis-配置文件层次结构" class="headerlink" title="MyBatis 配置文件层次结构"></a>MyBatis 配置文件层次结构</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;&gt;</span><br><span class="line">&lt;configuration&gt; &lt;!--配置--&gt;</span><br><span class="line">  &lt;properties/&gt; &lt;!--属性--&gt;</span><br><span class="line">  &lt;settings/&gt; &lt;!--设置--&gt;</span><br><span class="line">  &lt;typeAliases/&gt; &lt;!--类型命名--&gt;</span><br><span class="line">  &lt;typeHandlers/&gt; &lt;!--类型处理器--&gt;</span><br><span class="line">  &lt;objetFactory/&gt; &lt;!--对象工厂--&gt;</span><br><span class="line">  &lt;plugins/&gt; &lt;!--插件--&gt;</span><br><span class="line">  &lt;environments&gt; &lt;!--配置环境--&gt;</span><br><span class="line">    &lt;environment&gt; &lt;!--环境变量--&gt;</span><br><span class="line">      &lt;transactionManager/&gt; &lt;!--事务管理器--&gt;</span><br><span class="line">      &lt;dataSource/&gt; &lt;!--数据源--&gt;</span><br><span class="line">    &lt;/environment&gt;</span><br><span class="line">  &lt;/environments&gt;</span><br><span class="line">  &lt;databaseIdProvider/&gt; &lt;!--数据库厂商标识--&gt;</span><br><span class="line">  &lt;mappers/&gt; &lt;!--映射器--&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="TypeAliases-元素"><a href="#TypeAliases-元素" class="headerlink" title="TypeAliases 元素"></a>TypeAliases 元素</h5><p>别名是当类全限定名过长时可以用一个简短的名称去指代它，且该名称可以在 MyBatis 上下文中使用。<br>别名分为：</p>
+<ul>
+<li>系统定义别名</li>
+<li>自定义别名</li>
+</ul>
+<p>别分不分大小写，因为 TypeAliasRgistry 在辨别别名时会统一转换为小写后辨别（后续源码分析）。<br>别名是不允许重复的。</p>
+<h6 id="系统定义别名"><a href="#系统定义别名" class="headerlink" title="系统定义别名"></a>系统定义别名</h6><p>MyBatis 源码 org.apache.ibatis.type.TypeAliasRegistry 中定义了所有的系统定义别名。</p>
+<table>
+<thead>
+<tr>
+<th>别名</th>
+<th>映射的类型</th>
+<th>是否支持数组</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_byte</td>
+<td>byte</td>
+<td>是</td>
+</tr>
+<tr>
+<td>_long</td>
+<td>long</td>
+<td>是</td>
+</tr>
+<tr>
+<td>_short</td>
+<td>short</td>
+<td>是</td>
+</tr>
+<tr>
+<td>_int</td>
+<td>int</td>
+<td>是</td>
+</tr>
+<tr>
+<td>_integer</td>
+<td>int</td>
+<td>是</td>
+</tr>
+<tr>
+<td>_double</td>
+<td>double</td>
+<td>是</td>
+</tr>
+<tr>
+<td>_float</td>
+<td>float</td>
+<td>是</td>
+</tr>
+<tr>
+<td>_boolean</td>
+<td>boolean</td>
+<td>是</td>
+</tr>
+<tr>
+<td>string</td>
+<td>String</td>
+<td>否</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>Byte</td>
+<td>是</td>
+</tr>
+<tr>
+<td>long</td>
+<td>Long</td>
+<td>是</td>
+</tr>
+<tr>
+<td>short</td>
+<td>Short</td>
+<td>是</td>
+</tr>
+<tr>
+<td>int</td>
+<td>Integer</td>
+<td>是</td>
+</tr>
+<tr>
+<td>integer</td>
+<td>Integer</td>
+<td>是</td>
+</tr>
+<tr>
+<td>double</td>
+<td>Double</td>
+<td>是</td>
+</tr>
+<tr>
+<td>float</td>
+<td>Float</td>
+<td>是</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>Boolean</td>
+<td>是</td>
+</tr>
+<tr>
+<td>date</td>
+<td>Date</td>
+<td>是</td>
+</tr>
+<tr>
+<td>decimal</td>
+<td>BigDecimal</td>
+<td>是</td>
+</tr>
+<tr>
+<td>bigdecimal</td>
+<td>BigDecimal</td>
+<td>是</td>
+</tr>
+<tr>
+<td>object</td>
+<td>Object</td>
+<td>是</td>
+</tr>
+<tr>
+<td>map</td>
+<td>Map</td>
+<td>否</td>
+</tr>
+<tr>
+<td>hashmap</td>
+<td>HashMap</td>
+<td>否</td>
+</tr>
+<tr>
+<td>list</td>
+<td>List</td>
+<td>否</td>
+</tr>
+<tr>
+<td>arraylist</td>
+<td>ArrayList</td>
+<td>否</td>
+</tr>
+<tr>
+<td>collection</td>
+<td>Collection</td>
+<td>否</td>
+</tr>
+<tr>
+<td>iterator</td>
+<td>Iterator</td>
+<td>否</td>
+</tr>
+<tr>
+<td>ResultSet</td>
+<td>ResultSet</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+<p>支持数组即可以使用类似于 date[] 这样的别名。</p>
+<p>org.apache.ibatis.type.TypeAliasRegistry#TypeAliasRegistry 源码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">public TypeAliasRegistry() &#123;</span><br><span class="line">    this.registerAlias(&quot;string&quot;, String.class);</span><br><span class="line">    this.registerAlias(&quot;byte&quot;, Byte.class);</span><br><span class="line">    this.registerAlias(&quot;long&quot;, Long.class);</span><br><span class="line">    this.registerAlias(&quot;short&quot;, Short.class);</span><br><span class="line">    this.registerAlias(&quot;int&quot;, Integer.class);</span><br><span class="line">    this.registerAlias(&quot;integer&quot;, Integer.class);</span><br><span class="line">    this.registerAlias(&quot;double&quot;, Double.class);</span><br><span class="line">    this.registerAlias(&quot;float&quot;, Float.class);</span><br><span class="line">    this.registerAlias(&quot;boolean&quot;, Boolean.class);</span><br><span class="line">    this.registerAlias(&quot;byte[]&quot;, Byte[].class);</span><br><span class="line">    this.registerAlias(&quot;long[]&quot;, Long[].class);</span><br><span class="line">    this.registerAlias(&quot;short[]&quot;, Short[].class);</span><br><span class="line">    this.registerAlias(&quot;int[]&quot;, Integer[].class);</span><br><span class="line">    this.registerAlias(&quot;integer[]&quot;, Integer[].class);</span><br><span class="line">    this.registerAlias(&quot;double[]&quot;, Double[].class);</span><br><span class="line">    this.registerAlias(&quot;float[]&quot;, Float[].class);</span><br><span class="line">    this.registerAlias(&quot;boolean[]&quot;, Boolean[].class);</span><br><span class="line">    this.registerAlias(&quot;_byte&quot;, Byte.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_long&quot;, Long.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_short&quot;, Short.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_int&quot;, Integer.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_integer&quot;, Integer.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_double&quot;, Double.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_float&quot;, Float.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_boolean&quot;, Boolean.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_byte[]&quot;, byte[].class);</span><br><span class="line">    this.registerAlias(&quot;_long[]&quot;, long[].class);</span><br><span class="line">    this.registerAlias(&quot;_short[]&quot;, short[].class);</span><br><span class="line">    this.registerAlias(&quot;_int[]&quot;, int[].class);</span><br><span class="line">    this.registerAlias(&quot;_integer[]&quot;, int[].class);</span><br><span class="line">    this.registerAlias(&quot;_double[]&quot;, double[].class);</span><br><span class="line">    this.registerAlias(&quot;_float[]&quot;, float[].class);</span><br><span class="line">    this.registerAlias(&quot;_boolean[]&quot;, boolean[].class);</span><br><span class="line">    this.registerAlias(&quot;date&quot;, Date.class);</span><br><span class="line">    this.registerAlias(&quot;decimal&quot;, BigDecimal.class);</span><br><span class="line">    this.registerAlias(&quot;bigdecimal&quot;, BigDecimal.class);</span><br><span class="line">    this.registerAlias(&quot;biginteger&quot;, BigInteger.class);</span><br><span class="line">    this.registerAlias(&quot;object&quot;, Object.class);</span><br><span class="line">    this.registerAlias(&quot;date[]&quot;, Date[].class);</span><br><span class="line">    this.registerAlias(&quot;decimal[]&quot;, BigDecimal[].class);</span><br><span class="line">    this.registerAlias(&quot;bigdecimal[]&quot;, BigDecimal[].class);</span><br><span class="line">    this.registerAlias(&quot;biginteger[]&quot;, BigInteger[].class);</span><br><span class="line">    this.registerAlias(&quot;object[]&quot;, Object[].class);</span><br><span class="line">    this.registerAlias(&quot;map&quot;, Map.class);</span><br><span class="line">    this.registerAlias(&quot;hashmap&quot;, HashMap.class);</span><br><span class="line">    this.registerAlias(&quot;list&quot;, List.class);</span><br><span class="line">    this.registerAlias(&quot;arraylist&quot;, ArrayList.class);</span><br><span class="line">    this.registerAlias(&quot;collection&quot;, Collection.class);</span><br><span class="line">    this.registerAlias(&quot;iterator&quot;, Iterator.class);</span><br><span class="line">    this.registerAlias(&quot;ResultSet&quot;, ResultSet.class);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h6 id="自定义别名"><a href="#自定义别名" class="headerlink" title="自定义别名"></a>自定义别名</h6><p>类型别名是为 Java 类型设置一个短的名字。它只和 XML 配置有关，存在的意义仅在于用来减少类完全限定名的冗余。</p>
+<p>定义自定义别名有三种方式：</p>
+<ul>
+<li>指定类别名</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;typeAliases&gt;</span><br><span class="line">  &lt;typeAlias alias=&quot;Author&quot; type=&quot;domain.blog.Author&quot;/&gt;</span><br><span class="line">  &lt;typeAlias alias=&quot;Blog&quot; type=&quot;domain.blog.Blog&quot;/&gt;</span><br><span class="line">  &lt;typeAlias alias=&quot;Comment&quot; type=&quot;domain.blog.Comment&quot;/&gt;</span><br><span class="line">  &lt;typeAlias alias=&quot;Post&quot; type=&quot;domain.blog.Post&quot;/&gt;</span><br><span class="line">  &lt;typeAlias alias=&quot;Section&quot; type=&quot;domain.blog.Section&quot;/&gt;</span><br><span class="line">  &lt;typeAlias alias=&quot;Tag&quot; type=&quot;domain.blog.Tag&quot;/&gt;</span><br><span class="line">&lt;/typeAliases&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>包扫描（在没有注解的情况下，会使用 Bean 的首字母小写的非限定类名来作为它的别名）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;typeAliases&gt;</span><br><span class="line">  &lt;package name=&quot;domain.blog&quot;/&gt;</span><br><span class="line">&lt;/typeAliases&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注解</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Alias(&quot;author&quot;)</span><br><span class="line">public class Author &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注解的优先级最高，若有注解，则别名是注解中指定的别名</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 TypeAliases 元素/" data-id="cjftcpscq001vi8x7szh12ysj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-MyBatis 之 配置文件 Properties 元素" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/11/MyBatis 之 配置文件 Properties 元素/" class="article-date">
+  <time datetime="2015-08-11T04:49:24.000Z" itemprop="datePublished">2015-08-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/MyBatis-实践系列/">MyBatis 实践系列</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/11/MyBatis 之 配置文件 Properties 元素/">MyBatis 之 配置文件 Properties 元素</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>MyBatis 版本：MyBatis 3.3.0</p>
+<p>MyBatis 官方网站（英文）：<a href="http://www.mybatis.org/mybatis-3/" target="_blank" rel="noopener">MyBatis 英文官网</a><br>MyBatis 官方网站（中文）：<a href="http://www.mybatis.org/mybatis-3/zh/" target="_blank" rel="noopener">MyBatis 中文官网</a><br>MyBatis 源码：<a href="https://github.com/mybatis/mybatis-3" target="_blank" rel="noopener">MyBatis 源码</a></p>
+<h5 id="MyBatis-配置文件层次结构"><a href="#MyBatis-配置文件层次结构" class="headerlink" title="MyBatis 配置文件层次结构"></a>MyBatis 配置文件层次结构</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;&gt;</span><br><span class="line">&lt;configuration&gt; &lt;!--配置--&gt;</span><br><span class="line">  &lt;properties/&gt; &lt;!--属性--&gt;</span><br><span class="line">  &lt;settings/&gt; &lt;!--设置--&gt;</span><br><span class="line">  &lt;typeAliases/&gt; &lt;!--类型命名--&gt;</span><br><span class="line">  &lt;typeHandlers/&gt; &lt;!--类型处理器--&gt;</span><br><span class="line">  &lt;objetFactory/&gt; &lt;!--对象工厂--&gt;</span><br><span class="line">  &lt;plugins/&gt; &lt;!--插件--&gt;</span><br><span class="line">  &lt;environments&gt; &lt;!--配置环境--&gt;</span><br><span class="line">    &lt;environment&gt; &lt;!--环境变量--&gt;</span><br><span class="line">      &lt;transactionManager/&gt; &lt;!--事务管理器--&gt;</span><br><span class="line">      &lt;dataSource/&gt; &lt;!--数据源--&gt;</span><br><span class="line">    &lt;/environment&gt;</span><br><span class="line">  &lt;/environments&gt;</span><br><span class="line">  &lt;databaseIdProvider/&gt; &lt;!--数据库厂商标识--&gt;</span><br><span class="line">  &lt;mappers/&gt; &lt;!--映射器--&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="Properties-元素"><a href="#Properties-元素" class="headerlink" title="Properties 元素"></a>Properties 元素</h5><p>MyBatis 提供 3 种配置方式：</p>
+<ul>
+<li>property 子元素</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;properties&gt;</span><br><span class="line">  &lt;property name=&quot;driver&quot; value=&quot;com.mysql.jdbc.Driver&quot;/&gt;</span><br><span class="line">  &lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/mybatis&quot;/&gt;</span><br><span class="line">  &lt;property name=&quot;username&quot; value=&quot;dev_user&quot;/&gt;</span><br><span class="line">  &lt;property name=&quot;password&quot; value=&quot;F2Fa3!33TYyg&quot;/&gt;</span><br><span class="line">&lt;/properties&gt;</span><br></pre></td></tr></table></figure>
+<p>其中的属性就可以在整个配置文件中使用来替换需要动态配置的属性值。比如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;dataSource type=&quot;POOLED&quot;&gt;</span><br><span class="line">  &lt;property name=&quot;driver&quot; value=&quot;$&#123;driver&#125;&quot;/&gt;</span><br><span class="line">  &lt;property name=&quot;url&quot; value=&quot;$&#123;url&#125;&quot;/&gt;</span><br><span class="line">  &lt;property name=&quot;username&quot; value=&quot;$&#123;username&#125;&quot;/&gt;</span><br><span class="line">  &lt;property name=&quot;password&quot; value=&quot;$&#123;password&#125;&quot;/&gt;</span><br><span class="line">&lt;/dataSource&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这个例子中的 username 和 password 将会由 properties 元素中设置的相应值来替换。 driver 和 url 属性将会由 config.properties 文件中对应的值来替换。这样就为配置提供了诸多灵活选择。</p>
+<ul>
+<li>properties 配置文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;properties resource=&quot;org/mybatis/example/config.properties&quot;&gt;</span><br><span class="line">&lt;/properties&gt;</span><br></pre></td></tr></table></figure>
+<p>使用 Properties 文件方便日后维护和随时修改。</p>
+<ul>
+<li>程序参数传递</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader, props);</span><br><span class="line"></span><br><span class="line">// ... or ...</span><br><span class="line"></span><br><span class="line">SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader, environment, props);</span><br></pre></td></tr></table></figure>
+<p>MyBatis 支持的 3 种配置方式可能同时出现，并且属性还会重复配置，故这三种配置方式将有一个设定的优先级：</p>
+<ol>
+<li>如果属性在不只一个地方进行了配置，那么 MyBatis 将按照下面的顺序来加载：</li>
+<li>在 properties 元素体内指定的属性首先被读取。然后根据 properties 元素中的 resource 属性读取类路径下属性文件或根据 url 属性指定的路径读取属性文件，并覆盖已读取的同名属性。</li>
+<li>最后读取作为方法参数传递的属性，并覆盖已读取的同名属性。</li>
+</ol>
+<p>因此，通过方法参数传递的属性具有最高优先级，resource/url 属性中指定的配置文件次之，最低优先级的是 properties 属性中指定的属性。</p>
+<p>不过实际操作中，推荐按如下方式使用：</p>
+<ol>
+<li>不要使用混合的方式，这样会使得管理混乱</li>
+<li>首选的方式使使用 properties 文件</li>
+<li>如果需要对其进行加密或者其他加工可以使用方法参数传递属性</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 Properties 元素/" data-id="cjftcpsco001ri8x77kdx134s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-MyBatis 之 入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/10/MyBatis 之 入门/" class="article-date">
+  <time datetime="2015-08-10T15:49:24.000Z" itemprop="datePublished">2015-08-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/MyBatis-实践系列/">MyBatis 实践系列</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/10/MyBatis 之 入门/">MyBatis 之 入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>MyBatis 版本：MyBatis 3.3.0</p>
+<p>MyBatis 官方网站（英文）：<a href="http://www.mybatis.org/mybatis-3/" target="_blank" rel="noopener">MyBatis 英文官网</a><br>MyBatis 官方网站（中文）：<a href="http://www.mybatis.org/mybatis-3/zh/" target="_blank" rel="noopener">MyBatis 中文官网</a><br>MyBatis 源码：<a href="https://github.com/mybatis/mybatis-3" target="_blank" rel="noopener">MyBatis 源码</a></p>
+<h5 id="MyBatis-基本构成"><a href="#MyBatis-基本构成" class="headerlink" title="MyBatis 基本构成"></a>MyBatis 基本构成</h5><p><img src="data:image/png;base64,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lh9jjrv3cdvnvPIhpWZn0FmFaaedNnz99delJam+eLFb++F+/9zKNq8SScmgU43E8mPMrbHGGvHW0nnlQ0rNzqCzCnPNNVd49913S0tS/WHqjt69e5eW1Fbzzz9/rITzKpGUDDrVaCw/Wo9bXzN3d17ZkE3NzqCzCosttlgYOHBgaUmqTyuttJIVRxt99913YdVVVw3XX399bgWSTQadakSWH6N3zTXXhC5duoTPP/88t2zIpmZn0FkFDjK63aR6R4sFXWWO0WqdIUOGhFNOOSVMNdVU4YorrsitPMrTiBEjSu+WGovlR77BgweHrl27xvGv33zzTW65kE0//fRT6Z3Ny6CzCt26dQv9+/cvLUn1je5hCkeuSmU6FKb/YQJo7j7S7Onss8+O8+t17tw5Xn0666yzhv333z+34qiUDDrVyCw//hkOPfTQsM4668ThNtwoYsMNNwx33XVXbnmQl5j1ptkZdFZhiy22CH379i0tScXx2muvhX79+oVevXqFww8/vOnTSSedFCd0Zn49pjuhpTOv0mgpSc2iWcuP0047Ldxwww3hhRdeaFMZMWzYsNI32LwMOqvgIGsVFa1yeYWiqW3JbjM1k3FZfhx55JGxxTHvuXpPTrFo0FmVgw46KJ7pSUVEV09ewWga82TXuprNuCo/jjvuuDEe+lIPya71/zLorAIH/1FHHVVakopl5MiRuYWjaczS0KFDS9+o1DzGVfnBUBjGkuY9V8+J70sGnVXhtnj77rtvaUkqHrp78gpIU+sSrRdWJmpW46L8oHdx9913z32uXpPTqf2PQWcV+vTpE3bYYYfSklRMBE12tY95siKRxn75QWPPTjvtlPtcvSVPSv/IoLMKN910U9hkk01KS1KxMS6RQIruYoPQ3ycuFOI74epTvqPffvut9K1JwtgqP84///zQo0eP3OfGdWK/2X++B8d55zPorMK9994bVl999dKSJEmqpSuvvDIGnSomg84qPP3006FTp06lJUmSVEvMjc0c2Somg84qMEHuggsuWFqSJEm1dPPNN4eNN964tKSiMeiswkcffRRvlydJkmrv9ttvD+utt15pSUVj0FkFboM15ZRTlpYkSVItca/ztdZaq7SkojHorNJ44/kVSpI0NjzwwANhlVVWKS2paIyYqjTFFFOE77//vrQkSZJq5dFHHw0rrLBCaUlFY9BZJcZ0MrZTkiTV1lNPPRU6d+5cWlLRGHRWiavXuYpdkiTV1oABA0LHjh1LSyoag84qMU8n83VKkqTaGjRoUFh00UVLSyoag84qcUci7kwkSZJq6/XXXw8LLLBAaUlFY9BZJe69zj3YJUlSbQ0ePDjMM888pSUVjUFnlXbYYYfQp0+f0pIkSaqVDz74IMw+++ylJRWNQWeV9t1333DWWWeVliRJUq18+umnYaaZZiotqWgMOqt01FFHheOOO660JEmSauXrr78O0047bWlJRWPQWaVevXqFgw46qLQkSZJqhZuxcFMWFZNBZ5V69+4ddt1119KSJEmqlaFDh4ZJJpmktKSiMeisUt++fcMWW2xRWpIkSbUycuTIMMEEE5SWVDQGnVXq379/6NatW2lJkiTVEkEnwaeKx6CzSo899ljo0qVLaUmSJNXSxBNPHIYNG1ZaUpEYdFZp4MCBYbHFFistSZKkWuJCIi4oUvEYdFbp3XffDXPNNVdpSZIk1RJTJjF1korHoLNKeXOG3XzzzeGbb74pLUmSpPYy44wzhs8++6y0pCIx6BxDQ4YMCfPOO29pKYThw4eHP/3pT6WlEF555ZWw8MILl5YkSVJ74jaY3A5TxWPQ2QZ77rln+Pe//11aCmHSSScNP//8c/y/Z8+e4V//+lf8X5Ikta955pknDB48uLSkIjHobIOPP/44zDLLLKWl3zf1M76TcZ6SJKn9zT///OGNN94oLalIDDrbaPvttw+XXXZZ/H+++eYLb775ZnjqqadC586d42OSJKn9LbroomHQoEGlJRWJQWcbvfXWW6FDhw7x/6WWWio8//zzYe+99w7nnHNOfEySJLW/jh07hgEDBpSWVCQGnVXYfPPNw/XXXx9WXnnl8OCDD4bpppsufPXVV6VnJUlSe+vUqVN4+umnS0sqEoPOKqSJ4ddff/1w7LHHhjXWWKP0jCRJqoUVVlghPProo6UlFYlBZ5XWXXfd2NLZtWvXUWM8JUlSbayyyirhgQceKC2pSAw6q8TFQ1y9zlydv/zyS+lRSZJUC2uuuWa4++67S0sqEoPOdvDXv/41zD333KUlSZJUK+utt164/fbbS0sqEoPOKr3//vvhjjvuCJdeemm44IILYhf7//3f/3m3BEmSamDjjTeOt5tW8Rh0ttEll1wSdtppp7DjjjuGo48+Opx99tkx6GTKJJZ32GGHsPPOO4c+ffqU3iFJkqrVvXv3cN1115WWVCQGnWPo1ltvDZtuumm8Debo7jz03nvvhfPOOy9sttlm8X2SJKk6PXr0CFdeeWVpSUVi0DkGuKf6CSecEH777bfSI63D648//vhw8sknlx6RJEltQQ8jQ9pUPAadrUR3Oq2W1TjrrLOcVkmSpCrstttu4cILLywtqUgMOlvhxBNPjHceag+MQ7HFU5KktvGW08Vl0Dkat912W+xSr4SWyw033DBMPfXUYbzxxot/Wb788stLr/gjutpZryRJGjMHHHBAOP3000tLKhKDztHgoqG8MZxcRLTEEkvEQLNS4vm8i41GjBgR79suSZLGzKGHHmqPYUEZdLag0jhOAsnUsjm6NNVUU4VXX301/PDDD+HHH38MP//8cxg6dGg488wzWz2+k7lADzrooHg1vCRJLRk5cmQYPnx4vEse9c1PP/0Uvv/++/Ddd9+Fb775Jnz11Vfh888/D59++mn4+OOPw4cffhjrmXfeeSe8/fbb4c033wxvvPFGeO2118LLL78cBg4cGF588cUwYMCA8Oyzz4ann346PPnkk+Hxxx+P90B/6KGH4m0p77vvvnDPPfeEu+66K85fzQTuzNzSr1+/cOONN8Zhan379g3XXHNNuOqqq2KPINMKUtdedNFFcZwmM8Oce+65cRpC6snTTjstnHrqqTHIZKgbPY8rrrhiOO6440p7qyIx6GwBV8jltVQuvvjiuQFmpbTYYovFoDObBg0aFLbddttYMFRCBl5//fXDHHPMEXr16lV6VJLaF7059MD8+uuvYdiwYTFIoZwaMmRI+Pbbb8PXX38dvvjii/DZZ5+FTz75JHz00UfxBhiUj4MHDw5vvfVW+M9//hODlFdeeSWWby+99FJ44YUXwnPPPReeeeaZeMvgJ554Ijz22GPh4YcfDg8++GC4//77w7333huDlP79+8cbazD06JZbbgk33XRTuOGGG+I4+GuvvTYGKVdccUU8WefK5YsvvjgGKeeff35sHGCMHxdr0u1KeXnKKaeEk046KQYpBCj//Oc/4xzKRx55ZDj88MNja9nBBx8cDjzwwLD//vuHffbZJ+y1115hzz33DLvvvnvYZZdd4lzMzLm83XbbxWl6ttpqq7DFFlvEnip6wZikfIMNNoh3yFlnnXXC2muvHdZYY42w2mqr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" alt=""></p>
+<p>MyBatis 核心组件：</p>
+<ul>
+<li>SqlSessionFactoryBuilder：根据 MyBatis 配置（文件或代码）创建 SqlSessionFactory</li>
+<li>SqlSessionFactory：SqlSessionFactory 创建 SqlSession</li>
+<li>SqlSession：SQL 执行会话</li>
+<li>SQL Mapper：SQL 和 POJO 映射规则</li>
+</ul>
+<h5 id="构建-SqlSessionFactory"><a href="#构建-SqlSessionFactory" class="headerlink" title="构建 SqlSessionFactory"></a>构建 SqlSessionFactory</h5><p>SqlSessionFactory 是 MyBatis 核心组件，可通过 SqlSessionFactoryBuilder 获得，其任务是创建 SqlSession。</p>
+<p>MyBatis 提供两者模式创建 SqlSessionFactory：</p>
+<ul>
+<li>XML 配置</li>
+<li>代码编码</li>
+</ul>
+<p>SqlSessionFactory 依赖于配置类 org.apache.ibatis.session.Configuration。<br>Configuration 保存了所有的配置信息，且将存在于整个 MyBatis 应用的整个生命周期，可以重复的读取和运用。</p>
+<p>SqlSessionFactory 是一个接口，MyBatis 提供两个 SqlSessionFactory 实现类：</p>
+<ul>
+<li>DefaultSqlSessionFactory</li>
+<li>SqlSessionManager</li>
+</ul>
+<p>MyBatis 暂未使用 SqlSessionManager，目前只使用 DefaultSqlSessionFactory。</p>
+<h6 id="从-XML-中构建-SqlSessionFactory"><a href="#从-XML-中构建-SqlSessionFactory" class="headerlink" title="从 XML 中构建 SqlSessionFactory"></a>从 XML 中构建 SqlSessionFactory</h6><p>参考官方示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String resource = &quot;org/mybatis/example/mybatis-config.xml&quot;;</span><br><span class="line">InputStream inputStream = Resources.getResourceAsStream(resource);</span><br><span class="line">SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);</span><br></pre></td></tr></table></figure></p>
+<p>configuration XML<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE configuration</span><br><span class="line">  PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span><br><span class="line">  &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">  &lt;environments default=&quot;development&quot;&gt;</span><br><span class="line">    &lt;environment id=&quot;development&quot;&gt;</span><br><span class="line">      &lt;transactionManager type=&quot;JDBC&quot;/&gt;</span><br><span class="line">      &lt;dataSource type=&quot;POOLED&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;driver&quot; value=&quot;$&#123;driver&#125;&quot;/&gt;</span><br><span class="line">        &lt;property name=&quot;url&quot; value=&quot;$&#123;url&#125;&quot;/&gt;</span><br><span class="line">        &lt;property name=&quot;username&quot; value=&quot;$&#123;username&#125;&quot;/&gt;</span><br><span class="line">        &lt;property name=&quot;password&quot; value=&quot;$&#123;password&#125;&quot;/&gt;</span><br><span class="line">      &lt;/dataSource&gt;</span><br><span class="line">    &lt;/environment&gt;</span><br><span class="line">  &lt;/environments&gt;</span><br><span class="line">  &lt;mappers&gt;</span><br><span class="line">    &lt;mapper resource=&quot;org/mybatis/example/BlogMapper.xml&quot;/&gt;</span><br><span class="line">  &lt;/mappers&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure></p>
+<h6 id="不使用-XML-构建-SqlSessionFactory"><a href="#不使用-XML-构建-SqlSessionFactory" class="headerlink" title="不使用 XML 构建 SqlSessionFactory"></a>不使用 XML 构建 SqlSessionFactory</h6><p>参考官方示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DataSource dataSource = BlogDataSourceFactory.getBlogDataSource();</span><br><span class="line">TransactionFactory transactionFactory = new JdbcTransactionFactory();</span><br><span class="line">Environment environment = new Environment(&quot;development&quot;, transactionFactory, dataSource);</span><br><span class="line">Configuration configuration = new Configuration(environment);</span><br><span class="line">configuration.addMapper(BlogMapper.class);</span><br><span class="line">SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);</span><br></pre></td></tr></table></figure></p>
+<p>官方推荐使用从 XML 中构建 SqlSessionFactory</p>
+<h5 id="从-SqlSessionFactory-中获取-SqlSession"><a href="#从-SqlSessionFactory-中获取-SqlSession" class="headerlink" title="从 SqlSessionFactory 中获取 SqlSession"></a>从 SqlSessionFactory 中获取 SqlSession</h5><p>在 MyBatis 中 SqlSession 接口的实现类有两个：</p>
+<ul>
+<li>DefaultSqlSession</li>
+<li>SqlSessionManager</li>
+</ul>
+<p>MyBatis 暂未使用 SqlSessionManager，目前只使用 DefaultSqlSession。</p>
+<p>SqlSession 的用途主要有两种：</p>
+<ul>
+<li>直接执行SQL<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SqlSession session = sqlSessionFactory.openSession();</span><br><span class="line">try &#123;</span><br><span class="line">  Blog blog = (Blog) session.selectOne(&quot;org.mybatis.example.BlogMapper.selectBlog&quot;, 101);</span><br><span class="line">&#125; finally &#123;</span><br><span class="line">  session.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>该方式是 iBatis 版本留下的方式。</p>
+<ul>
+<li>获取映射器<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SqlSession session = sqlSessionFactory.openSession();</span><br><span class="line">try &#123;</span><br><span class="line">  BlogMapper mapper = session.getMapper(BlogMapper.class);</span><br><span class="line">  Blog blog = mapper.selectBlog(101);</span><br><span class="line">&#125; finally &#123;</span><br><span class="line">  session.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>该方式是 MyBatis 推荐的方式。</p>
+<h5 id="映射器"><a href="#映射器" class="headerlink" title="映射器"></a>映射器</h5><p>映射器是由 Java 接口和 XML 文件（或注解）共同组成：</p>
+<ul>
+<li>定义参数类型</li>
+<li>描述缓存</li>
+<li>描述 SQL 语句</li>
+<li>定义查询结果和 POJO 的映射关系</li>
+</ul>
+<p>一个映射器的实现方式有两种：</p>
+<h6 id="Java-注解"><a href="#Java-注解" class="headerlink" title="Java 注解"></a>Java 注解</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">package org.mybatis.example;</span><br><span class="line">public interface BlogMapper &#123;</span><br><span class="line">  @Select(&quot;SELECT * FROM blog WHERE id = #&#123;id&#125;&quot;)</span><br><span class="line">  Blog selectBlog(int id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于简单语句来说，注解使代码显得更加简洁，然而 Java 注解对于稍微复杂的语句就会力不从心并且会显得更加混乱。</p>
+<h6 id="XML-文件"><a href="#XML-文件" class="headerlink" title="XML 文件"></a>XML 文件</h6><p>使用 XML 文件配置是 MyBatis 实现 Mapper 的首选方式。<br>由一个 Java 接口和一个 XML 文件构成。</p>
+<p>Java 接口：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface BlogMapper &#123;</span><br><span class="line">  Blog getBlog(Long id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>XML 文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper</span><br><span class="line">  PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span><br><span class="line">  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</span><br><span class="line">&lt;mapper namespace=&quot;org.mybatis.example.BlogMapper&quot;&gt;</span><br><span class="line">  &lt;select id=&quot;selectBlog&quot; resultType=&quot;Blog&quot;&gt;</span><br><span class="line">    select * from Blog where id = #&#123;id&#125;</span><br><span class="line">  &lt;/select&gt;</span><br><span class="line">&lt;/mapper&gt;</span><br></pre></td></tr></table></figure></p>
+<h5 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h5><h6 id="SqlSessionFactoryBuilder"><a href="#SqlSessionFactoryBuilder" class="headerlink" title="SqlSessionFactoryBuilder"></a>SqlSessionFactoryBuilder</h6><p>SqlSessionFactoryBuilder 是利用 XML 或 Java 编码获得资源来构建 SqlSessionFactory。<br>其作用就是构建 SqlSessionFactory ，一旦构建了 SqlSessionFactory ，其就失去了存在的意义。<br>故生命周期只存在于方法的局部。</p>
+<h6 id="SqlSessionFactory"><a href="#SqlSessionFactory" class="headerlink" title="SqlSessionFactory"></a>SqlSessionFactory</h6><p>SqlSessionFactory 的作用是创建 SqlSession。<br>每次应用程序需要访问数据库，就要通过 SqlSessionFactory 创建 SqlSession。<br>故其生命周期应存在于整个 MyBatis 应用生命周期。<br>一个数据库应该只对应一个 SqlSessionFactory。</p>
+<h6 id="SqlSession"><a href="#SqlSession" class="headerlink" title="SqlSession"></a>SqlSession</h6><p>SqlSession 是一个会话，生命周期应该是在请求数据库处理事务的过程中。<br>故其生命周期只存于一次数据库事务中。</p>
+<h6 id="Mapper"><a href="#Mapper" class="headerlink" title="Mapper"></a>Mapper</h6><p>Mapper 的作用是执行 SQL，其是配合 SqlSession 一同使用。<br>故其生命周期和 SqlSession 一致。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/08/10/MyBatis 之 入门/" data-id="cjftcpsck001ii8x7s7n41wq2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-MyBatis 之 JDBC 编程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/10/MyBatis 之 JDBC 编程/" class="article-date">
+  <time datetime="2015-08-10T14:49:24.000Z" itemprop="datePublished">2015-08-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/MyBatis-实践系列/">MyBatis 实践系列</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/10/MyBatis 之 JDBC 编程/">MyBatis 之 JDBC 编程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>MyBatis 版本：MyBatis 3.3.0</p>
+<p>MyBatis 官方网站（英文）：<a href="http://www.mybatis.org/mybatis-3/" target="_blank" rel="noopener">MyBatis 英文官网</a><br>MyBatis 官方网站（中文）：<a href="http://www.mybatis.org/mybatis-3/zh/" target="_blank" rel="noopener">MyBatis 中文官网</a><br>MyBatis 源码：<a href="https://github.com/mybatis/mybatis-3" target="_blank" rel="noopener">MyBatis 源码</a></p>
+<p>JDBC 编程示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">import java.io.Serializable;</span><br><span class="line">import java.sql.Connection;</span><br><span class="line">import java.sql.DriverManager;</span><br><span class="line">import java.sql.PreparedStatement;</span><br><span class="line">import java.sql.ResultSet;</span><br><span class="line">import java.sql.SQLException;</span><br><span class="line">import java.sql.Statement;</span><br><span class="line"></span><br><span class="line">public class JdbcExample &#123;</span><br><span class="line"></span><br><span class="line">	private static final String JDBC_DRIVER_NAME = &quot;com.mysql.jdbc.Driver&quot;;</span><br><span class="line">	private static final String DB_URL = &quot;jdbc:mysql://localhost:3306/mybatis&quot;;</span><br><span class="line">	private static final String DB_USERNAME = &quot;root&quot;;</span><br><span class="line">	private static final String DB_PASSWORD = &quot;123456&quot;;</span><br><span class="line"></span><br><span class="line">	private static final String GET_USER_SQL = &quot;SELECT user_id, user_name, user_age FROM user WHERE user_id = ?&quot;;</span><br><span class="line"></span><br><span class="line">	public User getUser(Long userId) &#123;</span><br><span class="line">		Connection connection = getConnection();</span><br><span class="line">		PreparedStatement preparedStatement = null;</span><br><span class="line">		ResultSet resultSet = null;</span><br><span class="line">		User user = null;</span><br><span class="line">		try &#123;</span><br><span class="line">			preparedStatement = connection.prepareStatement(GET_USER_SQL);</span><br><span class="line">			preparedStatement.setLong(1, userId);</span><br><span class="line">			resultSet = preparedStatement.executeQuery();</span><br><span class="line">			while (resultSet.next()) &#123;</span><br><span class="line">				String userName = resultSet.getString(&quot;user_name&quot;);</span><br><span class="line">				int userAge = resultSet.getInt(&quot;user_age&quot;);</span><br><span class="line">				user = new User(userId, userName, userAge);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; finally &#123;</span><br><span class="line">			closeConnection(resultSet, preparedStatement, connection);</span><br><span class="line">		&#125;</span><br><span class="line">		return user;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	private Connection getConnection()&#123;</span><br><span class="line">		Connection connection = null;</span><br><span class="line">		try &#123;</span><br><span class="line">			Class.forName(JDBC_DRIVER_NAME);</span><br><span class="line">			connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);</span><br><span class="line">		&#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		return connection;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	private void closeConnection(ResultSet resultSet, Statement statement, Connection connection) &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			if (resultSet != null &amp;&amp; !resultSet.isClosed()) &#123;</span><br><span class="line">				resultSet.close();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		try &#123;</span><br><span class="line">			if (statement != null &amp;&amp; !statement.isClosed()) &#123;</span><br><span class="line">				statement.close();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		try &#123;</span><br><span class="line">			if (connection != null &amp;&amp; !connection.isClosed()) &#123;</span><br><span class="line">				connection.close();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>JDBC 编程步骤：</p>
+<ol>
+<li>注册数据库驱动，数据库连接信息</li>
+<li>获取 Connection，操作 Connection</li>
+<li>通过 Connection 打开 Statement 对象</li>
+<li>通过 Statement 执行 SQL，返回 ResultSet 对象</li>
+<li>使用 ResultSet 读取数据，通过代码转化为 POJO 对象</li>
+<li>关闭 ResultSet， Statement，Connection</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/08/10/MyBatis 之 JDBC 编程/" data-id="cjftcpscj001ei8x7tnyjbq24" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Hexo博客环境准备篇" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/11/10/Hexo博客环境准备篇/" class="article-date">
@@ -114,7 +566,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/11/10/Hexo博客环境准备篇/" data-id="cjft2nrmd000inhx7g1zk4kid" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/11/10/Hexo博客环境准备篇/" data-id="cjftcpsfj0081i8x7xdh5y84y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
@@ -187,19 +639,19 @@
           </li>
         
           <li>
-            <a href="/2018/01/17/Spring Boot 使用/">SpringBoot 使用</a>
+            <a href="/2018/01/18/SpringBoot 属性外置/">SpringBoot 属性外置</a>
           </li>
         
           <li>
-            <a href="/2018/01/11/关于版本控制/">关于版本控制</a>
+            <a href="/2018/01/18/SpringBoot 简单特性/">SpringBoot 简单特性</a>
           </li>
         
           <li>
-            <a href="/2018/01/11/GS1 医疗行业应用/">GS1 医疗行业应用</a>
+            <a href="/2018/01/17/SpringBoot 配置类和自动配置/">SpringBoot 配置类和自动配置</a>
           </li>
         
           <li>
-            <a href="/2018/01/10/GS1 数据载体体系/">GS1 数据载体体系</a>
+            <a href="/2018/01/17/SpringBoot 代码结构/">SpringBoot 代码结构</a>
           </li>
         
       </ul>
