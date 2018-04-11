@@ -62,6 +62,70 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Spring Framework 依赖注入高级特性" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/16/Spring Framework 依赖注入高级特性/" class="article-date">
+  <time datetime="2017-01-16T12:49:24.000Z" itemprop="datePublished">2017-01-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Spring-Framework/">Spring Framework</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/16/Spring Framework 依赖注入高级特性/">Spring Framework 依赖注入高级特性</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Spring Framework：4.3.14.RELEASE</p>
+<p><strong>p 命名空间</strong></p>
+<p>p 命名空间是简化 property 标签的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:p=&quot;http://www.springframework.org/schema/p&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans</span><br><span class="line">        http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;</span><br><span class="line">	&lt;bean name=&quot;classic&quot; class=&quot;com.example.ExampleBean&quot;&gt; </span><br><span class="line">		&lt;property name=&quot;email&quot; value=&quot;foo@bar.com&quot;/&gt;</span><br><span class="line">	&lt;/bean&gt;</span><br><span class="line">	&lt;bean name=&quot;p-namespace&quot; class=&quot;com.example.ExampleBean&quot; p:email=&quot;foo@bar.com&quot;/&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<p>包含引用属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:p=&quot;http://www.springframework.org/schema/p&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans</span><br><span class="line">        http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;</span><br><span class="line">	&lt;bean name=&quot;john-classic&quot; class=&quot;com.example.Person&quot;&gt; </span><br><span class="line">		&lt;property name=&quot;name&quot; value=&quot;John Doe&quot;/&gt; </span><br><span class="line">		&lt;property name=&quot;spouse&quot; ref=&quot;jane&quot;/&gt;</span><br><span class="line">	&lt;/bean&gt;</span><br><span class="line">	&lt;bean name=&quot;john-modern&quot; class=&quot;com.example.Person&quot; p:name=&quot;John Doe&quot; p:spouse-ref=&quot;jane&quot;/&gt;</span><br><span class="line">	&lt;bean name=&quot;jane&quot; class=&quot;com.example.Person&quot;&gt; </span><br><span class="line">		&lt;property name=&quot;name&quot; value=&quot;Jane Doe&quot;/&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>c 命名空间</strong></p>
+<p>c 命名空间是简化 constructor-arg 标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:c=&quot;http://www.springframework.org/schema/c&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans</span><br><span class="line">        http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;</span><br><span class="line">	&lt;bean id=&quot;bar&quot; class=&quot;x.y.Bar&quot;/&gt; &lt;bean id=&quot;baz&quot; class=&quot;x.y.Baz&quot;/&gt;</span><br><span class="line">	&lt;bean id=&quot;foo&quot; class=&quot;x.y.Foo&quot;&gt; </span><br><span class="line">		&lt;constructor-arg ref=&quot;bar&quot;/&gt; </span><br><span class="line">		&lt;constructor-arg ref=&quot;baz&quot;/&gt; </span><br><span class="line">		&lt;constructor-arg value=&quot;foo@bar.com&quot;/&gt;</span><br><span class="line">	&lt;/bean&gt;	</span><br><span class="line">	&lt;bean id=&quot;foo&quot; class=&quot;x.y.Foo&quot; c:bar-ref=&quot;bar&quot; c:baz-ref=&quot;baz&quot; c:email=&quot;foo@bar.com&quot;/&gt; </span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<p>使用索引：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;foo&quot; class=&quot;x.y.Foo&quot; c:_0-ref=&quot;bar&quot; c:_1-ref=&quot;baz&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>级联属性</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;foo&quot; class=&quot;foo.Bar&quot;&gt;</span><br><span class="line">	&lt;property name=&quot;fred.bob.sammy&quot; value=&quot;123&quot; /&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>depends-on属性</strong></p>
+<p>depends-on 属性用于显式声明依赖初始化的先后顺序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;beanOne&quot; class=&quot;ExampleBean&quot; depends-on=&quot;manager&quot;/&gt; </span><br><span class="line">&lt;bean id=&quot;manager&quot; class=&quot;ManagerBean&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>上述说明在实例化 beanOne 前需要先实例化 manager</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;beanOne&quot; class=&quot;ExampleBean&quot; depends-on=&quot;manager,accountDao&quot;&gt; </span><br><span class="line">	&lt;property name=&quot;manager&quot; ref=&quot;manager&quot; /&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line">&lt;bean id=&quot;manager&quot; class=&quot;ManagerBean&quot; /&gt;</span><br><span class="line">&lt;bean id=&quot;accountDao&quot; class=&quot;x.y.jdbc.JdbcAccountDao&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>lazy-init属性</strong></p>
+<p>容器启动时默认对 Bean 进行初始化。 lazy-init 可以对 Bean 设置延迟初始化，当第一次访问时再去初始化。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;lazy&quot; class=&quot;com.foo.ExpensiveToCreateBean&quot; lazy-init=&quot;true&quot;/&gt; </span><br><span class="line">&lt;bean name=&quot;not.lazy&quot; class=&quot;com.foo.AnotherBean&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>还可以批量设置启用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;beans default-lazy-init=&quot;true&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/16/Spring Framework 依赖注入高级特性/" data-id="cjfv05t6o003a8kx7zgklugey" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Framework/">Spring Framework</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Spring Framework 依赖注入详解" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/01/15/Spring Framework 依赖注入详解/" class="article-date">
@@ -123,7 +187,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/15/Spring Framework 依赖注入详解/" data-id="cjfuyfxju002z5fx7cqom8bo9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/15/Spring Framework 依赖注入详解/" data-id="cjfv05t6l00358kx7o089mnfn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Framework/">Spring Framework</a></li></ul>
@@ -212,7 +276,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/14/Spring Framework 依赖注入/" data-id="cjfuyfxjs002x5fx75g8gt063" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/14/Spring Framework 依赖注入/" data-id="cjfv05t6k00318kx79sfi464z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Framework/">Spring Framework</a></li></ul>
@@ -273,7 +337,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/13/Spring Framework Bean 实例化/" data-id="cjfuyfxjq002t5fx7dtqqspk6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/13/Spring Framework Bean 实例化/" data-id="cjfv05t6i002v8kx7qhl0u9kx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Framework/">Spring Framework</a></li></ul>
@@ -355,7 +419,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/12/Spring Framework Bean 命名/" data-id="cjfuyfxjp002r5fx7hkuh2zsu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/12/Spring Framework Bean 命名/" data-id="cjfv05t6g002t8kx79a4gdtct" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Framework/">Spring Framework</a></li></ul>
@@ -403,7 +467,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/11/Spring Framework HelloWorld/" data-id="cjfuyfxo4009n5fx7g46mbjed" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/11/Spring Framework HelloWorld/" data-id="cjfv05tag009r8kx7nsb16x3f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Framework/">Spring Framework</a></li></ul>
@@ -462,7 +526,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/10/为什么使用 Spring Framework/" data-id="cjfuyfxkq004m5fx70y27zx88" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/10/为什么使用 Spring Framework/" data-id="cjfv05t7b004k8kx7vhjhbech" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Framework/">Spring Framework</a></li></ul>
@@ -518,7 +582,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/26/CI 持续集成服务器搭建-准备篇/" data-id="cjfuyfxii00055fx78eclktfr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/12/26/CI 持续集成服务器搭建-准备篇/" data-id="cjfv05t4m00028kx7ih8hdn4n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CI-持续集成/">CI 持续集成</a></li></ul>
@@ -572,69 +636,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/03/Java Comparable VS Comparator /" data-id="cjfuyfxit000m5fx7tzj5i7fk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/12/03/Java Comparable VS Comparator /" data-id="cjfv05t5e000o8kx784v1sqnj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ZooKeeper Standalones 模式安装" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/08/10/ZooKeeper Standalones 模式安装/" class="article-date">
-  <time datetime="2016-08-10T14:49:24.000Z" itemprop="datePublished">2016-08-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ZooKeeper-系列/">ZooKeeper 系列</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/10/ZooKeeper Standalones 模式安装/">ZooKeeper Standalones 模式安装</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="ZooKeeper介绍"><a href="#ZooKeeper介绍" class="headerlink" title="ZooKeeper介绍"></a>ZooKeeper介绍</h5><p>在单机中，系统协作大都是进程级的操作。分布式系统中，服务协作都是跨服务器才能完成的。在ZooKeeper之前，我们对于协作服务大都使用消息中间件，随着分布式系统的普及，用消息中间件完成协作，会有大量的程序开发。</p>
-<p>Apache ZooKeeper 是由Apache Hadoop的子项目发展而来，于2010年11月正式成为了Apache的顶级项目。ZooKeeper是一个为分布式应用所设计的分布的、开源的协调服务，它主要是用来解决分布式应用中经常遇到的一些数据管理问题，简化分布式应用协调及其管理的难度，提供高性能的分布式服务。ZooKeeper本身可以以Standalone模式安装运行，不过它的长处在于通过分布式ZooKeeper集群（一个Leader，多个Follower），基于一定的策略来保证ZooKeeper集群的稳定性和可用性，从而实现分布式应用的可靠性。</p>
-<p>ZooKeeper作为分布式协调服务，是不需要依赖于Hadoop的环境，也可以为其他的分布式环境提供服务。</p>
-<h5 id="系统环境（本次环境）"><a href="#系统环境（本次环境）" class="headerlink" title="系统环境（本次环境）"></a>系统环境（本次环境）</h5><p>准备一台Linux服务器，系统要求如下：</p>
-<ul>
-<li>Linux: CentOS 6.5 64bit Server</li>
-<li>Java: 1.7.0_60 64-Bit Server VM</li>
-<li>zookeeper：zookeeper-3.4.5.tar.gz</li>
-</ul>
-<p>ZooKeeper 使用Java语言编写，运行环境需要Java环境支持，建议使用JDK1.6以上版本</p>
-<h5 id="解压-ZooKeeper"><a href="#解压-ZooKeeper" class="headerlink" title="解压 ZooKeeper"></a>解压 ZooKeeper</h5><p>安装目录：/usr/local/zookeeper-3.4.5<br>在 /usr/local/ 目录下解压 zookeeper-3.4.5.tar.gz ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost local]# tar zxvf zookeeper-3.4.5.tar.gz</span><br></pre></td></tr></table></figure></p>
-<h5 id="配置-ZooKeeper"><a href="#配置-ZooKeeper" class="headerlink" title="配置 ZooKeeper"></a>配置 ZooKeeper</h5><h6 id="创建数据目录："><a href="#创建数据目录：" class="headerlink" title="创建数据目录："></a>创建数据目录：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mkdir /var/zookeeperdata</span><br></pre></td></tr></table></figure>
-<h6 id="准备配置文件："><a href="#准备配置文件：" class="headerlink" title="准备配置文件："></a>准备配置文件：</h6><p>因为ZooKeeper启动时默认加载名为zoo.cfg配置文件，所有需要将zoo_sample.cfg复制一份并命名为zoo.cfg。<br>配置文件目录 zookeeper-3.4.5/conf 。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost conf]# cp zoo_sample.cfg zoo.cfg</span><br></pre></td></tr></table></figure></p>
-<h6 id="编辑配置文件："><a href="#编辑配置文件：" class="headerlink" title="编辑配置文件："></a>编辑配置文件：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost conf]# vim zoo.cfg</span><br></pre></td></tr></table></figure>
-<p>添加数据目录配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataDir=/var/zookeeperdata</span><br></pre></td></tr></table></figure></p>
-<h6 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# vim /etc/profile</span><br></pre></td></tr></table></figure>
-<p>添加如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export ZOOKEEPER_HOME=/usr/local/zookeeper-3.4.5</span><br><span class="line">export PATH=$PATH:$ZOOKEEPER_HOME/bin:$ZOOKEEPER_HOME/conf</span><br></pre></td></tr></table></figure></p>
-<h5 id="启动-ZooKeeper"><a href="#启动-ZooKeeper" class="headerlink" title="启动 ZooKeeper"></a>启动 ZooKeeper</h5>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/10/ZooKeeper Standalones 模式安装/" data-id="cjfuyfxkm004e5fx7lk93kyj7" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ZooKeeper/">ZooKeeper</a></li></ul>
 
     </footer>
   </div>
@@ -678,7 +683,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/10/CentOS 6.5 64bit 安装 JDK 7/" data-id="cjfuyfxim000b5fx7upzk6yt8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/10/CentOS 6.5 64bit 安装 JDK 7/" data-id="cjfv05t4r00068kx7qtnubxjn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK/">JDK</a></li></ul>
@@ -694,7 +699,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -725,7 +730,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/CI-持续集成/" style="font-size: 10px;">CI 持续集成</a> <a href="/tags/CQRS/" style="font-size: 11.67px;">CQRS</a> <a href="/tags/Event-Sourcing/" style="font-size: 11.67px;">Event Sourcing</a> <a href="/tags/ExceptionHandler/" style="font-size: 10px;">ExceptionHandler</a> <a href="/tags/GS1/" style="font-size: 13.33px;">GS1</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitflow-Workflow/" style="font-size: 10px;">Gitflow Workflow</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/JDK-8/" style="font-size: 11.67px;">JDK 8</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java虚拟机/" style="font-size: 10px;">Java虚拟机</a> <a href="/tags/List/" style="font-size: 10px;">List</a> <a href="/tags/MyBatis/" style="font-size: 18.33px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Ribbon/" style="font-size: 10px;">Ribbon</a> <a href="/tags/Sonatype-Nexus/" style="font-size: 10px;">Sonatype Nexus</a> <a href="/tags/Spring-Framework/" style="font-size: 16.67px;">Spring Framework</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/UDI/" style="font-size: 10px;">UDI</a> <a href="/tags/ZooKeeper/" style="font-size: 10px;">ZooKeeper</a> <a href="/tags/二进制/" style="font-size: 10px;">二进制</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/多线程/" style="font-size: 13.33px;">多线程</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/架构探险/" style="font-size: 10px;">架构探险</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/选择排序-插入排序/" style="font-size: 10px;">选择排序 插入排序</a>
+      <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/CI-持续集成/" style="font-size: 10px;">CI 持续集成</a> <a href="/tags/CQRS/" style="font-size: 11.67px;">CQRS</a> <a href="/tags/Event-Sourcing/" style="font-size: 11.67px;">Event Sourcing</a> <a href="/tags/ExceptionHandler/" style="font-size: 10px;">ExceptionHandler</a> <a href="/tags/GS1/" style="font-size: 13.33px;">GS1</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitflow-Workflow/" style="font-size: 10px;">Gitflow Workflow</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/JDK-8/" style="font-size: 13.33px;">JDK 8</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java虚拟机/" style="font-size: 10px;">Java虚拟机</a> <a href="/tags/List/" style="font-size: 10px;">List</a> <a href="/tags/MyBatis/" style="font-size: 18.33px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Ribbon/" style="font-size: 10px;">Ribbon</a> <a href="/tags/Sonatype-Nexus/" style="font-size: 10px;">Sonatype Nexus</a> <a href="/tags/Spring-Framework/" style="font-size: 16.67px;">Spring Framework</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/UDI/" style="font-size: 10px;">UDI</a> <a href="/tags/ZooKeeper/" style="font-size: 10px;">ZooKeeper</a> <a href="/tags/二进制/" style="font-size: 10px;">二进制</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/多线程/" style="font-size: 13.33px;">多线程</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/架构探险/" style="font-size: 10px;">架构探险</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/选择排序-插入排序/" style="font-size: 10px;">选择排序 插入排序</a>
     </div>
   </div>
 
@@ -747,11 +752,11 @@
       <ul>
         
           <li>
-            <a href="/2018/04/09/集合框架基础之迭代器/">集合框架基础之迭代器</a>
+            <a href="/2018/04/09/编程中对象的分类和命名/">编程中对象的分类和命名</a>
           </li>
         
           <li>
-            <a href="/2018/04/09/编程中对象的分类和命名/">编程中对象的分类和命名</a>
+            <a href="/2018/04/09/集合框架基础之迭代器/">集合框架基础之迭代器</a>
           </li>
         
           <li>

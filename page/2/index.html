@@ -93,10 +93,53 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/11/GS1 医疗行业应用/" data-id="cjfuyfxin000c5fx70d6s4jje" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/11/GS1 医疗行业应用/" data-id="cjfv05t5f000q8kx7ogtjh48c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GS1/">GS1</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UDI/">UDI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-关于版本控制" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/11/关于版本控制/" class="article-date">
+  <time datetime="2018-01-11T13:49:24.000Z" itemprop="datePublished">2018-01-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发管理系列/">开发管理系列</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/11/关于版本控制/">关于版本控制</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。</p>
+<h4 id="版本控制的演变"><a href="#版本控制的演变" class="headerlink" title="版本控制的演变"></a>版本控制的演变</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/11/关于版本控制/" data-id="cjfv05t7d004q8kx7fg3nbtob" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
 
     </footer>
   </div>
@@ -140,6 +183,7 @@
 <p>Java 8 java.util.function 包下定义了一些函数接口：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public interface Predicate&lt;T&gt; &#123;</span><br><span class="line">    boolean test(T t);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public interface Consumer&lt;T&gt; &#123;</span><br><span class="line">    void accept(T t);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public interface Function&lt;T, R&gt; &#123;</span><br><span class="line">    R apply(T t);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public interface Supplier&lt;T&gt; &#123;</span><br><span class="line">    T get();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>而且很多原接口都继承了这些函数接口</p>
+<p>函数接口可以使用 @FunctionalInterface 注解修饰<br>使用 @FunctionalInterface 修饰的接口必须是函数接口</p>
 <h2 id="Lambda-表达式语法格式"><a href="#Lambda-表达式语法格式" class="headerlink" title="Lambda 表达式语法格式"></a>Lambda 表达式语法格式</h2><p><strong>无参 无返回值</strong></p>
 <p>Lambda 表达式不包含参数，使用空括号 () 表示没有参数：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Runnable runnable = () -&gt; System.out.println(&quot;Hello Lambda!&quot;);</span><br></pre></td></tr></table></figure>
@@ -160,11 +204,13 @@
 <h2 id="类型推断"><a href="#类型推断" class="headerlink" title="类型推断"></a>类型推断</h2><p>Java 7 就引入了目录类型推断：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; strList =  new ArrayList&lt;&gt;(8);</span><br></pre></td></tr></table></figure>
 <p>Java 8 中对类型推断进一步升级：编译器可以根据上下文进行推断</p>
+<p>若推断不出，编辑期会报错。</p>
+<p>代码可参考<a href="https://github.com/lxmuse/lxmuse-jdk8-new-feature.git" target="_blank" rel="noopener">lxmuse-jdk8-new-feature-lambda-02</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/10/Lambda表达式语法/" data-id="cjfuyfxj000145fx7jvz016tc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/10/Lambda表达式语法/" data-id="cjfv05t5o001a8kx7wsae3bk1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK-8/">JDK 8</a></li></ul>
@@ -236,7 +282,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/10/GS1 数据载体体系/" data-id="cjfuyfxmf00925fx7s016iqd6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/10/GS1 数据载体体系/" data-id="cjfv05t8q008y8kx7zh7fbt6t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GS1/">GS1</a></li></ul>
@@ -297,7 +343,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/10/GS1 编码体系/" data-id="cjfuyfxmt00965fx785gpn1cv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/10/GS1 编码体系/" data-id="cjfv05t95009a8kx79758tlka" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GS1/">GS1</a></li></ul>
@@ -367,7 +413,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/09/Lambda表达式引子/" data-id="cjfuyfxj100175fx7v0r1mspn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/09/Lambda表达式引子/" data-id="cjfv05t5n00178kx7ewrmqzmf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK-8/">JDK 8</a></li></ul>
@@ -418,7 +464,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/08/MySQL You can't specify target table 'x' for update in FROM clause/" data-id="cjfuyfxjb001w5fx7swt05roa" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/08/MySQL You can't specify target table 'x' for update in FROM clause/" data-id="cjfv05t5y001x8kx7pb9dabbs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
@@ -473,7 +519,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/08/MySQL 末尾空格的查询问题/" data-id="cjfuyfxja001u5fx7rwut7a1s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/08/MySQL 末尾空格的查询问题/" data-id="cjfv05t60001z8kx7pgiqhrjs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
@@ -523,7 +569,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列六：执行启动方法/" data-id="cjfuyfxkc003w5fx7d5sh4lo8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列六：执行启动方法/" data-id="cjfv05t6z003u8kx7p4i237is" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
@@ -568,57 +614,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列五：找到程序入口类并实例化/" data-id="cjfuyfxk6003l5fx7vpbyhuz4" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-SpringBoot 启动源码解析系列四：实例化 ApplicationListener" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/02/SpringBoot 启动源码解析系列四：实例化 ApplicationListener/" class="article-date">
-  <time datetime="2018-01-02T15:15:24.000Z" itemprop="datePublished">2018-01-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/SpringBoot-系列/">SpringBoot 系列</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/02/SpringBoot 启动源码解析系列四：实例化 ApplicationListener/">SpringBoot 启动源码解析系列四：实例化 ApplicationListener</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>SpringApplication initialize 方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private void initialize(Object[] sources) &#123;</span><br><span class="line">    if (sources != null &amp;&amp; sources.length &gt; 0) &#123;</span><br><span class="line">        this.sources.addAll(Arrays.asList(sources));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    this.webEnvironment = this.deduceWebEnvironment();</span><br><span class="line">    this.setInitializers(this.getSpringFactoriesInstances(ApplicationContextInitializer.class));</span><br><span class="line">    this.setListeners(this.getSpringFactoriesInstances(ApplicationListener.class));</span><br><span class="line">    this.mainApplicationClass = this.deduceMainApplicationClass();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>setListeners 方法即找到 ApplicationListener 类并实例化</p>
-<p>ApplicationListener 是 Spring 框架中事件监听器接口，即 SpringApplicationRunListener 发布通知事件时，由 ApplicationListener 负责接收。具体可以参考 Spring 事件监听机制。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface ApplicationListener&lt;E extends ApplicationEvent&gt; extends EventListener &#123;</span><br><span class="line">    void onApplicationEvent(E var1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>ApplicationListener 在 SpringBoot 中包含两块：</p>
-<p>spring-boot-x.x.x.RELEASE.jar/META-INF/spring.factories中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># Application Listeners</span><br><span class="line">org.springframework.context.ApplicationListener=\</span><br><span class="line">org.springframework.boot.ClearCachesApplicationListener,\</span><br><span class="line">org.springframework.boot.builder.ParentContextCloserApplicationListener,\</span><br><span class="line">org.springframework.boot.context.FileEncodingApplicationListener,\</span><br><span class="line">org.springframework.boot.context.config.AnsiOutputApplicationListener,\</span><br><span class="line">org.springframework.boot.context.config.ConfigFileApplicationListener,\</span><br><span class="line">org.springframework.boot.context.config.DelegatingApplicationListener,\</span><br><span class="line">org.springframework.boot.liquibase.LiquibaseServiceLocatorApplicationListener,\</span><br><span class="line">org.springframework.boot.logging.ClasspathLoggingApplicationListener,\</span><br><span class="line">org.springframework.boot.logging.LoggingApplicationListener</span><br></pre></td></tr></table></figure></p>
-<p>spring-boot-autoconfigure-x.x.x.RELEASE.jar/META-INF/spring.factories中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Application Listeners</span><br><span class="line">org.springframework.context.ApplicationListener=\</span><br><span class="line">org.springframework.boot.autoconfigure.BackgroundPreinitializer</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列四：实例化 ApplicationListener/" data-id="cjfuyfxk9003q5fx7h4q2z4u9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列五：找到程序入口类并实例化/" data-id="cjfv05t6x003s8kx7zra8cg38" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
@@ -634,7 +630,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -665,7 +661,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/CI-持续集成/" style="font-size: 10px;">CI 持续集成</a> <a href="/tags/CQRS/" style="font-size: 11.67px;">CQRS</a> <a href="/tags/Event-Sourcing/" style="font-size: 11.67px;">Event Sourcing</a> <a href="/tags/ExceptionHandler/" style="font-size: 10px;">ExceptionHandler</a> <a href="/tags/GS1/" style="font-size: 13.33px;">GS1</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitflow-Workflow/" style="font-size: 10px;">Gitflow Workflow</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/JDK-8/" style="font-size: 11.67px;">JDK 8</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java虚拟机/" style="font-size: 10px;">Java虚拟机</a> <a href="/tags/List/" style="font-size: 10px;">List</a> <a href="/tags/MyBatis/" style="font-size: 18.33px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Ribbon/" style="font-size: 10px;">Ribbon</a> <a href="/tags/Sonatype-Nexus/" style="font-size: 10px;">Sonatype Nexus</a> <a href="/tags/Spring-Framework/" style="font-size: 16.67px;">Spring Framework</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/UDI/" style="font-size: 10px;">UDI</a> <a href="/tags/ZooKeeper/" style="font-size: 10px;">ZooKeeper</a> <a href="/tags/二进制/" style="font-size: 10px;">二进制</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/多线程/" style="font-size: 13.33px;">多线程</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/架构探险/" style="font-size: 10px;">架构探险</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/选择排序-插入排序/" style="font-size: 10px;">选择排序 插入排序</a>
+      <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/CI-持续集成/" style="font-size: 10px;">CI 持续集成</a> <a href="/tags/CQRS/" style="font-size: 11.67px;">CQRS</a> <a href="/tags/Event-Sourcing/" style="font-size: 11.67px;">Event Sourcing</a> <a href="/tags/ExceptionHandler/" style="font-size: 10px;">ExceptionHandler</a> <a href="/tags/GS1/" style="font-size: 13.33px;">GS1</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitflow-Workflow/" style="font-size: 10px;">Gitflow Workflow</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/JDK-8/" style="font-size: 13.33px;">JDK 8</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java虚拟机/" style="font-size: 10px;">Java虚拟机</a> <a href="/tags/List/" style="font-size: 10px;">List</a> <a href="/tags/MyBatis/" style="font-size: 18.33px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Ribbon/" style="font-size: 10px;">Ribbon</a> <a href="/tags/Sonatype-Nexus/" style="font-size: 10px;">Sonatype Nexus</a> <a href="/tags/Spring-Framework/" style="font-size: 16.67px;">Spring Framework</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/UDI/" style="font-size: 10px;">UDI</a> <a href="/tags/ZooKeeper/" style="font-size: 10px;">ZooKeeper</a> <a href="/tags/二进制/" style="font-size: 10px;">二进制</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/多线程/" style="font-size: 13.33px;">多线程</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/架构探险/" style="font-size: 10px;">架构探险</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/选择排序-插入排序/" style="font-size: 10px;">选择排序 插入排序</a>
     </div>
   </div>
 
@@ -687,11 +683,11 @@
       <ul>
         
           <li>
-            <a href="/2018/04/09/集合框架基础之迭代器/">集合框架基础之迭代器</a>
+            <a href="/2018/04/09/编程中对象的分类和命名/">编程中对象的分类和命名</a>
           </li>
         
           <li>
-            <a href="/2018/04/09/编程中对象的分类和命名/">编程中对象的分类和命名</a>
+            <a href="/2018/04/09/集合框架基础之迭代器/">集合框架基础之迭代器</a>
           </li>
         
           <li>
