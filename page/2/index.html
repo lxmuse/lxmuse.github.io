@@ -62,6 +62,66 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Java 8  四大内置函数接口使用示例" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/11/Java 8  四大内置函数接口使用示例/" class="article-date">
+  <time datetime="2018-01-11T14:49:24.000Z" itemprop="datePublished">2018-01-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JDK-8-新特性/">JDK 8 新特性</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/11/Java 8  四大内置函数接口使用示例/">Java 8 四大内置函数接口使用示例</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>Consumer 接口</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Consumer&lt;T&gt; &#123;</span><br><span class="line">    void accept(T t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public void happy(double money, Consumer&lt;Double&gt; consumer) &#123;</span><br><span class="line">		consumer.accept(money);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">happy(1000, money -&gt; System.out.println(&quot;吃喝玩乐&quot;));</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">happy(10000, money -&gt; System.out.println(&quot;旅游&quot;));</span><br></pre></td></tr></table></figure>
+<p><strong>Supplier 接口</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Supplier&lt;T&gt; &#123;</span><br><span class="line">    T get();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public List&lt;Integer&gt; getNumList(int num, Supplier&lt;Integer&gt; supplier) &#123;</span><br><span class="line">	List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">	</span><br><span class="line">	for(int i = 0; i &lt; num; i++) &#123;</span><br><span class="line">		Integer n = supplier.get();</span><br><span class="line">		list.add(n);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return list;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getNumList(10, () -&gt; (int)(Math.random() * 100))</span><br></pre></td></tr></table></figure>
+<p><strong>Function 接口</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Function&lt;T, R&gt; &#123;</span><br><span class="line">    R apply(T t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public String strHandler(String str, Function&lt;String, String&gt; function) &#123;</span><br><span class="line">		return function.apply(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strHandler(&quot;   Lambda  &quot;, str -&gt; str.trim().toUpperCase())</span><br></pre></td></tr></table></figure>
+<p><strong>Predicate 接口</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Predicate&lt;T&gt; &#123;</span><br><span class="line">    boolean test(T t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public List&lt;String&gt; filterStr(List&lt;String&gt; list, Predicate&lt;String&gt; predicate) &#123;</span><br><span class="line">	List&lt;String&gt; strList = new ArrayList&lt;&gt;();</span><br><span class="line">	</span><br><span class="line">	for(String str : list) &#123;</span><br><span class="line">		if(predicate.test(str)) &#123;</span><br><span class="line">			strList.add(str);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return strList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; strings = Arrays.asList(&quot;Hello&quot;, &quot;Lambda&quot;, &quot;Function&quot;, &quot;Java&quot;);</span><br><span class="line">filterStr(strings, str -&gt; str.length() &gt; 5);</span><br></pre></td></tr></table></figure>
+<p>代码可参考<a href="https://github.com/lxmuse/lxmuse-jdk8-new-feature.git" target="_blank" rel="noopener">lxmuse-jdk8-new-feature-lambda-03</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/11/Java 8  四大内置函数接口使用示例/" data-id="cjfv1injh000raxx7scae551r" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK-8/">JDK 8</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-GS1 医疗行业应用" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/01/11/GS1 医疗行业应用/" class="article-date">
@@ -93,7 +153,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/11/GS1 医疗行业应用/" data-id="cjfv05t5f000q8kx7ogtjh48c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/11/GS1 医疗行业应用/" data-id="cjfv1injc000iaxx7kn60gg02" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GS1/">GS1</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UDI/">UDI</a></li></ul>
@@ -136,7 +196,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/11/关于版本控制/" data-id="cjfv05t7d004q8kx7fg3nbtob" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/11/关于版本控制/" data-id="cjfv1inmc007naxx7mqxm8524" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
@@ -210,7 +270,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/10/Lambda表达式语法/" data-id="cjfv05t5o001a8kx7wsae3bk1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/10/Lambda表达式语法/" data-id="cjfv1injq001daxx7tler37su" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK-8/">JDK 8</a></li></ul>
@@ -282,7 +342,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/10/GS1 数据载体体系/" data-id="cjfv05t8q008y8kx7zh7fbt6t" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/10/GS1 数据载体体系/" data-id="cjfv1inmj0083axx7giyaf6n9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GS1/">GS1</a></li></ul>
@@ -343,7 +403,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/10/GS1 编码体系/" data-id="cjfv05t95009a8kx79758tlka" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/10/GS1 编码体系/" data-id="cjfv1inn9008waxx73pet6ba0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GS1/">GS1</a></li></ul>
@@ -413,7 +473,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/09/Lambda表达式引子/" data-id="cjfv05t5n00178kx7ewrmqzmf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/09/Lambda表达式引子/" data-id="cjfv1injn0015axx7piwcggdo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK-8/">JDK 8</a></li></ul>
@@ -464,7 +524,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/08/MySQL You can't specify target table 'x' for update in FROM clause/" data-id="cjfv05t5y001x8kx7pb9dabbs" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/08/MySQL You can't specify target table 'x' for update in FROM clause/" data-id="cjfv1injy001uaxx7wcnzhtlr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
@@ -519,7 +579,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/08/MySQL 末尾空格的查询问题/" data-id="cjfv05t60001z8kx7pgiqhrjs" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/08/MySQL 末尾空格的查询问题/" data-id="cjfv1ink20024axx70qx45pig" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
@@ -569,52 +629,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列六：执行启动方法/" data-id="cjfv05t6z003u8kx7p4i237is" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-SpringBoot 启动源码解析系列五：找到程序入口类并实例化" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/02/SpringBoot 启动源码解析系列五：找到程序入口类并实例化/" class="article-date">
-  <time datetime="2018-01-02T15:18:24.000Z" itemprop="datePublished">2018-01-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/SpringBoot-系列/">SpringBoot 系列</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/02/SpringBoot 启动源码解析系列五：找到程序入口类并实例化/">SpringBoot 启动源码解析系列五：找到程序入口类并实例化</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>SpringApplication initialize 方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private void initialize(Object[] sources) &#123;</span><br><span class="line">    if (sources != null &amp;&amp; sources.length &gt; 0) &#123;</span><br><span class="line">        this.sources.addAll(Arrays.asList(sources));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    this.webEnvironment = this.deduceWebEnvironment();</span><br><span class="line">    this.setInitializers(this.getSpringFactoriesInstances(ApplicationContextInitializer.class));</span><br><span class="line">    this.setListeners(this.getSpringFactoriesInstances(ApplicationListener.class));</span><br><span class="line">    this.mainApplicationClass = this.deduceMainApplicationClass();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>deduceMainApplicationClass 方法即用于查找 main 方法类，并实例化：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">private Class&lt;?&gt; deduceMainApplicationClass() &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            StackTraceElement[] stackTrace = (new RuntimeException()).getStackTrace();</span><br><span class="line">            StackTraceElement[] var2 = stackTrace;</span><br><span class="line">            int var3 = stackTrace.length;</span><br><span class="line"></span><br><span class="line">            for(int var4 = 0; var4 &lt; var3; ++var4) &#123;</span><br><span class="line">                StackTraceElement stackTraceElement = var2[var4];</span><br><span class="line">                if (&quot;main&quot;.equals(stackTraceElement.getMethodName())) &#123;</span><br><span class="line">                    return Class.forName(stackTraceElement.getClassName());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (ClassNotFoundException var6) &#123;</span><br><span class="line">            ;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列五：找到程序入口类并实例化/" data-id="cjfv05t6x003s8kx7zra8cg38" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列六：执行启动方法/" data-id="cjfv1inlv006qaxx751osinv4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
@@ -661,7 +676,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/CI-持续集成/" style="font-size: 10px;">CI 持续集成</a> <a href="/tags/CQRS/" style="font-size: 11.67px;">CQRS</a> <a href="/tags/Event-Sourcing/" style="font-size: 11.67px;">Event Sourcing</a> <a href="/tags/ExceptionHandler/" style="font-size: 10px;">ExceptionHandler</a> <a href="/tags/GS1/" style="font-size: 13.33px;">GS1</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitflow-Workflow/" style="font-size: 10px;">Gitflow Workflow</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/JDK-8/" style="font-size: 13.33px;">JDK 8</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java虚拟机/" style="font-size: 10px;">Java虚拟机</a> <a href="/tags/List/" style="font-size: 10px;">List</a> <a href="/tags/MyBatis/" style="font-size: 18.33px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Ribbon/" style="font-size: 10px;">Ribbon</a> <a href="/tags/Sonatype-Nexus/" style="font-size: 10px;">Sonatype Nexus</a> <a href="/tags/Spring-Framework/" style="font-size: 16.67px;">Spring Framework</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/UDI/" style="font-size: 10px;">UDI</a> <a href="/tags/ZooKeeper/" style="font-size: 10px;">ZooKeeper</a> <a href="/tags/二进制/" style="font-size: 10px;">二进制</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/多线程/" style="font-size: 13.33px;">多线程</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/架构探险/" style="font-size: 10px;">架构探险</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/选择排序-插入排序/" style="font-size: 10px;">选择排序 插入排序</a>
+      <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/CI-持续集成/" style="font-size: 10px;">CI 持续集成</a> <a href="/tags/CQRS/" style="font-size: 11.43px;">CQRS</a> <a href="/tags/Event-Sourcing/" style="font-size: 11.43px;">Event Sourcing</a> <a href="/tags/ExceptionHandler/" style="font-size: 10px;">ExceptionHandler</a> <a href="/tags/GS1/" style="font-size: 12.86px;">GS1</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitflow-Workflow/" style="font-size: 10px;">Gitflow Workflow</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/JDK-8/" style="font-size: 14.29px;">JDK 8</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java虚拟机/" style="font-size: 10px;">Java虚拟机</a> <a href="/tags/List/" style="font-size: 10px;">List</a> <a href="/tags/MyBatis/" style="font-size: 18.57px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 12.86px;">MySQL</a> <a href="/tags/Python/" style="font-size: 15.71px;">Python</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Ribbon/" style="font-size: 10px;">Ribbon</a> <a href="/tags/Sonatype-Nexus/" style="font-size: 10px;">Sonatype Nexus</a> <a href="/tags/Spring-Framework/" style="font-size: 17.14px;">Spring Framework</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/UDI/" style="font-size: 10px;">UDI</a> <a href="/tags/ZooKeeper/" style="font-size: 10px;">ZooKeeper</a> <a href="/tags/二进制/" style="font-size: 10px;">二进制</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/多线程/" style="font-size: 12.86px;">多线程</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/架构探险/" style="font-size: 10px;">架构探险</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/选择排序-插入排序/" style="font-size: 10px;">选择排序 插入排序</a>
     </div>
   </div>
 
