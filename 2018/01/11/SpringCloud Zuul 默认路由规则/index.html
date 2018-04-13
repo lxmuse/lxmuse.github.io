@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="LX Muse">
 <meta property="og:description" content="Spring Boot: 1.5.10.RELEASE Spring Cloud: Dalston.SR5 路由管理端点Zuul 会暴露一个路由管理端点 /routes，借助这个端点，可以方便、直观地查看以及管理 Zuul 的路由。 使用 GET 请求访问该路由管理端点即可获取 Zuul 当前映射的路由列表。使用 POST 请求访问该路由管理端点即可强制刷新 Zuul 当前映射的路由列表。 默认">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-13T08:32:14.047Z">
+<meta property="og:updated_time" content="2018-04-13T08:34:27.346Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringCloud Zuul 默认路由规则">
 <meta name="twitter:description" content="Spring Boot: 1.5.10.RELEASE Spring Cloud: Dalston.SR5 路由管理端点Zuul 会暴露一个路由管理端点 /routes，借助这个端点，可以方便、直观地查看以及管理 Zuul 的路由。 使用 GET 请求访问该路由管理端点即可获取 Zuul 当前映射的路由列表。使用 POST 请求访问该路由管理端点即可强制刷新 Zuul 当前映射的路由列表。 默认">
@@ -121,7 +121,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;/hello-world-service/**&quot;:&quot;hello-world-service&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>调用如下URL：</p>
 <p><a href="http://localhost:8888/hello-world-service/hello" target="_blank" rel="noopener">http://localhost:8888/hello-world-service/hello</a> 可以正常访问 <br><br><a href="http://localhost:8888/hello-world-service-provide/hello" target="_blank" rel="noopener">http://localhost:8888/hello-world-service-provide/hello</a> 不可以正常访问 <br></p>
-<h2 id="自定义路由规则"><a href="#自定义路由规则" class="headerlink" title="自定义路由规则"></a>自定义路由规则</h2>
+<p>详细代码请参考 <a href="https://github.com/lxmuse/lxmuse-spring-cloud.git" target="_blank" rel="noopener">lxmuse-spring-cloud 下 example-zuul-02</a></p>
+
       
     </div>
     <footer class="article-footer">
