@@ -62,14 +62,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-关于版本控制" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-SpringCloud Zuul 初识" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/01/11/关于版本控制/" class="article-date">
+    <a href="/2018/01/11/SpringCloud Zuul 初识/" class="article-date">
   <time datetime="2018-01-11T13:49:24.000Z" itemprop="datePublished">2018-01-11</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/开发管理系列/">开发管理系列</a>
+    <a class="article-category-link" href="/categories/SpringCloud/">SpringCloud</a>
   </div>
 
   </div>
@@ -80,7 +80,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/11/关于版本控制/">关于版本控制</a>
+      <a class="article-title" href="/2018/01/11/SpringCloud Zuul 初识/">SpringCloud Zuul 初识</a>
     </h1>
   
 
@@ -88,15 +88,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。</p>
-<h4 id="版本控制的演变"><a href="#版本控制的演变" class="headerlink" title="版本控制的演变"></a>版本控制的演变</h4>
+        <p>Spring Boot: 1.5.10.RELEASE <br><br>Spring Cloud: Dalston.SR5</p>
+<p>利用前期的相关工程实现环境搭建：<br><br>example-01 : eureka-server  <br><br>example-01 : 服务提供者1    <br><br>example-04 : 服务提供者2    <br><br>example-05 : 服务提供者3    <br></p>
+<p>创建 zuul 工程，引入依赖：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-cloud-starter-eureka&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-cloud-starter-zuul&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>spring-cloud-starter-zuul 是必须引入的依赖 <br><br>spring-cloud-starter-eureka 是为了使 zuul 可以 eureka 进行无缝集成</p>
+<p>启动类上添加 @EnableZuulProxy 注解：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line">import org.springframework.cloud.netflix.zuul.EnableZuulProxy;</span><br><span class="line"></span><br><span class="line">@EnableZuulProxy</span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class Application &#123;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication application = new SpringApplication(Application.class);</span><br><span class="line">		application.run(args);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>配置文件集成 eureka 并配置路由规则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: zuul-server</span><br><span class="line"></span><br><span class="line">server:</span><br><span class="line">  port: 8888</span><br><span class="line"></span><br><span class="line">eureka:</span><br><span class="line">  instance:</span><br><span class="line">    prefer-ip-address: false</span><br><span class="line">  client:</span><br><span class="line">    service-url:</span><br><span class="line">      defaultZone: http://localhost:8761/eureka</span><br><span class="line"></span><br><span class="line">zuul:</span><br><span class="line">  routes:</span><br><span class="line">    api-a.path: /api-a/**</span><br><span class="line">    api-a.serviceId: hello-world-service</span><br><span class="line">    api-b.path: /api-b/*</span><br><span class="line">    api-b.serviceId: hello-world-service-provide</span><br></pre></td></tr></table></figure>
+<p>路由配置规则： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">格式：zuul.routes.&lt;routh&gt;.path </span><br><span class="line">格式：zuul.routes.&lt;routh&gt;.serviceId</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">这里定义了两个简单的转发规则：</span><br><span class="line">拦截所有 api-a 开头的请求，将其转发到 hello-world-service 服务中</span><br><span class="line">拦截所有 api-b 开头的请求，将其转发到 hello-world-service-provide 服务中</span><br><span class="line"></span><br><span class="line">将服务运行以后，可以测试：&lt;br&gt;</span><br><span class="line">http://localhost:8888/api-a/hello &lt;br&gt;</span><br><span class="line">http://localhost:8888/api-b/hello &lt;br&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">上述路由配置可以简化为：</span><br></pre></td></tr></table></figure>
+<p>zuul:<br>  routes:<br>    hello-world-service: /api-a/<strong><br>    hello-world-service-provide: /api-b/</strong>    </p>
+<pre><code>
+</code></pre><p>格式：zuul.routes.<serviceid>=<path></path><br><code>`</code> </serviceid></p>
+<p>详细代码请参考 <a href="https://github.com/lxmuse/lxmuse-spring-cloud.git" target="_blank" rel="noopener">lxmuse-spring-cloud 下 example-zuul-01</a></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/11/关于版本控制/" data-id="cjfxpbf1m005mv3x76zxb7c6z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/11/SpringCloud Zuul 初识/" data-id="cjfxqmig3007zwtx73bejj2ep" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li></ul>
 
     </footer>
   </div>
@@ -167,7 +181,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/10/Lambda表达式语法/" data-id="cjfxpbezk001iv3x7dbwtrckv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/10/Lambda表达式语法/" data-id="cjfxqmicu001iwtx78bmsu5zg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK-8/">JDK 8</a></li></ul>
@@ -239,7 +253,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/10/GS1 数据载体体系/" data-id="cjfxpbf2z00a9v3x7pakkb3w9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/10/GS1 数据载体体系/" data-id="cjfxqmigh0093wtx7driijph2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GS1/">GS1</a></li></ul>
@@ -300,7 +314,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/10/GS1 编码体系/" data-id="cjfxpbf3900ajv3x7p1hem0et" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/10/GS1 编码体系/" data-id="cjfxqmih3009jwtx7na77kl1n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GS1/">GS1</a></li></ul>
@@ -370,7 +384,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/09/Lambda表达式引子/" data-id="cjfxpbezj001gv3x7n48xx44r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/09/Lambda表达式引子/" data-id="cjfxqmics001hwtx751xlnjed" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK-8/">JDK 8</a></li></ul>
@@ -421,7 +435,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/08/MySQL You can't specify target table 'x' for update in FROM clause/" data-id="cjfxpbezz002av3x7an5mj03r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/08/MySQL You can't specify target table 'x' for update in FROM clause/" data-id="cjfxqmid9002bwtx7po8hevcw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
@@ -476,7 +490,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/08/MySQL 末尾空格的查询问题/" data-id="cjfxpbf01002gv3x78cedqguh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/08/MySQL 末尾空格的查询问题/" data-id="cjfxqmid70028wtx770ft407w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
@@ -526,7 +540,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列六：执行启动方法/" data-id="cjfxpbf0y004cv3x7dmbm1lpm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列六：执行启动方法/" data-id="cjfxqmifq007ewtx74v3o6xxg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
@@ -571,7 +585,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列五：找到程序入口类并实例化/" data-id="cjfxpbf0w0048v3x7j5zz3n3k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列五：找到程序入口类并实例化/" data-id="cjfxqmifn0078wtx713utkrap" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
@@ -621,7 +635,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列四：实例化 ApplicationListener/" data-id="cjfxpbf0z004ev3x7e32la14j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列四：实例化 ApplicationListener/" data-id="cjfxqmifo007bwtx7u7upwh1f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
