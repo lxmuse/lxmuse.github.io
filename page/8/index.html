@@ -62,6 +62,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-CentOS 6.5 64bit 安装 JDK 7" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/10/CentOS 6.5 64bit 安装 JDK 7/" class="article-date">
+  <time datetime="2016-08-10T14:49:24.000Z" itemprop="datePublished">2016-08-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发管理系列/">开发管理系列</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/10/CentOS 6.5 64bit 安装 JDK 7/">CentOS 6.5 64bit 安装 JDK 7</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>执行安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -ivh jdk-7u60-linux-x64.rpm</span><br></pre></td></tr></table></figure>
+<p>配置环境变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]#vim /etc/profile</span><br></pre></td></tr></table></figure>
+<p>添加如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#set jdk environment</span><br><span class="line">export JAVA_HOME=/usr/java/jdk1.7.0_60</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/08/10/CentOS 6.5 64bit 安装 JDK 7/" data-id="cjfxp37ep000ntcx7p2sjzme8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK/">JDK</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-10 步让你成为更优秀的程序员" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/02/17/10 步让你成为更优秀的程序员/" class="article-date">
@@ -108,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/02/17/10 步让你成为更优秀的程序员/" data-id="cjfwn3lqm00014xx79sklkdk2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/02/17/10 步让你成为更优秀的程序员/" data-id="cjfxp37e50001tcx7kief4avo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程/">编程</a></li></ul>
@@ -165,7 +212,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/11/27/CentOS 6.5 64bit 安装 MySQL 5.6/" data-id="cjfwn3lqy000c4xx7shg5iiyl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/11/27/CentOS 6.5 64bit 安装 MySQL 5.6/" data-id="cjfxp37eg000btcx7nwmw1zwf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
@@ -264,7 +311,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/13/MyBatis 之 映射器 ResultMap 元素入门/" data-id="cjfwn3lsb002c4xx7bxxlit1d" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/13/MyBatis 之 映射器 ResultMap 元素入门/" data-id="cjfxp37f8001wtcx7lv25tsg1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
@@ -456,7 +503,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/12/MyBatis 之 映射器 select 元素/" data-id="cjfwn3lsc002f4xx7re7cqcek" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/12/MyBatis 之 映射器 select 元素/" data-id="cjfxp37f9001ztcx762dy4bkv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
@@ -637,7 +684,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 TypeHandler 元素/" data-id="cjfwn3lsh002n4xx7t9pn28qh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 TypeHandler 元素/" data-id="cjfxp37fh002jtcx77sn5yhyp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
@@ -857,7 +904,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 TypeAliases 元素/" data-id="cjfwn3lse002i4xx7wz8i13r9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 TypeAliases 元素/" data-id="cjfxp37fg002ftcx77nois85g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
@@ -931,7 +978,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 Properties 元素/" data-id="cjfwn3lsj002p4xx7gj8q24yw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 Properties 元素/" data-id="cjfxp37fd0029tcx7i7pyic1z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
@@ -1034,7 +1081,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/10/MyBatis 之 入门/" data-id="cjfwn3ltu00504xx72b36h7ub" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/10/MyBatis 之 入门/" data-id="cjfxp37fc0025tcx7xxecppol" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
@@ -1089,74 +1136,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/10/MyBatis 之 JDBC 编程/" data-id="cjfwn3ls800254xx7thn7zw2p" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/10/MyBatis 之 JDBC 编程/" data-id="cjfxp37f5001qtcx7iwi8gx58" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Hexo博客环境准备篇" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/11/10/Hexo博客环境准备篇/" class="article-date">
-  <time datetime="2014-11-10T13:37:53.000Z" itemprop="datePublished">2014-11-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/10/Hexo博客环境准备篇/">Hexo博客环境准备篇</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="什么是Hexo"><a href="#什么是Hexo" class="headerlink" title="什么是Hexo?"></a>什么是Hexo?</h2><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="安装前提"><a href="#安装前提" class="headerlink" title="安装前提"></a>安装前提</h3><p>安装 Hexo 相当简单。然而在安装前，您必须检查电脑中是否已安装下列应用程序：</p>
-<ul>
-<li>Node.js</li>
-<li>Git</li>
-<li>Markdown 编辑器</li>
-</ul>
-<h4 id="Node-js-安装"><a href="#Node-js-安装" class="headerlink" title="Node.js 安装"></a>Node.js 安装</h4><p>从 <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">Node.js 官网</a> 下载对应操作系统平台的安装包。<br>Windows 操作系统平台可以选择 msi 格式的安装包进行安装。安装时只需要根据提示一步步安装即可。<br>Node.js 默认会自动配置环境变量，方便使用其操作命令。<br>本人下载版本：node-v6.11.4-x64.msi</p>
-<h4 id="Git-安装"><a href="#Git-安装" class="headerlink" title="Git 安装"></a>Git 安装</h4><p>从 <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git 官网</a> 下载对应操作系统平台的安装包。<br>Windows 操作系统平台可以选择 exe 格式的安装包进行安装。安装时只需要根据提示一步步安装即可。<br>Git 默认会自动配置环境变量，方便使用其操作命令。<br>本人下载版本：Git-2.15.0-64.exe</p>
-<h4 id="Markdown-编辑器安装"><a href="#Markdown-编辑器安装" class="headerlink" title="Markdown 编辑器安装"></a>Markdown 编辑器安装</h4><p>本人使用的是小众的Haroopad. 可从 <a href="http://pad.haroopress.com/user.html" target="_blank" rel="noopener">Haroopad 官网</a> 下载对应操作系统平台的安装包。<br>Windows 操作系统平台可以选择 msi 格式的安装包进行安装。安装时只需要根据提示一步步安装即可。<br>本人下载版本：Haroopad-v0.13.1-win-x64.msi</p>
-<h4 id="Node-js-切换镜像源"><a href="#Node-js-切换镜像源" class="headerlink" title="Node.js 切换镜像源"></a>Node.js 切换镜像源</h4><p>由于众所周知的原因，国内使用 Node.js 下载速度并不乐观，为提升使用体验，可将其镜像源设置为国内镜像源。<br>比如著名的淘宝 Node.js 镜像源，一般可以使用如下方法：</p>
-<ul>
-<li><p>通过 config 命令进行全局配置</p>
-<p>npm config set registry <a href="http://registry.npm.taobao.org/" target="_blank" rel="noopener">http://registry.npm.taobao.org/</a></p>
-</li>
-<li><p>每次下载指定镜像源</p>
-<p>npm install -g xxx –registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a></p>
-</li>
-</ul>
-<p>至此 Hexo 安装的条件已经具备，接下来即可进行 Hexo 的安装。</p>
-<h2 id="Hexo-安装"><a href="#Hexo-安装" class="headerlink" title="Hexo 安装"></a>Hexo 安装</h2><p>Hexo 可以使用 npm 命令进行安装，打开 Git Bash 输入以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
-<p>只需要耐心等待即可，喝口茶的功夫就可以完成安装。<br>当安装窗口出现 <code>INFO Start bloggint with Hexo!</code> 表示安装完毕</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/11/10/Hexo博客环境准备篇/" data-id="cjfwn3lrt001d4xx7qz3dqkj1" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
 
     </footer>
   </div>
@@ -1169,7 +1152,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span>
+    <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -1200,7 +1183,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/CI-持续集成/" style="font-size: 10px;">CI 持续集成</a> <a href="/tags/CQRS/" style="font-size: 11.67px;">CQRS</a> <a href="/tags/Event-Sourcing/" style="font-size: 11.67px;">Event Sourcing</a> <a href="/tags/ExceptionHandler/" style="font-size: 10px;">ExceptionHandler</a> <a href="/tags/GS1/" style="font-size: 13.33px;">GS1</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitflow-Workflow/" style="font-size: 10px;">Gitflow Workflow</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Iterator/" style="font-size: 10px;">Iterator</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/JDK-8/" style="font-size: 15px;">JDK 8</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java虚拟机/" style="font-size: 10px;">Java虚拟机</a> <a href="/tags/MyBatis/" style="font-size: 18.33px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Ribbon/" style="font-size: 10px;">Ribbon</a> <a href="/tags/Sonatype-Nexus/" style="font-size: 10px;">Sonatype Nexus</a> <a href="/tags/Spring-Framework/" style="font-size: 16.67px;">Spring Framework</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 13.33px;">SpringCloud</a> <a href="/tags/UDI/" style="font-size: 10px;">UDI</a> <a href="/tags/ZooKeeper/" style="font-size: 10px;">ZooKeeper</a> <a href="/tags/二进制/" style="font-size: 10px;">二进制</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/包装类/" style="font-size: 10px;">包装类</a> <a href="/tags/多线程/" style="font-size: 13.33px;">多线程</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/架构探险/" style="font-size: 10px;">架构探险</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/选择排序-插入排序/" style="font-size: 10px;">选择排序 插入排序</a>
+      <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/CI-持续集成/" style="font-size: 10px;">CI 持续集成</a> <a href="/tags/CQRS/" style="font-size: 11.43px;">CQRS</a> <a href="/tags/Event-Sourcing/" style="font-size: 11.43px;">Event Sourcing</a> <a href="/tags/ExceptionHandler/" style="font-size: 10px;">ExceptionHandler</a> <a href="/tags/GS1/" style="font-size: 12.86px;">GS1</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitflow-Workflow/" style="font-size: 10px;">Gitflow Workflow</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Iterator/" style="font-size: 10px;">Iterator</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/JDK-8/" style="font-size: 15.71px;">JDK 8</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java虚拟机/" style="font-size: 10px;">Java虚拟机</a> <a href="/tags/MyBatis/" style="font-size: 18.57px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 12.86px;">MySQL</a> <a href="/tags/Python/" style="font-size: 15.71px;">Python</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Ribbon/" style="font-size: 10px;">Ribbon</a> <a href="/tags/Sonatype-Nexus/" style="font-size: 10px;">Sonatype Nexus</a> <a href="/tags/Spring-Framework/" style="font-size: 17.14px;">Spring Framework</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 14.29px;">SpringCloud</a> <a href="/tags/UDI/" style="font-size: 10px;">UDI</a> <a href="/tags/ZooKeeper/" style="font-size: 10px;">ZooKeeper</a> <a href="/tags/二进制/" style="font-size: 10px;">二进制</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/包装类/" style="font-size: 10px;">包装类</a> <a href="/tags/多线程/" style="font-size: 12.86px;">多线程</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/架构探险/" style="font-size: 10px;">架构探险</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/选择排序-插入排序/" style="font-size: 10px;">选择排序 插入排序</a>
     </div>
   </div>
 
@@ -1222,11 +1205,11 @@
       <ul>
         
           <li>
-            <a href="/2018/04/09/编程中对象的分类和命名/">编程中对象的分类和命名</a>
+            <a href="/2018/04/09/集合框架基础之迭代器/">集合框架基础之迭代器</a>
           </li>
         
           <li>
-            <a href="/2018/04/09/集合框架基础之迭代器/">集合框架基础之迭代器</a>
+            <a href="/2018/04/09/编程中对象的分类和命名/">编程中对象的分类和命名</a>
           </li>
         
           <li>

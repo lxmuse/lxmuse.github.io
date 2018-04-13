@@ -62,6 +62,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-SpringBoot 启动源码解析系列三：实例化 ApplicationContextInitializer" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/02/SpringBoot 启动源码解析系列三：实例化 ApplicationContextInitializer/" class="article-date">
+  <time datetime="2018-01-02T15:05:24.000Z" itemprop="datePublished">2018-01-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SpringBoot-系列/">SpringBoot 系列</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/02/SpringBoot 启动源码解析系列三：实例化 ApplicationContextInitializer/">SpringBoot 启动源码解析系列三：实例化 ApplicationContextInitializer</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SpringApplication initialize 方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private void initialize(Object[] sources) &#123;</span><br><span class="line">    if (sources != null &amp;&amp; sources.length &gt; 0) &#123;</span><br><span class="line">        this.sources.addAll(Arrays.asList(sources));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    this.webEnvironment = this.deduceWebEnvironment();</span><br><span class="line">    this.setInitializers(this.getSpringFactoriesInstances(ApplicationContextInitializer.class));</span><br><span class="line">    this.setListeners(this.getSpringFactoriesInstances(ApplicationListener.class));</span><br><span class="line">    this.mainApplicationClass = this.deduceMainApplicationClass();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>setInitializers 方法即找到 ApplicationContextInitializer 类并实例化</p>
+<p>ApplicationContextInitializer 是 Spring 框架中的接口，其作用可以理解为在 ApplicationContext 执行 refresh 之前，调用 initialize() 方法，对 ApplicationContext 做进一步的设置和处理：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface ApplicationContextInitializer&lt;C extends ConfigurableApplicationContext&gt; &#123;</span><br><span class="line">    void initialize(C var1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>ApplicationContextInitializer 在 SpringBoot 中包含两块：</p>
+<p>spring-boot-x.x.x.RELEASE.jar/META-INF/spring.factories中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Application Context Initializers</span><br><span class="line">org.springframework.context.ApplicationContextInitializer=\</span><br><span class="line">org.springframework.boot.context.ConfigurationWarningsApplicationContextInitializer,\</span><br><span class="line">org.springframework.boot.context.ContextIdApplicationContextInitializer,\</span><br><span class="line">org.springframework.boot.context.config.DelegatingApplicationContextInitializer,\</span><br><span class="line">org.springframework.boot.context.embedded.ServerPortInfoApplicationContextInitializer</span><br></pre></td></tr></table></figure></p>
+<p>spring-boot-autoconfigure-x.x.x.RELEASE.jar/META-INF/spring.factories中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Initializers</span><br><span class="line">org.springframework.context.ApplicationContextInitializer=\</span><br><span class="line">org.springframework.boot.autoconfigure.SharedMetadataReaderFactoryContextInitializer,\</span><br><span class="line">org.springframework.boot.autoconfigure.logging.AutoConfigurationReportLoggingInitializer</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列三：实例化 ApplicationContextInitializer/" data-id="cjfxp37ga0043tcx7a6vrz9vp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-SpringBoot 启动源码解析系列二：判断是否 Web 程序" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/01/02/SpringBoot 启动源码解析系列二：判断是否 Web 程序/" class="article-date">
@@ -98,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列二：判断是否 Web 程序/" data-id="cjfwn3lu000594xx7s54hbota" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列二：判断是否 Web 程序/" data-id="cjfxp37gc0047tcx7wqtngcuv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
@@ -146,7 +195,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列一：构造器实例化/" data-id="cjfwn3ltm004k4xx7t1zy52ri" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列一：构造器实例化/" data-id="cjfxp37g90041tcx7kkx5qt8q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
@@ -201,7 +250,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/01/2018年年度小目标/" data-id="cjfwn3lqp00024xx7ry71heqb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/01/2018年年度小目标/" data-id="cjfxp37e80002tcx7qyahynwl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂谈/">杂谈</a></li></ul>
@@ -276,7 +325,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/01/CentOS 6.5 64bit 安装 JIRA/" data-id="cjfwn3lvw009u4xx7yyc2irfe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/01/CentOS 6.5 64bit 安装 JIRA/" data-id="cjfxp37it00aftcx7wlk1uzkh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JIRA/">JIRA</a></li></ul>
@@ -345,7 +394,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/29/CI 持续集成服务器搭建 - Sonatype Nexus 安装/" data-id="cjfwn3lqu00064xx77ztkjyrz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/29/CI 持续集成服务器搭建 - Sonatype Nexus 安装/" data-id="cjfxp37eb0005tcx70jt224y6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CI/">CI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sonatype-Nexus/">Sonatype Nexus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/持续集成/">持续集成</a></li></ul>
@@ -462,7 +511,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/28/CQRS 和 Event Sourcing 系列（二）：基本概念/" data-id="cjfwn3lw100a04xx7ai3tye00" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/28/CQRS 和 Event Sourcing 系列（二）：基本概念/" data-id="cjfxp37j700aptcx721ccfqy0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CQRS/">CQRS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Event-Sourcing/">Event Sourcing</a></li></ul>
@@ -516,7 +565,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/28/RestTemplate GET 详解/" data-id="cjfwn3lt6003r4xx778yn2odq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/28/RestTemplate GET 详解/" data-id="cjfxp37fs0036tcx7kswdb9oy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RestTemplate/">RestTemplate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
@@ -578,7 +627,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/28/CQRS 和 Event Sourcing 系列（一）：论精益与领域设计/" data-id="cjfwn3lqv00074xx7fbfb3tnw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/28/CQRS 和 Event Sourcing 系列（一）：论精益与领域设计/" data-id="cjfxp37ee0007tcx7zhaolw1d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CQRS/">CQRS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Event-Sourcing/">Event Sourcing</a></li></ul>
@@ -643,76 +692,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/28/Gitflow Workflow 工作流/" data-id="cjfwn3lvm009m4xx7j26as6d0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/28/Gitflow Workflow 工作流/" data-id="cjfxp37il00a9tcx7jz2zb8d6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Gitflow-Workflow/">Gitflow Workflow</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Python 字典" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/12/26/Python 字典/" class="article-date">
-  <time datetime="2017-12-26T13:49:24.000Z" itemprop="datePublished">2017-12-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Python-系列/">Python 系列</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/26/Python 字典/">Python 字典</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Python : 3.6.3</p>
-<p>Python 字典是一系列的键值对，都点像JSON：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;Black&apos;&#125;</span><br><span class="line">print(car[&apos;name&apos;])</span><br><span class="line">print(car[&apos;color&apos;])</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BMW</span><br><span class="line">Black</span><br></pre></td></tr></table></figure></p>
-<p>字典中可以包含任意数量的键值对，可直接通过键获取值。<br>字典是一种动态结构，可随时在其中添加键值对：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;</span><br><span class="line">print(car[&apos;name&apos;])</span><br><span class="line">print(car[&apos;color&apos;])</span><br><span class="line">car[&apos;color&apos;] = &apos;Red&apos;</span><br><span class="line">car[&apos;price&apos;] = 400000</span><br><span class="line">print(car)</span><br><span class="line">print(car[&apos;name&apos;])</span><br><span class="line">print(car[&apos;color&apos;])</span><br><span class="line">print(car[&apos;price&apos;])</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">BMW</span><br><span class="line">black</span><br><span class="line">&#123;&apos;name&apos;: &apos;BMW&apos;, &apos;color&apos;: &apos;Red&apos;, &apos;price&apos;: 400000&#125;</span><br><span class="line">BMW</span><br><span class="line">Red</span><br><span class="line">400000</span><br></pre></td></tr></table></figure></p>
-<p>添加键值对时，若键已存在，则替换原键对应的值，反之新增键值对。<br>字典默认支持保存混合类型的数值，即一个字典中即可以保存字符串类型的值，还可以同时保存数值类型的值。</p>
-<p>Python 也支持创建一个空的字典：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>字典的键值对删除需要依赖于特殊的关键字 del :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;</span><br><span class="line">print(car[&apos;name&apos;])</span><br><span class="line">print(car[&apos;color&apos;])</span><br><span class="line">del car[&apos;color&apos;]</span><br><span class="line">print(car)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BMW</span><br><span class="line">black</span><br><span class="line">&#123;&apos;name&apos;: &apos;BMW&apos;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>遍历字典所有的键值对：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;</span><br><span class="line"></span><br><span class="line">for key, value in car.items():</span><br><span class="line">	print(&quot;key : &quot; + key)</span><br><span class="line">	print(&quot;value : &quot; + value)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">key : name</span><br><span class="line">value : BMW</span><br><span class="line">key : color</span><br><span class="line">value : black</span><br></pre></td></tr></table></figure></p>
-<p>遍历字典所有的键：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;</span><br><span class="line"></span><br><span class="line">for key in car.keys():</span><br><span class="line">	print(&quot;key : &quot; + key)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">key : name</span><br><span class="line">key : color</span><br></pre></td></tr></table></figure></p>
-<p>遍历字典所有的值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;</span><br><span class="line"></span><br><span class="line">for value in car.values():</span><br><span class="line">	print(&quot;value : &quot; + value)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">value : BMW</span><br><span class="line">value : black</span><br></pre></td></tr></table></figure></p>
-<p>按顺序遍历字典所有的键：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;</span><br><span class="line"></span><br><span class="line">for key in sorted(car.keys()):</span><br><span class="line">	print(&quot;key : &quot; + key)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">key : color</span><br><span class="line">key : name</span><br></pre></td></tr></table></figure></p>
-<p>列表嵌套字典：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">car1 = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;</span><br><span class="line">car2 = &#123;&apos;name&apos;:&apos;Smart&apos;,&apos;color&apos;:&apos;Red&apos;&#125;</span><br><span class="line">car3 = &#123;&apos;name&apos;:&apos;Ford&apos;,&apos;color&apos;:&apos;Green&apos;&#125;</span><br><span class="line">car4 = &#123;&apos;name&apos;:&apos;GMC&apos;&#125;</span><br><span class="line"></span><br><span class="line">cars = [car1, car2, car3, car4]</span><br><span class="line">for car in cars:</span><br><span class="line">	print(car)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;&apos;name&apos;: &apos;BMW&apos;, &apos;color&apos;: &apos;black&apos;&#125;</span><br><span class="line">&#123;&apos;name&apos;: &apos;Smart&apos;, &apos;color&apos;: &apos;Red&apos;&#125;</span><br><span class="line">&#123;&apos;name&apos;: &apos;Ford&apos;, &apos;color&apos;: &apos;Green&apos;&#125;</span><br><span class="line">&#123;&apos;name&apos;: &apos;GMC&apos;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>允许将不同的字典嵌套到一个列表中</p>
-<p>字典嵌套列表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user = &#123;&quot;name&quot;:&quot;Tom&quot;, &quot;cars&quot;:[&quot;BMW&quot;,&quot;Smart&quot;]&#125;</span><br><span class="line">print(user)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&apos;name&apos;: &apos;Tom&apos;, &apos;cars&apos;: [&apos;BMW&apos;, &apos;Smart&apos;]&#125;</span><br></pre></td></tr></table></figure></p>
-<p>字典嵌套字典：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user = &#123;&quot;name&quot;:&quot;Tom&quot;, &quot;car&quot; : &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;&#125;</span><br><span class="line">print(user)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&apos;name&apos;: &apos;Tom&apos;, &apos;car&apos;: &#123;&apos;name&apos;: &apos;BMW&apos;, &apos;color&apos;: &apos;black&apos;&#125;&#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/26/Python 字典/" data-id="cjfwn3lt1003l4xx7ktyshv0e" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
 
     </footer>
   </div>
@@ -725,7 +708,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -756,7 +739,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/CI-持续集成/" style="font-size: 10px;">CI 持续集成</a> <a href="/tags/CQRS/" style="font-size: 11.67px;">CQRS</a> <a href="/tags/Event-Sourcing/" style="font-size: 11.67px;">Event Sourcing</a> <a href="/tags/ExceptionHandler/" style="font-size: 10px;">ExceptionHandler</a> <a href="/tags/GS1/" style="font-size: 13.33px;">GS1</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitflow-Workflow/" style="font-size: 10px;">Gitflow Workflow</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Iterator/" style="font-size: 10px;">Iterator</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/JDK-8/" style="font-size: 15px;">JDK 8</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java虚拟机/" style="font-size: 10px;">Java虚拟机</a> <a href="/tags/MyBatis/" style="font-size: 18.33px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 13.33px;">MySQL</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Ribbon/" style="font-size: 10px;">Ribbon</a> <a href="/tags/Sonatype-Nexus/" style="font-size: 10px;">Sonatype Nexus</a> <a href="/tags/Spring-Framework/" style="font-size: 16.67px;">Spring Framework</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 13.33px;">SpringCloud</a> <a href="/tags/UDI/" style="font-size: 10px;">UDI</a> <a href="/tags/ZooKeeper/" style="font-size: 10px;">ZooKeeper</a> <a href="/tags/二进制/" style="font-size: 10px;">二进制</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/包装类/" style="font-size: 10px;">包装类</a> <a href="/tags/多线程/" style="font-size: 13.33px;">多线程</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/架构探险/" style="font-size: 10px;">架构探险</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/选择排序-插入排序/" style="font-size: 10px;">选择排序 插入排序</a>
+      <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/CI-持续集成/" style="font-size: 10px;">CI 持续集成</a> <a href="/tags/CQRS/" style="font-size: 11.43px;">CQRS</a> <a href="/tags/Event-Sourcing/" style="font-size: 11.43px;">Event Sourcing</a> <a href="/tags/ExceptionHandler/" style="font-size: 10px;">ExceptionHandler</a> <a href="/tags/GS1/" style="font-size: 12.86px;">GS1</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitflow-Workflow/" style="font-size: 10px;">Gitflow Workflow</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Iterator/" style="font-size: 10px;">Iterator</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/JDK-8/" style="font-size: 15.71px;">JDK 8</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java虚拟机/" style="font-size: 10px;">Java虚拟机</a> <a href="/tags/MyBatis/" style="font-size: 18.57px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 12.86px;">MySQL</a> <a href="/tags/Python/" style="font-size: 15.71px;">Python</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Ribbon/" style="font-size: 10px;">Ribbon</a> <a href="/tags/Sonatype-Nexus/" style="font-size: 10px;">Sonatype Nexus</a> <a href="/tags/Spring-Framework/" style="font-size: 17.14px;">Spring Framework</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 14.29px;">SpringCloud</a> <a href="/tags/UDI/" style="font-size: 10px;">UDI</a> <a href="/tags/ZooKeeper/" style="font-size: 10px;">ZooKeeper</a> <a href="/tags/二进制/" style="font-size: 10px;">二进制</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/包装类/" style="font-size: 10px;">包装类</a> <a href="/tags/多线程/" style="font-size: 12.86px;">多线程</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/架构探险/" style="font-size: 10px;">架构探险</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/选择排序-插入排序/" style="font-size: 10px;">选择排序 插入排序</a>
     </div>
   </div>
 
@@ -778,11 +761,11 @@
       <ul>
         
           <li>
-            <a href="/2018/04/09/编程中对象的分类和命名/">编程中对象的分类和命名</a>
+            <a href="/2018/04/09/集合框架基础之迭代器/">集合框架基础之迭代器</a>
           </li>
         
           <li>
-            <a href="/2018/04/09/集合框架基础之迭代器/">集合框架基础之迭代器</a>
+            <a href="/2018/04/09/编程中对象的分类和命名/">编程中对象的分类和命名</a>
           </li>
         
           <li>
