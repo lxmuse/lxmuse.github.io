@@ -98,7 +98,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/17/SpringBoot 代码结构/" data-id="cjfxp37g6003xtcx7v04fhblb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/17/SpringBoot 代码结构/" data-id="cjfxpbf0r003yv3x7mcl1opem" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
@@ -147,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/17/Spring Boot 使用/" data-id="cjfxp37fu003ctcx7xs9twg7l" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/17/Spring Boot 使用/" data-id="cjfxpbf0e0037v3x78mnncevm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
@@ -189,7 +189,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/15/Java 8 接口中的默认方法和静态方法/" data-id="cjfxp37eo000mtcx74864wmid" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/15/Java 8 接口中的默认方法和静态方法/" data-id="cjfxpbez6000nv3x7u6cmn5yh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK-8/">JDK 8</a></li></ul>
@@ -233,7 +233,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/12/Stream API/" data-id="cjfxp37gt0059tcx7d4kyvw36" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/12/Stream API/" data-id="cjfxpbf1e0056v3x75gqrcleq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK-8/">JDK 8</a></li></ul>
@@ -276,10 +276,69 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/12/SpringCloud Zuul 自定义路由规则/" data-id="cjfxp37gl004rtcx7cjijtm8u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/12/SpringCloud Zuul 自定义路由规则/" data-id="cjfxpbf1c0052v3x7j9mi8a3g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Lambda 表达式方法引用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/11/Lambda 表达式方法引用/" class="article-date">
+  <time datetime="2018-01-11T15:49:24.000Z" itemprop="datePublished">2018-01-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JDK-8-新特性/">JDK 8 新特性</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/11/Lambda 表达式方法引用/">Lambda 表达式方法引用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Lambda 可以使用现成已经实现的方法。</p>
+<p><strong>要求被调用的方法的参数类型和返回值和 Lambda 表达式中函数接口中抽象方法的参数类型和返回值一致</strong></p>
+<p><strong>对象::实例方法名</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;String&gt; consumer = x -&gt; System.out.println(x);</span><br><span class="line">		</span><br><span class="line">PrintStream printStream = System.out;</span><br><span class="line">Consumer&lt;String&gt; consumer1 = printStream::print;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;String&gt; consumer = x -&gt; System.out.println(x);</span><br><span class="line">		</span><br><span class="line">Consumer&lt;String&gt; consumer1 = System.out::print;</span><br></pre></td></tr></table></figure>
+<p><strong>类::静态方法名</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Comparator&lt;Integer&gt; comparator = (x, y) -&gt; Integer.compare(x, y);</span><br><span class="line">comparator.compare(2,3);</span><br><span class="line">	</span><br><span class="line">Comparator&lt;Integer&gt; comparator1 = Integer::compare;</span><br><span class="line">comparator1.compare(3,4);</span><br></pre></td></tr></table></figure>
+<p><strong>类::实例方法名</strong></p>
+<p>要求 第一个参数是实例方法的调用者，第二个参数是实例方法的参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BiPredicate&lt;String, String&gt; biPredicate = (x, y) -&gt; x.equals(y);</span><br><span class="line">biPredicate.test(&quot;b&quot;, &quot;b&quot;);</span><br><span class="line">	</span><br><span class="line">BiPredicate&lt;String, String&gt; biPredicate1 = String::equals;</span><br><span class="line">biPredicate1.test(&quot;b&quot;, &quot;b&quot;);</span><br></pre></td></tr></table></figure>
+<p><strong>构造函数引用</strong></p>
+<p>可以自动匹配对应的构造函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Supplier&lt;String&gt; supplier = () -&gt; new String();</span><br><span class="line">System.out.println(supplier);</span><br><span class="line">	</span><br><span class="line">Supplier&lt;String&gt; supplier1 = String::new;</span><br><span class="line">System.out.println(supplier1.get());</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Function&lt;String, String&gt; function = (x) -&gt; new String(x);</span><br><span class="line">System.out.println(function.apply(&quot;a&quot;));</span><br><span class="line">	</span><br><span class="line">Function&lt;String, String&gt; function1 = String::new;</span><br><span class="line">System.out.println(function1.apply(&quot;b&quot;));</span><br></pre></td></tr></table></figure>
+<p><strong>数组引用</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Function&lt;Integer, String[]&gt; function = (x) -&gt; new String[x];</span><br><span class="line">System.out.println(function.apply(5).length);</span><br><span class="line">	</span><br><span class="line">Function&lt;Integer, String[]&gt; function1 = String[]::new;</span><br><span class="line">System.out.println(function1.apply(6).length);</span><br></pre></td></tr></table></figure>
+<p>代码可参考<a href="https://github.com/lxmuse/lxmuse-jdk8-new-feature.git" target="_blank" rel="noopener">lxmuse-jdk8-new-feature-lambda-04</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/11/Lambda 表达式方法引用/" data-id="cjfxpbezh001dv3x7ovldxqkk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK-8/">JDK 8</a></li></ul>
 
     </footer>
   </div>
@@ -349,69 +408,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/11/SpringCloud Zuul 默认路由规则/" data-id="cjfxp37go004xtcx72ojjuh6q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/11/SpringCloud Zuul 默认路由规则/" data-id="cjfxpbf1f0058v3x7tmxzxpgg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Lambda 表达式方法引用" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/11/Lambda 表达式方法引用/" class="article-date">
-  <time datetime="2018-01-11T15:49:24.000Z" itemprop="datePublished">2018-01-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/JDK-8-新特性/">JDK 8 新特性</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/11/Lambda 表达式方法引用/">Lambda 表达式方法引用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Lambda 可以使用现成已经实现的方法。</p>
-<p><strong>要求被调用的方法的参数类型和返回值和 Lambda 表达式中函数接口中抽象方法的参数类型和返回值一致</strong></p>
-<p><strong>对象::实例方法名</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;String&gt; consumer = x -&gt; System.out.println(x);</span><br><span class="line">		</span><br><span class="line">PrintStream printStream = System.out;</span><br><span class="line">Consumer&lt;String&gt; consumer1 = printStream::print;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;String&gt; consumer = x -&gt; System.out.println(x);</span><br><span class="line">		</span><br><span class="line">Consumer&lt;String&gt; consumer1 = System.out::print;</span><br></pre></td></tr></table></figure>
-<p><strong>类::静态方法名</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Comparator&lt;Integer&gt; comparator = (x, y) -&gt; Integer.compare(x, y);</span><br><span class="line">comparator.compare(2,3);</span><br><span class="line">	</span><br><span class="line">Comparator&lt;Integer&gt; comparator1 = Integer::compare;</span><br><span class="line">comparator1.compare(3,4);</span><br></pre></td></tr></table></figure>
-<p><strong>类::实例方法名</strong></p>
-<p>要求 第一个参数是实例方法的调用者，第二个参数是实例方法的参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BiPredicate&lt;String, String&gt; biPredicate = (x, y) -&gt; x.equals(y);</span><br><span class="line">biPredicate.test(&quot;b&quot;, &quot;b&quot;);</span><br><span class="line">	</span><br><span class="line">BiPredicate&lt;String, String&gt; biPredicate1 = String::equals;</span><br><span class="line">biPredicate1.test(&quot;b&quot;, &quot;b&quot;);</span><br></pre></td></tr></table></figure>
-<p><strong>构造函数引用</strong></p>
-<p>可以自动匹配对应的构造函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Supplier&lt;String&gt; supplier = () -&gt; new String();</span><br><span class="line">System.out.println(supplier);</span><br><span class="line">	</span><br><span class="line">Supplier&lt;String&gt; supplier1 = String::new;</span><br><span class="line">System.out.println(supplier1.get());</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Function&lt;String, String&gt; function = (x) -&gt; new String(x);</span><br><span class="line">System.out.println(function.apply(&quot;a&quot;));</span><br><span class="line">	</span><br><span class="line">Function&lt;String, String&gt; function1 = String::new;</span><br><span class="line">System.out.println(function1.apply(&quot;b&quot;));</span><br></pre></td></tr></table></figure>
-<p><strong>数组引用</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Function&lt;Integer, String[]&gt; function = (x) -&gt; new String[x];</span><br><span class="line">System.out.println(function.apply(5).length);</span><br><span class="line">	</span><br><span class="line">Function&lt;Integer, String[]&gt; function1 = String[]::new;</span><br><span class="line">System.out.println(function1.apply(6).length);</span><br></pre></td></tr></table></figure>
-<p>代码可参考<a href="https://github.com/lxmuse/lxmuse-jdk8-new-feature.git" target="_blank" rel="noopener">lxmuse-jdk8-new-feature-lambda-04</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/11/Lambda 表达式方法引用/" data-id="cjfxp37ez001ctcx7qooz8f2w" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK-8/">JDK 8</a></li></ul>
 
     </footer>
   </div>
@@ -468,7 +468,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/11/Java 8  四大内置函数接口使用示例/" data-id="cjfxp37em000itcx7u26wjwq1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/11/Java 8  四大内置函数接口使用示例/" data-id="cjfxpbez3000iv3x77jnc7mcz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK-8/">JDK 8</a></li></ul>
@@ -480,14 +480,14 @@
 
 
   
-    <article id="post-关于版本控制" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-GS1 医疗行业应用" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/01/11/关于版本控制/" class="article-date">
+    <a href="/2018/01/11/GS1 医疗行业应用/" class="article-date">
   <time datetime="2018-01-11T13:49:24.000Z" itemprop="datePublished">2018-01-11</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/开发管理系列/">开发管理系列</a>
+    <a class="article-category-link" href="/categories/行业知识/">行业知识</a>
   </div>
 
   </div>
@@ -498,7 +498,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/11/关于版本控制/">关于版本控制</a>
+      <a class="article-title" href="/2018/01/11/GS1 医疗行业应用/">GS1 医疗行业应用</a>
     </h1>
   
 
@@ -506,15 +506,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。</p>
-<h4 id="版本控制的演变"><a href="#版本控制的演变" class="headerlink" title="版本控制的演变"></a>版本控制的演变</h4>
+        <h5 id="什么是-UDI"><a href="#什么是-UDI" class="headerlink" title="什么是 UDI"></a>什么是 UDI</h5><p> 唯一器械标识（Unique Device Identification，缩写UDI）是对医疗器械在其整个生命周期赋予的身份标识，是其在产品供应链中的唯一“身份证”。全球采用统一的、标准的UDI有利于提高供应链透明度和运作效率；有利于降低运营成本；有利于实现信息共享与交换；有利于不良事件的监控和问题产品召回，提高医疗服务质量，保障患者安全。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/11/关于版本控制/" data-id="cjfxp37gw005gtcx7luaex9id" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/11/GS1 医疗行业应用/" data-id="cjfxpbez2000gv3x7ositwba1" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GS1/">GS1</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UDI/">UDI</a></li></ul>
 
     </footer>
   </div>
@@ -523,9 +523,9 @@
 
 
   
-    <article id="post-SpringCloud Zuul 请求路由" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-SpringCloud Zuul 初识" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/01/11/SpringCloud Zuul 请求路由/" class="article-date">
+    <a href="/2018/01/11/SpringCloud Zuul 初识/" class="article-date">
   <time datetime="2018-01-11T13:49:24.000Z" itemprop="datePublished">2018-01-11</time>
 </a>
     
@@ -541,7 +541,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/11/SpringCloud Zuul 请求路由/">SpringCloud Zuul 请求路由</a>
+      <a class="article-title" href="/2018/01/11/SpringCloud Zuul 初识/">SpringCloud Zuul 初识</a>
     </h1>
   
 
@@ -568,7 +568,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/11/SpringCloud Zuul 请求路由/" data-id="cjfxp37gn004vtcx7913ik74e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/11/SpringCloud Zuul 初识/" data-id="cjfxpbf19004wv3x766ve1jig" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li></ul>
