@@ -98,7 +98,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/17/SpringBoot 代码结构/" data-id="cjfxqmie4003wwtx78sqkovnn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/17/SpringBoot 代码结构/" data-id="cjgew4ar0005u80x7dg1bkscz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
@@ -147,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/17/Spring Boot 使用/" data-id="cjfxqmidn0033wtx7bm7ltqai" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/17/Spring Boot 使用/" data-id="cjgew4aqf004f80x7lkjevivn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
@@ -189,7 +189,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/15/Java 8 接口中的默认方法和静态方法/" data-id="cjfxqmice000owtx7qow1emea" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/15/Java 8 接口中的默认方法和静态方法/" data-id="cjgew4aog000m80x7yn4uzo4t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK-8/">JDK 8</a></li></ul>
@@ -233,7 +233,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/12/Stream API/" data-id="cjfxqmig7008bwtx7onrzuc9l" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/12/Stream API/" data-id="cjgew4art007p80x7bwctohu7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK-8/">JDK 8</a></li></ul>
@@ -325,14 +325,74 @@
 </table>
 <p><strong>路径匹配的顺序问题</strong></p>
 <p>默认路径匹配的顺序是根据配置文件中的配置顺序，而且因为 properties 文件无法保证有序，<strong>推荐使用 yml 格式</strong></p>
+<p>一个推荐的路径配置顺序是，层级越多的顺序优先</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/12/SpringCloud Zuul 路径匹配/" data-id="cjfxqmig40082wtx7ir6ohvdv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/12/SpringCloud Zuul 路径匹配/" data-id="cjgew4arl007780x7zt3zdskh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Lambda 表达式方法引用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/11/Lambda 表达式方法引用/" class="article-date">
+  <time datetime="2018-01-11T15:49:24.000Z" itemprop="datePublished">2018-01-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JDK-8-新特性/">JDK 8 新特性</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/11/Lambda 表达式方法引用/">Lambda 表达式方法引用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Lambda 可以使用现成已经实现的方法。</p>
+<p><strong>要求被调用的方法的参数类型和返回值和 Lambda 表达式中函数接口中抽象方法的参数类型和返回值一致</strong></p>
+<p><strong>对象::实例方法名</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;String&gt; consumer = x -&gt; System.out.println(x);</span><br><span class="line">		</span><br><span class="line">PrintStream printStream = System.out;</span><br><span class="line">Consumer&lt;String&gt; consumer1 = printStream::print;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;String&gt; consumer = x -&gt; System.out.println(x);</span><br><span class="line">		</span><br><span class="line">Consumer&lt;String&gt; consumer1 = System.out::print;</span><br></pre></td></tr></table></figure>
+<p><strong>类::静态方法名</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Comparator&lt;Integer&gt; comparator = (x, y) -&gt; Integer.compare(x, y);</span><br><span class="line">comparator.compare(2,3);</span><br><span class="line">	</span><br><span class="line">Comparator&lt;Integer&gt; comparator1 = Integer::compare;</span><br><span class="line">comparator1.compare(3,4);</span><br></pre></td></tr></table></figure>
+<p><strong>类::实例方法名</strong></p>
+<p>要求 第一个参数是实例方法的调用者，第二个参数是实例方法的参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BiPredicate&lt;String, String&gt; biPredicate = (x, y) -&gt; x.equals(y);</span><br><span class="line">biPredicate.test(&quot;b&quot;, &quot;b&quot;);</span><br><span class="line">	</span><br><span class="line">BiPredicate&lt;String, String&gt; biPredicate1 = String::equals;</span><br><span class="line">biPredicate1.test(&quot;b&quot;, &quot;b&quot;);</span><br></pre></td></tr></table></figure>
+<p><strong>构造函数引用</strong></p>
+<p>可以自动匹配对应的构造函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Supplier&lt;String&gt; supplier = () -&gt; new String();</span><br><span class="line">System.out.println(supplier);</span><br><span class="line">	</span><br><span class="line">Supplier&lt;String&gt; supplier1 = String::new;</span><br><span class="line">System.out.println(supplier1.get());</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Function&lt;String, String&gt; function = (x) -&gt; new String(x);</span><br><span class="line">System.out.println(function.apply(&quot;a&quot;));</span><br><span class="line">	</span><br><span class="line">Function&lt;String, String&gt; function1 = String::new;</span><br><span class="line">System.out.println(function1.apply(&quot;b&quot;));</span><br></pre></td></tr></table></figure>
+<p><strong>数组引用</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Function&lt;Integer, String[]&gt; function = (x) -&gt; new String[x];</span><br><span class="line">System.out.println(function.apply(5).length);</span><br><span class="line">	</span><br><span class="line">Function&lt;Integer, String[]&gt; function1 = String[]::new;</span><br><span class="line">System.out.println(function1.apply(6).length);</span><br></pre></td></tr></table></figure>
+<p>代码可参考<a href="https://github.com/lxmuse/lxmuse-jdk8-new-feature.git" target="_blank" rel="noopener">lxmuse-jdk8-new-feature-lambda-04</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/11/Lambda 表达式方法引用/" data-id="cjgew4apk002a80x7860hogsh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK-8/">JDK 8</a></li></ul>
 
     </footer>
   </div>
@@ -402,69 +462,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/11/SpringCloud Zuul 默认路由规则/" data-id="cjfxqmig50085wtx71vwm59wb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/11/SpringCloud Zuul 默认路由规则/" data-id="cjgew4arm007b80x7t0ti3vj5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Lambda 表达式方法引用" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/11/Lambda 表达式方法引用/" class="article-date">
-  <time datetime="2018-01-11T15:49:24.000Z" itemprop="datePublished">2018-01-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/JDK-8-新特性/">JDK 8 新特性</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/11/Lambda 表达式方法引用/">Lambda 表达式方法引用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Lambda 可以使用现成已经实现的方法。</p>
-<p><strong>要求被调用的方法的参数类型和返回值和 Lambda 表达式中函数接口中抽象方法的参数类型和返回值一致</strong></p>
-<p><strong>对象::实例方法名</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;String&gt; consumer = x -&gt; System.out.println(x);</span><br><span class="line">		</span><br><span class="line">PrintStream printStream = System.out;</span><br><span class="line">Consumer&lt;String&gt; consumer1 = printStream::print;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;String&gt; consumer = x -&gt; System.out.println(x);</span><br><span class="line">		</span><br><span class="line">Consumer&lt;String&gt; consumer1 = System.out::print;</span><br></pre></td></tr></table></figure>
-<p><strong>类::静态方法名</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Comparator&lt;Integer&gt; comparator = (x, y) -&gt; Integer.compare(x, y);</span><br><span class="line">comparator.compare(2,3);</span><br><span class="line">	</span><br><span class="line">Comparator&lt;Integer&gt; comparator1 = Integer::compare;</span><br><span class="line">comparator1.compare(3,4);</span><br></pre></td></tr></table></figure>
-<p><strong>类::实例方法名</strong></p>
-<p>要求 第一个参数是实例方法的调用者，第二个参数是实例方法的参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BiPredicate&lt;String, String&gt; biPredicate = (x, y) -&gt; x.equals(y);</span><br><span class="line">biPredicate.test(&quot;b&quot;, &quot;b&quot;);</span><br><span class="line">	</span><br><span class="line">BiPredicate&lt;String, String&gt; biPredicate1 = String::equals;</span><br><span class="line">biPredicate1.test(&quot;b&quot;, &quot;b&quot;);</span><br></pre></td></tr></table></figure>
-<p><strong>构造函数引用</strong></p>
-<p>可以自动匹配对应的构造函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Supplier&lt;String&gt; supplier = () -&gt; new String();</span><br><span class="line">System.out.println(supplier);</span><br><span class="line">	</span><br><span class="line">Supplier&lt;String&gt; supplier1 = String::new;</span><br><span class="line">System.out.println(supplier1.get());</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Function&lt;String, String&gt; function = (x) -&gt; new String(x);</span><br><span class="line">System.out.println(function.apply(&quot;a&quot;));</span><br><span class="line">	</span><br><span class="line">Function&lt;String, String&gt; function1 = String::new;</span><br><span class="line">System.out.println(function1.apply(&quot;b&quot;));</span><br></pre></td></tr></table></figure>
-<p><strong>数组引用</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Function&lt;Integer, String[]&gt; function = (x) -&gt; new String[x];</span><br><span class="line">System.out.println(function.apply(5).length);</span><br><span class="line">	</span><br><span class="line">Function&lt;Integer, String[]&gt; function1 = String[]::new;</span><br><span class="line">System.out.println(function1.apply(6).length);</span><br></pre></td></tr></table></figure>
-<p>代码可参考<a href="https://github.com/lxmuse/lxmuse-jdk8-new-feature.git" target="_blank" rel="noopener">lxmuse-jdk8-new-feature-lambda-04</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/11/Lambda 表达式方法引用/" data-id="cjfxqmicr001dwtx795kmx7mt" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK-8/">JDK 8</a></li></ul>
 
     </footer>
   </div>
@@ -521,7 +522,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/11/Java 8  四大内置函数接口使用示例/" data-id="cjfxqmicd000mwtx7cswfjsds" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/11/Java 8  四大内置函数接口使用示例/" data-id="cjgew4aoe000i80x7gh9q8bfp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK-8/">JDK 8</a></li></ul>
@@ -564,7 +565,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/11/关于版本控制/" data-id="cjfxqmiga008jwtx7f2meyoop" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/11/关于版本控制/" data-id="cjgew4ars007m80x72ysl4r48" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
@@ -607,7 +608,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/11/GS1 医疗行业应用/" data-id="cjfxqmic9000gwtx70s62bwxb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/11/GS1 医疗行业应用/" data-id="cjgew4aoc000g80x726y2tl0b" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GS1/">GS1</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UDI/">UDI</a></li></ul>
@@ -634,7 +635,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JDK-8-新特性/">JDK 8 新特性</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JDK-源码-1-8-0-161/">JDK 源码 1.8.0_161</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Core-API/">Java Core API</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-并发编程系列/">Java 并发编程系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-排序算法/">Java 排序算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-编程逻辑/">Java 编程逻辑</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MyBatis-实践系列/">MyBatis 实践系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL-系列/">MySQL 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python-系列/">Python 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Framework/">Spring Framework</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot-系列/">SpringBoot 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringCloud/">SpringCloud</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ZooKeeper-系列/">ZooKeeper 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/《深入理解Java虚拟机》学习系列/">《深入理解Java虚拟机》学习系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发管理系列/">开发管理系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构系列/">架构系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程经验/">编程经验</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/行业知识/">行业知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记/">读书笔记</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JDK-8-新特性/">JDK 8 新特性</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JDK-源码-1-8-0-161/">JDK 源码 1.8.0_161</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Core-API/">Java Core API</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Servlet/">Java Servlet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-并发编程系列/">Java 并发编程系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-排序算法/">Java 排序算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-编程逻辑/">Java 编程逻辑</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MyBatis-实践系列/">MyBatis 实践系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL-系列/">MySQL 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python-系列/">Python 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shiro/">Shiro</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Framework/">Spring Framework</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot-系列/">SpringBoot 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringCloud/">SpringCloud</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ZooKeeper-系列/">ZooKeeper 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/《深入理解Java虚拟机》学习系列/">《深入理解Java虚拟机》学习系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发管理系列/">开发管理系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构系列/">架构系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程经验/">编程经验</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/行业知识/">行业知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记/">读书笔记</a></li></ul>
     </div>
   </div>
 
@@ -644,7 +645,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI-持续集成/">CI 持续集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CQRS/">CQRS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Event-Sourcing/">Event Sourcing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExceptionHandler/">ExceptionHandler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GS1/">GS1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gitflow-Workflow/">Gitflow Workflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iterator/">Iterator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/">JDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK-8/">JDK 8</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JIRA/">JIRA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java虚拟机/">Java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RestTemplate/">RestTemplate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ribbon/">Ribbon</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sonatype-Nexus/">Sonatype Nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Framework/">Spring Framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UDI/">UDI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZooKeeper/">ZooKeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二进制/">二进制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冒泡排序/">冒泡排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/包装类/">包装类</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成/">持续集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/架构探险/">架构探险</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程/">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/选择排序-插入排序/">选择排序 插入排序</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI-持续集成/">CI 持续集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CQRS/">CQRS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Event-Sourcing/">Event Sourcing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExceptionHandler/">ExceptionHandler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GS1/">GS1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gitflow-Workflow/">Gitflow Workflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iterator/">Iterator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/">JDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK-8/">JDK 8</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JIRA/">JIRA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java虚拟机/">Java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RestTemplate/">RestTemplate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ribbon/">Ribbon</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shiro/">Shiro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sonatype-Nexus/">Sonatype Nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Framework/">Spring Framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UDI/">UDI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZooKeeper/">ZooKeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二进制/">二进制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冒泡排序/">冒泡排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/包装类/">包装类</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成/">持续集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/架构探险/">架构探险</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程/">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/选择排序-插入排序/">选择排序 插入排序</a></li></ul>
     </div>
   </div>
 
@@ -654,7 +655,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/CI-持续集成/" style="font-size: 10px;">CI 持续集成</a> <a href="/tags/CQRS/" style="font-size: 11.43px;">CQRS</a> <a href="/tags/Event-Sourcing/" style="font-size: 11.43px;">Event Sourcing</a> <a href="/tags/ExceptionHandler/" style="font-size: 10px;">ExceptionHandler</a> <a href="/tags/GS1/" style="font-size: 12.86px;">GS1</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitflow-Workflow/" style="font-size: 10px;">Gitflow Workflow</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Iterator/" style="font-size: 10px;">Iterator</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/JDK-8/" style="font-size: 15.71px;">JDK 8</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java虚拟机/" style="font-size: 10px;">Java虚拟机</a> <a href="/tags/MyBatis/" style="font-size: 18.57px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 12.86px;">MySQL</a> <a href="/tags/Python/" style="font-size: 15.71px;">Python</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Ribbon/" style="font-size: 10px;">Ribbon</a> <a href="/tags/Sonatype-Nexus/" style="font-size: 10px;">Sonatype Nexus</a> <a href="/tags/Spring-Framework/" style="font-size: 17.14px;">Spring Framework</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 14.29px;">SpringCloud</a> <a href="/tags/UDI/" style="font-size: 10px;">UDI</a> <a href="/tags/ZooKeeper/" style="font-size: 10px;">ZooKeeper</a> <a href="/tags/二进制/" style="font-size: 10px;">二进制</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/包装类/" style="font-size: 10px;">包装类</a> <a href="/tags/多线程/" style="font-size: 12.86px;">多线程</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/架构探险/" style="font-size: 10px;">架构探险</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/选择排序-插入排序/" style="font-size: 10px;">选择排序 插入排序</a>
+      <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/CI-持续集成/" style="font-size: 10px;">CI 持续集成</a> <a href="/tags/CQRS/" style="font-size: 11.43px;">CQRS</a> <a href="/tags/Event-Sourcing/" style="font-size: 11.43px;">Event Sourcing</a> <a href="/tags/ExceptionHandler/" style="font-size: 10px;">ExceptionHandler</a> <a href="/tags/GS1/" style="font-size: 12.86px;">GS1</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitflow-Workflow/" style="font-size: 10px;">Gitflow Workflow</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Iterator/" style="font-size: 10px;">Iterator</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/JDK-8/" style="font-size: 15.71px;">JDK 8</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java虚拟机/" style="font-size: 10px;">Java虚拟机</a> <a href="/tags/MyBatis/" style="font-size: 18.57px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 12.86px;">MySQL</a> <a href="/tags/Python/" style="font-size: 15.71px;">Python</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Ribbon/" style="font-size: 10px;">Ribbon</a> <a href="/tags/Servlet/" style="font-size: 12.86px;">Servlet</a> <a href="/tags/Shiro/" style="font-size: 10px;">Shiro</a> <a href="/tags/Sonatype-Nexus/" style="font-size: 10px;">Sonatype Nexus</a> <a href="/tags/Spring-Framework/" style="font-size: 17.14px;">Spring Framework</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 14.29px;">SpringCloud</a> <a href="/tags/UDI/" style="font-size: 10px;">UDI</a> <a href="/tags/ZooKeeper/" style="font-size: 10px;">ZooKeeper</a> <a href="/tags/二进制/" style="font-size: 10px;">二进制</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/包装类/" style="font-size: 10px;">包装类</a> <a href="/tags/多线程/" style="font-size: 12.86px;">多线程</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/架构探险/" style="font-size: 10px;">架构探险</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/选择排序-插入排序/" style="font-size: 10px;">选择排序 插入排序</a>
     </div>
   </div>
 
@@ -663,7 +664,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
     </div>
   </div>
 
