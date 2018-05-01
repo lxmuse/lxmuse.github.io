@@ -5,20 +5,20 @@
   
 
   
-  <title>Spring Framework Bean 实例化 | LX Muse</title>
+  <title>什么是微服务 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Spring Framework：4.3.14.RELEASE 本文主要是论述 Spring Framework IOC 容器中 Bean 的实例化。 Bean 的实例化主要是两种方式：  通过构造函数实例化 通过静态方法实例化  通过构造函数实例化 通过构造函数实例化，前提条件是 Bean 含有一个无参构造器，可以是隐式无参构造器，也可以是显式无参构造器。 12345678910111213pu">
-<meta name="keywords" content="Spring Framework">
+  <meta name="description" content="Spring Boot: 1.5.10.RELEASE Spring Cloud: Dalston.SR5 什么是微服务Martin Flowler 在其论文中对微服务做了如下阐述： While there is no precise definition of this architectural style 目前业界并没有一个统一的，标准的定义 In short, the microservi">
+<meta name="keywords" content="SpringCloud">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring Framework Bean 实例化">
-<meta property="og:url" content="http://yoursite.com/2017/01/13/Spring Framework Bean 实例化/index.html">
+<meta property="og:title" content="什么是微服务">
+<meta property="og:url" content="http://yoursite.com/2017/12/11/什么是微服务/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="Spring Framework：4.3.14.RELEASE 本文主要是论述 Spring Framework IOC 容器中 Bean 的实例化。 Bean 的实例化主要是两种方式：  通过构造函数实例化 通过静态方法实例化  通过构造函数实例化 通过构造函数实例化，前提条件是 Bean 含有一个无参构造器，可以是隐式无参构造器，也可以是显式无参构造器。 12345678910111213pu">
+<meta property="og:description" content="Spring Boot: 1.5.10.RELEASE Spring Cloud: Dalston.SR5 什么是微服务Martin Flowler 在其论文中对微服务做了如下阐述： While there is no precise definition of this architectural style 目前业界并没有一个统一的，标准的定义 In short, the microservi">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-09T10:20:09.692Z">
+<meta property="og:updated_time" content="2018-05-01T07:08:35.268Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring Framework Bean 实例化">
-<meta name="twitter:description" content="Spring Framework：4.3.14.RELEASE 本文主要是论述 Spring Framework IOC 容器中 Bean 的实例化。 Bean 的实例化主要是两种方式：  通过构造函数实例化 通过静态方法实例化  通过构造函数实例化 通过构造函数实例化，前提条件是 Bean 含有一个无参构造器，可以是隐式无参构造器，也可以是显式无参构造器。 12345678910111213pu">
+<meta name="twitter:title" content="什么是微服务">
+<meta name="twitter:description" content="Spring Boot: 1.5.10.RELEASE Spring Cloud: Dalston.SR5 什么是微服务Martin Flowler 在其论文中对微服务做了如下阐述： While there is no precise definition of this architectural style 目前业界并没有一个统一的，标准的定义 In short, the microservi">
   
     <link rel="alternate" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -65,14 +65,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Spring Framework Bean 实例化" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-什么是微服务" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/01/13/Spring Framework Bean 实例化/" class="article-date">
-  <time datetime="2017-01-13T12:49:24.000Z" itemprop="datePublished">2017-01-13</time>
+    <a href="/2017/12/11/什么是微服务/" class="article-date">
+  <time datetime="2017-12-11T13:49:24.000Z" itemprop="datePublished">2017-12-11</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Spring-Framework/">Spring Framework</a>
+    <a class="article-category-link" href="/categories/SpringCloud/">SpringCloud</a>
   </div>
 
   </div>
@@ -83,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Spring Framework Bean 实例化
+      什么是微服务
     </h1>
   
 
@@ -91,33 +91,42 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Spring Framework：4.3.14.RELEASE</p>
-<p>本文主要是论述 Spring Framework IOC 容器中 Bean 的实例化。</p>
-<p>Bean 的实例化主要是两种方式：</p>
+        <p>Spring Boot: 1.5.10.RELEASE <br><br>Spring Cloud: Dalston.SR5</p>
+<h2 id="什么是微服务"><a href="#什么是微服务" class="headerlink" title="什么是微服务"></a>什么是微服务</h2><p><strong>Martin Flowler</strong> 在其论文中对微服务做了如下阐述：</p>
+<p><strong>While there is no precise definition of this architectural style</strong></p>
+<p>目前业界并没有一个统一的，标准的定义</p>
+<p><strong>In short, the microservice architectural style [1] is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API. These services are built around business capabilities and independently deployable by fully automated deployment machinery. There is a bare minimum of centralized management of these services, which may be written in different programming languages and use different data storage technologies.</strong></p>
+<p>微服务架构是一种架构风格，提倡将<strong>单一应用程序拆分为一组小的服务</strong>，每个服务由<strong>独立的进程</strong>运行，服务之间采用<strong>轻量级的通信机制</strong>（HTTP + JSON 的 RESTful API）实现相互调用，相互协作。每个服务都基于具体业务构建，并且能够被独立的部署。服务之间非集中式管理，可以使用不同的语言来编写服务，可以使用不同的数据存储。</p>
+<p>总结：</p>
 <ul>
-<li>通过构造函数实例化</li>
-<li>通过静态方法实例化</li>
+<li>一组小的服务，基于业务的相对小的服务</li>
+<li>独立的进程，每个服务运行于独立的进程</li>
+<li>服务之间采用轻量级的通信机制（RESTful API，采用 HTTP + JSON）</li>
+<li>基于业务构建服务</li>
+<li>服务可以被独立部署</li>
+<li>服务无集中式管理</li>
 </ul>
-<p><strong>通过构造函数实例化</strong></p>
-<p>通过构造函数实例化，前提条件是 Bean 含有一个无参构造器，可以是隐式无参构造器，也可以是显式无参构造器。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class ExampleBeanOne &#123;</span><br><span class="line"></span><br><span class="line">	private String name;</span><br><span class="line"></span><br><span class="line">	public void setName(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String hello() &#123;</span><br><span class="line">		return &quot;Hello &quot; + name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class ExampleBeanTwo &#123;</span><br><span class="line"></span><br><span class="line">	private String name;</span><br><span class="line">	</span><br><span class="line">	public ExampleBeanTwo() &#123;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public ExampleBeanTwo(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public String hello() &#123;</span><br><span class="line">		return &quot;Hello &quot; + name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;exampleBeanOne&quot; class=&quot;com.example.spring.ExampleBeanOne&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;name&quot; value=&quot;ExampleBeanOne&quot;&gt;&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean id=&quot;exampleBeanTwo&quot; class=&quot;com.example.spring.ExampleBeanTwo&quot;&gt;</span><br><span class="line">    &lt;constructor-arg value=&quot;ExampleBeanTwo&quot;&gt;&lt;/constructor-arg&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
-<p><strong>通过静态方法实例化</strong></p>
-<p>通过静态方法实例化，前提条件是有一个静态方法可以实例化 Bean，可以是自身提供的静态方法，也可以是其他类提供的静态方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class ExampleBeanThree &#123;</span><br><span class="line"></span><br><span class="line">	private static ExampleBeanThree exampleBeanThree = new ExampleBeanThree(&quot;ExampleBeanThree&quot;);</span><br><span class="line">	</span><br><span class="line">	private String name;</span><br><span class="line">	</span><br><span class="line">	public static ExampleBeanThree createInstance() &#123;</span><br><span class="line">		return exampleBeanThree;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	private ExampleBeanThree(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public String hello() &#123;</span><br><span class="line">		return &quot;Hello &quot; + name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class ExampleBeanFive &#123;</span><br><span class="line">	private String name;</span><br><span class="line">	</span><br><span class="line">	public ExampleBeanFive() &#123;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public ExampleBeanFive(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public String hello() &#123;</span><br><span class="line">		return &quot;Hello &quot; + name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class ExampleBeanSix &#123;</span><br><span class="line">	</span><br><span class="line">	private static ExampleBeanFive exampleBeanFive = new ExampleBeanFive(&quot;ExampleBeanFive&quot;);</span><br><span class="line">	</span><br><span class="line">	public ExampleBeanFive createClientInstance() &#123;</span><br><span class="line">		return exampleBeanFive;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;exampleBeanThree&quot; class=&quot;com.example.spring.ExampleBeanThree&quot; factory-method=&quot;createInstance&quot;&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean id=&quot;exampleBeanSix&quot; class=&quot;com.example.spring.ExampleBeanSix&quot;&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean id=&quot;exampleBeanFive&quot; factory-bean=&quot;exampleBeanSix&quot; factory-method=&quot;createClientInstance&quot;&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
-<p>通过静态方法实例化不常见，推荐使用构造函数实例化</p>
-<p>代码请参考example-03:<br><a href="https://github.com/lxmuse/lxmuse-spring.git" target="_blank" rel="noopener">lxmuse-spring-example-03</a></p>
+<h2 id="微服务-VS-微服务架构"><a href="#微服务-VS-微服务架构" class="headerlink" title="微服务 VS 微服务架构"></a>微服务 VS 微服务架构</h2><p><strong>微服务</strong></p>
+<p>简单来说，强调的是服务本身，比如服务的大小，服务解决的业务，服务的实现方式，服务的具体功能等等</p>
+<p><strong>微服务架构</strong></p>
+<p>倾向于描述架构的风格，强调的是服务间的关系，服务间的通信机制，服务之间是否存在耦合等等</p>
+<h2 id="微服务架构优点-VS-微服务架构缺点"><a href="#微服务架构优点-VS-微服务架构缺点" class="headerlink" title="微服务架构优点 VS 微服务架构缺点"></a>微服务架构优点 VS 微服务架构缺点</h2><p>优点和缺点都是相对的。</p>
+<p><strong>优点</strong></p>
+<p>每个服务足够内聚，代码更容易阅读和理解，具有强模块化边界 <br><br>每个服务开发简单，开发效率高，适合小规模团队的开发 <br><br>每个服务可以聚集于业务实现，开发更加专注 <br><br>服务间是松散耦合，可独立开发，独立测试，独立上线，独立部署 <br><br>服务的开发语言可以多种多样，数据存储可以多种多样 <br></p>
+<p><strong>缺点</strong></p>
+<p>分布式系统的复杂性，集成测试复杂，运维复杂 <br><br>分布式通信，分布式事务，数据一致性 <br><br>分布式服务调用链监控 <br><br>分布式服务性能监控 <br></p>
+<h2 id="微服务技术栈"><a href="#微服务技术栈" class="headerlink" title="微服务技术栈"></a>微服务技术栈</h2><p>服务开发：Spring SpringMVC SpringBoot <br><br>服务配置与管理： Netflix Archaius ，Alibaba Diamond <br><br>服务注册与发现：Eureka Consul Zookeeper <br><br>服务调用：RESTful RPC gRPC <br><br>服务熔断器：Hystrix Envoy <br><br>负载均衡：Ribbon Nginx <br><br>服务接口调用：Feign <br><br>消息队列：Kafka RabbitMQ ActiveMQ <br><br>服务配置中心：SpringCloud Config <br><br>服务网关：Zuul <br><br>服务监控：Zabbix Nagios Metrics Spectator <br><br>全链路追踪：Zipkin Brave Dapper <br><br>服务部署：Docker OpenStack Kubernetes <br><br>数据流：SpringCloud Stream <br><br>事件消息总线：SpringCloud Bus <br></p>
+<h2 id="为什么选择-SpringCloud"><a href="#为什么选择-SpringCloud" class="headerlink" title="为什么选择 SpringCloud"></a>为什么选择 SpringCloud</h2><p>SpringCloud 提供整体解决方案，框架成熟度高<br>SpringCloud 社区热<br>SpringCloud 可维护性高<br>SpringCloud 学习成本低</p>
+<p><strong>参考资料</strong></p>
+<p>Martin Flowler 微服务论文地址：<a href="https://martinfowler.com/articles/microservices.html" target="_blank" rel="noopener">Microservices</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/13/Spring Framework Bean 实例化/" data-id="cjgn9gfke003ulgx76vlr1ub2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/12/11/什么是微服务/" data-id="cjgn9gfm5005xlgx7n6n4pzrd" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Framework/">Spring Framework</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li></ul>
 
     </footer>
   </div>
@@ -125,19 +134,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2017/01/14/Spring Framework 依赖注入/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/12/12/Python 变量和简单数据类型/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Spring Framework 依赖注入
+          Python 变量和简单数据类型
         
       </div>
     </a>
   
   
-    <a href="/2017/01/12/Spring Framework Bean 命名/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/12/09/Java 排序算法之冒泡排序/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Spring Framework Bean 命名</div>
+      <div class="article-nav-title">Java 排序算法之冒泡排序</div>
     </a>
   
 </nav>

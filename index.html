@@ -62,56 +62,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-集合框架基础之迭代器" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/09/集合框架基础之迭代器/" class="article-date">
-  <time datetime="2018-04-09T14:49:24.000Z" itemprop="datePublished">2018-04-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/JDK-源码-1-8-0-161/">JDK 源码 1.8.0_161</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/09/集合框架基础之迭代器/">集合框架基础之迭代器</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>迭代器（Iterator）是一个接口，是 Java 集合框架中的一员。</p>
-<p>Java 8 中的 Iterator 相比于 Java 7 中 有了些许变化：</p>
-<p>Java 7 Iterator：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public interface Iterator&lt;E&gt; &#123;</span><br><span class="line">    </span><br><span class="line">    boolean hasNext();</span><br><span class="line"></span><br><span class="line">    E next();</span><br><span class="line"></span><br><span class="line">    void remove();</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Java 8 Iterator：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public interface Iterator&lt;E&gt; &#123;</span><br><span class="line">    </span><br><span class="line">    boolean hasNext();</span><br><span class="line"></span><br><span class="line">    E next();</span><br><span class="line"></span><br><span class="line">    default void remove() &#123;</span><br><span class="line">        throw new UnsupportedOperationException(&quot;remove&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    default void forEachRemaining(Consumer&lt;? super E&gt; action) &#123;</span><br><span class="line">        Objects.requireNonNull(action);</span><br><span class="line">        while (hasNext())</span><br><span class="line">            action.accept(next());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在 Java 8 中将 remove 方法默认实现了，并且添加了一个默认的 forEachRemaining 方法用于遍历集合。</p>
-<p>迭代器的方法从字面上即可理解方法的用途。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/09/集合框架基础之迭代器/" data-id="cjgew4arx008480x7yohk93uy" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Iterator/">Iterator</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-编程中对象的分类和命名" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/09/编程中对象的分类和命名/" class="article-date">
@@ -183,9 +133,59 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/09/编程中对象的分类和命名/" data-id="cjgew4arv007w80x7tu77g30i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/09/编程中对象的分类和命名/" data-id="cjgn9gfmc006flgx7xpfh7917" class="article-share-link">Share</a>
       
       
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-集合框架基础之迭代器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/09/集合框架基础之迭代器/" class="article-date">
+  <time datetime="2018-04-09T14:49:24.000Z" itemprop="datePublished">2018-04-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JDK-源码-1-8-0-161/">JDK 源码 1.8.0_161</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/09/集合框架基础之迭代器/">集合框架基础之迭代器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>迭代器（Iterator）是一个接口，是 Java 集合框架中的一员。</p>
+<p>Java 8 中的 Iterator 相比于 Java 7 中 有了些许变化：</p>
+<p>Java 7 Iterator：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public interface Iterator&lt;E&gt; &#123;</span><br><span class="line">    </span><br><span class="line">    boolean hasNext();</span><br><span class="line"></span><br><span class="line">    E next();</span><br><span class="line"></span><br><span class="line">    void remove();</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Java 8 Iterator：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public interface Iterator&lt;E&gt; &#123;</span><br><span class="line">    </span><br><span class="line">    boolean hasNext();</span><br><span class="line"></span><br><span class="line">    E next();</span><br><span class="line"></span><br><span class="line">    default void remove() &#123;</span><br><span class="line">        throw new UnsupportedOperationException(&quot;remove&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    default void forEachRemaining(Consumer&lt;? super E&gt; action) &#123;</span><br><span class="line">        Objects.requireNonNull(action);</span><br><span class="line">        while (hasNext())</span><br><span class="line">            action.accept(next());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 Java 8 中将 remove 方法默认实现了，并且添加了一个默认的 forEachRemaining 方法用于遍历集合。</p>
+<p>迭代器的方法从字面上即可理解方法的用途。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/09/集合框架基础之迭代器/" data-id="cjgn9gfma006algx7m3fbr0w7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Iterator/">Iterator</a></li></ul>
+
     </footer>
   </div>
   
@@ -224,7 +224,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/18/Spring Cloud Netflix Ribbon/" data-id="cjgew4aqj004q80x7uk2vtaks" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/18/Spring Cloud Netflix Ribbon/" data-id="cjgn9gfk3003olgx7ht7p2nle" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ribbon/">Ribbon</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/">SpringCloud</a></li></ul>
@@ -272,7 +272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/13/计算机中的二进制/" data-id="cjgew4arw008080x7q4igcwjk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/13/计算机中的二进制/" data-id="cjgn9gfm60062lgx776z7m4yq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二进制/">二进制</a></li></ul>
@@ -319,7 +319,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/10/Java 集合框架 ArrayList/" data-id="cjgew4apw003480x7tx83pl8b" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/10/Java 集合框架 ArrayList/" data-id="cjgn9gfi1001plgx7cnyxk2v7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -372,7 +372,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/09/Java 集合框架 modCount 属性和 fast-fail 机制/" data-id="cjgew4apj002880x7pe2u5gpd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/09/Java 集合框架 modCount 属性和 fast-fail 机制/" data-id="cjgn9gfhx001ilgx7jegvl5ri" class="article-share-link">Share</a>
       
       
     </footer>
@@ -422,7 +422,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/09/Java 集合框架概述/" data-id="cjgew4apv002z80x7si48vduz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/09/Java 集合框架概述/" data-id="cjgn9gfhz001mlgx7vlzx5l7h" class="article-share-link">Share</a>
       
       
     </footer>
@@ -484,7 +484,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/19/SpringBoot RESTful ExceptionHandler/" data-id="cjgew4aqw005j80x722wpnt9j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/19/SpringBoot RESTful ExceptionHandler/" data-id="cjgn9gflb004dlgx7ozget2d0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ExceptionHandler/">ExceptionHandler</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
@@ -533,7 +533,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/18/SpringBoot 简单特性/" data-id="cjgew4arc006m80x73w9s097d" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/18/SpringBoot 简单特性/" data-id="cjgn9gfln0051lgx7elen6ae9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
@@ -587,7 +587,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/17/SpringBoot 配置类和自动配置/" data-id="cjgew4ard006q80x7ntbg1nbs" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/01/17/SpringBoot 配置类和自动配置/" data-id="cjgn9gflp0052lgx7o3e9ifrz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
@@ -656,11 +656,11 @@
       <ul>
         
           <li>
-            <a href="/2018/04/09/集合框架基础之迭代器/">集合框架基础之迭代器</a>
+            <a href="/2018/04/09/编程中对象的分类和命名/">编程中对象的分类和命名</a>
           </li>
         
           <li>
-            <a href="/2018/04/09/编程中对象的分类和命名/">编程中对象的分类和命名</a>
+            <a href="/2018/04/09/集合框架基础之迭代器/">集合框架基础之迭代器</a>
           </li>
         
           <li>

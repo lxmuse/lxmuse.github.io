@@ -62,6 +62,62 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-CI 持续集成服务器搭建-准备篇" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/26/CI 持续集成服务器搭建-准备篇/" class="article-date">
+  <time datetime="2016-12-26T13:49:24.000Z" itemprop="datePublished">2016-12-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发管理系列/">开发管理系列</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/26/CI 持续集成服务器搭建-准备篇/">CI 持续集成服务器搭建-准备篇</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>操作系统：CentOS 6.5 64bit<br>IP 地址：192.168.1.204<br>JDK 版本：JDK 1.7</p>
+<h3 id="更换-yum-镜像源"><a href="#更换-yum-镜像源" class="headerlink" title="更换 yum 镜像源"></a>更换 yum 镜像源</h3><p>备份原文件，下载阿里 yum 镜像源文件，重命名下载的阿里 yum 镜像源文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Desktop]# cd /etc/yum.repos.d/</span><br><span class="line">[root@localhost yum.repos.d]# mv CentOS-Base.repo CentOS-Base.repo.backup</span><br><span class="line">[root@localhost yum.repos.d]# wget http://mirrors.aliyun.com/repo/Centos-6.repo</span><br><span class="line">[root@localhost yum.repos.d]# mv Centos-6.repo CentOS-Base.repo</span><br></pre></td></tr></table></figure></p>
+<h3 id="更新系统"><a href="#更新系统" class="headerlink" title="更新系统"></a>更新系统</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost yum.repos.d]# yum update</span><br><span class="line">[root@localhost yum.repos.d]# yum clean all</span><br><span class="line">[root@localhost yum.repos.d]# yum makecache</span><br></pre></td></tr></table></figure>
+<h3 id="设置静态-IP-地址"><a href="#设置静态-IP-地址" class="headerlink" title="设置静态 IP 地址"></a>设置静态 IP 地址</h3><p>编辑网卡配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# vi /etc/sysconfig/network-scripts/ifcfg-eth0</span><br></pre></td></tr></table></figure></p>
+<p>设置静态 IP 地址：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DR=192.168.1.204</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">GATEWAY=192.168.1.1</span><br><span class="line">USERCTL=no</span><br><span class="line">PEERDNS=yes</span><br></pre></td></tr></table></figure></p>
+<p>也可通过图形界面设置网络：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# setup</span><br></pre></td></tr></table></figure></p>
+<p>重启网络服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# service network restart</span><br></pre></td></tr></table></figure></p>
+<h3 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h3><p>执行安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm –ivh jdk-7u60-linux-x64.rpm</span><br></pre></td></tr></table></figure></p>
+<p>默认安装目录：/usr/java/jdk1.7.0_60</p>
+<p>配置环境变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# vi /etc/profile</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#set jdk environment</span><br><span class="line">export JAVA_HOME=/usr/java/jdk1.7.0_60</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br></pre></td></tr></table></figure>
+<p>使配置立即生效：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# vi /etc/profile</span><br></pre></td></tr></table></figure></p>
+<p>验证安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# java -version</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java version &quot;1.7.0_60&quot;</span><br><span class="line">Java(TM) SE Runtime Environment (build 1.7.0_60-b19)</span><br><span class="line">Java HotSpot(TM) 64-Bit_Server VM (build 24.60-b09, mixed mode)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/26/CI 持续集成服务器搭建-准备篇/" data-id="cjgn9gffr0006lgx7jm6qxjem" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CI-持续集成/">CI 持续集成</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Java Comparable VS Comparator " class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/12/03/Java Comparable VS Comparator /" class="article-date">
@@ -104,7 +160,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/03/Java Comparable VS Comparator /" data-id="cjgew4aq1003d80x73grwq3mh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/12/03/Java Comparable VS Comparator /" data-id="cjgn9gfh9000rlgx7ratg0v93" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -151,7 +207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/10/CentOS 6.5 64bit 安装 JDK 7/" data-id="cjgew4ao6000780x7sr8fgwkl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/10/CentOS 6.5 64bit 安装 JDK 7/" data-id="cjgn9gffx000blgx7yat6difk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK/">JDK</a></li></ul>
@@ -210,7 +266,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/10/ZooKeeper Standalones 模式安装/" data-id="cjgew4arn007e80x7whqyr3cw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/10/ZooKeeper Standalones 模式安装/" data-id="cjgn9gfm1005plgx7ena6umhu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ZooKeeper/">ZooKeeper</a></li></ul>
@@ -268,7 +324,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/02/17/10 步让你成为更优秀的程序员/" data-id="cjgew4any000180x7263whim1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/02/17/10 步让你成为更优秀的程序员/" data-id="cjgn9gffg0001lgx75u56cbpc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程/">编程</a></li></ul>
@@ -333,7 +389,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/12/Java ServletRequest 和 ServletResponse/" data-id="cjgew4ap8001s80x7d3gu6l9d" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/01/12/Java ServletRequest 和 ServletResponse/" data-id="cjgn9gfhi000ylgx7fxkrnd1c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Servlet/">Servlet</a></li></ul>
@@ -383,7 +439,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/12/Java ServletConfig 和 ServletContext/" data-id="cjgew4ap9001t80x7n7y32dui" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/01/12/Java ServletConfig 和 ServletContext/" data-id="cjgn9gfhb000slgx7nydkunyp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Servlet/">Servlet</a></li></ul>
@@ -447,7 +503,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/11/Java Servlet 概述/" data-id="cjgew4aoh000n80x7pvuohesc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/01/11/Java Servlet 概述/" data-id="cjgn9gfhf000vlgx7isbzcdim" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Servlet/">Servlet</a></li></ul>
@@ -504,7 +560,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/11/27/CentOS 6.5 64bit 安装 MySQL 5.6/" data-id="cjgew4ao9000b80x7lv7fvr99" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/11/27/CentOS 6.5 64bit 安装 MySQL 5.6/" data-id="cjgn9gfg1000clgx77zmu038x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
@@ -603,199 +659,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/13/MyBatis 之 映射器 ResultMap 元素入门/" data-id="cjgew4apt002u80x7oqzh5g16" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-MyBatis 之 映射器 select 元素" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/08/12/MyBatis 之 映射器 select 元素/" class="article-date">
-  <time datetime="2015-08-12T02:49:24.000Z" itemprop="datePublished">2015-08-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/MyBatis-实践系列/">MyBatis 实践系列</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/12/MyBatis 之 映射器 select 元素/">MyBatis 之 映射器 select 元素</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>MyBatis 版本：MyBatis 3.3.0</p>
-<p>MyBatis 官方网站（英文）：<a href="http://www.mybatis.org/mybatis-3/" target="_blank" rel="noopener">MyBatis 英文官网</a><br>MyBatis 官方网站（中文）：<a href="http://www.mybatis.org/mybatis-3/zh/" target="_blank" rel="noopener">MyBatis 中文官网</a><br>MyBatis 源码：<a href="https://github.com/mybatis/mybatis-3" target="_blank" rel="noopener">MyBatis 源码</a></p>
-<h5 id="映射器元素"><a href="#映射器元素" class="headerlink" title="映射器元素"></a>映射器元素</h5><table>
-<thead>
-<tr>
-<th>元素名称</th>
-<th>描述</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>select</td>
-<td>查询语句</td>
-<td>可以自定义参数，返回结果集等</td>
-</tr>
-<tr>
-<td>insert</td>
-<td>插入语句</td>
-<td>执行后返回一个整数，代表插入的条数</td>
-</tr>
-<tr>
-<td>update</td>
-<td>更新语句</td>
-<td>执行后返回一个整数，代表更新的条数</td>
-</tr>
-<tr>
-<td>delete</td>
-<td>删除语句</td>
-<td>执行后返回一个整数，代表删除的条数</td>
-</tr>
-<tr>
-<td>parameterMap</td>
-<td>定义参数映射关系</td>
-<td>不推荐使用</td>
-</tr>
-<tr>
-<td>sql</td>
-<td>允许定义一部分的SQL，方便引用</td>
-<td></td>
-</tr>
-<tr>
-<td>resultMap</td>
-<td>描述从数据库结果集中来加载对象</td>
-<td></td>
-</tr>
-<tr>
-<td>cache</td>
-<td>给定命名空间的缓存配置</td>
-<td></td>
-</tr>
-<tr>
-<td>cache-ref</td>
-<td>其他命名空间的缓存配置的引用</td>
-</tr>
-</tbody>
-</table>
-<h5 id="select-元素"><a href="#select-元素" class="headerlink" title="select 元素"></a>select 元素</h5><table>
-<thead>
-<tr>
-<th>元素名称</th>
-<th>描述</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td>和 Mapper 命名空间一起组合唯一性</td>
-<td></td>
-</tr>
-<tr>
-<td>parameterType</td>
-<td>可以是类全限定名或类别名</td>
-<td></td>
-</tr>
-<tr>
-<td>parameterMap</td>
-<td>不推荐使用</td>
-<td></td>
-</tr>
-<tr>
-<td>resultType</td>
-<td>类的全限定名或类别名，可依据 JavaBean 的规范映射</td>
-<td>不可以和 resultMap 同时使用</td>
-</tr>
-<tr>
-<td>resultMap</td>
-<td>映射集的引用</td>
-<td>不可以和 resultType 同时使用</td>
-</tr>
-<tr>
-<td>flushCache</td>
-<td>在调用 SQL 后，是否要求 MyBatis 清空之前查询的本地缓存和二级缓存</td>
-<td>布尔值，默认值 false</td>
-</tr>
-<tr>
-<td>useCache</td>
-<td>启动二级缓存的开关，是否要求 MyBatis 将此次结果缓存</td>
-<td>布尔值，默认值 true</td>
-</tr>
-<tr>
-<td>timeout</td>
-<td>设置超时时间，单位为秒</td>
-<td>默认值是 JDBC 驱动所设置的秒数</td>
-</tr>
-<tr>
-<td>fetchSize</td>
-<td>获取记录的总条数设定</td>
-<td>默认值是 JDBC 驱动所设置的条数</td>
-</tr>
-<tr>
-<td>statementType</td>
-<td>JDBC Statement，取值为 STATEMENT（Statement），PREPARED（PreparedStatement），CallableStatement</td>
-<td>默认值是 PREPARED</td>
-</tr>
-<tr>
-<td>resultType</td>
-<td>JDBC resultSet，取值为 FORWARD_ONLY（游标允许向前访问），SCROLL_SENSITIVE（双向滚动，但不及时更新），SCROLL_INSENSITIVE（双向滚动，及时更新）</td>
-<td>默认值是 JDBC 驱动所设置的</td>
-</tr>
-<tr>
-<td>databaseId</td>
-<td>参考 databaseIdProvider</td>
-<td>一般不需要修改</td>
-</tr>
-<tr>
-<td>resultOrdered</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>resultSets</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h5 id="select-元素传递多个参数"><a href="#select-元素传递多个参数" class="headerlink" title="select 元素传递多个参数"></a>select 元素传递多个参数</h5><h6 id="使用-Map-传递参数"><a href="#使用-Map-传递参数" class="headerlink" title="使用 Map 传递参数"></a>使用 Map 传递参数</h6><p>Mapper：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;User&gt; findUserByMap(Map&lt;String, String&gt; params)</span><br></pre></td></tr></table></figure></p>
-<p>Mapper XML：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;findUserByMap&quot; parameterType=&quot;map&quot; resultMap=&quot;BaseResultMap&quot;&gt;</span><br><span class="line">	SELECT id, user_name FROM user_info</span><br><span class="line">    WHERE user_name LIKE CONCAT(&apos;%&apos;, #&#123;userName&#125;, &apos;%&apos;)</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure></p>
-<p>使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, String&gt; paramsMap = new HashMap&lt;String, String&gt;();</span><br><span class="line">paramsMap.put(&quot;userName&quot;, &quot;me&quot;)；</span><br><span class="line">userMapper.findUserByMap(paramsMap);</span><br></pre></td></tr></table></figure></p>
-<p>该方式存在一个弊端：业务可读性不强</p>
-<h6 id="使用注解传递参数"><a href="#使用注解传递参数" class="headerlink" title="使用注解传递参数"></a>使用注解传递参数</h6><p>注解接口 @Param (org.apache.ibatis.annotations.Param)</p>
-<p>Mapper：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;User&gt; findUserByAnnotations(@Param(&quot;userName&quot;) String userName)</span><br></pre></td></tr></table></figure></p>
-<p>Mapper XML：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;findUserByAnnotations&quot; parameterType=&quot;map&quot; resultMap=&quot;BaseResultMap&quot;&gt;</span><br><span class="line">	SELECT id, user_name FROM user_info</span><br><span class="line">    WHERE user_name LIKE CONCAT(&apos;%&apos;, #&#123;userName&#125;, &apos;%&apos;)</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure></p>
-<p>使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String userName = &quot;me&quot;;</span><br><span class="line">userMapper.findUserByAnnotations(userName);</span><br></pre></td></tr></table></figure></p>
-<p>该方式存在一个弊端：当参数数量很多时，可读性将下降</p>
-<h6 id="使用-JavaBean-传递参数"><a href="#使用-JavaBean-传递参数" class="headerlink" title="使用 JavaBean 传递参数"></a>使用 JavaBean 传递参数</h6><p>Mapper：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;User&gt; findUserByParams(UserParam userParam)</span><br></pre></td></tr></table></figure></p>
-<p>Mapper XML：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;findUserByParams&quot; parameterType=&quot;com.example.param.UserParam&quot; resultMap=&quot;BaseResultMap&quot;&gt;</span><br><span class="line">	SELECT id, user_name FROM user_info</span><br><span class="line">    WHERE user_name LIKE CONCAT(&apos;%&apos;, #&#123;userName&#125;, &apos;%&apos;)</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure></p>
-<p>使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UserParam userParam = new UserParam();</span><br><span class="line">userParam.setUserName(&quot;me&quot;);</span><br><span class="line">userMapper.findUserByParams(userParam);</span><br></pre></td></tr></table></figure></p>
-<p>当参数少于等于 3 个时可以使用注解方式传递参数，反之使用 JavaBean 方式传递参数</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/12/MyBatis 之 映射器 select 元素/" data-id="cjgew4apu002x80x7f0metsmt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/13/MyBatis 之 映射器 ResultMap 元素入门/" data-id="cjgn9gfid0026lgx7s0hpl53p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
@@ -864,11 +728,11 @@
       <ul>
         
           <li>
-            <a href="/2018/04/09/集合框架基础之迭代器/">集合框架基础之迭代器</a>
+            <a href="/2018/04/09/编程中对象的分类和命名/">编程中对象的分类和命名</a>
           </li>
         
           <li>
-            <a href="/2018/04/09/编程中对象的分类和命名/">编程中对象的分类和命名</a>
+            <a href="/2018/04/09/集合框架基础之迭代器/">集合框架基础之迭代器</a>
           </li>
         
           <li>
