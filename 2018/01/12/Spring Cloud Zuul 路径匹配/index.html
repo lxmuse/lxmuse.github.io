@@ -5,15 +5,20 @@
   
 
   
-  <title>Tag: 冒泡排序 | LX Muse</title>
+  <title>Spring Cloud Zuul 路径匹配 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="LX Muse">
-<meta property="og:url" content="http://yoursite.com/tags/冒泡排序/index.html">
+  <meta name="description" content="Spring Boot: 1.5.10.RELEASE Spring Cloud: Dalston.SR5 从之前可知路由配置规则：  properties 风格： 1234567891011zuul.routes.&amp;lt;routh&amp;gt;.path = xxxxzuul.routes.&amp;lt;routh&amp;gt;.serviceId = xxxxx``` 如：``` zuul.routes.us">
+<meta name="keywords" content="Spring Cloud">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Cloud Zuul 路径匹配">
+<meta property="og:url" content="http://yoursite.com/2018/01/12/Spring Cloud Zuul 路径匹配/index.html">
 <meta property="og:site_name" content="LX Muse">
+<meta property="og:description" content="Spring Boot: 1.5.10.RELEASE Spring Cloud: Dalston.SR5 从之前可知路由配置规则：  properties 风格： 1234567891011zuul.routes.&amp;lt;routh&amp;gt;.path = xxxxzuul.routes.&amp;lt;routh&amp;gt;.serviceId = xxxxx``` 如：``` zuul.routes.us">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-05-01T15:08:44.849Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LX Muse">
+<meta name="twitter:title" content="Spring Cloud Zuul 路径匹配">
+<meta name="twitter:description" content="Spring Boot: 1.5.10.RELEASE Spring Cloud: Dalston.SR5 从之前可知路由配置规则：  properties 风格： 1234567891011zuul.routes.&amp;lt;routh&amp;gt;.path = xxxxzuul.routes.&amp;lt;routh&amp;gt;.serviceId = xxxxx``` 如：``` zuul.routes.us">
   
     <link rel="alternate" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -60,40 +65,121 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/12/09/Java 排序算法之冒泡排序/" class="archive-article-date">
-  <time datetime="2017-12-09T11:51:30.000Z" itemprop="datePublished">Dec 9</time>
+        <section id="main"><article id="post-Spring Cloud Zuul 路径匹配" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/12/Spring Cloud Zuul 路径匹配/" class="article-date">
+  <time datetime="2018-01-12T15:49:24.000Z" itemprop="datePublished">2018-01-12</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Spring-Cloud/">Spring Cloud</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/09/Java 排序算法之冒泡排序/">Java 排序算法之冒泡排序</a>
+    <h1 class="article-title" itemprop="name">
+      Spring Cloud Zuul 路径匹配
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Spring Boot: 1.5.10.RELEASE <br><br>Spring Cloud: Dalston.SR5</p>
+<p>从之前可知路由配置规则： </p>
+<p>properties 风格：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">zuul.routes.&lt;routh&gt;.path = xxxx</span><br><span class="line">zuul.routes.&lt;routh&gt;.serviceId = xxxxx</span><br><span class="line">``` </span><br><span class="line">如：</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">zuul.routes.user-service.path = /user-service/**</span><br><span class="line">zuul.routes.user-service.serviceId = user-service</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">yml 风格：</span><br></pre></td></tr></table></figure>
+<p>zuul:<br>    routes:<br>        <routh>:<br>            path: xxxx<br>            serviceId: xxxxx<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如：</span><br></pre></td></tr></table></figure></routh></p>
+<p>zuul:<br>    routes:<br>        user-service:<br>            path: /user-service/**<br>            serviceId: user-service<br><code>`</code></p>
+<p>路径匹配主要是设置 path 参数，采用 Ant 风格定义， Ant 是根据通配符来进行匹配：</p>
+<table>
+<thead>
+<tr>
+<th>通配符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>?</td>
+<td>匹配任意单个字符</td>
+</tr>
+<tr>
+<td>*</td>
+<td>匹配任意数量的字符</td>
+</tr>
+<tr>
+<td>**</td>
+<td>匹配任何数量的字符，支持多级</td>
+</tr>
+</tbody>
+</table>
+<p>示例：</p>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/user-service/?</td>
+<td>可以匹配 /user-service/ 之后拼接一个任意字符的路径，如 /user-service/a，/user-service/b，/user-service/c</td>
+</tr>
+<tr>
+<td>/user-service/*</td>
+<td>可以匹配 /user-service/ 之后拼接的任意字符的路径，如 /user-service/a，/user-service/aa，/user-service/aaaaaa，但是不支持多级</td>
+</tr>
+<tr>
+<td>/user-service/**</td>
+<td>可以匹配 /user-service/ 之后拼接的任意字符的路径，且支持多级如 /user-service/a，/user-service/aa，/user-service/aaaaaa，/user-service/aa/bb，/user-service/aa/bb/cc 等等</td>
+</tr>
+</tbody>
+</table>
+<p><strong>路径匹配的顺序问题</strong></p>
+<p>默认路径匹配的顺序是根据配置文件中的配置顺序，而且因为 properties 文件无法保证有序，<strong>推荐使用 yml 格式</strong></p>
+<p>一个推荐的路径配置顺序是，层级越多的顺序优先</p>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/12/Spring Cloud Zuul 路径匹配/" data-id="cjgnt6hbv003uavx7pb77dqnd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Cloud/">Spring Cloud</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/12/Stream API/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Stream API
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/11/Spring Cloud Zuul 默认路由规则/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Spring Cloud Zuul 默认路由规则</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         
