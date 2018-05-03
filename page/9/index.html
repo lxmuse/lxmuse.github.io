@@ -62,6 +62,163 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-CI 持续集成服务器搭建-准备篇" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/26/CI 持续集成服务器搭建-准备篇/" class="article-date">
+  <time datetime="2016-12-26T13:49:24.000Z" itemprop="datePublished">2016-12-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发管理系列/">开发管理系列</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/26/CI 持续集成服务器搭建-准备篇/">CI 持续集成服务器搭建-准备篇</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>操作系统：CentOS 6.5 64bit<br>IP 地址：192.168.1.204<br>JDK 版本：JDK 1.7</p>
+<h3 id="更换-yum-镜像源"><a href="#更换-yum-镜像源" class="headerlink" title="更换 yum 镜像源"></a>更换 yum 镜像源</h3><p>备份原文件，下载阿里 yum 镜像源文件，重命名下载的阿里 yum 镜像源文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Desktop]# cd /etc/yum.repos.d/</span><br><span class="line">[root@localhost yum.repos.d]# mv CentOS-Base.repo CentOS-Base.repo.backup</span><br><span class="line">[root@localhost yum.repos.d]# wget http://mirrors.aliyun.com/repo/Centos-6.repo</span><br><span class="line">[root@localhost yum.repos.d]# mv Centos-6.repo CentOS-Base.repo</span><br></pre></td></tr></table></figure></p>
+<h3 id="更新系统"><a href="#更新系统" class="headerlink" title="更新系统"></a>更新系统</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost yum.repos.d]# yum update</span><br><span class="line">[root@localhost yum.repos.d]# yum clean all</span><br><span class="line">[root@localhost yum.repos.d]# yum makecache</span><br></pre></td></tr></table></figure>
+<h3 id="设置静态-IP-地址"><a href="#设置静态-IP-地址" class="headerlink" title="设置静态 IP 地址"></a>设置静态 IP 地址</h3><p>编辑网卡配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# vi /etc/sysconfig/network-scripts/ifcfg-eth0</span><br></pre></td></tr></table></figure></p>
+<p>设置静态 IP 地址：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DR=192.168.1.204</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">GATEWAY=192.168.1.1</span><br><span class="line">USERCTL=no</span><br><span class="line">PEERDNS=yes</span><br></pre></td></tr></table></figure></p>
+<p>也可通过图形界面设置网络：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# setup</span><br></pre></td></tr></table></figure></p>
+<p>重启网络服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# service network restart</span><br></pre></td></tr></table></figure></p>
+<h3 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h3><p>执行安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm –ivh jdk-7u60-linux-x64.rpm</span><br></pre></td></tr></table></figure></p>
+<p>默认安装目录：/usr/java/jdk1.7.0_60</p>
+<p>配置环境变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# vi /etc/profile</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#set jdk environment</span><br><span class="line">export JAVA_HOME=/usr/java/jdk1.7.0_60</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br></pre></td></tr></table></figure>
+<p>使配置立即生效：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# vi /etc/profile</span><br></pre></td></tr></table></figure></p>
+<p>验证安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# java -version</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java version &quot;1.7.0_60&quot;</span><br><span class="line">Java(TM) SE Runtime Environment (build 1.7.0_60-b19)</span><br><span class="line">Java HotSpot(TM) 64-Bit_Server VM (build 24.60-b09, mixed mode)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/26/CI 持续集成服务器搭建-准备篇/" data-id="cjgqn6e0n0006ewx77lncjdla" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CI-持续集成/">CI 持续集成</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Java Comparable VS Comparator " class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/03/Java Comparable VS Comparator /" class="article-date">
+  <time datetime="2016-12-03T01:51:30.000Z" itemprop="datePublished">2016-12-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java-Core-API/">Java Core API</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/03/Java Comparable VS Comparator /">Java Comparable VS Comparator</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Comparable 和 Comparator 均是 Java Core API。</p>
+<p>Comparable 和 Comparator 都是用于实现集合或数组中元素的排序的。</p>
+<p>Comparable 在元素内部定义的方法实现的自身和其他元素的排序，其自然排序只可以选择升序或降序一种。<br>Comparator 在元素外部定义的类实现的两个元素之间的排序，单一比较器内部排序规则只可以选择升序或降序一种，但是可通过多个比较器实现不同的排序规则。</p>
+<h5 id="Comparable-接口"><a href="#Comparable-接口" class="headerlink" title="Comparable 接口"></a>Comparable 接口</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">class User implements Comparable&lt;User&gt; &#123;</span><br><span class="line"></span><br><span class="line">	private String name;</span><br><span class="line"></span><br><span class="line">	private String idCard;</span><br><span class="line"></span><br><span class="line">	public String getName() &#123;</span><br><span class="line">		return name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setName(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String getIdCard() &#123;</span><br><span class="line">		return idCard;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setIdCard(String idCard) &#123;</span><br><span class="line">		this.idCard = idCard;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public int compareTo(User o) &#123;</span><br><span class="line">		return getIdCard().compareTo(o.getIdCard());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public String toString() &#123;</span><br><span class="line">		return &quot;User&#123;&quot; +</span><br><span class="line">			&quot;name=&apos;&quot; + name + &apos;\&apos;&apos; +</span><br><span class="line">			&quot;, idCard=&apos;&quot; + idCard + &apos;\&apos;&apos; +</span><br><span class="line">			&apos;&#125;&apos;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">User userA = new User();</span><br><span class="line">userA.setIdCard(&quot;1234567&quot;);</span><br><span class="line">userA.setName(&quot;a&quot;);</span><br><span class="line"></span><br><span class="line">User userB = new User();</span><br><span class="line">userB.setIdCard(&quot;2234567&quot;);</span><br><span class="line">userB.setName(&quot;b&quot;);</span><br><span class="line"></span><br><span class="line">List&lt;User&gt; userList = new ArrayList&lt;User&gt;(8);</span><br><span class="line">userList.add(userB);</span><br><span class="line">userList.add(userA);</span><br><span class="line"></span><br><span class="line">System.out.println(userList.toString());</span><br><span class="line"></span><br><span class="line">Collections.sort(userList);</span><br><span class="line"></span><br><span class="line">System.out.println(userList.toString());</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[User&#123;name=&apos;b&apos;, idCard=&apos;2234567&apos;&#125;, User&#123;name=&apos;a&apos;, idCard=&apos;1234567&apos;&#125;]</span><br><span class="line">[User&#123;name=&apos;a&apos;, idCard=&apos;1234567&apos;&#125;, User&#123;name=&apos;b&apos;, idCard=&apos;2234567&apos;&#125;]</span><br></pre></td></tr></table></figure>
+<p>如果想实现降序的自然排序，只能修改 User 类的 compareTo 方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public int compareTo(User o) &#123;</span><br><span class="line">    return o.getIdCard().compareTo(getIdCard());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>若想实现多样性的比较和排序，需要依赖于 Comparator。</p>
+<h5 id="Comparator-接口"><a href="#Comparator-接口" class="headerlink" title="Comparator 接口"></a>Comparator 接口</h5><p>Comparator 使用策略模式，实现比较方式的多样性和排序的多样性。在使用时选择不同的 Comparator 比较器即可。</p>
+<p>升序排序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class UserAsoSortComparator implements Comparator&lt;User&gt; &#123;</span><br><span class="line"></span><br><span class="line">	public int compare(User o1, User o2) &#123;</span><br><span class="line">		return o1.getIdCard().compareTo(o2.getIdCard());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>降序序排序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class UserDesoSortComparator implements Comparator&lt;User&gt; &#123;</span><br><span class="line"></span><br><span class="line">	public int compare(User o1, User o2) &#123;</span><br><span class="line">		return o2.getIdCard().compareTo(o1.getIdCard());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用时指定 Comparator：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Collections.sort(userList, new UserAsoSortComparator());</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/03/Java Comparable VS Comparator /" data-id="cjgqn6e11000rewx70pti3vp2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CentOS 6.5 64bit 安装 JDK 7" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/10/CentOS 6.5 64bit 安装 JDK 7/" class="article-date">
+  <time datetime="2016-08-10T14:49:24.000Z" itemprop="datePublished">2016-08-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发管理系列/">开发管理系列</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/10/CentOS 6.5 64bit 安装 JDK 7/">CentOS 6.5 64bit 安装 JDK 7</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>执行安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -ivh jdk-7u60-linux-x64.rpm</span><br></pre></td></tr></table></figure>
+<p>配置环境变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]#vim /etc/profile</span><br></pre></td></tr></table></figure>
+<p>添加如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#set jdk environment</span><br><span class="line">export JAVA_HOME=/usr/java/jdk1.7.0_60</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/08/10/CentOS 6.5 64bit 安装 JDK 7/" data-id="cjgqn6e0r000bewx7y5g7cwad" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK/">JDK</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-ZooKeeper Standalones 模式安装" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/08/10/ZooKeeper Standalones 模式安装/" class="article-date">
@@ -109,7 +266,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/10/ZooKeeper Standalones 模式安装/" data-id="cjgqj0lzb006148x7i626yytj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/10/ZooKeeper Standalones 模式安装/" data-id="cjgqn6e3h005wewx78ac7q8pk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ZooKeeper/">ZooKeeper</a></li></ul>
@@ -167,7 +324,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/02/17/10 步让你成为更优秀的程序员/" data-id="cjgqj0lwa000148x7daay59sy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/02/17/10 步让你成为更优秀的程序员/" data-id="cjgqn6e0j0002ewx7mq9nm45e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程/">编程</a></li></ul>
@@ -232,7 +389,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/12/Java ServletRequest 和 ServletResponse/" data-id="cjgqj0lx0001548x719vts37c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/01/12/Java ServletRequest 和 ServletResponse/" data-id="cjgqn6e14000vewx7ndgylpmi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Servlet/">Servlet</a></li></ul>
@@ -282,7 +439,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/12/Java ServletConfig 和 ServletContext/" data-id="cjgqj0lwx000w48x7yd1vnvt2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/01/12/Java ServletConfig 和 ServletContext/" data-id="cjgqn6e15000yewx7dt3hknll" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Servlet/">Servlet</a></li></ul>
@@ -346,7 +503,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/11/Java Servlet 概述/" data-id="cjgqj0lwv000s48x7x4ecv97h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/01/11/Java Servlet 概述/" data-id="cjgqn6e12000sewx7v81h9iy2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Servlet/">Servlet</a></li></ul>
@@ -403,7 +560,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/11/27/CentOS 6.5 64bit 安装 MySQL 5.6/" data-id="cjgqj0lwn000c48x7vn2bhsi7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/11/27/CentOS 6.5 64bit 安装 MySQL 5.6/" data-id="cjgqn6e0t000cewx79r3gxtwa" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
@@ -502,600 +659,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/13/MyBatis 之 映射器 ResultMap 元素入门/" data-id="cjgqj0lxc002148x7vx57c3n5" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-MyBatis 之 映射器 select 元素" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/08/12/MyBatis 之 映射器 select 元素/" class="article-date">
-  <time datetime="2015-08-12T02:49:24.000Z" itemprop="datePublished">2015-08-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/MyBatis-实践系列/">MyBatis 实践系列</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/12/MyBatis 之 映射器 select 元素/">MyBatis 之 映射器 select 元素</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>MyBatis 版本：MyBatis 3.3.0</p>
-<p>MyBatis 官方网站（英文）：<a href="http://www.mybatis.org/mybatis-3/" target="_blank" rel="noopener">MyBatis 英文官网</a><br>MyBatis 官方网站（中文）：<a href="http://www.mybatis.org/mybatis-3/zh/" target="_blank" rel="noopener">MyBatis 中文官网</a><br>MyBatis 源码：<a href="https://github.com/mybatis/mybatis-3" target="_blank" rel="noopener">MyBatis 源码</a></p>
-<h5 id="映射器元素"><a href="#映射器元素" class="headerlink" title="映射器元素"></a>映射器元素</h5><table>
-<thead>
-<tr>
-<th>元素名称</th>
-<th>描述</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>select</td>
-<td>查询语句</td>
-<td>可以自定义参数，返回结果集等</td>
-</tr>
-<tr>
-<td>insert</td>
-<td>插入语句</td>
-<td>执行后返回一个整数，代表插入的条数</td>
-</tr>
-<tr>
-<td>update</td>
-<td>更新语句</td>
-<td>执行后返回一个整数，代表更新的条数</td>
-</tr>
-<tr>
-<td>delete</td>
-<td>删除语句</td>
-<td>执行后返回一个整数，代表删除的条数</td>
-</tr>
-<tr>
-<td>parameterMap</td>
-<td>定义参数映射关系</td>
-<td>不推荐使用</td>
-</tr>
-<tr>
-<td>sql</td>
-<td>允许定义一部分的SQL，方便引用</td>
-<td></td>
-</tr>
-<tr>
-<td>resultMap</td>
-<td>描述从数据库结果集中来加载对象</td>
-<td></td>
-</tr>
-<tr>
-<td>cache</td>
-<td>给定命名空间的缓存配置</td>
-<td></td>
-</tr>
-<tr>
-<td>cache-ref</td>
-<td>其他命名空间的缓存配置的引用</td>
-</tr>
-</tbody>
-</table>
-<h5 id="select-元素"><a href="#select-元素" class="headerlink" title="select 元素"></a>select 元素</h5><table>
-<thead>
-<tr>
-<th>元素名称</th>
-<th>描述</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td>和 Mapper 命名空间一起组合唯一性</td>
-<td></td>
-</tr>
-<tr>
-<td>parameterType</td>
-<td>可以是类全限定名或类别名</td>
-<td></td>
-</tr>
-<tr>
-<td>parameterMap</td>
-<td>不推荐使用</td>
-<td></td>
-</tr>
-<tr>
-<td>resultType</td>
-<td>类的全限定名或类别名，可依据 JavaBean 的规范映射</td>
-<td>不可以和 resultMap 同时使用</td>
-</tr>
-<tr>
-<td>resultMap</td>
-<td>映射集的引用</td>
-<td>不可以和 resultType 同时使用</td>
-</tr>
-<tr>
-<td>flushCache</td>
-<td>在调用 SQL 后，是否要求 MyBatis 清空之前查询的本地缓存和二级缓存</td>
-<td>布尔值，默认值 false</td>
-</tr>
-<tr>
-<td>useCache</td>
-<td>启动二级缓存的开关，是否要求 MyBatis 将此次结果缓存</td>
-<td>布尔值，默认值 true</td>
-</tr>
-<tr>
-<td>timeout</td>
-<td>设置超时时间，单位为秒</td>
-<td>默认值是 JDBC 驱动所设置的秒数</td>
-</tr>
-<tr>
-<td>fetchSize</td>
-<td>获取记录的总条数设定</td>
-<td>默认值是 JDBC 驱动所设置的条数</td>
-</tr>
-<tr>
-<td>statementType</td>
-<td>JDBC Statement，取值为 STATEMENT（Statement），PREPARED（PreparedStatement），CallableStatement</td>
-<td>默认值是 PREPARED</td>
-</tr>
-<tr>
-<td>resultType</td>
-<td>JDBC resultSet，取值为 FORWARD_ONLY（游标允许向前访问），SCROLL_SENSITIVE（双向滚动，但不及时更新），SCROLL_INSENSITIVE（双向滚动，及时更新）</td>
-<td>默认值是 JDBC 驱动所设置的</td>
-</tr>
-<tr>
-<td>databaseId</td>
-<td>参考 databaseIdProvider</td>
-<td>一般不需要修改</td>
-</tr>
-<tr>
-<td>resultOrdered</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>resultSets</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h5 id="select-元素传递多个参数"><a href="#select-元素传递多个参数" class="headerlink" title="select 元素传递多个参数"></a>select 元素传递多个参数</h5><h6 id="使用-Map-传递参数"><a href="#使用-Map-传递参数" class="headerlink" title="使用 Map 传递参数"></a>使用 Map 传递参数</h6><p>Mapper：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;User&gt; findUserByMap(Map&lt;String, String&gt; params)</span><br></pre></td></tr></table></figure></p>
-<p>Mapper XML：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;findUserByMap&quot; parameterType=&quot;map&quot; resultMap=&quot;BaseResultMap&quot;&gt;</span><br><span class="line">	SELECT id, user_name FROM user_info</span><br><span class="line">    WHERE user_name LIKE CONCAT(&apos;%&apos;, #&#123;userName&#125;, &apos;%&apos;)</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure></p>
-<p>使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, String&gt; paramsMap = new HashMap&lt;String, String&gt;();</span><br><span class="line">paramsMap.put(&quot;userName&quot;, &quot;me&quot;)；</span><br><span class="line">userMapper.findUserByMap(paramsMap);</span><br></pre></td></tr></table></figure></p>
-<p>该方式存在一个弊端：业务可读性不强</p>
-<h6 id="使用注解传递参数"><a href="#使用注解传递参数" class="headerlink" title="使用注解传递参数"></a>使用注解传递参数</h6><p>注解接口 @Param (org.apache.ibatis.annotations.Param)</p>
-<p>Mapper：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;User&gt; findUserByAnnotations(@Param(&quot;userName&quot;) String userName)</span><br></pre></td></tr></table></figure></p>
-<p>Mapper XML：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;findUserByAnnotations&quot; parameterType=&quot;map&quot; resultMap=&quot;BaseResultMap&quot;&gt;</span><br><span class="line">	SELECT id, user_name FROM user_info</span><br><span class="line">    WHERE user_name LIKE CONCAT(&apos;%&apos;, #&#123;userName&#125;, &apos;%&apos;)</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure></p>
-<p>使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String userName = &quot;me&quot;;</span><br><span class="line">userMapper.findUserByAnnotations(userName);</span><br></pre></td></tr></table></figure></p>
-<p>该方式存在一个弊端：当参数数量很多时，可读性将下降</p>
-<h6 id="使用-JavaBean-传递参数"><a href="#使用-JavaBean-传递参数" class="headerlink" title="使用 JavaBean 传递参数"></a>使用 JavaBean 传递参数</h6><p>Mapper：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;User&gt; findUserByParams(UserParam userParam)</span><br></pre></td></tr></table></figure></p>
-<p>Mapper XML：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;findUserByParams&quot; parameterType=&quot;com.example.param.UserParam&quot; resultMap=&quot;BaseResultMap&quot;&gt;</span><br><span class="line">	SELECT id, user_name FROM user_info</span><br><span class="line">    WHERE user_name LIKE CONCAT(&apos;%&apos;, #&#123;userName&#125;, &apos;%&apos;)</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure></p>
-<p>使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UserParam userParam = new UserParam();</span><br><span class="line">userParam.setUserName(&quot;me&quot;);</span><br><span class="line">userMapper.findUserByParams(userParam);</span><br></pre></td></tr></table></figure></p>
-<p>当参数少于等于 3 个时可以使用注解方式传递参数，反之使用 JavaBean 方式传递参数</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/12/MyBatis 之 映射器 select 元素/" data-id="cjgqj0lxd002348x7rxbkkz4l" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-MyBatis 之 配置文件 TypeHandler 元素" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/08/11/MyBatis 之 配置文件 TypeHandler 元素/" class="article-date">
-  <time datetime="2015-08-11T08:49:24.000Z" itemprop="datePublished">2015-08-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/MyBatis-实践系列/">MyBatis 实践系列</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/11/MyBatis 之 配置文件 TypeHandler 元素/">MyBatis 之 配置文件 TypeHandler 元素</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>MyBatis 版本：MyBatis 3.3.0</p>
-<p>MyBatis 官方网站（英文）：<a href="http://www.mybatis.org/mybatis-3/" target="_blank" rel="noopener">MyBatis 英文官网</a><br>MyBatis 官方网站（中文）：<a href="http://www.mybatis.org/mybatis-3/zh/" target="_blank" rel="noopener">MyBatis 中文官网</a><br>MyBatis 源码：<a href="https://github.com/mybatis/mybatis-3" target="_blank" rel="noopener">MyBatis 源码</a></p>
-<h5 id="MyBatis-配置文件层次结构"><a href="#MyBatis-配置文件层次结构" class="headerlink" title="MyBatis 配置文件层次结构"></a>MyBatis 配置文件层次结构</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;&gt;</span><br><span class="line">&lt;configuration&gt; &lt;!--配置--&gt;</span><br><span class="line">  &lt;properties/&gt; &lt;!--属性--&gt;</span><br><span class="line">  &lt;settings/&gt; &lt;!--设置--&gt;</span><br><span class="line">  &lt;typeAliases/&gt; &lt;!--类型命名--&gt;</span><br><span class="line">  &lt;typeHandlers/&gt; &lt;!--类型处理器--&gt;</span><br><span class="line">  &lt;objetFactory/&gt; &lt;!--对象工厂--&gt;</span><br><span class="line">  &lt;plugins/&gt; &lt;!--插件--&gt;</span><br><span class="line">  &lt;environments&gt; &lt;!--配置环境--&gt;</span><br><span class="line">    &lt;environment&gt; &lt;!--环境变量--&gt;</span><br><span class="line">      &lt;transactionManager/&gt; &lt;!--事务管理器--&gt;</span><br><span class="line">      &lt;dataSource/&gt; &lt;!--数据源--&gt;</span><br><span class="line">    &lt;/environment&gt;</span><br><span class="line">  &lt;/environments&gt;</span><br><span class="line">  &lt;databaseIdProvider/&gt; &lt;!--数据库厂商标识--&gt;</span><br><span class="line">  &lt;mappers/&gt; &lt;!--映射器--&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="TypeHandler-元素"><a href="#TypeHandler-元素" class="headerlink" title="TypeHandler 元素"></a>TypeHandler 元素</h5><p>无论是 MyBatis 在预处理语句（PreparedStatement）中设置一个参数时，还是从结果集中取出一个值时， 都会用类型处理器将获取的值以合适的方式转换成 Java 类型。</p>
-<p>TypeHandler 的作用就是将参数从 javaType 转化为 jdbcType，或者从数据库取出结果时把 jdbcType 转化为 javaType。</p>
-<p>TypeHandler 可分为：</p>
-<ul>
-<li>系统定义的 TypeHandler</li>
-<li>自定义的 TypeHandler</li>
-</ul>
-<h6 id="系统定义的-TypeHandler"><a href="#系统定义的-TypeHandler" class="headerlink" title="系统定义的 TypeHandler"></a>系统定义的 TypeHandler</h6><p>MyBatis org.apache.ibatis.type.TypeHandlerRegistry 类中定义了所有的系统定义的 TypeHandler:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">public TypeHandlerRegistry() &#123;</span><br><span class="line">    this.register((Class)Boolean.class, (TypeHandler)(new BooleanTypeHandler()));</span><br><span class="line">    this.register((Class)Boolean.TYPE, (TypeHandler)(new BooleanTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.BOOLEAN, (TypeHandler)(new BooleanTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.BIT, (TypeHandler)(new BooleanTypeHandler()));</span><br><span class="line">    this.register((Class)Byte.class, (TypeHandler)(new ByteTypeHandler()));</span><br><span class="line">    this.register((Class)Byte.TYPE, (TypeHandler)(new ByteTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.TINYINT, (TypeHandler)(new ByteTypeHandler()));</span><br><span class="line">    this.register((Class)Short.class, (TypeHandler)(new ShortTypeHandler()));</span><br><span class="line">    this.register((Class)Short.TYPE, (TypeHandler)(new ShortTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.SMALLINT, (TypeHandler)(new ShortTypeHandler()));</span><br><span class="line">    this.register((Class)Integer.class, (TypeHandler)(new IntegerTypeHandler()));</span><br><span class="line">    this.register((Class)Integer.TYPE, (TypeHandler)(new IntegerTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.INTEGER, (TypeHandler)(new IntegerTypeHandler()));</span><br><span class="line">    this.register((Class)Long.class, (TypeHandler)(new LongTypeHandler()));</span><br><span class="line">    this.register((Class)Long.TYPE, (TypeHandler)(new LongTypeHandler()));</span><br><span class="line">    this.register((Class)Float.class, (TypeHandler)(new FloatTypeHandler()));</span><br><span class="line">    this.register((Class)Float.TYPE, (TypeHandler)(new FloatTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.FLOAT, (TypeHandler)(new FloatTypeHandler()));</span><br><span class="line">    this.register((Class)Double.class, (TypeHandler)(new DoubleTypeHandler()));</span><br><span class="line">    this.register((Class)Double.TYPE, (TypeHandler)(new DoubleTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.DOUBLE, (TypeHandler)(new DoubleTypeHandler()));</span><br><span class="line">    this.register((Class)String.class, (TypeHandler)(new StringTypeHandler()));</span><br><span class="line">    this.register((Class)String.class, JdbcType.CHAR, (TypeHandler)(new StringTypeHandler()));</span><br><span class="line">    this.register((Class)String.class, JdbcType.CLOB, (TypeHandler)(new ClobTypeHandler()));</span><br><span class="line">    this.register((Class)String.class, JdbcType.VARCHAR, (TypeHandler)(new StringTypeHandler()));</span><br><span class="line">    this.register((Class)String.class, JdbcType.LONGVARCHAR, (TypeHandler)(new ClobTypeHandler()));</span><br><span class="line">    this.register((Class)String.class, JdbcType.NVARCHAR, (TypeHandler)(new NStringTypeHandler()));</span><br><span class="line">    this.register((Class)String.class, JdbcType.NCHAR, (TypeHandler)(new NStringTypeHandler()));</span><br><span class="line">    this.register((Class)String.class, JdbcType.NCLOB, (TypeHandler)(new NClobTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.CHAR, (TypeHandler)(new StringTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.VARCHAR, (TypeHandler)(new StringTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.CLOB, (TypeHandler)(new ClobTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.LONGVARCHAR, (TypeHandler)(new ClobTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.NVARCHAR, (TypeHandler)(new NStringTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.NCHAR, (TypeHandler)(new NStringTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.NCLOB, (TypeHandler)(new NClobTypeHandler()));</span><br><span class="line">    this.register((Class)Object.class, JdbcType.ARRAY, (TypeHandler)(new ArrayTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.ARRAY, (TypeHandler)(new ArrayTypeHandler()));</span><br><span class="line">    this.register((Class)BigInteger.class, (TypeHandler)(new BigIntegerTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.BIGINT, (TypeHandler)(new LongTypeHandler()));</span><br><span class="line">    this.register((Class)BigDecimal.class, (TypeHandler)(new BigDecimalTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.REAL, (TypeHandler)(new BigDecimalTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.DECIMAL, (TypeHandler)(new BigDecimalTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.NUMERIC, (TypeHandler)(new BigDecimalTypeHandler()));</span><br><span class="line">    this.register((Class)Byte[].class, (TypeHandler)(new ByteObjectArrayTypeHandler()));</span><br><span class="line">    this.register((Class)Byte[].class, JdbcType.BLOB, (TypeHandler)(new BlobByteObjectArrayTypeHandler()));</span><br><span class="line">    this.register((Class)Byte[].class, JdbcType.LONGVARBINARY, (TypeHandler)(new BlobByteObjectArrayTypeHandler()));</span><br><span class="line">    this.register((Class)byte[].class, (TypeHandler)(new ByteArrayTypeHandler()));</span><br><span class="line">    this.register((Class)byte[].class, JdbcType.BLOB, (TypeHandler)(new BlobTypeHandler()));</span><br><span class="line">    this.register((Class)byte[].class, JdbcType.LONGVARBINARY, (TypeHandler)(new BlobTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.LONGVARBINARY, (TypeHandler)(new BlobTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.BLOB, (TypeHandler)(new BlobTypeHandler()));</span><br><span class="line">    this.register(Object.class, this.UNKNOWN_TYPE_HANDLER);</span><br><span class="line">    this.register(Object.class, JdbcType.OTHER, this.UNKNOWN_TYPE_HANDLER);</span><br><span class="line">    this.register(JdbcType.OTHER, this.UNKNOWN_TYPE_HANDLER);</span><br><span class="line">    this.register((Class)Date.class, (TypeHandler)(new DateTypeHandler()));</span><br><span class="line">    this.register((Class)Date.class, JdbcType.DATE, (TypeHandler)(new DateOnlyTypeHandler()));</span><br><span class="line">    this.register((Class)Date.class, JdbcType.TIME, (TypeHandler)(new TimeOnlyTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.TIMESTAMP, (TypeHandler)(new DateTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.DATE, (TypeHandler)(new DateOnlyTypeHandler()));</span><br><span class="line">    this.register((JdbcType)JdbcType.TIME, (TypeHandler)(new TimeOnlyTypeHandler()));</span><br><span class="line">    this.register((Class)java.sql.Date.class, (TypeHandler)(new SqlDateTypeHandler()));</span><br><span class="line">    this.register((Class)Time.class, (TypeHandler)(new SqlTimeTypeHandler()));</span><br><span class="line">    this.register((Class)Timestamp.class, (TypeHandler)(new SqlTimestampTypeHandler()));</span><br><span class="line">    this.register((Class)Character.class, (TypeHandler)(new CharacterTypeHandler()));</span><br><span class="line">    this.register((Class)Character.TYPE, (TypeHandler)(new CharacterTypeHandler()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>汇总起来如下表格：</p>
-<table>
-<thead>
-<tr>
-<th>类型处理器</th>
-<th>Java 类型</th>
-<th>JDBC 类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>BooleanTypeHandler</td>
-<td>java.lang.Boolean，boolean</td>
-<td>数据库兼容的 BOOLEAN</td>
-</tr>
-<tr>
-<td>ByteTypeHandler</td>
-<td>java.lang.Byte，byte</td>
-<td>数据库兼容的 NUMERIC 或 BYTE</td>
-</tr>
-<tr>
-<td>ShortTypeHandler</td>
-<td>java.lang.Short，short</td>
-<td>数据库兼容的 NUMERIC 或 SHORT INTEGER</td>
-</tr>
-<tr>
-<td>IntegerTypeHandler</td>
-<td>java.lang.Integer，int</td>
-<td>数据库兼容的 NUMERIC 或 INTEGER</td>
-</tr>
-<tr>
-<td>LongTypeHandler</td>
-<td>java.lang.Long，long</td>
-<td>数据库兼容的 NUMERIC 或 LONG INTEGER</td>
-</tr>
-<tr>
-<td>FloatTypeHandler</td>
-<td>java.lang.Float，float</td>
-<td>数据库兼容的 NUMERIC 或 FLOAT</td>
-</tr>
-<tr>
-<td>DoubleTypeHandler</td>
-<td>java.lang.Double，double</td>
-<td>数据库兼容的 NUMBERIC 或 DOUBLE</td>
-</tr>
-<tr>
-<td>BigDecimalTypeHandler</td>
-<td>java.math.BigDecimal</td>
-<td>数据库兼容的 NUMBERIC 或 DECIMAL</td>
-</tr>
-<tr>
-<td>StringTypeHandler</td>
-<td>java.lang.String</td>
-<td>CHAR,VARCHAR</td>
-</tr>
-<tr>
-<td>ClobTypeHandler</td>
-<td>java.lang.String</td>
-<td>CLOB,LONGVARCHAR</td>
-</tr>
-<tr>
-<td>NStringTypeHandler</td>
-<td>java.lang.String</td>
-<td>NVARCHAR,NCHAR</td>
-</tr>
-<tr>
-<td>NClobTypeHandler</td>
-<td>java.lang.String</td>
-<td>NCLOB</td>
-</tr>
-<tr>
-<td>ByteArrayTypeHandler</td>
-<td>byte[]</td>
-<td>数据库兼容的字节流类型</td>
-</tr>
-<tr>
-<td>BlobTypeHandler</td>
-<td>byte[]</td>
-<td>BLOB，LONGVARBINARY</td>
-</tr>
-<tr>
-<td>DateTypeHandler</td>
-<td>java.util.Date</td>
-<td>TIMESTAMP</td>
-</tr>
-<tr>
-<td>DateOnlyTypeHandler</td>
-<td>java.util.Date</td>
-<td>DATE</td>
-</tr>
-<tr>
-<td>TimeOnlyTypeHandler</td>
-<td>java.util.Date</td>
-<td>TIME</td>
-</tr>
-<tr>
-<td>SqlTimestampTypehandler</td>
-<td>java.sql.Timestamp</td>
-<td>TIMESTAMP</td>
-</tr>
-<tr>
-<td>SqlDateTypeHandler</td>
-<td>java.sql.Date</td>
-<td>DATE</td>
-</tr>
-<tr>
-<td>SqlTimeTypeHandler</td>
-<td>java.sql.Time</td>
-<td>TIME</td>
-</tr>
-<tr>
-<td>ObjectTypeHandler</td>
-<td>Any</td>
-<td>OTHER或未指定类型</td>
-</tr>
-<tr>
-<td>EnumTypeHandler</td>
-<td>Enumeration Type</td>
-<td>VARCHAR 或任何兼容的字符串类型，存储枚举的名称</td>
-</tr>
-<tr>
-<td>EnumOrdinalTypeHandler</td>
-<td>Enumeration Type</td>
-<td>任何兼容的NUMERIC 或 DOUBLE 类型，存储枚举的索引</td>
-</tr>
-</tbody>
-</table>
-<h6 id="自定义的-TypeHandler"><a href="#自定义的-TypeHandler" class="headerlink" title="自定义的 TypeHandler"></a>自定义的 TypeHandler</h6><p>自定义的 TypeHandler 比较少用，后续单独分析。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 TypeHandler 元素/" data-id="cjgqj0lxl002j48x7zd6x4wt5" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-MyBatis 之 配置文件 TypeAliases 元素" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/08/11/MyBatis 之 配置文件 TypeAliases 元素/" class="article-date">
-  <time datetime="2015-08-11T06:49:24.000Z" itemprop="datePublished">2015-08-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/MyBatis-实践系列/">MyBatis 实践系列</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/11/MyBatis 之 配置文件 TypeAliases 元素/">MyBatis 之 配置文件 TypeAliases 元素</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>MyBatis 版本：MyBatis 3.3.0</p>
-<p>MyBatis 官方网站（英文）：<a href="http://www.mybatis.org/mybatis-3/" target="_blank" rel="noopener">MyBatis 英文官网</a><br>MyBatis 官方网站（中文）：<a href="http://www.mybatis.org/mybatis-3/zh/" target="_blank" rel="noopener">MyBatis 中文官网</a><br>MyBatis 源码：<a href="https://github.com/mybatis/mybatis-3" target="_blank" rel="noopener">MyBatis 源码</a></p>
-<h5 id="MyBatis-配置文件层次结构"><a href="#MyBatis-配置文件层次结构" class="headerlink" title="MyBatis 配置文件层次结构"></a>MyBatis 配置文件层次结构</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;&gt;</span><br><span class="line">&lt;configuration&gt; &lt;!--配置--&gt;</span><br><span class="line">  &lt;properties/&gt; &lt;!--属性--&gt;</span><br><span class="line">  &lt;settings/&gt; &lt;!--设置--&gt;</span><br><span class="line">  &lt;typeAliases/&gt; &lt;!--类型命名--&gt;</span><br><span class="line">  &lt;typeHandlers/&gt; &lt;!--类型处理器--&gt;</span><br><span class="line">  &lt;objetFactory/&gt; &lt;!--对象工厂--&gt;</span><br><span class="line">  &lt;plugins/&gt; &lt;!--插件--&gt;</span><br><span class="line">  &lt;environments&gt; &lt;!--配置环境--&gt;</span><br><span class="line">    &lt;environment&gt; &lt;!--环境变量--&gt;</span><br><span class="line">      &lt;transactionManager/&gt; &lt;!--事务管理器--&gt;</span><br><span class="line">      &lt;dataSource/&gt; &lt;!--数据源--&gt;</span><br><span class="line">    &lt;/environment&gt;</span><br><span class="line">  &lt;/environments&gt;</span><br><span class="line">  &lt;databaseIdProvider/&gt; &lt;!--数据库厂商标识--&gt;</span><br><span class="line">  &lt;mappers/&gt; &lt;!--映射器--&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="TypeAliases-元素"><a href="#TypeAliases-元素" class="headerlink" title="TypeAliases 元素"></a>TypeAliases 元素</h5><p>别名是当类全限定名过长时可以用一个简短的名称去指代它，且该名称可以在 MyBatis 上下文中使用。<br>别名分为：</p>
-<ul>
-<li>系统定义别名</li>
-<li>自定义别名</li>
-</ul>
-<p>别分不分大小写，因为 TypeAliasRgistry 在辨别别名时会统一转换为小写后辨别（后续源码分析）。<br>别名是不允许重复的。</p>
-<h6 id="系统定义别名"><a href="#系统定义别名" class="headerlink" title="系统定义别名"></a>系统定义别名</h6><p>MyBatis 源码 org.apache.ibatis.type.TypeAliasRegistry 中定义了所有的系统定义别名。</p>
-<table>
-<thead>
-<tr>
-<th>别名</th>
-<th>映射的类型</th>
-<th>是否支持数组</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>_byte</td>
-<td>byte</td>
-<td>是</td>
-</tr>
-<tr>
-<td>_long</td>
-<td>long</td>
-<td>是</td>
-</tr>
-<tr>
-<td>_short</td>
-<td>short</td>
-<td>是</td>
-</tr>
-<tr>
-<td>_int</td>
-<td>int</td>
-<td>是</td>
-</tr>
-<tr>
-<td>_integer</td>
-<td>int</td>
-<td>是</td>
-</tr>
-<tr>
-<td>_double</td>
-<td>double</td>
-<td>是</td>
-</tr>
-<tr>
-<td>_float</td>
-<td>float</td>
-<td>是</td>
-</tr>
-<tr>
-<td>_boolean</td>
-<td>boolean</td>
-<td>是</td>
-</tr>
-<tr>
-<td>string</td>
-<td>String</td>
-<td>否</td>
-</tr>
-<tr>
-<td>byte</td>
-<td>Byte</td>
-<td>是</td>
-</tr>
-<tr>
-<td>long</td>
-<td>Long</td>
-<td>是</td>
-</tr>
-<tr>
-<td>short</td>
-<td>Short</td>
-<td>是</td>
-</tr>
-<tr>
-<td>int</td>
-<td>Integer</td>
-<td>是</td>
-</tr>
-<tr>
-<td>integer</td>
-<td>Integer</td>
-<td>是</td>
-</tr>
-<tr>
-<td>double</td>
-<td>Double</td>
-<td>是</td>
-</tr>
-<tr>
-<td>float</td>
-<td>Float</td>
-<td>是</td>
-</tr>
-<tr>
-<td>boolean</td>
-<td>Boolean</td>
-<td>是</td>
-</tr>
-<tr>
-<td>date</td>
-<td>Date</td>
-<td>是</td>
-</tr>
-<tr>
-<td>decimal</td>
-<td>BigDecimal</td>
-<td>是</td>
-</tr>
-<tr>
-<td>bigdecimal</td>
-<td>BigDecimal</td>
-<td>是</td>
-</tr>
-<tr>
-<td>object</td>
-<td>Object</td>
-<td>是</td>
-</tr>
-<tr>
-<td>map</td>
-<td>Map</td>
-<td>否</td>
-</tr>
-<tr>
-<td>hashmap</td>
-<td>HashMap</td>
-<td>否</td>
-</tr>
-<tr>
-<td>list</td>
-<td>List</td>
-<td>否</td>
-</tr>
-<tr>
-<td>arraylist</td>
-<td>ArrayList</td>
-<td>否</td>
-</tr>
-<tr>
-<td>collection</td>
-<td>Collection</td>
-<td>否</td>
-</tr>
-<tr>
-<td>iterator</td>
-<td>Iterator</td>
-<td>否</td>
-</tr>
-<tr>
-<td>ResultSet</td>
-<td>ResultSet</td>
-<td>否</td>
-</tr>
-</tbody>
-</table>
-<p>支持数组即可以使用类似于 date[] 这样的别名。</p>
-<p>org.apache.ibatis.type.TypeAliasRegistry#TypeAliasRegistry 源码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">public TypeAliasRegistry() &#123;</span><br><span class="line">    this.registerAlias(&quot;string&quot;, String.class);</span><br><span class="line">    this.registerAlias(&quot;byte&quot;, Byte.class);</span><br><span class="line">    this.registerAlias(&quot;long&quot;, Long.class);</span><br><span class="line">    this.registerAlias(&quot;short&quot;, Short.class);</span><br><span class="line">    this.registerAlias(&quot;int&quot;, Integer.class);</span><br><span class="line">    this.registerAlias(&quot;integer&quot;, Integer.class);</span><br><span class="line">    this.registerAlias(&quot;double&quot;, Double.class);</span><br><span class="line">    this.registerAlias(&quot;float&quot;, Float.class);</span><br><span class="line">    this.registerAlias(&quot;boolean&quot;, Boolean.class);</span><br><span class="line">    this.registerAlias(&quot;byte[]&quot;, Byte[].class);</span><br><span class="line">    this.registerAlias(&quot;long[]&quot;, Long[].class);</span><br><span class="line">    this.registerAlias(&quot;short[]&quot;, Short[].class);</span><br><span class="line">    this.registerAlias(&quot;int[]&quot;, Integer[].class);</span><br><span class="line">    this.registerAlias(&quot;integer[]&quot;, Integer[].class);</span><br><span class="line">    this.registerAlias(&quot;double[]&quot;, Double[].class);</span><br><span class="line">    this.registerAlias(&quot;float[]&quot;, Float[].class);</span><br><span class="line">    this.registerAlias(&quot;boolean[]&quot;, Boolean[].class);</span><br><span class="line">    this.registerAlias(&quot;_byte&quot;, Byte.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_long&quot;, Long.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_short&quot;, Short.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_int&quot;, Integer.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_integer&quot;, Integer.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_double&quot;, Double.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_float&quot;, Float.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_boolean&quot;, Boolean.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_byte[]&quot;, byte[].class);</span><br><span class="line">    this.registerAlias(&quot;_long[]&quot;, long[].class);</span><br><span class="line">    this.registerAlias(&quot;_short[]&quot;, short[].class);</span><br><span class="line">    this.registerAlias(&quot;_int[]&quot;, int[].class);</span><br><span class="line">    this.registerAlias(&quot;_integer[]&quot;, int[].class);</span><br><span class="line">    this.registerAlias(&quot;_double[]&quot;, double[].class);</span><br><span class="line">    this.registerAlias(&quot;_float[]&quot;, float[].class);</span><br><span class="line">    this.registerAlias(&quot;_boolean[]&quot;, boolean[].class);</span><br><span class="line">    this.registerAlias(&quot;date&quot;, Date.class);</span><br><span class="line">    this.registerAlias(&quot;decimal&quot;, BigDecimal.class);</span><br><span class="line">    this.registerAlias(&quot;bigdecimal&quot;, BigDecimal.class);</span><br><span class="line">    this.registerAlias(&quot;biginteger&quot;, BigInteger.class);</span><br><span class="line">    this.registerAlias(&quot;object&quot;, Object.class);</span><br><span class="line">    this.registerAlias(&quot;date[]&quot;, Date[].class);</span><br><span class="line">    this.registerAlias(&quot;decimal[]&quot;, BigDecimal[].class);</span><br><span class="line">    this.registerAlias(&quot;bigdecimal[]&quot;, BigDecimal[].class);</span><br><span class="line">    this.registerAlias(&quot;biginteger[]&quot;, BigInteger[].class);</span><br><span class="line">    this.registerAlias(&quot;object[]&quot;, Object[].class);</span><br><span class="line">    this.registerAlias(&quot;map&quot;, Map.class);</span><br><span class="line">    this.registerAlias(&quot;hashmap&quot;, HashMap.class);</span><br><span class="line">    this.registerAlias(&quot;list&quot;, List.class);</span><br><span class="line">    this.registerAlias(&quot;arraylist&quot;, ArrayList.class);</span><br><span class="line">    this.registerAlias(&quot;collection&quot;, Collection.class);</span><br><span class="line">    this.registerAlias(&quot;iterator&quot;, Iterator.class);</span><br><span class="line">    this.registerAlias(&quot;ResultSet&quot;, ResultSet.class);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h6 id="自定义别名"><a href="#自定义别名" class="headerlink" title="自定义别名"></a>自定义别名</h6><p>类型别名是为 Java 类型设置一个短的名字。它只和 XML 配置有关，存在的意义仅在于用来减少类完全限定名的冗余。</p>
-<p>定义自定义别名有三种方式：</p>
-<ul>
-<li>指定类别名</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;typeAliases&gt;</span><br><span class="line">  &lt;typeAlias alias=&quot;Author&quot; type=&quot;domain.blog.Author&quot;/&gt;</span><br><span class="line">  &lt;typeAlias alias=&quot;Blog&quot; type=&quot;domain.blog.Blog&quot;/&gt;</span><br><span class="line">  &lt;typeAlias alias=&quot;Comment&quot; type=&quot;domain.blog.Comment&quot;/&gt;</span><br><span class="line">  &lt;typeAlias alias=&quot;Post&quot; type=&quot;domain.blog.Post&quot;/&gt;</span><br><span class="line">  &lt;typeAlias alias=&quot;Section&quot; type=&quot;domain.blog.Section&quot;/&gt;</span><br><span class="line">  &lt;typeAlias alias=&quot;Tag&quot; type=&quot;domain.blog.Tag&quot;/&gt;</span><br><span class="line">&lt;/typeAliases&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>包扫描（在没有注解的情况下，会使用 Bean 的首字母小写的非限定类名来作为它的别名）</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;typeAliases&gt;</span><br><span class="line">  &lt;package name=&quot;domain.blog&quot;/&gt;</span><br><span class="line">&lt;/typeAliases&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>注解</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Alias(&quot;author&quot;)</span><br><span class="line">public class Author &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注解的优先级最高，若有注解，则别名是注解中指定的别名</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 TypeAliases 元素/" data-id="cjgqj0lxj002g48x7bw6ypgy9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/13/MyBatis 之 映射器 ResultMap 元素入门/" data-id="cjgqn6e1m0021ewx7kdguuoa5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li></ul>
@@ -1122,7 +686,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JDK-8-新特性/">JDK 8 新特性</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JDK-源码-1-8-0-161/">JDK 源码 1.8.0_161</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Core-API/">Java Core API</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Servlet/">Java Servlet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-并发编程系列/">Java 并发编程系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-排序算法/">Java 排序算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-编程逻辑/">Java 编程逻辑</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MyBatis-实践系列/">MyBatis 实践系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL-系列/">MySQL 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python-系列/">Python 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shiro/">Shiro</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Cloud/">Spring Cloud</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Framework/">Spring Framework</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot-系列/">SpringBoot 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ZooKeeper-系列/">ZooKeeper 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/《深入理解Java虚拟机》学习系列/">《深入理解Java虚拟机》学习系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发管理系列/">开发管理系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构系列/">架构系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程经验/">编程经验</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/行业知识/">行业知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记/">读书笔记</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JDK-8-新特性/">JDK 8 新特性</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JDK-源码-1-8-0-161/">JDK 源码 1.8.0_161</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Core-API/">Java Core API</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Servlet/">Java Servlet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-并发编程系列/">Java 并发编程系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-排序算法/">Java 排序算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-编程逻辑/">Java 编程逻辑</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MyBatis-实践系列/">MyBatis 实践系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL-系列/">MySQL 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python-系列/">Python 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shiro/">Shiro</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Cloud/">Spring Cloud</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Framework/">Spring Framework</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot-系列/">SpringBoot 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ZooKeeper-系列/">ZooKeeper 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/《深入理解Java虚拟机》学习系列/">《深入理解Java虚拟机》学习系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发管理系列/">开发管理系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构系列/">架构系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程经验/">编程经验</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/行业知识/">行业知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记/">读书笔记</a></li></ul>
     </div>
   </div>
 
@@ -1132,7 +696,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI-持续集成/">CI 持续集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CQRS/">CQRS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Event-Sourcing/">Event Sourcing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExceptionHandler/">ExceptionHandler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GS1/">GS1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gitflow-Workflow/">Gitflow Workflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iterator/">Iterator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/">JDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK-8/">JDK 8</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JIRA/">JIRA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java虚拟机/">Java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RestTemplate/">RestTemplate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ribbon/">Ribbon</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shiro/">Shiro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sonatype-Nexus/">Sonatype Nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Cloud/">Spring Cloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Framework/">Spring Framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UDI/">UDI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZooKeeper/">ZooKeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二进制/">二进制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冒泡排序/">冒泡排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/包装类/">包装类</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成/">持续集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/架构探险/">架构探险</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程/">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/选择排序-插入排序/">选择排序 插入排序</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI-持续集成/">CI 持续集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CQRS/">CQRS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Event-Sourcing/">Event Sourcing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExceptionHandler/">ExceptionHandler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GS1/">GS1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gitflow-Workflow/">Gitflow Workflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iterator/">Iterator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/">JDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK-8/">JDK 8</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JIRA/">JIRA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java虚拟机/">Java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RestTemplate/">RestTemplate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ribbon/">Ribbon</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shiro/">Shiro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sonatype-Nexus/">Sonatype Nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Cloud/">Spring Cloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Framework/">Spring Framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UDI/">UDI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZooKeeper/">ZooKeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二进制/">二进制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冒泡排序/">冒泡排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/包装类/">包装类</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例模式/">单例模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成/">持续集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/架构探险/">架构探险</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程/">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/选择排序-插入排序/">选择排序 插入排序</a></li></ul>
     </div>
   </div>
 
@@ -1142,7 +706,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/CI-持续集成/" style="font-size: 10px;">CI 持续集成</a> <a href="/tags/CQRS/" style="font-size: 11.43px;">CQRS</a> <a href="/tags/Event-Sourcing/" style="font-size: 11.43px;">Event Sourcing</a> <a href="/tags/ExceptionHandler/" style="font-size: 10px;">ExceptionHandler</a> <a href="/tags/GS1/" style="font-size: 12.86px;">GS1</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitflow-Workflow/" style="font-size: 10px;">Gitflow Workflow</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Iterator/" style="font-size: 10px;">Iterator</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/JDK-8/" style="font-size: 14.29px;">JDK 8</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java虚拟机/" style="font-size: 10px;">Java虚拟机</a> <a href="/tags/MyBatis/" style="font-size: 17.14px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 12.86px;">MySQL</a> <a href="/tags/Python/" style="font-size: 14.29px;">Python</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Ribbon/" style="font-size: 10px;">Ribbon</a> <a href="/tags/Servlet/" style="font-size: 12.86px;">Servlet</a> <a href="/tags/Shiro/" style="font-size: 10px;">Shiro</a> <a href="/tags/Sonatype-Nexus/" style="font-size: 10px;">Sonatype Nexus</a> <a href="/tags/Spring-Cloud/" style="font-size: 18.57px;">Spring Cloud</a> <a href="/tags/Spring-Framework/" style="font-size: 15.71px;">Spring Framework</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/UDI/" style="font-size: 10px;">UDI</a> <a href="/tags/ZooKeeper/" style="font-size: 10px;">ZooKeeper</a> <a href="/tags/二进制/" style="font-size: 10px;">二进制</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/包装类/" style="font-size: 10px;">包装类</a> <a href="/tags/多线程/" style="font-size: 12.86px;">多线程</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/架构探险/" style="font-size: 10px;">架构探险</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/选择排序-插入排序/" style="font-size: 10px;">选择排序 插入排序</a>
+      <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/CI-持续集成/" style="font-size: 10px;">CI 持续集成</a> <a href="/tags/CQRS/" style="font-size: 11.43px;">CQRS</a> <a href="/tags/Event-Sourcing/" style="font-size: 11.43px;">Event Sourcing</a> <a href="/tags/ExceptionHandler/" style="font-size: 10px;">ExceptionHandler</a> <a href="/tags/GS1/" style="font-size: 12.86px;">GS1</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitflow-Workflow/" style="font-size: 10px;">Gitflow Workflow</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Iterator/" style="font-size: 10px;">Iterator</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/JDK-8/" style="font-size: 14.29px;">JDK 8</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java虚拟机/" style="font-size: 10px;">Java虚拟机</a> <a href="/tags/MyBatis/" style="font-size: 17.14px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 12.86px;">MySQL</a> <a href="/tags/Python/" style="font-size: 14.29px;">Python</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Ribbon/" style="font-size: 10px;">Ribbon</a> <a href="/tags/Servlet/" style="font-size: 12.86px;">Servlet</a> <a href="/tags/Shiro/" style="font-size: 10px;">Shiro</a> <a href="/tags/Sonatype-Nexus/" style="font-size: 10px;">Sonatype Nexus</a> <a href="/tags/Spring-Cloud/" style="font-size: 18.57px;">Spring Cloud</a> <a href="/tags/Spring-Framework/" style="font-size: 15.71px;">Spring Framework</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/UDI/" style="font-size: 10px;">UDI</a> <a href="/tags/ZooKeeper/" style="font-size: 10px;">ZooKeeper</a> <a href="/tags/二进制/" style="font-size: 10px;">二进制</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/包装类/" style="font-size: 10px;">包装类</a> <a href="/tags/单例模式/" style="font-size: 11.43px;">单例模式</a> <a href="/tags/多线程/" style="font-size: 12.86px;">多线程</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/架构探险/" style="font-size: 10px;">架构探险</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/选择排序-插入排序/" style="font-size: 10px;">选择排序 插入排序</a>
     </div>
   </div>
 
@@ -1151,7 +715,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
     </div>
   </div>
 
