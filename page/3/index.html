@@ -1,157 +1,470 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+
+
 
   
-  <title>LX Muse</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
 <meta property="og:title" content="LX Muse">
 <meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:locale" content="default">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LX Muse">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/page/3/"/>
+
+
+
+
+
+  <title>LX Muse</title>
   
-    <link rel="alternate" href="/atom.xml" title="LX Muse" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+
+
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">LX Muse</a>
-      </h1>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LX Muse</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
       
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-Spring Cloud Zuul 初识" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/11/Spring Cloud Zuul 初识/" class="article-date">
-  <time datetime="2018-01-11T13:49:24.000Z" itemprop="datePublished">2018-01-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Spring-Cloud/">Spring Cloud</a>
+        <p class="site-subtitle"></p>
+      
   </div>
 
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
   </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/11/Spring Cloud Zuul 初识/">Spring Cloud Zuul 初识</a>
-    </h1>
+</div>
+
+<nav class="site-nav">
   
 
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/11/关于版本控制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenlx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LX Muse">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/11/关于版本控制/" itemprop="url">关于版本控制</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-11T21:49:24+08:00">
+                2018-01-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发管理系列/" itemprop="url" rel="index">
+                    <span itemprop="name">开发管理系列</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Spring Boot: 1.5.10.RELEASE <br><br>Spring Cloud: Dalston.SR5</p>
-<h2 id="什么是-Zuul"><a href="#什么是-Zuul" class="headerlink" title="什么是 Zuul"></a>什么是 Zuul</h2><p>Zuul 最主要的两大功能：请求路由和请求过滤</p>
-<p><strong>请求路由</strong></p>
-<p>请求路由是指将外部请求转发到具体的微服务实例上，实现外部访问统一入口的基础</p>
-<p><strong>请求过滤</strong></p>
-<p>请求过滤是指对外部请求进行干预，实现请求校验，服务聚合等功能的基础</p>
-<p>Zuul 一般和 Eureka 集成使用</p>
-<h2 id="Zuul-初识"><a href="#Zuul-初识" class="headerlink" title="Zuul 初识"></a>Zuul 初识</h2><p>利用前期的相关工程实现环境搭建：<br><br>example-01 : eureka-server  <br><br>example-01 : 服务提供者1    <br><br>example-04 : 服务提供者2    <br><br>example-05 : 服务提供者3    <br></p>
-<p>创建 zuul 工程，引入依赖：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-cloud-starter-eureka&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-cloud-starter-zuul&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-<p>spring-cloud-starter-zuul 是必须引入的依赖 <br><br>spring-cloud-starter-eureka 是为了使 zuul 可以 eureka 进行无缝集成</p>
-<p>启动类上添加 @EnableZuulProxy 注解：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line">import org.springframework.cloud.netflix.zuul.EnableZuulProxy;</span><br><span class="line"></span><br><span class="line">@EnableZuulProxy</span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class Application &#123;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication application = new SpringApplication(Application.class);</span><br><span class="line">		application.run(args);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>配置文件集成 eureka 并配置路由规则：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: zuul-server</span><br><span class="line"></span><br><span class="line">server:</span><br><span class="line">  port: 8888</span><br><span class="line"></span><br><span class="line">eureka:</span><br><span class="line">  instance:</span><br><span class="line">    prefer-ip-address: false</span><br><span class="line">  client:</span><br><span class="line">    service-url:</span><br><span class="line">      defaultZone: http://localhost:8761/eureka</span><br><span class="line"></span><br><span class="line">zuul:</span><br><span class="line">  routes:</span><br><span class="line">    api-a.path: /api-a/**</span><br><span class="line">    api-a.serviceId: hello-world-service</span><br><span class="line">    api-b.path: /api-b/*</span><br><span class="line">    api-b.serviceId: hello-world-service-provide</span><br></pre></td></tr></table></figure>
-<p>路由配置规则： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">格式：zuul.routes.&lt;routh&gt;.path </span><br><span class="line">格式：zuul.routes.&lt;routh&gt;.serviceId</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">这里定义了两个简单的转发规则：</span><br><span class="line">拦截所有 api-a 开头的请求，将其转发到 hello-world-service 服务中</span><br><span class="line">拦截所有 api-b 开头的请求，将其转发到 hello-world-service-provide 服务中</span><br><span class="line"></span><br><span class="line">将服务运行以后，可以测试：&lt;br&gt;</span><br><span class="line">http://localhost:8888/api-a/hello &lt;br&gt;</span><br><span class="line">http://localhost:8888/api-b/hello &lt;br&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">上述路由配置可以简化为：</span><br></pre></td></tr></table></figure>
-<p>zuul:<br>  routes:<br>    hello-world-service: /api-a/<strong><br>    hello-world-service-provide: /api-b/</strong>    </p>
-<pre><code>
-</code></pre><p>格式：zuul.routes.<serviceid>=<path></path><br><code>`</code> </serviceid></p>
-<p>详细代码请参考 <a href="https://github.com/lxmuse/lxmuse-spring-cloud.git" target="_blank" rel="noopener">lxmuse-spring-cloud 下 example-zuul-01</a></p>
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。</p>
+<h4 id="版本控制的演变"><a href="#版本控制的演变" class="headerlink" title="版本控制的演变"></a>版本控制的演变</h4>
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/11/Spring Cloud Zuul 初识/" data-id="cjgqn6e2d003oewx73ed3lu32" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Cloud/">Spring Cloud</a></li></ul>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
   </div>
   
-</article>
+  
+  
+  </article>
 
+
+    
+      
 
   
-    <article id="post-Lambda表达式语法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/10/Lambda表达式语法/" class="article-date">
-  <time datetime="2018-01-10T14:49:24.000Z" itemprop="datePublished">2018-01-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/JDK-8-新特性/">JDK 8 新特性</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/Lambda表达式语法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenlx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LX Muse">
+    </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/10/Lambda表达式语法/">Lambda表达式语法</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/10/Lambda表达式语法/" itemprop="url">Lambda表达式语法</a></h1>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T22:49:24+08:00">
+                2018-01-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JDK-8-新特性/" itemprop="url" rel="index">
+                    <span itemprop="name">JDK 8 新特性</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>Java 8 引入新操作符：<strong>-&gt;</strong></p>
+      
+
+      
+        
+          
+            <p>Java 8 引入新操作符：<strong>-&gt;</strong></p>
 <ul>
 <li>操作符左侧： Lambda 表达式的参数列表</li>
 <li>操作符右侧： Lambda 表达式所需执行的功能，即 Lambda 体</li>
@@ -184,48 +497,147 @@
 <p>若推断不出，编辑期会报错。</p>
 <p>代码可参考<a href="https://github.com/lxmuse/lxmuse-jdk8-new-feature.git" target="_blank" rel="noopener">lxmuse-jdk8-new-feature-lambda-02</a></p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/10/Lambda表达式语法/" data-id="cjgqn6e1j001uewx70x20gfsf" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK-8/">JDK 8</a></li></ul>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
   </div>
   
-</article>
+  
+  
+  </article>
 
+
+    
+      
 
   
-    <article id="post-GS1 数据载体体系" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/10/GS1 数据载体体系/" class="article-date">
-  <time datetime="2018-01-10T13:49:24.000Z" itemprop="datePublished">2018-01-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/行业知识/">行业知识</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/GS1 数据载体体系/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenlx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LX Muse">
+    </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/10/GS1 数据载体体系/">GS1 数据载体体系</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/10/GS1 数据载体体系/" itemprop="url">GS1 数据载体体系</a></h1>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T21:49:24+08:00">
+                2018-01-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/行业知识/" itemprop="url" rel="index">
+                    <span itemprop="name">行业知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>数据载体承载编码信息，用于自动数据采集（Auto Data Capture，ADC）与电子数据交换（EDI&amp;XML）。</p>
+      
+
+      
+        
+          
+            <p>数据载体承载编码信息，用于自动数据采集（Auto Data Capture，ADC）与电子数据交换（EDI&amp;XML）。</p>
 <h3 id="条码符号"><a href="#条码符号" class="headerlink" title="条码符号"></a>条码符号</h3><p>条码技术是20世纪中叶发展并广泛应用的集光、机、电和计算机技术为一体的高新技术。它解决了计算机应用中数据采集的“瓶颈”，实现了信息的快速、准确获取与传输，是信息管理系统和管理自动化的基础。条码符号具有操作简单、信息采集速度快、信息采集量大、可靠性高、成本低廉等特点。以商品条码为核心的GS1系统已经成为事实上的服务于全球供应链管理的国际标准。</p>
 <h5 id="EAN-UPC-条码"><a href="#EAN-UPC-条码" class="headerlink" title="EAN/UPC 条码"></a>EAN/UPC 条码</h5><p>EAN（International）：国际物品编码协会</p>
 <p>EAN/UPC条码包括EAN-13、EAN-8、UPC-A和UPC-E。通过零售渠道销售的贸易项目必须使用EAN/UPC条码进行标识。同时这些条码符号也可用于标识非零售的贸易项目。</p>
@@ -256,48 +668,147 @@
 <p>射频识别技术应用领域广阔。多用于移动车辆的自动收费、资产跟踪、物流、动物跟踪、生产过程控制等。由于射频标签较条码标签成本偏高，目前很少像条码那样用于消费品标识，多用于人员、车辆、物流等管理，如证件、停车场、可回收托盘、包装箱的标识。</p>
 <p>EPC标签是射频识别技术中应用于GS1系统EPC编码的电子标签，是按照GS1系统的EPC规则进行编码，并遵循EPCglobal制定的EPC标签与读写器的无接触空中通信规则设计的标签。EPC标签是产品电子代码的载体，当EPC标签贴在物品上或内嵌在物品中时，该物品与EPC标签中的编号则是一一对应的。</p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/10/GS1 数据载体体系/" data-id="cjgqn6e5g00blewx72kbus9xn" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GS1/">GS1</a></li></ul>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
   </div>
   
-</article>
+  
+  
+  </article>
 
+
+    
+      
 
   
-    <article id="post-GS1 编码体系" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/10/GS1 编码体系/" class="article-date">
-  <time datetime="2018-01-10T12:49:24.000Z" itemprop="datePublished">2018-01-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/行业知识/">行业知识</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/GS1 编码体系/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenlx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LX Muse">
+    </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/10/GS1 编码体系/">GS1 编码体系</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/10/GS1 编码体系/" itemprop="url">GS1 编码体系</a></h1>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T20:49:24+08:00">
+                2018-01-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/行业知识/" itemprop="url" rel="index">
+                    <span itemprop="name">行业知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>编码体系是整个GS1系统的核心，是对流通领域中所有的产品与服务（包括贸易项目、物流单元、资产、位置和服务关系等）的标识代码及附加属性代码，附加属性代码不能脱离标识代码独立存在。</p>
+      
+
+      
+        
+          
+            <p>编码体系是整个GS1系统的核心，是对流通领域中所有的产品与服务（包括贸易项目、物流单元、资产、位置和服务关系等）的标识代码及附加属性代码，附加属性代码不能脱离标识代码独立存在。</p>
 <p><img src="data:image/jpeg;base64,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" alt=""></p>
 <h5 id="全球贸易项目代码（GTIN）"><a href="#全球贸易项目代码（GTIN）" class="headerlink" title="全球贸易项目代码（GTIN）"></a>全球贸易项目代码（GTIN）</h5><p>全球贸易项目代码（Global Trade Item Number,GTIN）是编码系统中应用最广泛的标识代码。贸易项目是指一项产品或服务。GTIN是为全球贸易项目提供唯一标识的一种代码（称代码结构）。GTIN有四种不同的编码结构：GTIN-13、GTIN-14、GTIN-8和GTIN-12。这四种结构可以对不同包装形态的商品进行唯一编码。标识代码无论应用在哪个领域的贸易项目上，每一个标识代码必须以整体方式使用。完整的标识代码可以保证在相关的应用领域内全球唯一。</p>
 <p>对贸易项目进行编码和符号表示，能够实现商品零售（POS）、进货、存补货、销售分析及其他业务运作的自动化。</p>
@@ -317,48 +828,147 @@
 <h6 id="无含义性"><a href="#无含义性" class="headerlink" title="无含义性"></a>无含义性</h6><p>无含义性原则是指商品代码中的每一位数字不表示任何与商品有关的特定信息。有含义的代码通常会导致编码容量的损失。厂商在编制商品代码时，最好使用无含义的流水号。</p>
 <p>对于一些商品，在流通过程中可能需要了解它的附加信息，如生产日期、有效期、批号及数量等，此时可采用应用标识符（AI）来满足附加信息的标注要求。应用标识符由2～4位数字组成，用于标识其后数据的含义和格式。</p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/10/GS1 编码体系/" data-id="cjgqn6e6700bxewx7ktmhufku" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GS1/">GS1</a></li></ul>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
   </div>
   
-</article>
+  
+  
+  </article>
 
+
+    
+      
 
   
-    <article id="post-Lambda表达式引子" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/09/Lambda表达式引子/" class="article-date">
-  <time datetime="2018-01-09T14:49:24.000Z" itemprop="datePublished">2018-01-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/JDK-8-新特性/">JDK 8 新特性</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/09/Lambda表达式引子/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenlx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LX Muse">
+    </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/09/Lambda表达式引子/">Lambda表达式引子</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/09/Lambda表达式引子/" itemprop="url">Lambda表达式引子</a></h1>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-09T22:49:24+08:00">
+                2018-01-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JDK-8-新特性/" itemprop="url" rel="index">
+                    <span itemprop="name">JDK 8 新特性</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>有一个员工类：</p>
+      
+
+      
+        
+          
+            <p>有一个员工类：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public class Employee &#123;</span><br><span class="line">	</span><br><span class="line">	private String name;</span><br><span class="line">	private int age;</span><br><span class="line">	private double salary;</span><br><span class="line">	</span><br><span class="line">	public Employee(String name, int age, double salary) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">		this.age = age;</span><br><span class="line">		this.salary = salary;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public String getName() &#123;</span><br><span class="line">		return name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public int getAge() &#123;</span><br><span class="line">		return age;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public double getSalary() &#123;</span><br><span class="line">		return salary;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@Override</span><br><span class="line">	public String toString() &#123;</span><br><span class="line">		return &quot;Employee&#123;&quot; +</span><br><span class="line">			&quot;name=&apos;&quot; + name + &apos;\&apos;&apos; +</span><br><span class="line">			&quot;, age=&quot; + age +</span><br><span class="line">			&quot;, salary=&quot; + salary +</span><br><span class="line">			&apos;&#125;&apos;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>准备初始数据：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Employee&gt; employeeList = Arrays.asList(</span><br><span class="line">	new Employee(&quot;张三&quot;, 18, 7777),</span><br><span class="line">	new Employee(&quot;李四&quot;, 38, 22222),</span><br><span class="line">	new Employee(&quot;王五&quot;, 50, 33333),</span><br><span class="line">	new Employee(&quot;赵六&quot;, 24, 8888),</span><br><span class="line">	new Employee(&quot;钱大&quot;, 28, 9999)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
@@ -387,48 +997,147 @@
 <p>Lambda 表达式相对于匿名内部类，代码更加简洁，更加可读</p>
 <p>代码可参考<a href="https://github.com/lxmuse/lxmuse-jdk8-new-feature.git" target="_blank" rel="noopener">lxmuse-jdk8-new-feature-lambda-01</a></p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/09/Lambda表达式引子/" data-id="cjgqn6e1g001pewx7pzz9eirk" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK-8/">JDK 8</a></li></ul>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
   </div>
   
-</article>
+  
+  
+  </article>
 
+
+    
+      
 
   
-    <article id="post-MySQL You can&#39;t specify target table &#39;x&#39; for update in FROM clause" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/08/MySQL You can't specify target table 'x' for update in FROM clause/" class="article-date">
-  <time datetime="2018-01-08T15:49:24.000Z" itemprop="datePublished">2018-01-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/MySQL-系列/">MySQL 系列</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/08/MySQL You can't specify target table 'x' for update in FROM clause/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenlx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LX Muse">
+    </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/08/MySQL You can't specify target table 'x' for update in FROM clause/">MySQL You can&#39;t specify target table &#39;x&#39; for update in FROM clause</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/08/MySQL You can't specify target table 'x' for update in FROM clause/" itemprop="url">MySQL You can't specify target table 'x' for update in FROM clause</a></h1>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-08T23:49:24+08:00">
+                2018-01-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL-系列/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL 系列</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>今天执行如下SQL时：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (</span><br><span class="line">     SELECT barcode_id FROM materials_barcode_info WHERE barcode_length != LENGTH(barcode_example)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+      
+
+      
+        
+          
+            <p>今天执行如下SQL时：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (</span><br><span class="line">     SELECT barcode_id FROM materials_barcode_info WHERE barcode_length != LENGTH(barcode_example)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
 <p>提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Err] 1093 - You can&apos;t specify target table &apos;materials_barcode_info&apos; for update in FROM clause</span><br></pre></td></tr></table></figure></p>
 <p>本意是想将条码规则表中条码规则中样例实际长度和条码规则中长度不一致的条码规则进行逻辑删除</p>
 <p>单独执行 <code>SELECT barcode_id from materials_barcode_info where barcode_length != LENGTH(barcode_example)</code> 运行正确</p>
@@ -438,48 +1147,147 @@
 <p>即不能在一个SQL中先查询同一张表中的某些记录然后再更新同一张表中的某些记录</p>
 <p>修改一下SQL，再嵌套一层</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (</span><br><span class="line">     SELECT barcode_id FROM (</span><br><span class="line">         SELECT barcode_id FROM materials_barcode_info WHERE barcode_length != LENGTH(barcode_example)</span><br><span class="line">     ) a</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/08/MySQL You can't specify target table 'x' for update in FROM clause/" data-id="cjgqn6e1v002kewx7zkj4qze4" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
   </div>
   
-</article>
+  
+  
+  </article>
 
+
+    
+      
 
   
-    <article id="post-MySQL 末尾空格的查询问题" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/08/MySQL 末尾空格的查询问题/" class="article-date">
-  <time datetime="2018-01-08T14:49:24.000Z" itemprop="datePublished">2018-01-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/MySQL-系列/">MySQL 系列</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/08/MySQL 末尾空格的查询问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenlx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LX Muse">
+    </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/08/MySQL 末尾空格的查询问题/">MySQL 末尾空格的查询问题</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/08/MySQL 末尾空格的查询问题/" itemprop="url">MySQL 末尾空格的查询问题</a></h1>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-08T22:49:24+08:00">
+                2018-01-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL-系列/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL 系列</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>MySQL 中如果字段类型是 char 或 varchar 类型，在字符串比较时 MySQL 使用 PADSPACE 校对规则，会忽略字段末尾的空格字符</p>
+      
+
+      
+        
+          
+            <p>MySQL 中如果字段类型是 char 或 varchar 类型，在字符串比较时 MySQL 使用 PADSPACE 校对规则，会忽略字段末尾的空格字符</p>
 <p>比如有这样一个 SQL 语句 ：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from table where user = &apos;wxp    &apos;；</span><br></pre></td></tr></table></figure>
 <p>但是可以查询到数据库中 user 为 wxp 的那一行</p>
@@ -493,48 +1301,147 @@
 <p>官方手册说明（5.0版本）：<br><a href="http://dev.mysql.com/doc/refman/5.0/en/char.html" target="_blank" rel="noopener">http://dev.mysql.com/doc/refman/5.0/en/char.html</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">11.1.6.1. The CHAR and VARCHAR Types</span><br><span class="line"> All MySQL collations are of type PADSPACE. This means that all CHAR, VARCHAR, and TEXT values in MySQL are compared without regard to any trailing spaces. “Comparison” in this context does not include the LIKE pattern-matching operator, for which trailing spaces are significant.</span><br></pre></td></tr></table></figure>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/08/MySQL 末尾空格的查询问题/" data-id="cjgqn6e1y002qewx7ul1gbeel" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
   </div>
   
-</article>
+  
+  
+  </article>
 
+
+    
+      
 
   
-    <article id="post-SpringBoot 启动源码解析系列六：执行启动方法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/02/SpringBoot 启动源码解析系列六：执行启动方法/" class="article-date">
-  <time datetime="2018-01-02T15:22:24.000Z" itemprop="datePublished">2018-01-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/SpringBoot-系列/">SpringBoot 系列</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列六：执行启动方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenlx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LX Muse">
+    </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/02/SpringBoot 启动源码解析系列六：执行启动方法/">SpringBoot 启动源码解析系列六：执行启动方法</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/02/SpringBoot 启动源码解析系列六：执行启动方法/" itemprop="url">SpringBoot 启动源码解析系列六：执行启动方法</a></h1>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-02T23:22:24+08:00">
+                2018-01-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SpringBoot-系列/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringBoot 系列</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public ConfigurableApplicationContext run(String... args) &#123;</span><br><span class="line">    StopWatch stopWatch = new StopWatch();</span><br><span class="line">    stopWatch.start();</span><br><span class="line">    ConfigurableApplicationContext context = null;</span><br><span class="line">    FailureAnalyzers analyzers = null;</span><br><span class="line">    this.configureHeadlessProperty();</span><br><span class="line">    SpringApplicationRunListeners listeners = this.getRunListeners(args);</span><br><span class="line">    listeners.starting();</span><br><span class="line"></span><br><span class="line">    try &#123;</span><br><span class="line">        ApplicationArguments applicationArguments = new DefaultApplicationArguments(args);</span><br><span class="line">        ConfigurableEnvironment environment = this.prepareEnvironment(listeners, applicationArguments);</span><br><span class="line">        Banner printedBanner = this.printBanner(environment);</span><br><span class="line">        context = this.createApplicationContext();</span><br><span class="line">        new FailureAnalyzers(context);</span><br><span class="line">        this.prepareContext(context, environment, listeners, applicationArguments, printedBanner);</span><br><span class="line">        this.refreshContext(context);</span><br><span class="line">        this.afterRefresh(context, applicationArguments);</span><br><span class="line">        listeners.finished(context, (Throwable)null);</span><br><span class="line">        stopWatch.stop();</span><br><span class="line">        if (this.logStartupInfo) &#123;</span><br><span class="line">            (new StartupInfoLogger(this.mainApplicationClass)).logStarted(this.getApplicationLog(), stopWatch);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return context;</span><br><span class="line">    &#125; catch (Throwable var9) &#123;</span><br><span class="line">        this.handleRunFailure(context, listeners, (FailureAnalyzers)analyzers, var9);</span><br><span class="line">        throw new IllegalStateException(var9);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public ConfigurableApplicationContext run(String... args) &#123;</span><br><span class="line">    StopWatch stopWatch = new StopWatch();</span><br><span class="line">    stopWatch.start();</span><br><span class="line">    ConfigurableApplicationContext context = null;</span><br><span class="line">    FailureAnalyzers analyzers = null;</span><br><span class="line">    this.configureHeadlessProperty();</span><br><span class="line">    SpringApplicationRunListeners listeners = this.getRunListeners(args);</span><br><span class="line">    listeners.starting();</span><br><span class="line"></span><br><span class="line">    try &#123;</span><br><span class="line">        ApplicationArguments applicationArguments = new DefaultApplicationArguments(args);</span><br><span class="line">        ConfigurableEnvironment environment = this.prepareEnvironment(listeners, applicationArguments);</span><br><span class="line">        Banner printedBanner = this.printBanner(environment);</span><br><span class="line">        context = this.createApplicationContext();</span><br><span class="line">        new FailureAnalyzers(context);</span><br><span class="line">        this.prepareContext(context, environment, listeners, applicationArguments, printedBanner);</span><br><span class="line">        this.refreshContext(context);</span><br><span class="line">        this.afterRefresh(context, applicationArguments);</span><br><span class="line">        listeners.finished(context, (Throwable)null);</span><br><span class="line">        stopWatch.stop();</span><br><span class="line">        if (this.logStartupInfo) &#123;</span><br><span class="line">            (new StartupInfoLogger(this.mainApplicationClass)).logStarted(this.getApplicationLog(), stopWatch);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return context;</span><br><span class="line">    &#125; catch (Throwable var9) &#123;</span><br><span class="line">        this.handleRunFailure(context, listeners, (FailureAnalyzers)analyzers, var9);</span><br><span class="line">        throw new IllegalStateException(var9);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>核心步骤一：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SpringApplicationRunListeners listeners = this.getRunListeners(args);</span><br><span class="line">listeners.starting();</span><br></pre></td></tr></table></figure></p>
 <p>核心步骤二：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ConfigurableEnvironment environment = this.prepareEnvironment(listeners, applicationArguments);</span><br></pre></td></tr></table></figure></p>
 <p>核心步骤三：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">context = this.createApplicationContext();</span><br></pre></td></tr></table></figure></p>
@@ -543,93 +1450,291 @@
 <p>核心步骤六：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.afterRefresh(context, applicationArguments);</span><br></pre></td></tr></table></figure></p>
 <p>核心步骤七：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">listeners.finished(context, (Throwable)null);</span><br></pre></td></tr></table></figure></p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列六：执行启动方法/" data-id="cjgqn6e360058ewx73nxvb6xn" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
   </div>
   
-</article>
+  
+  
+  </article>
 
+
+    
+      
 
   
-    <article id="post-SpringBoot 启动源码解析系列五：找到程序入口类并实例化" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/02/SpringBoot 启动源码解析系列五：找到程序入口类并实例化/" class="article-date">
-  <time datetime="2018-01-02T15:18:24.000Z" itemprop="datePublished">2018-01-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/SpringBoot-系列/">SpringBoot 系列</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列五：找到程序入口类并实例化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenlx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LX Muse">
+    </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/02/SpringBoot 启动源码解析系列五：找到程序入口类并实例化/">SpringBoot 启动源码解析系列五：找到程序入口类并实例化</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/02/SpringBoot 启动源码解析系列五：找到程序入口类并实例化/" itemprop="url">SpringBoot 启动源码解析系列五：找到程序入口类并实例化</a></h1>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-02T23:18:24+08:00">
+                2018-01-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SpringBoot-系列/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringBoot 系列</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>SpringApplication initialize 方法：</p>
+      
+
+      
+        
+          
+            <p>SpringApplication initialize 方法：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private void initialize(Object[] sources) &#123;</span><br><span class="line">    if (sources != null &amp;&amp; sources.length &gt; 0) &#123;</span><br><span class="line">        this.sources.addAll(Arrays.asList(sources));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    this.webEnvironment = this.deduceWebEnvironment();</span><br><span class="line">    this.setInitializers(this.getSpringFactoriesInstances(ApplicationContextInitializer.class));</span><br><span class="line">    this.setListeners(this.getSpringFactoriesInstances(ApplicationListener.class));</span><br><span class="line">    this.mainApplicationClass = this.deduceMainApplicationClass();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>deduceMainApplicationClass 方法即用于查找 main 方法类，并实例化：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">private Class&lt;?&gt; deduceMainApplicationClass() &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            StackTraceElement[] stackTrace = (new RuntimeException()).getStackTrace();</span><br><span class="line">            StackTraceElement[] var2 = stackTrace;</span><br><span class="line">            int var3 = stackTrace.length;</span><br><span class="line"></span><br><span class="line">            for(int var4 = 0; var4 &lt; var3; ++var4) &#123;</span><br><span class="line">                StackTraceElement stackTraceElement = var2[var4];</span><br><span class="line">                if (&quot;main&quot;.equals(stackTraceElement.getMethodName())) &#123;</span><br><span class="line">                    return Class.forName(stackTraceElement.getClassName());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (ClassNotFoundException var6) &#123;</span><br><span class="line">            ;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列五：找到程序入口类并实例化/" data-id="cjgqn6e350057ewx7hygxp6wa" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
   </div>
   
-</article>
+  
+  
+  </article>
 
+
+    
+      
 
   
-    <article id="post-SpringBoot 启动源码解析系列四：实例化 ApplicationListener" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/02/SpringBoot 启动源码解析系列四：实例化 ApplicationListener/" class="article-date">
-  <time datetime="2018-01-02T15:15:24.000Z" itemprop="datePublished">2018-01-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/SpringBoot-系列/">SpringBoot 系列</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列四：实例化 ApplicationListener/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenlx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LX Muse">
+    </span>
+
     
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/02/SpringBoot 启动源码解析系列四：实例化 ApplicationListener/">SpringBoot 启动源码解析系列四：实例化 ApplicationListener</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/02/SpringBoot 启动源码解析系列四：实例化 ApplicationListener/" itemprop="url">SpringBoot 启动源码解析系列四：实例化 ApplicationListener</a></h1>
+        
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-02T23:15:24+08:00">
+                2018-01-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SpringBoot-系列/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringBoot 系列</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>SpringApplication initialize 方法：</p>
+      
+
+      
+        
+          
+            <p>SpringApplication initialize 方法：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private void initialize(Object[] sources) &#123;</span><br><span class="line">    if (sources != null &amp;&amp; sources.length &gt; 0) &#123;</span><br><span class="line">        this.sources.addAll(Arrays.asList(sources));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    this.webEnvironment = this.deduceWebEnvironment();</span><br><span class="line">    this.setInitializers(this.getSpringFactoriesInstances(ApplicationContextInitializer.class));</span><br><span class="line">    this.setListeners(this.getSpringFactoriesInstances(ApplicationListener.class));</span><br><span class="line">    this.mainApplicationClass = this.deduceMainApplicationClass();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>setListeners 方法即找到 ApplicationListener 类并实例化</p>
 <p>ApplicationListener 是 Spring 框架中事件监听器接口，即 SpringApplicationRunListener 发布通知事件时，由 ApplicationListener 负责接收。具体可以参考 Spring 事件监听机制。</p>
@@ -638,135 +1743,329 @@
 <p>spring-boot-x.x.x.RELEASE.jar/META-INF/spring.factories中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># Application Listeners</span><br><span class="line">org.springframework.context.ApplicationListener=\</span><br><span class="line">org.springframework.boot.ClearCachesApplicationListener,\</span><br><span class="line">org.springframework.boot.builder.ParentContextCloserApplicationListener,\</span><br><span class="line">org.springframework.boot.context.FileEncodingApplicationListener,\</span><br><span class="line">org.springframework.boot.context.config.AnsiOutputApplicationListener,\</span><br><span class="line">org.springframework.boot.context.config.ConfigFileApplicationListener,\</span><br><span class="line">org.springframework.boot.context.config.DelegatingApplicationListener,\</span><br><span class="line">org.springframework.boot.liquibase.LiquibaseServiceLocatorApplicationListener,\</span><br><span class="line">org.springframework.boot.logging.ClasspathLoggingApplicationListener,\</span><br><span class="line">org.springframework.boot.logging.LoggingApplicationListener</span><br></pre></td></tr></table></figure></p>
 <p>spring-boot-autoconfigure-x.x.x.RELEASE.jar/META-INF/spring.factories中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Application Listeners</span><br><span class="line">org.springframework.context.ApplicationListener=\</span><br><span class="line">org.springframework.boot.autoconfigure.BackgroundPreinitializer</span><br></pre></td></tr></table></figure></p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列四：实例化 ApplicationListener/" data-id="cjgqn6e38005dewx7lwf7cndn" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
   </div>
   
-</article>
+  
+  
+  </article>
 
+
+    
+  </section>
 
   
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
-</section>
+
+
+          </div>
+          
+
+
+          
+
+        </div>
         
-          <aside id="sidebar">
+          
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JDK-8-新特性/">JDK 8 新特性</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JDK-源码-1-8-0-161/">JDK 源码 1.8.0_161</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Core-API/">Java Core API</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Servlet/">Java Servlet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-并发编程系列/">Java 并发编程系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-排序算法/">Java 排序算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-编程逻辑/">Java 编程逻辑</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MyBatis-实践系列/">MyBatis 实践系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL-系列/">MySQL 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python-系列/">Python 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shiro/">Shiro</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Cloud/">Spring Cloud</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Framework/">Spring Framework</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot-系列/">SpringBoot 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ZooKeeper-系列/">ZooKeeper 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/《深入理解Java虚拟机》学习系列/">《深入理解Java虚拟机》学习系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发管理系列/">开发管理系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构系列/">架构系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程经验/">编程经验</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/行业知识/">行业知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记/">读书笔记</a></li></ul>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
 
-
-  
+  <aside id="sidebar" class="sidebar">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI-持续集成/">CI 持续集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CQRS/">CQRS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Event-Sourcing/">Event Sourcing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExceptionHandler/">ExceptionHandler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GS1/">GS1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gitflow-Workflow/">Gitflow Workflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iterator/">Iterator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/">JDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK-8/">JDK 8</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JIRA/">JIRA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java虚拟机/">Java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RestTemplate/">RestTemplate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ribbon/">Ribbon</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shiro/">Shiro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sonatype-Nexus/">Sonatype Nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Cloud/">Spring Cloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Framework/">Spring Framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UDI/">UDI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZooKeeper/">ZooKeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二进制/">二进制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冒泡排序/">冒泡排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/包装类/">包装类</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例模式/">单例模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成/">持续集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/架构探险/">架构探险</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程/">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/选择排序-插入排序/">选择排序 插入排序</a></li></ul>
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">chenlx</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">97</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
     </div>
-  </div>
+  </aside>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/CI-持续集成/" style="font-size: 10px;">CI 持续集成</a> <a href="/tags/CQRS/" style="font-size: 11.43px;">CQRS</a> <a href="/tags/Event-Sourcing/" style="font-size: 11.43px;">Event Sourcing</a> <a href="/tags/ExceptionHandler/" style="font-size: 10px;">ExceptionHandler</a> <a href="/tags/GS1/" style="font-size: 12.86px;">GS1</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitflow-Workflow/" style="font-size: 10px;">Gitflow Workflow</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Iterator/" style="font-size: 10px;">Iterator</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/JDK-8/" style="font-size: 14.29px;">JDK 8</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java虚拟机/" style="font-size: 10px;">Java虚拟机</a> <a href="/tags/MyBatis/" style="font-size: 17.14px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 12.86px;">MySQL</a> <a href="/tags/Python/" style="font-size: 14.29px;">Python</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Ribbon/" style="font-size: 10px;">Ribbon</a> <a href="/tags/Servlet/" style="font-size: 12.86px;">Servlet</a> <a href="/tags/Shiro/" style="font-size: 10px;">Shiro</a> <a href="/tags/Sonatype-Nexus/" style="font-size: 10px;">Sonatype Nexus</a> <a href="/tags/Spring-Cloud/" style="font-size: 18.57px;">Spring Cloud</a> <a href="/tags/Spring-Framework/" style="font-size: 15.71px;">Spring Framework</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/UDI/" style="font-size: 10px;">UDI</a> <a href="/tags/ZooKeeper/" style="font-size: 10px;">ZooKeeper</a> <a href="/tags/二进制/" style="font-size: 10px;">二进制</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/包装类/" style="font-size: 10px;">包装类</a> <a href="/tags/单例模式/" style="font-size: 11.43px;">单例模式</a> <a href="/tags/多线程/" style="font-size: 12.86px;">多线程</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/架构探险/" style="font-size: 10px;">架构探险</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/选择排序-插入排序/" style="font-size: 10px;">选择排序 插入排序</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2018/04/09/集合框架基础之迭代器/">集合框架基础之迭代器</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/09/编程中对象的分类和命名/">编程中对象的分类和命名</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/18/Spring Cloud Netflix Ribbon/">Spring Cloud Netflix Ribbon</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/13/计算机中的二进制/">计算中的二进制</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/10/Java 集合框架 ArrayList/">Java 集合框架 ArrayList</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
         
       </div>
-      <footer id="footer">
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chenlx</span>
+
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2018 chenlx<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-
+    
 
   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>
