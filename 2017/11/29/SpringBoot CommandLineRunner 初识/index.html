@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>SpringBoot CommandLineRunner 初识 | LX Muse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在 SpringBoot 官方 Guides Building an Application with Spring Boot 中看到一段如下代码： 123456789101112131415161718192021222324252627282930313233package hello;import java.util.Arrays;import org.springframework.boo">
+<meta name="keywords" content="SpringBoot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot CommandLineRunner 初识">
+<meta property="og:url" content="http://yoursite.com/2017/11/29/SpringBoot CommandLineRunner 初识/index.html">
+<meta property="og:site_name" content="LX Muse">
+<meta property="og:description" content="在 SpringBoot 官方 Guides Building an Application with Spring Boot 中看到一段如下代码： 123456789101112131415161718192021222324252627282930313233package hello;import java.util.Arrays;import org.springframework.boo">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-01-02T13:45:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringBoot CommandLineRunner 初识">
+<meta name="twitter:description" content="在 SpringBoot 官方 Guides Building an Application with Spring Boot 中看到一段如下代码： 123456789101112131415161718192021222324252627282930313233package hello;import java.util.Arrays;import org.springframework.boo">
+  
+    <link rel="alternate" href="/atom.xml" title="LX Muse" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">LX Muse</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-SpringBoot CommandLineRunner 初识" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/29/SpringBoot CommandLineRunner 初识/" class="article-date">
+  <time datetime="2017-11-29T11:49:24.000Z" itemprop="datePublished">2017-11-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SpringBoot-系列/">SpringBoot 系列</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SpringBoot CommandLineRunner 初识
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在 SpringBoot 官方 Guides <a href="https://spring.io/guides/gs/spring-boot/" target="_blank" rel="noopener">Building an Application with Spring Boot</a> 中看到一段如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.util.Arrays;</span><br><span class="line"></span><br><span class="line">import org.springframework.boot.CommandLineRunner;</span><br><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line">import org.springframework.context.ApplicationContext;</span><br><span class="line">import org.springframework.context.annotation.Bean;</span><br><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class Application &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(Application.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public CommandLineRunner commandLineRunner(ApplicationContext ctx) &#123;</span><br><span class="line">        return args -&gt; &#123;</span><br><span class="line"></span><br><span class="line">            System.out.println(&quot;Let&apos;s inspect the beans provided by Spring Boot:&quot;);</span><br><span class="line"></span><br><span class="line">            String[] beanNames = ctx.getBeanDefinitionNames();</span><br><span class="line">            Arrays.sort(beanNames);</span><br><span class="line">            for (String beanName : beanNames) &#123;</span><br><span class="line">                System.out.println(beanName);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中实现了一个 CommandLineRunner 匿名内部类，那么 CommandLineRunner 接口有哪些作用呢？工作机制又是什么？</p>
+<p>SpringBoot Reference 1.5.9.RELEASE 23.8 Using the ApplicationRunner or CommmandLineRunner 中有这么一段话：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">If you need to run some specific code once the SpringApplication has started, you can implement the ApplicationRunner or CommandLineRunner interfaces. Both interfaces work in the same way and offer a single run method which will be called just before SpringApplication.run(…​) completes.</span><br></pre></td></tr></table></figure></p>
+<p>创建一个普通的 SpringBoot Application，并编写一个CommandLineRunner 实现类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">package com.example.springboot.commandlinerunner;</span><br><span class="line"></span><br><span class="line">import org.springframework.boot.CommandLineRunner;</span><br><span class="line">import org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line">@Component</span><br><span class="line">public class HelloCommandLineRunner implements CommandLineRunner &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void run(String... strings) throws Exception &#123;</span><br><span class="line">		System.out.println(&quot;Hello CommandLineRunner&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行该 SpringBoot Application，控制台将出现如下输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">  .   ____          _            __ _ _</span><br><span class="line"> /\\ / ___&apos;_ __ _ _(_)_ __  __ _ \ \ \ \</span><br><span class="line">( ( )\___ | &apos;_ | &apos;_| | &apos;_ \/ _` | \ \ \ \</span><br><span class="line"> \\/  ___)| |_)| | | | | || (_| |  ) ) ) )</span><br><span class="line">  &apos;  |____| .__|_| |_|_| |_\__, | / / / /</span><br><span class="line"> =========|_|==============|___/=/_/_/_/</span><br><span class="line"> :: Spring Boot ::        (v1.5.9.RELEASE)</span><br><span class="line"></span><br><span class="line">2017-11-29 19:53:28.157  INFO 10544 --- [           main] ingBootCommandLineRunnerHelloApplication : Starting SpringBootCommandLineRunnerHelloApplication on DESKTOP-49M29KH with PID 10544 (D:\lxmuse-spring-boot\spring-boot-command-line-runner\spring-boot-command-line-runner-hello\target\classes started by Richard in D:\lxmuse-spring-boot\spring-boot-command-line-runner\spring-boot-command-line-runner-hello)</span><br><span class="line">2017-11-29 19:53:28.159  INFO 10544 --- [           main] ingBootCommandLineRunnerHelloApplication : No active profile set, falling back to default profiles: default</span><br><span class="line">2017-11-29 19:53:28.220  INFO 10544 --- [           main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@6dde5c8c: startup date [Wed Nov 29 19:53:28 CST 2017]; root of context hierarchy</span><br><span class="line">2017-11-29 19:53:28.737  INFO 10544 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup</span><br><span class="line">Hello CommandLineRunner</span><br><span class="line">2017-11-29 19:53:28.746  INFO 10544 --- [           main] ingBootCommandLineRunnerHelloApplication : Started SpringBootCommandLineRunnerHelloApplication in 0.833 seconds (JVM running for 1.802)</span><br><span class="line">2017-11-29 19:53:28.747  INFO 10544 --- [       Thread-4] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@6dde5c8c: startup date [Wed Nov 29 19:53:28 CST 2017]; root of context hierarchy</span><br><span class="line">2017-11-29 19:53:28.749  INFO 10544 --- [       Thread-4] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown</span><br></pre></td></tr></table></figure></p>
+<p>可以发现，在完全启动前已经执行了 HelloCommandLineRunner 中的 run 方法。</p>
+<p>Reference 中提到 ApplicationRunner 和 CommmandLineRunner 具有相同的作用。<br>同理编写一个 ApplicationRunner 实现类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">package com.example.springboot.commandlinerunner;</span><br><span class="line"></span><br><span class="line">import org.springframework.boot.ApplicationArguments;</span><br><span class="line">import org.springframework.boot.ApplicationRunner;</span><br><span class="line">import org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line">@Component</span><br><span class="line">public class HelloApplicationRunner implements ApplicationRunner &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void run(ApplicationArguments applicationArguments) throws Exception &#123;</span><br><span class="line">		System.out.println(&quot;Hello ApplicationRunner&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>重新运行 SpringBoot Application，控制台将出现如下输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  .   ____          _            __ _ _</span><br><span class="line"> /\\ / ___&apos;_ __ _ _(_)_ __  __ _ \ \ \ \</span><br><span class="line">( ( )\___ | &apos;_ | &apos;_| | &apos;_ \/ _` | \ \ \ \</span><br><span class="line"> \\/  ___)| |_)| | | | | || (_| |  ) ) ) )</span><br><span class="line">  &apos;  |____| .__|_| |_|_| |_\__, | / / / /</span><br><span class="line"> =========|_|==============|___/=/_/_/_/</span><br><span class="line"> :: Spring Boot ::        (v1.5.9.RELEASE)</span><br><span class="line"></span><br><span class="line">2017-11-29 20:02:17.920  INFO 6548 --- [           main] ingBootCommandLineRunnerHelloApplication : Starting SpringBootCommandLineRunnerHelloApplication on DESKTOP-49M29KH with PID 6548 (D:\lxmuse-spring-boot\spring-boot-command-line-runner\spring-boot-command-line-runner-hello\target\classes started by Richard in D:\lxmuse-spring-boot\spring-boot-command-line-runner\spring-boot-command-line-runner-hello)</span><br><span class="line">2017-11-29 20:02:17.922  INFO 6548 --- [           main] ingBootCommandLineRunnerHelloApplication : No active profile set, falling back to default profiles: default</span><br><span class="line">2017-11-29 20:02:17.969  INFO 6548 --- [           main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@5123a213: startup date [Wed Nov 29 20:02:17 CST 2017]; root of context hierarchy</span><br><span class="line">2017-11-29 20:02:18.534  INFO 6548 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup</span><br><span class="line">Hello ApplicationRunner</span><br><span class="line">Hello CommandLineRunner</span><br><span class="line">2017-11-29 20:02:18.546  INFO 6548 --- [           main] ingBootCommandLineRunnerHelloApplication : Started SpringBootCommandLineRunnerHelloApplication in 0.829 seconds (JVM running for 1.294)</span><br><span class="line">2017-11-29 20:02:18.547  INFO 6548 --- [       Thread-4] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@5123a213: startup date [Wed Nov 29 20:02:17 CST 2017]; root of context hierarchy</span><br><span class="line">2017-11-29 20:02:18.548  INFO 6548 --- [       Thread-4] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown</span><br></pre></td></tr></table></figure></p>
+<p>可以发现，在完全启动前已经执行了 HelloApplicationRunner 和 HelloCommandLineRunner 中的 run 方法。<br>并且 HelloApplicationRunner 中的 run 方法优先执行。</p>
+<p>那么 @Order 对其有没有影响呢？<br>在 HelloApplicationRunner 上添加 @Order 注解，并且指定值为 2；<br>在 HelloCommandLineRunner 上添加 @Order 注解，并且指定值为 1；</p>
+<p>重新运行 SpringBoot Application，控制台将出现如下输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  .   ____          _            __ _ _</span><br><span class="line"> /\\ / ___&apos;_ __ _ _(_)_ __  __ _ \ \ \ \</span><br><span class="line">( ( )\___ | &apos;_ | &apos;_| | &apos;_ \/ _` | \ \ \ \</span><br><span class="line"> \\/  ___)| |_)| | | | | || (_| |  ) ) ) )</span><br><span class="line">  &apos;  |____| .__|_| |_|_| |_\__, | / / / /</span><br><span class="line"> =========|_|==============|___/=/_/_/_/</span><br><span class="line"> :: Spring Boot ::        (v1.5.9.RELEASE)</span><br><span class="line"></span><br><span class="line">2017-11-29 20:09:21.078  INFO 772 --- [           main] ingBootCommandLineRunnerHelloApplication : Starting SpringBootCommandLineRunnerHelloApplication on DESKTOP-49M29KH with PID 772 (D:\lxmuse-spring-boot\spring-boot-command-line-runner\spring-boot-command-line-runner-hello\target\classes started by Richard in D:\lxmuse-spring-boot\spring-boot-command-line-runner\spring-boot-command-line-runner-hello)</span><br><span class="line">2017-11-29 20:09:21.080  INFO 772 --- [           main] ingBootCommandLineRunnerHelloApplication : No active profile set, falling back to default profiles: default</span><br><span class="line">2017-11-29 20:09:21.139  INFO 772 --- [           main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@5123a213: startup date [Wed Nov 29 20:09:21 CST 2017]; root of context hierarchy</span><br><span class="line">2017-11-29 20:09:21.604  INFO 772 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup</span><br><span class="line">Hello CommandLineRunner</span><br><span class="line">Hello ApplicationRunner</span><br><span class="line">2017-11-29 20:09:21.622  INFO 772 --- [           main] ingBootCommandLineRunnerHelloApplication : Started SpringBootCommandLineRunnerHelloApplication in 0.755 seconds (JVM running for 1.256)</span><br><span class="line">2017-11-29 20:09:21.623  INFO 772 --- [       Thread-4] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@5123a213: startup date [Wed Nov 29 20:09:21 CST 2017]; root of context hierarchy</span><br><span class="line">2017-11-29 20:09:21.625  INFO 772 --- [       Thread-4] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown</span><br></pre></td></tr></table></figure></p>
+<p>HelloCommandLineRunner 将根据指定的顺序优先执行。</p>
+<p>那么相同类型的实现类执行顺序又是如何呢？<br>其真正的执行原理又是什么呢？<br>留待再探时再解密吧！（需要深入源码）</p>
+<p>具体代码已上传<a href="https://github.com/lxmuse/lxmuse-spring-boot.git" target="_blank" rel="noopener">GitHub-lxmuse</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/11/29/SpringBoot CommandLineRunner 初识/" data-id="cjgru7cdc004p8lx7s5yl91jl" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/29/《深入理解Java虚拟机》学习系列一/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          《深入理解Java虚拟机》学习系列环境准备篇
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/29/SpringBoot 初识/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SpringBoot 初识</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JDK-8-新特性/">JDK 8 新特性</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JDK-源码-1-8-0-161/">JDK 源码 1.8.0_161</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Core-API/">Java Core API</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Servlet/">Java Servlet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-并发编程系列/">Java 并发编程系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-排序算法/">Java 排序算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-编程逻辑/">Java 编程逻辑</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MyBatis-实践系列/">MyBatis 实践系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL-系列/">MySQL 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python-系列/">Python 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shiro/">Shiro</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Cloud/">Spring Cloud</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring-Framework/">Spring Framework</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot-系列/">SpringBoot 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ZooKeeper-系列/">ZooKeeper 系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/《深入理解Java虚拟机》学习系列/">《深入理解Java虚拟机》学习系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发管理系列/">开发管理系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构系列/">架构系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程经验/">编程经验</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/行业知识/">行业知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记/">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI-持续集成/">CI 持续集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CQRS/">CQRS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Event-Sourcing/">Event Sourcing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ExceptionHandler/">ExceptionHandler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GS1/">GS1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gitflow-Workflow/">Gitflow Workflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iterator/">Iterator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK/">JDK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK-8/">JDK 8</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JIRA/">JIRA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java虚拟机/">Java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RestTemplate/">RestTemplate</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ribbon/">Ribbon</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shiro/">Shiro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sonatype-Nexus/">Sonatype Nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Cloud/">Spring Cloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Framework/">Spring Framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UDI/">UDI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ZooKeeper/">ZooKeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二进制/">二进制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冒泡排序/">冒泡排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/包装类/">包装类</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例模式/">单例模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成/">持续集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/架构探险/">架构探险</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程/">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/选择排序-插入排序/">选择排序 插入排序</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/CI-持续集成/" style="font-size: 10px;">CI 持续集成</a> <a href="/tags/CQRS/" style="font-size: 11.43px;">CQRS</a> <a href="/tags/Event-Sourcing/" style="font-size: 11.43px;">Event Sourcing</a> <a href="/tags/ExceptionHandler/" style="font-size: 10px;">ExceptionHandler</a> <a href="/tags/GS1/" style="font-size: 12.86px;">GS1</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitflow-Workflow/" style="font-size: 10px;">Gitflow Workflow</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Iterator/" style="font-size: 10px;">Iterator</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/JDK-8/" style="font-size: 14.29px;">JDK 8</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java虚拟机/" style="font-size: 10px;">Java虚拟机</a> <a href="/tags/MyBatis/" style="font-size: 17.14px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 12.86px;">MySQL</a> <a href="/tags/Python/" style="font-size: 14.29px;">Python</a> <a href="/tags/RestTemplate/" style="font-size: 10px;">RestTemplate</a> <a href="/tags/Ribbon/" style="font-size: 10px;">Ribbon</a> <a href="/tags/Servlet/" style="font-size: 12.86px;">Servlet</a> <a href="/tags/Shiro/" style="font-size: 10px;">Shiro</a> <a href="/tags/Sonatype-Nexus/" style="font-size: 10px;">Sonatype Nexus</a> <a href="/tags/Spring-Cloud/" style="font-size: 18.57px;">Spring Cloud</a> <a href="/tags/Spring-Framework/" style="font-size: 15.71px;">Spring Framework</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/UDI/" style="font-size: 10px;">UDI</a> <a href="/tags/ZooKeeper/" style="font-size: 10px;">ZooKeeper</a> <a href="/tags/二进制/" style="font-size: 10px;">二进制</a> <a href="/tags/冒泡排序/" style="font-size: 10px;">冒泡排序</a> <a href="/tags/包装类/" style="font-size: 10px;">包装类</a> <a href="/tags/单例模式/" style="font-size: 11.43px;">单例模式</a> <a href="/tags/多线程/" style="font-size: 12.86px;">多线程</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/架构探险/" style="font-size: 10px;">架构探险</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/选择排序-插入排序/" style="font-size: 10px;">选择排序 插入排序</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/09/集合框架基础之迭代器/">集合框架基础之迭代器</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/09/编程中对象的分类和命名/">编程中对象的分类和命名</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/18/Spring Cloud Netflix Ribbon/">Spring Cloud Netflix Ribbon</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/13/计算机中的二进制/">计算中的二进制</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/10/Java 集合框架 ArrayList/">Java 集合框架 ArrayList</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 chenlx<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
