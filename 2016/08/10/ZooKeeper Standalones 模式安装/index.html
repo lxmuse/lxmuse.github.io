@@ -173,13 +173,13 @@
 <li>zookeeper：zookeeper-3.4.5.tar.gz</li>
 </ul>
 <p>ZooKeeper 使用Java语言编写，运行环境需要Java环境支持，建议使用JDK1.6以上版本</p>
-<h5 id="解压-ZooKeeper"><a href="#解压-ZooKeeper" class="headerlink" title="解压 ZooKeeper"></a>解压 ZooKeeper</h5><p>安装目录：/usr/local/zookeeper-3.4.5<br>在 /usr/local/ 目录下解压 zookeeper-3.4.5.tar.gz ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost local]# tar zxvf zookeeper-3.4.5.tar.gz</span><br></pre></td></tr></table></figure></p>
-<h5 id="配置-ZooKeeper"><a href="#配置-ZooKeeper" class="headerlink" title="配置 ZooKeeper"></a>配置 ZooKeeper</h5><h6 id="创建数据目录："><a href="#创建数据目录：" class="headerlink" title="创建数据目录："></a>创建数据目录：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mkdir /var/zookeeperdata</span><br></pre></td></tr></table></figure>
-<h6 id="准备配置文件："><a href="#准备配置文件：" class="headerlink" title="准备配置文件："></a>准备配置文件：</h6><p>因为ZooKeeper启动时默认加载名为zoo.cfg配置文件，所有需要将zoo_sample.cfg复制一份并命名为zoo.cfg。<br>配置文件目录 zookeeper-3.4.5/conf 。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost conf]# cp zoo_sample.cfg zoo.cfg</span><br></pre></td></tr></table></figure></p>
-<h6 id="编辑配置文件："><a href="#编辑配置文件：" class="headerlink" title="编辑配置文件："></a>编辑配置文件：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost conf]# vim zoo.cfg</span><br></pre></td></tr></table></figure>
-<p>添加数据目录配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataDir=/var/zookeeperdata</span><br></pre></td></tr></table></figure></p>
-<h6 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# vim /etc/profile</span><br></pre></td></tr></table></figure>
-<p>添加如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export ZOOKEEPER_HOME=/usr/local/zookeeper-3.4.5</span><br><span class="line">export PATH=$PATH:$ZOOKEEPER_HOME/bin:$ZOOKEEPER_HOME/conf</span><br></pre></td></tr></table></figure></p>
+<h5 id="解压-ZooKeeper"><a href="#解压-ZooKeeper" class="headerlink" title="解压 ZooKeeper"></a>解压 ZooKeeper</h5><p>安装目录：/usr/local/zookeeper-3.4.5<br>在 /usr/local/ 目录下解压 zookeeper-3.4.5.tar.gz ：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[root@localhost local]</span># <span class="selector-tag">tar</span> <span class="selector-tag">zxvf</span> <span class="selector-tag">zookeeper-3</span><span class="selector-class">.4</span><span class="selector-class">.5</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="配置-ZooKeeper"><a href="#配置-ZooKeeper" class="headerlink" title="配置 ZooKeeper"></a>配置 ZooKeeper</h5><h6 id="创建数据目录："><a href="#创建数据目录：" class="headerlink" title="创建数据目录："></a>创建数据目录：</h6><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@localhost</span> ~]<span class="meta"># mkdir /var/zookeeperdata</span></span><br></pre></td></tr></table></figure>
+<h6 id="准备配置文件："><a href="#准备配置文件：" class="headerlink" title="准备配置文件："></a>准备配置文件：</h6><p>因为ZooKeeper启动时默认加载名为zoo.cfg配置文件，所有需要将zoo_sample.cfg复制一份并命名为zoo.cfg。<br>配置文件目录 zookeeper-3.4.5/conf 。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[root@localhost conf]</span># <span class="selector-tag">cp</span> <span class="selector-tag">zoo_sample</span><span class="selector-class">.cfg</span> <span class="selector-tag">zoo</span><span class="selector-class">.cfg</span></span><br></pre></td></tr></table></figure></p>
+<h6 id="编辑配置文件："><a href="#编辑配置文件：" class="headerlink" title="编辑配置文件："></a>编辑配置文件：</h6><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@localhost</span> conf]<span class="meta"># vim zoo.cfg</span></span><br></pre></td></tr></table></figure>
+<p>添加数据目录配置：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dataDir</span>=/var/zookeeperdata</span><br></pre></td></tr></table></figure></p>
+<h6 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h6><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@localhost</span> ~]<span class="meta"># vim /etc/profile</span></span><br></pre></td></tr></table></figure>
+<p>添加如下内容：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">ZOOKEEPER_HOME</span>=/usr/local/zookeeper-3.4.5</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="variable">$PATH</span>:$ZOOKEEPER_HOME/bin:$ZOOKEEPER_HOME/conf</span><br></pre></td></tr></table></figure></p>
 <h5 id="启动-ZooKeeper"><a href="#启动-ZooKeeper" class="headerlink" title="启动 ZooKeeper"></a>启动 ZooKeeper</h5>
       
 
@@ -470,6 +470,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -479,10 +483,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,11 +558,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">

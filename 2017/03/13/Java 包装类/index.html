@@ -214,7 +214,7 @@
 <h2 id="包装类的基本用法"><a href="#包装类的基本用法" class="headerlink" title="包装类的基本用法"></a>包装类的基本用法</h2><p><strong>包装类与基本类型的转换</strong></p>
 <p>包装类与基本类型的转换代码结构都是类似的，每种包装类都有一个静态方法 valueOf() 接受基本类型，返回引用类型，也有一个实例方法 xxValue() 方法返回对应的基本类型。</p>
 <p>以 boolean 和 Boolean 转换为例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">boolean b1 = false;</span><br><span class="line">Boolean bObject = Boolean.valueOf(b1);</span><br><span class="line">boolean b2 = bObject.booleanValue();</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean </span><span class="keyword">b1 </span>= false<span class="comment">;</span></span><br><span class="line"><span class="keyword">Boolean </span><span class="keyword">bObject </span>= <span class="keyword">Boolean.valueOf(b1);</span></span><br><span class="line"><span class="keyword">boolean </span><span class="keyword">b2 </span>= <span class="keyword">bObject.booleanValue();</span></span><br></pre></td></tr></table></figure>
 <p>装箱：将基本类型转换为包装类型的过程<br>拆箱：将包装类型转换为基本类型的过程</p>
 <p>Java 5 引入了自动装箱和自动拆箱的机制，该机制由编译器提供，实际依旧调用了对应的valueOf()方法和 xxxValue() 方法。</p>
 <p>每种包装类也支持通过构造函数实例化，但是不推荐使用，构造函数会创建一个新对象，而很多包装类内部都会缓存包装类对象。</p>
@@ -230,7 +230,7 @@
 </ul>
 <p><strong>Number类</strong></p>
 <p>Number 类是所有包装类的抽象类，定义了如下方法，用于包装类返回任意类型的基本数据类型：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">byte byteValue();</span><br><span class="line">short shortValue();</span><br><span class="line">int intValue();</span><br><span class="line">long longValue();</span><br><span class="line">float floatValue();</span><br><span class="line">double doubleValue();</span><br></pre></td></tr></table></figure>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">byte</span> <span class="title">byteValue</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">short</span> <span class="title">shortValue</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">intValue</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">longValue</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">float</span> <span class="title">floatValue</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">doubleValue</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
 <p><strong>不可变性</strong></p>
 <p>包装类都是不可变类：</p>
 <ul>
@@ -528,6 +528,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -537,10 +541,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -616,11 +616,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">

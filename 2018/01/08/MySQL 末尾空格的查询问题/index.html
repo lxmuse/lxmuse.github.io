@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>MySQL 末尾空格的查询问题 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="MySQL 中如果字段类型是 char 或 varchar 类型，在字符串比较时 MySQL 使用 PADSPACE 校对规则，会忽略字段末尾的空格字符 比如有这样一个 SQL 语句 ： 1select * from table where user = &amp;apos;wxp    &amp;apos;； 但是可以查询到数据库中 user 为 wxp 的那一行 那么若想做到精确匹配，可以有如下解决方法： 第">
+  <meta name="description" content="MySQL 中如果字段类型是 char 或 varchar 类型，在字符串比较时 MySQL 使用 PADSPACE 校对规则，会忽略字段末尾的空格字符 比如有这样一个 SQL 语句 ： 1select * from table where user = &apos;wxp    &apos;； 但是可以查询到数据库中 user 为 wxp 的那一行 那么若想做到精确匹配，可以有如下解决方法： 第一种方法：使用 li">
 <meta name="keywords" content="MySQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL 末尾空格的查询问题">
 <meta property="og:url" content="http://yoursite.com/2018/01/08/MySQL 末尾空格的查询问题/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="MySQL 中如果字段类型是 char 或 varchar 类型，在字符串比较时 MySQL 使用 PADSPACE 校对规则，会忽略字段末尾的空格字符 比如有这样一个 SQL 语句 ： 1select * from table where user = &amp;apos;wxp    &amp;apos;； 但是可以查询到数据库中 user 为 wxp 的那一行 那么若想做到精确匹配，可以有如下解决方法： 第">
+<meta property="og:description" content="MySQL 中如果字段类型是 char 或 varchar 类型，在字符串比较时 MySQL 使用 PADSPACE 校对规则，会忽略字段末尾的空格字符 比如有这样一个 SQL 语句 ： 1select * from table where user = &apos;wxp    &apos;； 但是可以查询到数据库中 user 为 wxp 的那一行 那么若想做到精确匹配，可以有如下解决方法： 第一种方法：使用 li">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-01-08T12:39:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL 末尾空格的查询问题">
-<meta name="twitter:description" content="MySQL 中如果字段类型是 char 或 varchar 类型，在字符串比较时 MySQL 使用 PADSPACE 校对规则，会忽略字段末尾的空格字符 比如有这样一个 SQL 语句 ： 1select * from table where user = &amp;apos;wxp    &amp;apos;； 但是可以查询到数据库中 user 为 wxp 的那一行 那么若想做到精确匹配，可以有如下解决方法： 第">
+<meta name="twitter:description" content="MySQL 中如果字段类型是 char 或 varchar 类型，在字符串比较时 MySQL 使用 PADSPACE 校对规则，会忽略字段末尾的空格字符 比如有这样一个 SQL 语句 ： 1select * from table where user = &apos;wxp    &apos;； 但是可以查询到数据库中 user 为 wxp 的那一行 那么若想做到精确匹配，可以有如下解决方法： 第一种方法：使用 li">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -165,17 +165,17 @@
       
         <p>MySQL 中如果字段类型是 char 或 varchar 类型，在字符串比较时 MySQL 使用 PADSPACE 校对规则，会忽略字段末尾的空格字符</p>
 <p>比如有这样一个 SQL 语句 ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from table where user = &apos;wxp    &apos;；</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">where</span> <span class="keyword">user</span> = <span class="string">'wxp    '</span>；</span><br></pre></td></tr></table></figure>
 <p>但是可以查询到数据库中 user 为 wxp 的那一行</p>
 <p>那么若想做到精确匹配，可以有如下解决方法：</p>
 <p>第一种方法：使用 like </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from table where user like &apos;wxp     &apos;；</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">where</span> <span class="keyword">user</span> <span class="keyword">like</span> <span class="string">'wxp     '</span>；</span><br></pre></td></tr></table></figure>
 <p>第二种方法：使用 BINARY </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from table where user = BINARY&apos;wxp    &apos;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">where</span> <span class="keyword">user</span> = <span class="built_in">BINARY</span><span class="string">'wxp    '</span>;</span><br></pre></td></tr></table></figure>
 <p>第三种方法：添加 len 函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slect * form table where user = &apos;wxp   &apos; and LENGTH(user) = LENGTH(&apos;wxp    &apos;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slect * form <span class="keyword">table</span> where <span class="comment">user =</span> <span class="comment">'wxp   '</span><span class="comment"> and LENGTH(user) = LENGTH(</span><span class="comment">'wxp    '</span><span class="comment">)</span></span><br></pre></td></tr></table></figure>
 <p>官方手册说明（5.0版本）：<br><a href="http://dev.mysql.com/doc/refman/5.0/en/char.html" target="_blank" rel="noopener">http://dev.mysql.com/doc/refman/5.0/en/char.html</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">11.1.6.1. The CHAR and VARCHAR Types</span><br><span class="line"> All MySQL collations are of type PADSPACE. This means that all CHAR, VARCHAR, and TEXT values in MySQL are compared without regard to any trailing spaces. “Comparison” in this context does not include the LIKE pattern-matching operator, for which trailing spaces are significant.</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">11.1.6.1. The CHAR <span class="keyword">and</span> VARCHAR Types</span><br><span class="line"> All MySQL collations are of<span class="built_in"> type </span>PADSPACE. This means that all CHAR, VARCHAR, <span class="keyword">and</span> TEXT values <span class="keyword">in</span> MySQL are compared without regard <span class="keyword">to</span> any trailing spaces. “Comparison” <span class="keyword">in</span> this context does <span class="keyword">not</span> include the LIKE pattern-matching operator, <span class="keyword">for</span> which trailing spaces are significant.</span><br></pre></td></tr></table></figure>
 
       
 
@@ -466,6 +466,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -475,10 +479,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -554,11 +554,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">

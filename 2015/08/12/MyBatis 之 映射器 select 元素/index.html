@@ -300,18 +300,18 @@
 </tr>
 </tbody>
 </table>
-<h5 id="select-元素传递多个参数"><a href="#select-元素传递多个参数" class="headerlink" title="select 元素传递多个参数"></a>select 元素传递多个参数</h5><h6 id="使用-Map-传递参数"><a href="#使用-Map-传递参数" class="headerlink" title="使用 Map 传递参数"></a>使用 Map 传递参数</h6><p>Mapper：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;User&gt; findUserByMap(Map&lt;String, String&gt; params)</span><br></pre></td></tr></table></figure></p>
-<p>Mapper XML：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;findUserByMap&quot; parameterType=&quot;map&quot; resultMap=&quot;BaseResultMap&quot;&gt;</span><br><span class="line">	SELECT id, user_name FROM user_info</span><br><span class="line">    WHERE user_name LIKE CONCAT(&apos;%&apos;, #&#123;userName&#125;, &apos;%&apos;)</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure></p>
-<p>使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, String&gt; paramsMap = new HashMap&lt;String, String&gt;();</span><br><span class="line">paramsMap.put(&quot;userName&quot;, &quot;me&quot;)；</span><br><span class="line">userMapper.findUserByMap(paramsMap);</span><br></pre></td></tr></table></figure></p>
+<h5 id="select-元素传递多个参数"><a href="#select-元素传递多个参数" class="headerlink" title="select 元素传递多个参数"></a>select 元素传递多个参数</h5><h6 id="使用-Map-传递参数"><a href="#使用-Map-传递参数" class="headerlink" title="使用 Map 传递参数"></a>使用 Map 传递参数</h6><p>Mapper：<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">List</span>&lt;User&gt; findUserByMap(<span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="built_in">String</span>&gt; <span class="keyword">params</span>)</span><br></pre></td></tr></table></figure></p>
+<p>Mapper XML：<br><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">select</span> id=<span class="string">"findUserByMap"</span> parameterType=<span class="string">"map"</span> resultMap=<span class="string">"BaseResultMap"</span>&gt;</span><br><span class="line">	<span class="keyword">SELECT</span> id, user_name <span class="keyword">FROM</span> user_info</span><br><span class="line">    <span class="keyword">WHERE</span> user_name <span class="keyword">LIKE</span> CONCAT(<span class="comment">'%', #&#123;userName&#125;, '%')</span></span><br><span class="line">&lt;/<span class="keyword">select</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>使用：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; paramsMap = <span class="keyword">new</span> HashMap&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt;();</span><br><span class="line">paramsMap.<span class="built_in">put</span>(<span class="string">"userName"</span>, <span class="string">"me"</span>)；</span><br><span class="line">userMapper.findUserByMap(paramsMap);</span><br></pre></td></tr></table></figure></p>
 <p>该方式存在一个弊端：业务可读性不强</p>
 <h6 id="使用注解传递参数"><a href="#使用注解传递参数" class="headerlink" title="使用注解传递参数"></a>使用注解传递参数</h6><p>注解接口 @Param (org.apache.ibatis.annotations.Param)</p>
-<p>Mapper：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;User&gt; findUserByAnnotations(@Param(&quot;userName&quot;) String userName)</span><br></pre></td></tr></table></figure></p>
-<p>Mapper XML：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;findUserByAnnotations&quot; parameterType=&quot;map&quot; resultMap=&quot;BaseResultMap&quot;&gt;</span><br><span class="line">	SELECT id, user_name FROM user_info</span><br><span class="line">    WHERE user_name LIKE CONCAT(&apos;%&apos;, #&#123;userName&#125;, &apos;%&apos;)</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure></p>
-<p>使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String userName = &quot;me&quot;;</span><br><span class="line">userMapper.findUserByAnnotations(userName);</span><br></pre></td></tr></table></figure></p>
+<p>Mapper：<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">List</span>&lt;User&gt; findUserByAnnotations(<span class="meta">@Param</span>(<span class="string">"userName"</span>) <span class="built_in">String</span> userName)</span><br></pre></td></tr></table></figure></p>
+<p>Mapper XML：<br><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">select</span> id=<span class="string">"findUserByAnnotations"</span> parameterType=<span class="string">"map"</span> resultMap=<span class="string">"BaseResultMap"</span>&gt;</span><br><span class="line">	<span class="keyword">SELECT</span> id, user_name <span class="keyword">FROM</span> user_info</span><br><span class="line">    <span class="keyword">WHERE</span> user_name <span class="keyword">LIKE</span> CONCAT(<span class="comment">'%', #&#123;userName&#125;, '%')</span></span><br><span class="line">&lt;/<span class="keyword">select</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>使用：<br><figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String <span class="keyword">user</span>Name = <span class="string">"me"</span>;</span><br><span class="line"><span class="keyword">user</span>Mapper.findUserByAnnotations(<span class="keyword">user</span>Name);</span><br></pre></td></tr></table></figure></p>
 <p>该方式存在一个弊端：当参数数量很多时，可读性将下降</p>
-<h6 id="使用-JavaBean-传递参数"><a href="#使用-JavaBean-传递参数" class="headerlink" title="使用 JavaBean 传递参数"></a>使用 JavaBean 传递参数</h6><p>Mapper：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;User&gt; findUserByParams(UserParam userParam)</span><br></pre></td></tr></table></figure></p>
-<p>Mapper XML：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;findUserByParams&quot; parameterType=&quot;com.example.param.UserParam&quot; resultMap=&quot;BaseResultMap&quot;&gt;</span><br><span class="line">	SELECT id, user_name FROM user_info</span><br><span class="line">    WHERE user_name LIKE CONCAT(&apos;%&apos;, #&#123;userName&#125;, &apos;%&apos;)</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure></p>
-<p>使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UserParam userParam = new UserParam();</span><br><span class="line">userParam.setUserName(&quot;me&quot;);</span><br><span class="line">userMapper.findUserByParams(userParam);</span><br></pre></td></tr></table></figure></p>
+<h6 id="使用-JavaBean-传递参数"><a href="#使用-JavaBean-传递参数" class="headerlink" title="使用 JavaBean 传递参数"></a>使用 JavaBean 传递参数</h6><p>Mapper：<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;User&gt; findUserByParams(<span class="name">UserParam</span> userParam)</span><br></pre></td></tr></table></figure></p>
+<p>Mapper XML：<br><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">select</span> id=<span class="string">"findUserByParams"</span> parameterType=<span class="string">"com.example.param.UserParam"</span> resultMap=<span class="string">"BaseResultMap"</span>&gt;</span><br><span class="line">	<span class="keyword">SELECT</span> id, user_name <span class="keyword">FROM</span> user_info</span><br><span class="line">    <span class="keyword">WHERE</span> user_name <span class="keyword">LIKE</span> CONCAT(<span class="comment">'%', #&#123;userName&#125;, '%')</span></span><br><span class="line">&lt;/<span class="keyword">select</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>使用：<br><figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UserParam <span class="keyword">user</span>Param = new UserParam();</span><br><span class="line"><span class="keyword">user</span>Param.<span class="built_in">set</span>UserName(<span class="string">"me"</span>);</span><br><span class="line"><span class="keyword">user</span>Mapper.findUserByParams(<span class="keyword">user</span>Param);</span><br></pre></td></tr></table></figure></p>
 <p>当参数少于等于 3 个时可以使用注解方式传递参数，反之使用 JavaBean 方式传递参数</p>
 
       
@@ -603,6 +603,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -612,10 +616,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -691,11 +691,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">

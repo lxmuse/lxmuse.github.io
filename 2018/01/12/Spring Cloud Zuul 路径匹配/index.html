@@ -166,7 +166,7 @@
         <p>Spring Boot: 1.5.10.RELEASE <br><br>Spring Cloud: Dalston.SR5</p>
 <p>从之前可知路由配置规则： </p>
 <p>properties 风格：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">zuul.routes.&lt;routh&gt;.path = xxxx</span><br><span class="line">zuul.routes.&lt;routh&gt;.serviceId = xxxxx</span><br><span class="line">``` </span><br><span class="line">如：</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">zuul.routes.user-service.path = /user-service/**</span><br><span class="line">zuul.routes.user-service.serviceId = user-service</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">yml 风格：</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">zuul<span class="selector-class">.routes</span>.&lt;routh&gt;<span class="selector-class">.path</span> = xxxx</span><br><span class="line">zuul<span class="selector-class">.routes</span>.&lt;routh&gt;<span class="selector-class">.serviceId</span> = xxxxx</span><br><span class="line">``` </span><br><span class="line">如：</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">zuul<span class="selector-class">.routes</span><span class="selector-class">.user-service</span><span class="selector-class">.path</span> = /user-service<span class="comment">/**</span></span><br><span class="line"><span class="comment">zuul.routes.user-service.serviceId = user-service</span></span><br><span class="line"><span class="comment">``` </span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">yml 风格：</span></span><br></pre></td></tr></table></figure>
 <p>zuul:<br>    routes:<br>        <routh>:<br>            path: xxxx<br>            serviceId: xxxxx<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如：</span><br></pre></td></tr></table></figure></routh></p>
 <p>zuul:<br>    routes:<br>        user-service:<br>            path: /user-service/**<br>            serviceId: user-service<br><code>`</code></p>
 <p>路径匹配主要是设置 path 参数，采用 Ant 风格定义， Ant 是根据通配符来进行匹配：</p>
@@ -333,18 +333,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/01/12/Stream API/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/01/15/Java 8 接口中的默认方法和静态方法/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Stream API
+          Java 8 接口中的默认方法和静态方法
         
       </div>
     </a>
   
   
-    <a href="/2018/01/11/Spring Cloud Zuul 默认路由规则/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Spring Cloud Zuul 默认路由规则</div>
+    <a href="/2018/01/12/Stream API/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Stream API</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -508,6 +508,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -517,10 +521,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -596,11 +596,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">

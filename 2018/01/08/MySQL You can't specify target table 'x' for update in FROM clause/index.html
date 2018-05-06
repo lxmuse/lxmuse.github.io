@@ -163,8 +163,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天执行如下SQL时：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (</span><br><span class="line">     SELECT barcode_id FROM materials_barcode_info WHERE barcode_length != LENGTH(barcode_example)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
-<p>提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Err] 1093 - You can&apos;t specify target table &apos;materials_barcode_info&apos; for update in FROM clause</span><br></pre></td></tr></table></figure></p>
+        <p>今天执行如下SQL时：<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">UPDATE</span> materials_barcode_info <span class="keyword">SET</span> del_flag = <span class="number">1</span> <span class="keyword">WHERE</span> barcode_id <span class="keyword">IN</span> (</span><br><span class="line">     <span class="keyword">SELECT</span> barcode_id <span class="keyword">FROM</span> materials_barcode_info <span class="keyword">WHERE</span> barcode_length != <span class="built_in">LENGTH</span>(barcode_example)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>提示<br><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="literal">Err</span>] <span class="number">1093</span> - You can<span class="symbol">'t</span> specify target table <span class="symbol">'materials_barcode_info</span>' <span class="keyword">for</span> update <span class="keyword">in</span> FROM clause</span><br></pre></td></tr></table></figure></p>
 <p>本意是想将条码规则表中条码规则中样例实际长度和条码规则中长度不一致的条码规则进行逻辑删除</p>
 <p>单独执行 <code>SELECT barcode_id from materials_barcode_info where barcode_length != LENGTH(barcode_example)</code> 运行正确</p>
 <p>单独执行 <code>update materials_barcode_info set del_flag = 1 where barcode_id in (&#39;x&#39;,&#39;x&#39;)</code> 运行正确</p>
@@ -172,7 +172,7 @@
 <p><a href="https://dev.mysql.com/doc/refman/5.7/en/subquery-restrictions.html" target="_blank" rel="noopener">https://dev.mysql.com/doc/refman/5.7/en/subquery-restrictions.html</a></p>
 <p>即不能在一个SQL中先查询同一张表中的某些记录然后再更新同一张表中的某些记录</p>
 <p>修改一下SQL，再嵌套一层</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (</span><br><span class="line">     SELECT barcode_id FROM (</span><br><span class="line">         SELECT barcode_id FROM materials_barcode_info WHERE barcode_length != LENGTH(barcode_example)</span><br><span class="line">     ) a</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> materials_barcode_info <span class="keyword">SET</span> del_flag = <span class="number">1</span> <span class="keyword">WHERE</span> barcode_id <span class="keyword">IN</span> (</span><br><span class="line">     <span class="keyword">SELECT</span> barcode_id <span class="keyword">FROM</span> (</span><br><span class="line">         <span class="keyword">SELECT</span> barcode_id <span class="keyword">FROM</span> materials_barcode_info <span class="keyword">WHERE</span> barcode_length != <span class="built_in">LENGTH</span>(barcode_example)</span><br><span class="line">     ) a</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
       
 
       
@@ -462,6 +462,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -471,10 +475,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -550,11 +550,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
