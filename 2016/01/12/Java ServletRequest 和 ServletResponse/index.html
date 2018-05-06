@@ -5,21 +5,22 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java ServletRequest 和 ServletResponse | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Servlet : 3.1 ServletRequest 对于每一个 HTTP 请求，Servlet 容器都会创建一个 ServletRequest 实例，并将其传给 Servlet  的 service 方法，作为 service 方法的其中一个参数。 ServletRequest 封装了大量客户端请求信息，简化对 HTTP 请求的处理。  123456789101112131415161718">
+  <meta name="description" content="Servlet : 3.1 ServletRequest 对于每一个 HTTP 请求，Servlet 容器都会创建一个 ServletRequest 实例，并将其传给 Servlet  的 service 方法，作为 service 方法的其中一个参数。 ServletRequest 封装了大量客户端请求信息，简化对 HTTP 请求的处理。  package javax.servlet;  imp">
 <meta name="keywords" content="Servlet">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java ServletRequest 和 ServletResponse">
 <meta property="og:url" content="http://yoursite.com/2016/01/12/Java ServletRequest 和 ServletResponse/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="Servlet : 3.1 ServletRequest 对于每一个 HTTP 请求，Servlet 容器都会创建一个 ServletRequest 实例，并将其传给 Servlet  的 service 方法，作为 service 方法的其中一个参数。 ServletRequest 封装了大量客户端请求信息，简化对 HTTP 请求的处理。  123456789101112131415161718">
+<meta property="og:description" content="Servlet : 3.1 ServletRequest 对于每一个 HTTP 请求，Servlet 容器都会创建一个 ServletRequest 实例，并将其传给 Servlet  的 service 方法，作为 service 方法的其中一个参数。 ServletRequest 封装了大量客户端请求信息，简化对 HTTP 请求的处理。  package javax.servlet;  imp">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-04-25T09:16:33.886Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java ServletRequest 和 ServletResponse">
-<meta name="twitter:description" content="Servlet : 3.1 ServletRequest 对于每一个 HTTP 请求，Servlet 容器都会创建一个 ServletRequest 实例，并将其传给 Servlet  的 service 方法，作为 service 方法的其中一个参数。 ServletRequest 封装了大量客户端请求信息，简化对 HTTP 请求的处理。  123456789101112131415161718">
+<meta name="twitter:description" content="Servlet : 3.1 ServletRequest 对于每一个 HTTP 请求，Servlet 容器都会创建一个 ServletRequest 实例，并将其传给 Servlet  的 service 方法，作为 service 方法的其中一个参数。 ServletRequest 封装了大量客户端请求信息，简化对 HTTP 请求的处理。  package javax.servlet;  imp">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -167,8 +168,93 @@
 <p><strong>ServletRequest</strong></p>
 <p>对于每一个 HTTP 请求，Servlet 容器都会创建一个 ServletRequest 实例，并将其传给 Servlet  的 service 方法，作为 service 方法的其中一个参数。</p>
 <p>ServletRequest 封装了大量客户端请求信息，简化对 HTTP 请求的处理。 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">package javax.servlet;</span><br><span class="line"></span><br><span class="line">import java.io.BufferedReader;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.UnsupportedEncodingException;</span><br><span class="line">import java.util.Enumeration;</span><br><span class="line">import java.util.Locale;</span><br><span class="line">import java.util.Map;</span><br><span class="line"></span><br><span class="line">public interface ServletRequest &#123;</span><br><span class="line">    Object getAttribute(String var1);</span><br><span class="line"></span><br><span class="line">    Enumeration&lt;String&gt; getAttributeNames();</span><br><span class="line"></span><br><span class="line">    String getCharacterEncoding();</span><br><span class="line"></span><br><span class="line">    void setCharacterEncoding(String var1) throws UnsupportedEncodingException;</span><br><span class="line"></span><br><span class="line">    int getContentLength();</span><br><span class="line"></span><br><span class="line">    long getContentLengthLong();</span><br><span class="line"></span><br><span class="line">    String getContentType();</span><br><span class="line"></span><br><span class="line">    ServletInputStream getInputStream() throws IOException;</span><br><span class="line"></span><br><span class="line">    String getParameter(String var1);</span><br><span class="line"></span><br><span class="line">    Enumeration&lt;String&gt; getParameterNames();</span><br><span class="line"></span><br><span class="line">    String[] getParameterValues(String var1);</span><br><span class="line"></span><br><span class="line">    Map&lt;String, String[]&gt; getParameterMap();</span><br><span class="line"></span><br><span class="line">    String getProtocol();</span><br><span class="line"></span><br><span class="line">    String getScheme();</span><br><span class="line"></span><br><span class="line">    String getServerName();</span><br><span class="line"></span><br><span class="line">    int getServerPort();</span><br><span class="line"></span><br><span class="line">    BufferedReader getReader() throws IOException;</span><br><span class="line"></span><br><span class="line">    String getRemoteAddr();</span><br><span class="line"></span><br><span class="line">    String getRemoteHost();</span><br><span class="line"></span><br><span class="line">    void setAttribute(String var1, Object var2);</span><br><span class="line"></span><br><span class="line">    void removeAttribute(String var1);</span><br><span class="line"></span><br><span class="line">    Locale getLocale();</span><br><span class="line"></span><br><span class="line">    Enumeration&lt;Locale&gt; getLocales();</span><br><span class="line"></span><br><span class="line">    boolean isSecure();</span><br><span class="line"></span><br><span class="line">    RequestDispatcher getRequestDispatcher(String var1);</span><br><span class="line"></span><br><span class="line">    /** @deprecated */</span><br><span class="line">    String getRealPath(String var1);</span><br><span class="line"></span><br><span class="line">    int getRemotePort();</span><br><span class="line"></span><br><span class="line">    String getLocalName();</span><br><span class="line"></span><br><span class="line">    String getLocalAddr();</span><br><span class="line"></span><br><span class="line">    int getLocalPort();</span><br><span class="line"></span><br><span class="line">    ServletContext getServletContext();</span><br><span class="line"></span><br><span class="line">    AsyncContext startAsync() throws IllegalStateException;</span><br><span class="line"></span><br><span class="line">    AsyncContext startAsync(ServletRequest var1, ServletResponse var2) throws IllegalStateException;</span><br><span class="line"></span><br><span class="line">    boolean isAsyncStarted();</span><br><span class="line"></span><br><span class="line">    boolean isAsyncSupported();</span><br><span class="line"></span><br><span class="line">    AsyncContext getAsyncContext();</span><br><span class="line"></span><br><span class="line">    DispatcherType getDispatcherType();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中最常用的是如下方法：</p>
+<pre><code>package javax.servlet;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.Enumeration;
+import java.util.Locale;
+import java.util.Map;
+
+public interface ServletRequest {
+    Object getAttribute(String var1);
+
+    Enumeration&lt;String&gt; getAttributeNames();
+
+    String getCharacterEncoding();
+
+    void setCharacterEncoding(String var1) throws UnsupportedEncodingException;
+
+    int getContentLength();
+
+    long getContentLengthLong();
+
+    String getContentType();
+
+    ServletInputStream getInputStream() throws IOException;
+
+    String getParameter(String var1);
+
+    Enumeration&lt;String&gt; getParameterNames();
+
+    String[] getParameterValues(String var1);
+
+    Map&lt;String, String[]&gt; getParameterMap();
+
+    String getProtocol();
+
+    String getScheme();
+
+    String getServerName();
+
+    int getServerPort();
+
+    BufferedReader getReader() throws IOException;
+
+    String getRemoteAddr();
+
+    String getRemoteHost();
+
+    void setAttribute(String var1, Object var2);
+
+    void removeAttribute(String var1);
+
+    Locale getLocale();
+
+    Enumeration&lt;Locale&gt; getLocales();
+
+    boolean isSecure();
+
+    RequestDispatcher getRequestDispatcher(String var1);
+
+    /** @deprecated */
+    String getRealPath(String var1);
+
+    int getRemotePort();
+
+    String getLocalName();
+
+    String getLocalAddr();
+
+    int getLocalPort();
+
+    ServletContext getServletContext();
+
+    AsyncContext startAsync() throws IllegalStateException;
+
+    AsyncContext startAsync(ServletRequest var1, ServletResponse var2) throws IllegalStateException;
+
+    boolean isAsyncStarted();
+
+    boolean isAsyncSupported();
+
+    AsyncContext getAsyncContext();
+
+    DispatcherType getDispatcherType();
+}
+
+</code></pre><p>其中最常用的是如下方法：</p>
 <ul>
 <li>getContentLength()</li>
 <li>getContentType()</li>
@@ -178,8 +264,93 @@
 </ul>
 <p><strong>ServletResponse</strong></p>
 <p>ServletResponse 表示一个 Servlet 响应，Servlet 会在调用 service 方法前，同时创建 ServletRequest 和 ServletResponse 。ServletResponse 提供了大量方法，简化发送响应。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">package javax.servlet;</span><br><span class="line"></span><br><span class="line">import java.io.BufferedReader;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.UnsupportedEncodingException;</span><br><span class="line">import java.util.Enumeration;</span><br><span class="line">import java.util.Locale;</span><br><span class="line">import java.util.Map;</span><br><span class="line"></span><br><span class="line">public interface ServletRequest &#123;</span><br><span class="line">    Object getAttribute(String var1);</span><br><span class="line"></span><br><span class="line">    Enumeration&lt;String&gt; getAttributeNames();</span><br><span class="line"></span><br><span class="line">    String getCharacterEncoding();</span><br><span class="line"></span><br><span class="line">    void setCharacterEncoding(String var1) throws UnsupportedEncodingException;</span><br><span class="line"></span><br><span class="line">    int getContentLength();</span><br><span class="line"></span><br><span class="line">    long getContentLengthLong();</span><br><span class="line"></span><br><span class="line">    String getContentType();</span><br><span class="line"></span><br><span class="line">    ServletInputStream getInputStream() throws IOException;</span><br><span class="line"></span><br><span class="line">    String getParameter(String var1);</span><br><span class="line"></span><br><span class="line">    Enumeration&lt;String&gt; getParameterNames();</span><br><span class="line"></span><br><span class="line">    String[] getParameterValues(String var1);</span><br><span class="line"></span><br><span class="line">    Map&lt;String, String[]&gt; getParameterMap();</span><br><span class="line"></span><br><span class="line">    String getProtocol();</span><br><span class="line"></span><br><span class="line">    String getScheme();</span><br><span class="line"></span><br><span class="line">    String getServerName();</span><br><span class="line"></span><br><span class="line">    int getServerPort();</span><br><span class="line"></span><br><span class="line">    BufferedReader getReader() throws IOException;</span><br><span class="line"></span><br><span class="line">    String getRemoteAddr();</span><br><span class="line"></span><br><span class="line">    String getRemoteHost();</span><br><span class="line"></span><br><span class="line">    void setAttribute(String var1, Object var2);</span><br><span class="line"></span><br><span class="line">    void removeAttribute(String var1);</span><br><span class="line"></span><br><span class="line">    Locale getLocale();</span><br><span class="line"></span><br><span class="line">    Enumeration&lt;Locale&gt; getLocales();</span><br><span class="line"></span><br><span class="line">    boolean isSecure();</span><br><span class="line"></span><br><span class="line">    RequestDispatcher getRequestDispatcher(String var1);</span><br><span class="line"></span><br><span class="line">    /** @deprecated */</span><br><span class="line">    String getRealPath(String var1);</span><br><span class="line"></span><br><span class="line">    int getRemotePort();</span><br><span class="line"></span><br><span class="line">    String getLocalName();</span><br><span class="line"></span><br><span class="line">    String getLocalAddr();</span><br><span class="line"></span><br><span class="line">    int getLocalPort();</span><br><span class="line"></span><br><span class="line">    ServletContext getServletContext();</span><br><span class="line"></span><br><span class="line">    AsyncContext startAsync() throws IllegalStateException;</span><br><span class="line"></span><br><span class="line">    AsyncContext startAsync(ServletRequest var1, ServletResponse var2) throws IllegalStateException;</span><br><span class="line"></span><br><span class="line">    boolean isAsyncStarted();</span><br><span class="line"></span><br><span class="line">    boolean isAsyncSupported();</span><br><span class="line"></span><br><span class="line">    AsyncContext getAsyncContext();</span><br><span class="line"></span><br><span class="line">    DispatcherType getDispatcherType();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>常用方法如下：</p>
+<pre><code>package javax.servlet;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.Enumeration;
+import java.util.Locale;
+import java.util.Map;
+
+public interface ServletRequest {
+    Object getAttribute(String var1);
+
+    Enumeration&lt;String&gt; getAttributeNames();
+
+    String getCharacterEncoding();
+
+    void setCharacterEncoding(String var1) throws UnsupportedEncodingException;
+
+    int getContentLength();
+
+    long getContentLengthLong();
+
+    String getContentType();
+
+    ServletInputStream getInputStream() throws IOException;
+
+    String getParameter(String var1);
+
+    Enumeration&lt;String&gt; getParameterNames();
+
+    String[] getParameterValues(String var1);
+
+    Map&lt;String, String[]&gt; getParameterMap();
+
+    String getProtocol();
+
+    String getScheme();
+
+    String getServerName();
+
+    int getServerPort();
+
+    BufferedReader getReader() throws IOException;
+
+    String getRemoteAddr();
+
+    String getRemoteHost();
+
+    void setAttribute(String var1, Object var2);
+
+    void removeAttribute(String var1);
+
+    Locale getLocale();
+
+    Enumeration&lt;Locale&gt; getLocales();
+
+    boolean isSecure();
+
+    RequestDispatcher getRequestDispatcher(String var1);
+
+    /** @deprecated */
+    String getRealPath(String var1);
+
+    int getRemotePort();
+
+    String getLocalName();
+
+    String getLocalAddr();
+
+    int getLocalPort();
+
+    ServletContext getServletContext();
+
+    AsyncContext startAsync() throws IllegalStateException;
+
+    AsyncContext startAsync(ServletRequest var1, ServletResponse var2) throws IllegalStateException;
+
+    boolean isAsyncStarted();
+
+    boolean isAsyncSupported();
+
+    AsyncContext getAsyncContext();
+
+    DispatcherType getDispatcherType();
+}
+
+</code></pre><p>常用方法如下：</p>
 <ul>
 <li>getWriter()</li>
 <li>getOutputStream()</li>
@@ -362,7 +533,15 @@
       	</div>
     </div>
   </div>
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+ $('pre').addClass('prettyprint linenums');
+   prettyPrint();
+ })
+</script>
 </footer>
+
     </div>
     <script>
 	var yiliaConfig = {

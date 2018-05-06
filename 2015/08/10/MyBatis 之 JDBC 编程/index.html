@@ -5,21 +5,22 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>MyBatis 之 JDBC 编程 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网MyBatis 官方网站（中文）：MyBatis 中文官网MyBatis 源码：MyBatis 源码 JDBC 编程示例： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464">
+  <meta name="description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网MyBatis 官方网站（中文）：MyBatis 中文官网MyBatis 源码：MyBatis 源码 JDBC 编程示例： import java.io.Serializable; import java.sql.Connection; import java.sql.DriverManag">
 <meta name="keywords" content="MyBatis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MyBatis 之 JDBC 编程">
 <meta property="og:url" content="http://yoursite.com/2015/08/10/MyBatis 之 JDBC 编程/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网MyBatis 官方网站（中文）：MyBatis 中文官网MyBatis 源码：MyBatis 源码 JDBC 编程示例： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464">
+<meta property="og:description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网MyBatis 官方网站（中文）：MyBatis 中文官网MyBatis 源码：MyBatis 源码 JDBC 编程示例： import java.io.Serializable; import java.sql.Connection; import java.sql.DriverManag">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-01-06T12:39:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis 之 JDBC 编程">
-<meta name="twitter:description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网MyBatis 官方网站（中文）：MyBatis 中文官网MyBatis 源码：MyBatis 源码 JDBC 编程示例： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464">
+<meta name="twitter:description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网MyBatis 官方网站（中文）：MyBatis 中文官网MyBatis 源码：MyBatis 源码 JDBC 编程示例： import java.io.Serializable; import java.sql.Connection; import java.sql.DriverManag">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -166,8 +167,83 @@
         <p>MyBatis 版本：MyBatis 3.3.0</p>
 <p>MyBatis 官方网站（英文）：<a href="http://www.mybatis.org/mybatis-3/" target="_blank" rel="noopener">MyBatis 英文官网</a><br>MyBatis 官方网站（中文）：<a href="http://www.mybatis.org/mybatis-3/zh/" target="_blank" rel="noopener">MyBatis 中文官网</a><br>MyBatis 源码：<a href="https://github.com/mybatis/mybatis-3" target="_blank" rel="noopener">MyBatis 源码</a></p>
 <p>JDBC 编程示例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">import java.io.Serializable;</span><br><span class="line">import java.sql.Connection;</span><br><span class="line">import java.sql.DriverManager;</span><br><span class="line">import java.sql.PreparedStatement;</span><br><span class="line">import java.sql.ResultSet;</span><br><span class="line">import java.sql.SQLException;</span><br><span class="line">import java.sql.Statement;</span><br><span class="line"></span><br><span class="line">public class JdbcExample &#123;</span><br><span class="line"></span><br><span class="line">	private static final String JDBC_DRIVER_NAME = &quot;com.mysql.jdbc.Driver&quot;;</span><br><span class="line">	private static final String DB_URL = &quot;jdbc:mysql://localhost:3306/mybatis&quot;;</span><br><span class="line">	private static final String DB_USERNAME = &quot;root&quot;;</span><br><span class="line">	private static final String DB_PASSWORD = &quot;123456&quot;;</span><br><span class="line"></span><br><span class="line">	private static final String GET_USER_SQL = &quot;SELECT user_id, user_name, user_age FROM user WHERE user_id = ?&quot;;</span><br><span class="line"></span><br><span class="line">	public User getUser(Long userId) &#123;</span><br><span class="line">		Connection connection = getConnection();</span><br><span class="line">		PreparedStatement preparedStatement = null;</span><br><span class="line">		ResultSet resultSet = null;</span><br><span class="line">		User user = null;</span><br><span class="line">		try &#123;</span><br><span class="line">			preparedStatement = connection.prepareStatement(GET_USER_SQL);</span><br><span class="line">			preparedStatement.setLong(1, userId);</span><br><span class="line">			resultSet = preparedStatement.executeQuery();</span><br><span class="line">			while (resultSet.next()) &#123;</span><br><span class="line">				String userName = resultSet.getString(&quot;user_name&quot;);</span><br><span class="line">				int userAge = resultSet.getInt(&quot;user_age&quot;);</span><br><span class="line">				user = new User(userId, userName, userAge);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; finally &#123;</span><br><span class="line">			closeConnection(resultSet, preparedStatement, connection);</span><br><span class="line">		&#125;</span><br><span class="line">		return user;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	private Connection getConnection()&#123;</span><br><span class="line">		Connection connection = null;</span><br><span class="line">		try &#123;</span><br><span class="line">			Class.forName(JDBC_DRIVER_NAME);</span><br><span class="line">			connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);</span><br><span class="line">		&#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		return connection;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	private void closeConnection(ResultSet resultSet, Statement statement, Connection connection) &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			if (resultSet != null &amp;&amp; !resultSet.isClosed()) &#123;</span><br><span class="line">				resultSet.close();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		try &#123;</span><br><span class="line">			if (statement != null &amp;&amp; !statement.isClosed()) &#123;</span><br><span class="line">				statement.close();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		try &#123;</span><br><span class="line">			if (connection != null &amp;&amp; !connection.isClosed()) &#123;</span><br><span class="line">				connection.close();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>JDBC 编程步骤：</p>
+<pre><code>import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class JdbcExample {
+
+    private static final String JDBC_DRIVER_NAME = &quot;com.mysql.jdbc.Driver&quot;;
+    private static final String DB_URL = &quot;jdbc:mysql://localhost:3306/mybatis&quot;;
+    private static final String DB_USERNAME = &quot;root&quot;;
+    private static final String DB_PASSWORD = &quot;123456&quot;;
+
+    private static final String GET_USER_SQL = &quot;SELECT user_id, user_name, user_age FROM user WHERE user_id = ?&quot;;
+
+    public User getUser(Long userId) {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        User user = null;
+        try {
+            preparedStatement = connection.prepareStatement(GET_USER_SQL);
+            preparedStatement.setLong(1, userId);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String userName = resultSet.getString(&quot;user_name&quot;);
+                int userAge = resultSet.getInt(&quot;user_age&quot;);
+                user = new User(userId, userName, userAge);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection(resultSet, preparedStatement, connection);
+        }
+        return user;
+    }
+
+    private Connection getConnection(){
+        Connection connection = null;
+        try {
+            Class.forName(JDBC_DRIVER_NAME);
+            connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return connection;
+    }
+
+    private void closeConnection(ResultSet resultSet, Statement statement, Connection connection) {
+        try {
+            if (resultSet != null &amp;&amp; !resultSet.isClosed()) {
+                resultSet.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (statement != null &amp;&amp; !statement.isClosed()) {
+                statement.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (connection != null &amp;&amp; !connection.isClosed()) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre><p>JDBC 编程步骤：</p>
 <ol>
 <li>注册数据库驱动，数据库连接信息</li>
 <li>获取 Connection，操作 Connection</li>
@@ -352,7 +428,15 @@
       	</div>
     </div>
   </div>
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+ $('pre').addClass('prettyprint linenums');
+   prettyPrint();
+ })
+</script>
 </footer>
+
     </div>
     <script>
 	var yiliaConfig = {

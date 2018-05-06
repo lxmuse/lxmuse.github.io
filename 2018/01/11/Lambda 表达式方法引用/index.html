@@ -5,21 +5,22 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Lambda 表达式方法引用 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Lambda 可以使用现成已经实现的方法。 要求被调用的方法的参数类型和返回值和 Lambda 表达式中函数接口中抽象方法的参数类型和返回值一致 对象::实例方法名 1234Consumer&amp;lt;String&amp;gt; consumer = x -&amp;gt; System.out.println(x);		PrintStream printStream = System.out;Consumer&amp;l">
+  <meta name="description" content="Lambda 可以使用现成已经实现的方法。 要求被调用的方法的参数类型和返回值和 Lambda 表达式中函数接口中抽象方法的参数类型和返回值一致 对象::实例方法名 Consumer&amp;lt;String&amp;gt; consumer = x -&amp;gt; System.out.println(x);  PrintStream printStream = System.out; Consumer&amp;lt;S">
 <meta name="keywords" content="JDK 8">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Lambda 表达式方法引用">
 <meta property="og:url" content="http://yoursite.com/2018/01/11/Lambda 表达式方法引用/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="Lambda 可以使用现成已经实现的方法。 要求被调用的方法的参数类型和返回值和 Lambda 表达式中函数接口中抽象方法的参数类型和返回值一致 对象::实例方法名 1234Consumer&amp;lt;String&amp;gt; consumer = x -&amp;gt; System.out.println(x);		PrintStream printStream = System.out;Consumer&amp;l">
+<meta property="og:description" content="Lambda 可以使用现成已经实现的方法。 要求被调用的方法的参数类型和返回值和 Lambda 表达式中函数接口中抽象方法的参数类型和返回值一致 对象::实例方法名 Consumer&amp;lt;String&amp;gt; consumer = x -&amp;gt; System.out.println(x);  PrintStream printStream = System.out; Consumer&amp;lt;S">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-04-11T11:57:16.299Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lambda 表达式方法引用">
-<meta name="twitter:description" content="Lambda 可以使用现成已经实现的方法。 要求被调用的方法的参数类型和返回值和 Lambda 表达式中函数接口中抽象方法的参数类型和返回值一致 对象::实例方法名 1234Consumer&amp;lt;String&amp;gt; consumer = x -&amp;gt; System.out.println(x);		PrintStream printStream = System.out;Consumer&amp;l">
+<meta name="twitter:description" content="Lambda 可以使用现成已经实现的方法。 要求被调用的方法的参数类型和返回值和 Lambda 表达式中函数接口中抽象方法的参数类型和返回值一致 对象::实例方法名 Consumer&amp;lt;String&amp;gt; consumer = x -&amp;gt; System.out.println(x);  PrintStream printStream = System.out; Consumer&amp;lt;S">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -166,20 +167,45 @@
         <p>Lambda 可以使用现成已经实现的方法。</p>
 <p><strong>要求被调用的方法的参数类型和返回值和 Lambda 表达式中函数接口中抽象方法的参数类型和返回值一致</strong></p>
 <p><strong>对象::实例方法名</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;String&gt; consumer = x -&gt; System.out.println(x);</span><br><span class="line">		</span><br><span class="line">PrintStream printStream = System.out;</span><br><span class="line">Consumer&lt;String&gt; consumer1 = printStream::print;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;String&gt; consumer = x -&gt; System.out.println(x);</span><br><span class="line">		</span><br><span class="line">Consumer&lt;String&gt; consumer1 = System.out::print;</span><br></pre></td></tr></table></figure>
-<p><strong>类::静态方法名</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Comparator&lt;Integer&gt; comparator = (x, y) -&gt; Integer.compare(x, y);</span><br><span class="line">comparator.compare(2,3);</span><br><span class="line">	</span><br><span class="line">Comparator&lt;Integer&gt; comparator1 = Integer::compare;</span><br><span class="line">comparator1.compare(3,4);</span><br></pre></td></tr></table></figure>
-<p><strong>类::实例方法名</strong></p>
+<pre><code>Consumer&lt;String&gt; consumer = x -&gt; System.out.println(x);
+
+PrintStream printStream = System.out;
+Consumer&lt;String&gt; consumer1 = printStream::print;
+</code></pre><pre><code>Consumer&lt;String&gt; consumer = x -&gt; System.out.println(x);
+
+Consumer&lt;String&gt; consumer1 = System.out::print;
+</code></pre><p><strong>类::静态方法名</strong></p>
+<pre><code>Comparator&lt;Integer&gt; comparator = (x, y) -&gt; Integer.compare(x, y);
+comparator.compare(2,3);
+
+Comparator&lt;Integer&gt; comparator1 = Integer::compare;
+comparator1.compare(3,4);
+</code></pre><p><strong>类::实例方法名</strong></p>
 <p>要求 第一个参数是实例方法的调用者，第二个参数是实例方法的参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BiPredicate&lt;String, String&gt; biPredicate = (x, y) -&gt; x.equals(y);</span><br><span class="line">biPredicate.test(&quot;b&quot;, &quot;b&quot;);</span><br><span class="line">	</span><br><span class="line">BiPredicate&lt;String, String&gt; biPredicate1 = String::equals;</span><br><span class="line">biPredicate1.test(&quot;b&quot;, &quot;b&quot;);</span><br></pre></td></tr></table></figure>
-<p><strong>构造函数引用</strong></p>
+<pre><code>BiPredicate&lt;String, String&gt; biPredicate = (x, y) -&gt; x.equals(y);
+biPredicate.test(&quot;b&quot;, &quot;b&quot;);
+
+BiPredicate&lt;String, String&gt; biPredicate1 = String::equals;
+biPredicate1.test(&quot;b&quot;, &quot;b&quot;);
+</code></pre><p><strong>构造函数引用</strong></p>
 <p>可以自动匹配对应的构造函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Supplier&lt;String&gt; supplier = () -&gt; new String();</span><br><span class="line">System.out.println(supplier);</span><br><span class="line">	</span><br><span class="line">Supplier&lt;String&gt; supplier1 = String::new;</span><br><span class="line">System.out.println(supplier1.get());</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Function&lt;String, String&gt; function = (x) -&gt; new String(x);</span><br><span class="line">System.out.println(function.apply(&quot;a&quot;));</span><br><span class="line">	</span><br><span class="line">Function&lt;String, String&gt; function1 = String::new;</span><br><span class="line">System.out.println(function1.apply(&quot;b&quot;));</span><br></pre></td></tr></table></figure>
-<p><strong>数组引用</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Function&lt;Integer, String[]&gt; function = (x) -&gt; new String[x];</span><br><span class="line">System.out.println(function.apply(5).length);</span><br><span class="line">	</span><br><span class="line">Function&lt;Integer, String[]&gt; function1 = String[]::new;</span><br><span class="line">System.out.println(function1.apply(6).length);</span><br></pre></td></tr></table></figure>
-<p>代码可参考<a href="https://github.com/lxmuse/lxmuse-jdk8-new-feature.git" target="_blank" rel="noopener">lxmuse-jdk8-new-feature-lambda-04</a></p>
+<pre><code>Supplier&lt;String&gt; supplier = () -&gt; new String();
+System.out.println(supplier);
+
+Supplier&lt;String&gt; supplier1 = String::new;
+System.out.println(supplier1.get());
+</code></pre><pre><code>Function&lt;String, String&gt; function = (x) -&gt; new String(x);
+System.out.println(function.apply(&quot;a&quot;));
+
+Function&lt;String, String&gt; function1 = String::new;
+System.out.println(function1.apply(&quot;b&quot;));
+</code></pre><p><strong>数组引用</strong></p>
+<pre><code>Function&lt;Integer, String[]&gt; function = (x) -&gt; new String[x];
+System.out.println(function.apply(5).length);
+
+Function&lt;Integer, String[]&gt; function1 = String[]::new;
+System.out.println(function1.apply(6).length);
+</code></pre><p>代码可参考<a href="https://github.com/lxmuse/lxmuse-jdk8-new-feature.git" target="_blank" rel="noopener">lxmuse-jdk8-new-feature-lambda-04</a></p>
 
       
 
@@ -356,7 +382,15 @@
       	</div>
     </div>
   </div>
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+ $('pre').addClass('prettyprint linenums');
+   prettyPrint();
+ })
+</script>
 </footer>
+
     </div>
     <script>
 	var yiliaConfig = {

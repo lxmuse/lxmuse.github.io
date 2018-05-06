@@ -5,6 +5,7 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>单例模式概述 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -175,8 +176,19 @@
 </ul>
 <p><strong>实现关键</strong>：构造函数是私有的</p>
 <p><strong>单例模式通用代码</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">	private static final Singleton singleton = new Singleton();</span><br><span class="line">	</span><br><span class="line">	private Singleton()&#123;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static Singleton getSingleton() &#123;</span><br><span class="line">		return singleton;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>单例模式的优点</strong></p>
+<pre><code>public class Singleton {
+
+    private static final Singleton singleton = new Singleton();
+
+    private Singleton(){
+    }
+
+    public static Singleton getSingleton() {
+        return singleton;
+    }
+
+}
+</code></pre><p><strong>单例模式的优点</strong></p>
 <ul>
 <li>单例模式在内存中只有一个实例，减少了内存开销，特别是频繁的创建和销毁实例</li>
 <li>单例模式可以避免对资源的多重占用</li>
@@ -373,7 +385,15 @@
       	</div>
     </div>
   </div>
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+ $('pre').addClass('prettyprint linenums');
+   prettyPrint();
+ })
+</script>
 </footer>
+
     </div>
     <script>
 	var yiliaConfig = {

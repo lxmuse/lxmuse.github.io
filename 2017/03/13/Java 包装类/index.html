@@ -5,6 +5,7 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java 包装类 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -214,8 +215,10 @@
 <h2 id="包装类的基本用法"><a href="#包装类的基本用法" class="headerlink" title="包装类的基本用法"></a>包装类的基本用法</h2><p><strong>包装类与基本类型的转换</strong></p>
 <p>包装类与基本类型的转换代码结构都是类似的，每种包装类都有一个静态方法 valueOf() 接受基本类型，返回引用类型，也有一个实例方法 xxValue() 方法返回对应的基本类型。</p>
 <p>以 boolean 和 Boolean 转换为例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">boolean b1 = false;</span><br><span class="line">Boolean bObject = Boolean.valueOf(b1);</span><br><span class="line">boolean b2 = bObject.booleanValue();</span><br></pre></td></tr></table></figure>
-<p>装箱：将基本类型转换为包装类型的过程<br>拆箱：将包装类型转换为基本类型的过程</p>
+<pre><code>boolean b1 = false;
+Boolean bObject = Boolean.valueOf(b1);
+boolean b2 = bObject.booleanValue();
+</code></pre><p>装箱：将基本类型转换为包装类型的过程<br>拆箱：将包装类型转换为基本类型的过程</p>
 <p>Java 5 引入了自动装箱和自动拆箱的机制，该机制由编译器提供，实际依旧调用了对应的valueOf()方法和 xxxValue() 方法。</p>
 <p>每种包装类也支持通过构造函数实例化，但是不推荐使用，构造函数会创建一个新对象，而很多包装类内部都会缓存包装类对象。</p>
 <p><strong>包装类的共同点</strong></p>
@@ -230,8 +233,13 @@
 </ul>
 <p><strong>Number类</strong></p>
 <p>Number 类是所有包装类的抽象类，定义了如下方法，用于包装类返回任意类型的基本数据类型：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">byte byteValue();</span><br><span class="line">short shortValue();</span><br><span class="line">int intValue();</span><br><span class="line">long longValue();</span><br><span class="line">float floatValue();</span><br><span class="line">double doubleValue();</span><br></pre></td></tr></table></figure>
-<p><strong>不可变性</strong></p>
+<pre><code>byte byteValue();
+short shortValue();
+int intValue();
+long longValue();
+float floatValue();
+double doubleValue();
+</code></pre><p><strong>不可变性</strong></p>
 <p>包装类都是不可变类：</p>
 <ul>
 <li>所有包装类都声明为 final , 不能被继承</li>
@@ -414,7 +422,15 @@
       	</div>
     </div>
   </div>
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+ $('pre').addClass('prettyprint linenums');
+   prettyPrint();
+ })
+</script>
 </footer>
+
     </div>
     <script>
 	var yiliaConfig = {

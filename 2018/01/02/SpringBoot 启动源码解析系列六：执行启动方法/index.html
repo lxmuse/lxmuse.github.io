@@ -5,21 +5,22 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>SpringBoot 启动源码解析系列六：执行启动方法 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="123456789101112131415161718192021222324252627282930public ConfigurableApplicationContext run(String... args) &amp;#123;    StopWatch stopWatch = new StopWatch();    stopWatch.start();    ConfigurableAppli">
+  <meta name="description" content="public ConfigurableApplicationContext run(String... args) {     StopWatch stopWatch = new StopWatch();     stopWatch.start();     ConfigurableApplicationContext context = null;     FailureAnalyzers an">
 <meta name="keywords" content="SpringBoot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot 启动源码解析系列六：执行启动方法">
 <meta property="og:url" content="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列六：执行启动方法/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="123456789101112131415161718192021222324252627282930public ConfigurableApplicationContext run(String... args) &amp;#123;    StopWatch stopWatch = new StopWatch();    stopWatch.start();    ConfigurableAppli">
+<meta property="og:description" content="public ConfigurableApplicationContext run(String... args) {     StopWatch stopWatch = new StopWatch();     stopWatch.start();     ConfigurableApplicationContext context = null;     FailureAnalyzers an">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-01-02T14:16:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot 启动源码解析系列六：执行启动方法">
-<meta name="twitter:description" content="123456789101112131415161718192021222324252627282930public ConfigurableApplicationContext run(String... args) &amp;#123;    StopWatch stopWatch = new StopWatch();    stopWatch.start();    ConfigurableAppli">
+<meta name="twitter:description" content="public ConfigurableApplicationContext run(String... args) {     StopWatch stopWatch = new StopWatch();     stopWatch.start();     ConfigurableApplicationContext context = null;     FailureAnalyzers an">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -163,15 +164,52 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public ConfigurableApplicationContext run(String... args) &#123;</span><br><span class="line">    StopWatch stopWatch = new StopWatch();</span><br><span class="line">    stopWatch.start();</span><br><span class="line">    ConfigurableApplicationContext context = null;</span><br><span class="line">    FailureAnalyzers analyzers = null;</span><br><span class="line">    this.configureHeadlessProperty();</span><br><span class="line">    SpringApplicationRunListeners listeners = this.getRunListeners(args);</span><br><span class="line">    listeners.starting();</span><br><span class="line"></span><br><span class="line">    try &#123;</span><br><span class="line">        ApplicationArguments applicationArguments = new DefaultApplicationArguments(args);</span><br><span class="line">        ConfigurableEnvironment environment = this.prepareEnvironment(listeners, applicationArguments);</span><br><span class="line">        Banner printedBanner = this.printBanner(environment);</span><br><span class="line">        context = this.createApplicationContext();</span><br><span class="line">        new FailureAnalyzers(context);</span><br><span class="line">        this.prepareContext(context, environment, listeners, applicationArguments, printedBanner);</span><br><span class="line">        this.refreshContext(context);</span><br><span class="line">        this.afterRefresh(context, applicationArguments);</span><br><span class="line">        listeners.finished(context, (Throwable)null);</span><br><span class="line">        stopWatch.stop();</span><br><span class="line">        if (this.logStartupInfo) &#123;</span><br><span class="line">            (new StartupInfoLogger(this.mainApplicationClass)).logStarted(this.getApplicationLog(), stopWatch);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return context;</span><br><span class="line">    &#125; catch (Throwable var9) &#123;</span><br><span class="line">        this.handleRunFailure(context, listeners, (FailureAnalyzers)analyzers, var9);</span><br><span class="line">        throw new IllegalStateException(var9);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>核心步骤一：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SpringApplicationRunListeners listeners = this.getRunListeners(args);</span><br><span class="line">listeners.starting();</span><br></pre></td></tr></table></figure></p>
-<p>核心步骤二：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ConfigurableEnvironment environment = this.prepareEnvironment(listeners, applicationArguments);</span><br></pre></td></tr></table></figure></p>
-<p>核心步骤三：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">context = this.createApplicationContext();</span><br></pre></td></tr></table></figure></p>
-<p>核心步骤四：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.prepareContext(context, environment, listeners, applicationArguments, printedBanner);</span><br></pre></td></tr></table></figure></p>
-<p>核心步骤五：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.refreshContext(context);</span><br></pre></td></tr></table></figure></p>
-<p>核心步骤六：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.afterRefresh(context, applicationArguments);</span><br></pre></td></tr></table></figure></p>
-<p>核心步骤七：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">listeners.finished(context, (Throwable)null);</span><br></pre></td></tr></table></figure></p>
+        <pre><code>public ConfigurableApplicationContext run(String... args) {
+    StopWatch stopWatch = new StopWatch();
+    stopWatch.start();
+    ConfigurableApplicationContext context = null;
+    FailureAnalyzers analyzers = null;
+    this.configureHeadlessProperty();
+    SpringApplicationRunListeners listeners = this.getRunListeners(args);
+    listeners.starting();
 
+    try {
+        ApplicationArguments applicationArguments = new DefaultApplicationArguments(args);
+        ConfigurableEnvironment environment = this.prepareEnvironment(listeners, applicationArguments);
+        Banner printedBanner = this.printBanner(environment);
+        context = this.createApplicationContext();
+        new FailureAnalyzers(context);
+        this.prepareContext(context, environment, listeners, applicationArguments, printedBanner);
+        this.refreshContext(context);
+        this.afterRefresh(context, applicationArguments);
+        listeners.finished(context, (Throwable)null);
+        stopWatch.stop();
+        if (this.logStartupInfo) {
+            (new StartupInfoLogger(this.mainApplicationClass)).logStarted(this.getApplicationLog(), stopWatch);
+        }
+
+        return context;
+    } catch (Throwable var9) {
+        this.handleRunFailure(context, listeners, (FailureAnalyzers)analyzers, var9);
+        throw new IllegalStateException(var9);
+    }
+}
+</code></pre><p>核心步骤一：</p>
+<pre><code>SpringApplicationRunListeners listeners = this.getRunListeners(args);
+listeners.starting();
+</code></pre><p>核心步骤二：</p>
+<pre><code>ConfigurableEnvironment environment = this.prepareEnvironment(listeners, applicationArguments);
+</code></pre><p>核心步骤三：</p>
+<pre><code>context = this.createApplicationContext();
+</code></pre><p>核心步骤四：</p>
+<pre><code>this.prepareContext(context, environment, listeners, applicationArguments, printedBanner);
+</code></pre><p>核心步骤五：</p>
+<pre><code>this.refreshContext(context);
+</code></pre><p>核心步骤六：</p>
+<pre><code>this.afterRefresh(context, applicationArguments);
+</code></pre><p>核心步骤七：</p>
+<pre><code>listeners.finished(context, (Throwable)null);
+</code></pre>
       
 
       
@@ -347,7 +385,15 @@
       	</div>
     </div>
   </div>
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+ $('pre').addClass('prettyprint linenums');
+   prettyPrint();
+ })
+</script>
 </footer>
+
     </div>
     <script>
 	var yiliaConfig = {

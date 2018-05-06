@@ -5,21 +5,22 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Python 字典 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Python : 3.6.3 Python 字典是一系列的键值对，都点像JSON：123car = &amp;#123;&amp;apos;name&amp;apos;:&amp;apos;BMW&amp;apos;,&amp;apos;color&amp;apos;:&amp;apos;Black&amp;apos;&amp;#125;print(car[&amp;apos;name&amp;apos;])print(car[&amp;apos;color&amp;apos;]) 输出：12BMWBlac">
+  <meta name="description" content="Python : 3.6.3 Python 字典是一系列的键值对，都点像JSON： car = {&amp;#39;name&amp;#39;:&amp;#39;BMW&amp;#39;,&amp;#39;color&amp;#39;:&amp;#39;Black&amp;#39;} print(car[&amp;#39;name&amp;#39;]) print(car[&amp;#39;color&amp;#39;]) 输出： BMW Black 字典中可以包含任意数量的键值对，可直接通">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 字典">
 <meta property="og:url" content="http://yoursite.com/2017/12/26/Python 字典/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="Python : 3.6.3 Python 字典是一系列的键值对，都点像JSON：123car = &amp;#123;&amp;apos;name&amp;apos;:&amp;apos;BMW&amp;apos;,&amp;apos;color&amp;apos;:&amp;apos;Black&amp;apos;&amp;#125;print(car[&amp;apos;name&amp;apos;])print(car[&amp;apos;color&amp;apos;]) 输出：12BMWBlac">
+<meta property="og:description" content="Python : 3.6.3 Python 字典是一系列的键值对，都点像JSON： car = {&amp;#39;name&amp;#39;:&amp;#39;BMW&amp;#39;,&amp;#39;color&amp;#39;:&amp;#39;Black&amp;#39;} print(car[&amp;#39;name&amp;#39;]) print(car[&amp;#39;color&amp;#39;]) 输出： BMW Black 字典中可以包含任意数量的键值对，可直接通">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2017-12-26T14:05:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 字典">
-<meta name="twitter:description" content="Python : 3.6.3 Python 字典是一系列的键值对，都点像JSON：123car = &amp;#123;&amp;apos;name&amp;apos;:&amp;apos;BMW&amp;apos;,&amp;apos;color&amp;apos;:&amp;apos;Black&amp;apos;&amp;#125;print(car[&amp;apos;name&amp;apos;])print(car[&amp;apos;color&amp;apos;]) 输出：12BMWBlac">
+<meta name="twitter:description" content="Python : 3.6.3 Python 字典是一系列的键值对，都点像JSON： car = {&amp;#39;name&amp;#39;:&amp;#39;BMW&amp;#39;,&amp;#39;color&amp;#39;:&amp;#39;Black&amp;#39;} print(car[&amp;#39;name&amp;#39;]) print(car[&amp;#39;color&amp;#39;]) 输出： BMW Black 字典中可以包含任意数量的键值对，可直接通">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -164,30 +165,104 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Python : 3.6.3</p>
-<p>Python 字典是一系列的键值对，都点像JSON：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;Black&apos;&#125;</span><br><span class="line">print(car[&apos;name&apos;])</span><br><span class="line">print(car[&apos;color&apos;])</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BMW</span><br><span class="line">Black</span><br></pre></td></tr></table></figure></p>
-<p>字典中可以包含任意数量的键值对，可直接通过键获取值。<br>字典是一种动态结构，可随时在其中添加键值对：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;</span><br><span class="line">print(car[&apos;name&apos;])</span><br><span class="line">print(car[&apos;color&apos;])</span><br><span class="line">car[&apos;color&apos;] = &apos;Red&apos;</span><br><span class="line">car[&apos;price&apos;] = 400000</span><br><span class="line">print(car)</span><br><span class="line">print(car[&apos;name&apos;])</span><br><span class="line">print(car[&apos;color&apos;])</span><br><span class="line">print(car[&apos;price&apos;])</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">BMW</span><br><span class="line">black</span><br><span class="line">&#123;&apos;name&apos;: &apos;BMW&apos;, &apos;color&apos;: &apos;Red&apos;, &apos;price&apos;: 400000&#125;</span><br><span class="line">BMW</span><br><span class="line">Red</span><br><span class="line">400000</span><br></pre></td></tr></table></figure></p>
-<p>添加键值对时，若键已存在，则替换原键对应的值，反之新增键值对。<br>字典默认支持保存混合类型的数值，即一个字典中即可以保存字符串类型的值，还可以同时保存数值类型的值。</p>
-<p>Python 也支持创建一个空的字典：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>字典的键值对删除需要依赖于特殊的关键字 del :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;</span><br><span class="line">print(car[&apos;name&apos;])</span><br><span class="line">print(car[&apos;color&apos;])</span><br><span class="line">del car[&apos;color&apos;]</span><br><span class="line">print(car)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BMW</span><br><span class="line">black</span><br><span class="line">&#123;&apos;name&apos;: &apos;BMW&apos;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>遍历字典所有的键值对：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;</span><br><span class="line"></span><br><span class="line">for key, value in car.items():</span><br><span class="line">	print(&quot;key : &quot; + key)</span><br><span class="line">	print(&quot;value : &quot; + value)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">key : name</span><br><span class="line">value : BMW</span><br><span class="line">key : color</span><br><span class="line">value : black</span><br></pre></td></tr></table></figure></p>
-<p>遍历字典所有的键：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;</span><br><span class="line"></span><br><span class="line">for key in car.keys():</span><br><span class="line">	print(&quot;key : &quot; + key)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">key : name</span><br><span class="line">key : color</span><br></pre></td></tr></table></figure></p>
-<p>遍历字典所有的值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;</span><br><span class="line"></span><br><span class="line">for value in car.values():</span><br><span class="line">	print(&quot;value : &quot; + value)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">value : BMW</span><br><span class="line">value : black</span><br></pre></td></tr></table></figure></p>
-<p>按顺序遍历字典所有的键：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">car = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;</span><br><span class="line"></span><br><span class="line">for key in sorted(car.keys()):</span><br><span class="line">	print(&quot;key : &quot; + key)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">key : color</span><br><span class="line">key : name</span><br></pre></td></tr></table></figure></p>
-<p>列表嵌套字典：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">car1 = &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;</span><br><span class="line">car2 = &#123;&apos;name&apos;:&apos;Smart&apos;,&apos;color&apos;:&apos;Red&apos;&#125;</span><br><span class="line">car3 = &#123;&apos;name&apos;:&apos;Ford&apos;,&apos;color&apos;:&apos;Green&apos;&#125;</span><br><span class="line">car4 = &#123;&apos;name&apos;:&apos;GMC&apos;&#125;</span><br><span class="line"></span><br><span class="line">cars = [car1, car2, car3, car4]</span><br><span class="line">for car in cars:</span><br><span class="line">	print(car)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;&apos;name&apos;: &apos;BMW&apos;, &apos;color&apos;: &apos;black&apos;&#125;</span><br><span class="line">&#123;&apos;name&apos;: &apos;Smart&apos;, &apos;color&apos;: &apos;Red&apos;&#125;</span><br><span class="line">&#123;&apos;name&apos;: &apos;Ford&apos;, &apos;color&apos;: &apos;Green&apos;&#125;</span><br><span class="line">&#123;&apos;name&apos;: &apos;GMC&apos;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>允许将不同的字典嵌套到一个列表中</p>
-<p>字典嵌套列表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user = &#123;&quot;name&quot;:&quot;Tom&quot;, &quot;cars&quot;:[&quot;BMW&quot;,&quot;Smart&quot;]&#125;</span><br><span class="line">print(user)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&apos;name&apos;: &apos;Tom&apos;, &apos;cars&apos;: [&apos;BMW&apos;, &apos;Smart&apos;]&#125;</span><br></pre></td></tr></table></figure></p>
-<p>字典嵌套字典：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user = &#123;&quot;name&quot;:&quot;Tom&quot;, &quot;car&quot; : &#123;&apos;name&apos;:&apos;BMW&apos;,&apos;color&apos;:&apos;black&apos;&#125;&#125;</span><br><span class="line">print(user)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&apos;name&apos;: &apos;Tom&apos;, &apos;car&apos;: &#123;&apos;name&apos;: &apos;BMW&apos;, &apos;color&apos;: &apos;black&apos;&#125;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Python 字典是一系列的键值对，都点像JSON：</p>
+<pre><code>car = {&#39;name&#39;:&#39;BMW&#39;,&#39;color&#39;:&#39;Black&#39;}
+print(car[&#39;name&#39;])
+print(car[&#39;color&#39;])
+</code></pre><p>输出：</p>
+<pre><code>BMW
+Black
+</code></pre><p>字典中可以包含任意数量的键值对，可直接通过键获取值。<br>字典是一种动态结构，可随时在其中添加键值对：</p>
+<pre><code>car = {&#39;name&#39;:&#39;BMW&#39;,&#39;color&#39;:&#39;black&#39;}
+print(car[&#39;name&#39;])
+print(car[&#39;color&#39;])
+car[&#39;color&#39;] = &#39;Red&#39;
+car[&#39;price&#39;] = 400000
+print(car)
+print(car[&#39;name&#39;])
+print(car[&#39;color&#39;])
+print(car[&#39;price&#39;])
+</code></pre><p>输出：</p>
+<pre><code>BMW
+black
+{&#39;name&#39;: &#39;BMW&#39;, &#39;color&#39;: &#39;Red&#39;, &#39;price&#39;: 400000}
+BMW
+Red
+400000
+</code></pre><p>添加键值对时，若键已存在，则替换原键对应的值，反之新增键值对。<br>字典默认支持保存混合类型的数值，即一个字典中即可以保存字符串类型的值，还可以同时保存数值类型的值。</p>
+<p>Python 也支持创建一个空的字典：</p>
+<pre><code>car = {}
+</code></pre><p>字典的键值对删除需要依赖于特殊的关键字 del :</p>
+<pre><code>car = {&#39;name&#39;:&#39;BMW&#39;,&#39;color&#39;:&#39;black&#39;}
+print(car[&#39;name&#39;])
+print(car[&#39;color&#39;])
+del car[&#39;color&#39;]
+print(car)
+</code></pre><p>输出：</p>
+<pre><code>BMW
+black
+{&#39;name&#39;: &#39;BMW&#39;}
+</code></pre><p>遍历字典所有的键值对：</p>
+<pre><code>car = {&#39;name&#39;:&#39;BMW&#39;,&#39;color&#39;:&#39;black&#39;}
 
+for key, value in car.items():
+    print(&quot;key : &quot; + key)
+    print(&quot;value : &quot; + value)
+</code></pre><p>输出：</p>
+<pre><code>key : name
+value : BMW
+key : color
+value : black
+</code></pre><p>遍历字典所有的键：</p>
+<pre><code>car = {&#39;name&#39;:&#39;BMW&#39;,&#39;color&#39;:&#39;black&#39;}
+
+for key in car.keys():
+    print(&quot;key : &quot; + key)
+</code></pre><p>输出：</p>
+<pre><code>key : name
+key : color
+</code></pre><p>遍历字典所有的值：</p>
+<pre><code>car = {&#39;name&#39;:&#39;BMW&#39;,&#39;color&#39;:&#39;black&#39;}
+
+for value in car.values():
+    print(&quot;value : &quot; + value)
+</code></pre><p>输出：</p>
+<pre><code>value : BMW
+value : black
+</code></pre><p>按顺序遍历字典所有的键：</p>
+<pre><code>car = {&#39;name&#39;:&#39;BMW&#39;,&#39;color&#39;:&#39;black&#39;}
+
+for key in sorted(car.keys()):
+    print(&quot;key : &quot; + key)
+</code></pre><p>输出：</p>
+<pre><code>key : color
+key : name
+</code></pre><p>列表嵌套字典：</p>
+<pre><code>car1 = {&#39;name&#39;:&#39;BMW&#39;,&#39;color&#39;:&#39;black&#39;}
+car2 = {&#39;name&#39;:&#39;Smart&#39;,&#39;color&#39;:&#39;Red&#39;}
+car3 = {&#39;name&#39;:&#39;Ford&#39;,&#39;color&#39;:&#39;Green&#39;}
+car4 = {&#39;name&#39;:&#39;GMC&#39;}
+
+cars = [car1, car2, car3, car4]
+for car in cars:
+    print(car)
+</code></pre><p>输出：</p>
+<pre><code>{&#39;name&#39;: &#39;BMW&#39;, &#39;color&#39;: &#39;black&#39;}
+{&#39;name&#39;: &#39;Smart&#39;, &#39;color&#39;: &#39;Red&#39;}
+{&#39;name&#39;: &#39;Ford&#39;, &#39;color&#39;: &#39;Green&#39;}
+{&#39;name&#39;: &#39;GMC&#39;}
+</code></pre><p>允许将不同的字典嵌套到一个列表中</p>
+<p>字典嵌套列表：</p>
+<pre><code>user = {&quot;name&quot;:&quot;Tom&quot;, &quot;cars&quot;:[&quot;BMW&quot;,&quot;Smart&quot;]}
+print(user)
+</code></pre><p>输出：</p>
+<pre><code>{&#39;name&#39;: &#39;Tom&#39;, &#39;cars&#39;: [&#39;BMW&#39;, &#39;Smart&#39;]}
+</code></pre><p>字典嵌套字典：</p>
+<pre><code>user = {&quot;name&quot;:&quot;Tom&quot;, &quot;car&quot; : {&#39;name&#39;:&#39;BMW&#39;,&#39;color&#39;:&#39;black&#39;}}
+print(user)
+</code></pre><p>输出：</p>
+<pre><code>{&#39;name&#39;: &#39;Tom&#39;, &#39;car&#39;: {&#39;name&#39;: &#39;BMW&#39;, &#39;color&#39;: &#39;black&#39;}}
+</code></pre>
       
 
       
@@ -363,7 +438,15 @@
       	</div>
     </div>
   </div>
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+ $('pre').addClass('prettyprint linenums');
+   prettyPrint();
+ })
+</script>
 </footer>
+
     </div>
     <script>
 	var yiliaConfig = {

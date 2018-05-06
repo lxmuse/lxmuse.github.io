@@ -5,21 +5,22 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Python 列表 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Python : 3.6.3  创建列表列表即由一系列按照一定顺序排列的元素组成。在 Python 中，用方括号（[]）来表示列表，并用逗号来分隔其中的元素：1cars = [&amp;quot;BMW&amp;quot;,&amp;quot;Ferrari&amp;quot;,&amp;quot;Mini&amp;quot;,&amp;quot;Smart&amp;quot;,&amp;quot;Audi&amp;quot;,&amp;quot;Ford&amp;quot;,&amp;quot;J">
+  <meta name="description" content="Python : 3.6.3  创建列表列表即由一系列按照一定顺序排列的元素组成。在 Python 中，用方括号（[]）来表示列表，并用逗号来分隔其中的元素： cars = [&amp;quot;BMW&amp;quot;,&amp;quot;Ferrari&amp;quot;,&amp;quot;Mini&amp;quot;,&amp;quot;Smart&amp;quot;,&amp;quot;Audi&amp;quot;,&amp;quot;Ford&amp;quot;,&amp;quot;J">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 列表">
 <meta property="og:url" content="http://yoursite.com/2017/12/13/Python 列表/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="Python : 3.6.3  创建列表列表即由一系列按照一定顺序排列的元素组成。在 Python 中，用方括号（[]）来表示列表，并用逗号来分隔其中的元素：1cars = [&amp;quot;BMW&amp;quot;,&amp;quot;Ferrari&amp;quot;,&amp;quot;Mini&amp;quot;,&amp;quot;Smart&amp;quot;,&amp;quot;Audi&amp;quot;,&amp;quot;Ford&amp;quot;,&amp;quot;J">
+<meta property="og:description" content="Python : 3.6.3  创建列表列表即由一系列按照一定顺序排列的元素组成。在 Python 中，用方括号（[]）来表示列表，并用逗号来分隔其中的元素： cars = [&amp;quot;BMW&amp;quot;,&amp;quot;Ferrari&amp;quot;,&amp;quot;Mini&amp;quot;,&amp;quot;Smart&amp;quot;,&amp;quot;Audi&amp;quot;,&amp;quot;Ford&amp;quot;,&amp;quot;J">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2017-12-20T16:30:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 列表">
-<meta name="twitter:description" content="Python : 3.6.3  创建列表列表即由一系列按照一定顺序排列的元素组成。在 Python 中，用方括号（[]）来表示列表，并用逗号来分隔其中的元素：1cars = [&amp;quot;BMW&amp;quot;,&amp;quot;Ferrari&amp;quot;,&amp;quot;Mini&amp;quot;,&amp;quot;Smart&amp;quot;,&amp;quot;Audi&amp;quot;,&amp;quot;Ford&amp;quot;,&amp;quot;J">
+<meta name="twitter:description" content="Python : 3.6.3  创建列表列表即由一系列按照一定顺序排列的元素组成。在 Python 中，用方括号（[]）来表示列表，并用逗号来分隔其中的元素： cars = [&amp;quot;BMW&amp;quot;,&amp;quot;Ferrari&amp;quot;,&amp;quot;Mini&amp;quot;,&amp;quot;Smart&amp;quot;,&amp;quot;Audi&amp;quot;,&amp;quot;Ford&amp;quot;,&amp;quot;J">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -164,70 +165,207 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Python : 3.6.3 </p>
-<h4 id="创建列表"><a href="#创建列表" class="headerlink" title="创建列表"></a>创建列表</h4><p>列表即由一系列按照一定顺序排列的元素组成。<br>在 Python 中，用方括号（[]）来表示列表，并用逗号来分隔其中的元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br></pre></td></tr></table></figure></p>
-<p>如果将列表打印：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
-<p>其输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br></pre></td></tr></table></figure></p>
-<p>Python 将打印列表的内部元素，包括方括号，且元素将被引号包裹。</p>
+<h4 id="创建列表"><a href="#创建列表" class="headerlink" title="创建列表"></a>创建列表</h4><p>列表即由一系列按照一定顺序排列的元素组成。<br>在 Python 中，用方括号（[]）来表示列表，并用逗号来分隔其中的元素：</p>
+<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
+</code></pre><p>如果将列表打印：</p>
+<pre><code>print(cars)
+</code></pre><p>其输出：</p>
+<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+</code></pre><p>Python 将打印列表的内部元素，包括方括号，且元素将被引号包裹。</p>
 <p><strong>创建空列表</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cars = []</span><br></pre></td></tr></table></figure>
-<p><strong>Python 无法向其他编程语言一样（如 Java）初始化创建指定长度的空列表：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cars = [8]</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
-<p>其输出是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8</span><br></pre></td></tr></table></figure></p>
-<p><strong>Python 列表内的元素不要求一致，可以混合：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,8,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
-<p>其输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, 8, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br></pre></td></tr></table></figure></p>
-<p>不过，实际编程中应当使列表内的元素类型保持一致。</p>
-<h4 id="访问列表元素"><a href="#访问列表元素" class="headerlink" title="访问列表元素"></a>访问列表元素</h4><p>列表是有序集合，可直接通过元素的位置（索引）访问其列表元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(cars[0])</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BMW</span><br></pre></td></tr></table></figure></p>
-<p>Python 将只返回元素内容，而不包括方括号和引号。<br>Python 的索引是从 0 开始，和大多数编程语言一致。<br>同理，要想访问第3个元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(cars[2])</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mini</span><br></pre></td></tr></table></figure></p>
-<p>若不知道一个列表包含多少个元素，而又想直接获取最后一个元素，Python 提供一个特殊的语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(cars[-1])</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Jeep</span><br></pre></td></tr></table></figure></p>
-<p>同理，要想访问倒数第2个元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(cars[-2])</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ford</span><br></pre></td></tr></table></figure></p>
-<p>可以直接使用列表中的各个元素值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(&quot;My first car is a &quot; + cars[0] + &quot;.&quot;)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">My first car is a BMW.</span><br></pre></td></tr></table></figure></p>
-<p>甚至可以结合字符串的 API ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(&quot;My first car is a &quot; + cars[0].title() + &quot;.&quot;)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">My first car is a BMW.</span><br></pre></td></tr></table></figure></p>
-<p>因为此处元素值首字母本身已大写，故 titile() 后结果不会发生变化。</p>
-<h4 id="获取列表的长度"><a href="#获取列表的长度" class="headerlink" title="获取列表的长度"></a>获取列表的长度</h4><p>使用 len() 方法可以直接获取列表的长度（元素个数）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(len(cars))</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7</span><br></pre></td></tr></table></figure></p>
-<p>元素个数的计算从 1 开始，这点和其他编程语言也是相同的。</p>
-<p>若访问一个错误索引位置的元素，Python 无法通过编译，将提示错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IndexError：list index out of range</span><br></pre></td></tr></table></figure></p>
-<h4 id="修改列表元素"><a href="#修改列表元素" class="headerlink" title="修改列表元素"></a>修改列表元素</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">cars[0] = &quot;Aston Martin&quot;</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;Aston Martin&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br></pre></td></tr></table></figure></p>
-<p>通过 “=” 可将新的元素值赋予指定索引位置的元素，其值将发生修改</p>
-<h4 id="添加列表元素"><a href="#添加列表元素" class="headerlink" title="添加列表元素"></a>添加列表元素</h4><h5 id="从列表末尾添加元素"><a href="#从列表末尾添加元素" class="headerlink" title="从列表末尾添加元素"></a>从列表末尾添加元素</h5><p>可以使用 append() 方法向列表的末尾追加一个新的元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">cars.append(&quot;Aston Martin&quot;)</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;, &apos;Aston Martin&apos;]</span><br></pre></td></tr></table></figure></p>
-<p>可以先创建一个空列表，通过 append() 方法不断的向列表中添加新元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">cars = []</span><br><span class="line">cars.append(&quot;BMW&quot;)</span><br><span class="line">cars.append(&quot;Ferrari&quot;)</span><br><span class="line">cars.append(&quot;Mini&quot;)</span><br><span class="line">cars.append(&quot;Smart&quot;)</span><br><span class="line">cars.append(&quot;Audi&quot;)</span><br><span class="line">cars.append(&quot;Ford&quot;)</span><br><span class="line">cars.append(&quot;Jeep&quot;)</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br></pre></td></tr></table></figure></p>
-<p>两者输出结果是一致的。</p>
-<h5 id="可以在列表的指定位置处添加元素"><a href="#可以在列表的指定位置处添加元素" class="headerlink" title="可以在列表的指定位置处添加元素"></a>可以在列表的指定位置处添加元素</h5><p>可以使用 insert() 方法向列表指定索引处添加一个元素，列表内将从该索引开始，往后索引上的元素都将后移一位：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">cars.insert(3, &quot;Lamborghini&quot;)</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Lamborghini&apos;, Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br></pre></td></tr></table></figure></p>
-<p><strong>若 insert() 方法指定的元素位置超出了列表的长度，则元素将被默认添加在列表的末尾</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">cars.insert(9, &quot;Lamborghini&quot;)</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;, &apos;Lamborghini&apos;]</span><br></pre></td></tr></table></figure></p>
-<h4 id="删除列表元素"><a href="#删除列表元素" class="headerlink" title="删除列表元素"></a>删除列表元素</h4><h5 id="直接删除元素"><a href="#直接删除元素" class="headerlink" title="直接删除元素"></a>直接删除元素</h5><p>可以使用 del 语句删除列表指定位置处的元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">del cars[5]</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Jeep&apos;]</span><br></pre></td></tr></table></figure></p>
-<h5 id="删除元素时获取被删除的元素"><a href="#删除元素时获取被删除的元素" class="headerlink" title="删除元素时获取被删除的元素"></a>删除元素时获取被删除的元素</h5><p>可以使用 pop() 方法在删除元素时获取被删除的元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">car = cars.pop()</span><br><span class="line">print(car)</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">Jeep</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;]</span><br></pre></td></tr></table></figure></p>
-<p>pop() 方法默认将删除列表末尾的列表，其和栈中弹出最近存入的元素类似。<br>要想弹出指定位置的元素可以指定索引位置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">car = cars.pop(5)</span><br><span class="line">print(car)</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">Ford</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Jeep&apos;]</span><br></pre></td></tr></table></figure></p>
-<h5 id="根据值删除元素"><a href="#根据值删除元素" class="headerlink" title="根据值删除元素"></a>根据值删除元素</h5><p>Python 可以使用 remove() 方法直接根据元素的值删除来删除元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">cars.remove(&quot;Mini&quot;)</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br></pre></td></tr></table></figure></p>
-<p>若指定的元素值在列表中存在多个，则根据索引顺序只删除第一次出现该值处的元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;, &quot;Mini&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">cars.remove(&quot;Mini&quot;)</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;, &apos;Mini&apos;]</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;, &apos;Mini&apos;]</span><br></pre></td></tr></table></figure></p>
-<p>若要删除的元素值提前被赋予某变量，那么执行列表的 remove() 方法对该变量没有影响：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">car = &quot;Mini&quot;</span><br><span class="line">cars.remove(car)</span><br><span class="line">print(car)</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">Mini</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br></pre></td></tr></table></figure></p>
-<p>一个特殊的地方，如想移除一个不存在的元素值，Python 无法通过编译，将提示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ValueError: list.remove(x): x not in list</span><br></pre></td></tr></table></figure></p>
-<h4 id="列表排序"><a href="#列表排序" class="headerlink" title="列表排序"></a>列表排序</h4><h5 id="列表的永久排序"><a href="#列表的永久排序" class="headerlink" title="列表的永久排序"></a>列表的永久排序</h5><p>可以使用 sort() 方法对列表进行永久排序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">cars.sort()</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
-<p>其输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;Audi&apos;, &apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Ford&apos;, &apos;Jeep&apos;, &apos;Mini&apos;, &apos;Smart&apos;]</span><br></pre></td></tr></table></figure></p>
-<p>默认是按照自然排序的规则对列表元素进行排序，若想安装自然排序相反的顺序排序，可以设定 sort() 方法参数reverse=True：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">cars.sort(reverse=True)</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
-<p>其输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;Smart&apos;, &apos;Mini&apos;, &apos;Jeep&apos;, &apos;Ford&apos;, &apos;Ferrari&apos;, &apos;BMW&apos;, &apos;Audi&apos;]</span><br></pre></td></tr></table></figure></p>
-<h5 id="列表的临时排序"><a href="#列表的临时排序" class="headerlink" title="列表的临时排序"></a>列表的临时排序</h5><p>可以使用 sorted() 方法对列表进行临时的排序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">print(sorted(cars))</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
-<p>其输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;Audi&apos;, &apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Ford&apos;, &apos;Jeep&apos;, &apos;Mini&apos;, &apos;Smart&apos;]</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br></pre></td></tr></table></figure></p>
-<p>也可以通过设置 reverse=True 参数使其按自然排序相反的顺序排序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">print(sorted(cars, reverse=True))</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
-<p>其输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;Smart&apos;, &apos;Mini&apos;, &apos;Jeep&apos;, &apos;Ford&apos;, &apos;Ferrari&apos;, &apos;BMW&apos;, &apos;Audi&apos;]</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br></pre></td></tr></table></figure></p>
-<h4 id="列表的反转"><a href="#列表的反转" class="headerlink" title="列表的反转"></a>列表的反转</h4><p>可以使用 reverse() 方法对列表元素顺序进行反转：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">cars.reverse()</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
-<p>其输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;Jeep&apos;, &apos;Ford&apos;, &apos;Audi&apos;, &apos;Smart&apos;, &apos;Mini&apos;, &apos;Ferrari&apos;, &apos;BMW&apos;]</span><br></pre></td></tr></table></figure></p>
-
+<pre><code>cars = []
+</code></pre><p><strong>Python 无法向其他编程语言一样（如 Java）初始化创建指定长度的空列表：</strong></p>
+<pre><code>cars = [8]
+print(cars)
+</code></pre><p>其输出是：</p>
+<pre><code>8
+</code></pre><p><strong>Python 列表内的元素不要求一致，可以混合：</strong></p>
+<pre><code>cars = [&quot;BMW&quot;,8,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
+print(cars)
+</code></pre><p>其输出：</p>
+<pre><code>[&#39;BMW&#39;, 8, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+</code></pre><p>不过，实际编程中应当使列表内的元素类型保持一致。</p>
+<h4 id="访问列表元素"><a href="#访问列表元素" class="headerlink" title="访问列表元素"></a>访问列表元素</h4><p>列表是有序集合，可直接通过元素的位置（索引）访问其列表元素：</p>
+<pre><code>print(cars[0])
+</code></pre><p>输出：</p>
+<pre><code>BMW
+</code></pre><p>Python 将只返回元素内容，而不包括方括号和引号。<br>Python 的索引是从 0 开始，和大多数编程语言一致。<br>同理，要想访问第3个元素：</p>
+<pre><code>print(cars[2])
+</code></pre><p>输出：</p>
+<pre><code>Mini
+</code></pre><p>若不知道一个列表包含多少个元素，而又想直接获取最后一个元素，Python 提供一个特殊的语法：</p>
+<pre><code>print(cars[-1])
+</code></pre><p>输出：</p>
+<pre><code>Jeep
+</code></pre><p>同理，要想访问倒数第2个元素：</p>
+<pre><code>print(cars[-2])
+</code></pre><p>输出：</p>
+<pre><code>Ford
+</code></pre><p>可以直接使用列表中的各个元素值：</p>
+<pre><code>print(&quot;My first car is a &quot; + cars[0] + &quot;.&quot;)
+</code></pre><p>输出：</p>
+<pre><code>My first car is a BMW.
+</code></pre><p>甚至可以结合字符串的 API ：</p>
+<pre><code>print(&quot;My first car is a &quot; + cars[0].title() + &quot;.&quot;)
+</code></pre><p>输出：</p>
+<pre><code>My first car is a BMW.
+</code></pre><p>因为此处元素值首字母本身已大写，故 titile() 后结果不会发生变化。</p>
+<h4 id="获取列表的长度"><a href="#获取列表的长度" class="headerlink" title="获取列表的长度"></a>获取列表的长度</h4><p>使用 len() 方法可以直接获取列表的长度（元素个数）：</p>
+<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
+print(len(cars))
+</code></pre><p>输出：</p>
+<pre><code>7
+</code></pre><p>元素个数的计算从 1 开始，这点和其他编程语言也是相同的。</p>
+<p>若访问一个错误索引位置的元素，Python 无法通过编译，将提示错误：</p>
+<pre><code>IndexError：list index out of range
+</code></pre><h4 id="修改列表元素"><a href="#修改列表元素" class="headerlink" title="修改列表元素"></a>修改列表元素</h4><pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
+print(cars)
+cars[0] = &quot;Aston Martin&quot;
+print(cars)
+</code></pre><p>输出：</p>
+<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+[&#39;Aston Martin&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+</code></pre><p>通过 “=” 可将新的元素值赋予指定索引位置的元素，其值将发生修改</p>
+<h4 id="添加列表元素"><a href="#添加列表元素" class="headerlink" title="添加列表元素"></a>添加列表元素</h4><h5 id="从列表末尾添加元素"><a href="#从列表末尾添加元素" class="headerlink" title="从列表末尾添加元素"></a>从列表末尾添加元素</h5><p>可以使用 append() 方法向列表的末尾追加一个新的元素：</p>
+<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
+print(cars)
+cars.append(&quot;Aston Martin&quot;)
+print(cars)
+</code></pre><p>输出：</p>
+<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;, &#39;Aston Martin&#39;]
+</code></pre><p>可以先创建一个空列表，通过 append() 方法不断的向列表中添加新元素：</p>
+<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
+print(cars)
+cars = []
+cars.append(&quot;BMW&quot;)
+cars.append(&quot;Ferrari&quot;)
+cars.append(&quot;Mini&quot;)
+cars.append(&quot;Smart&quot;)
+cars.append(&quot;Audi&quot;)
+cars.append(&quot;Ford&quot;)
+cars.append(&quot;Jeep&quot;)
+print(cars)
+</code></pre><p>输出：</p>
+<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+</code></pre><p>两者输出结果是一致的。</p>
+<h5 id="可以在列表的指定位置处添加元素"><a href="#可以在列表的指定位置处添加元素" class="headerlink" title="可以在列表的指定位置处添加元素"></a>可以在列表的指定位置处添加元素</h5><p>可以使用 insert() 方法向列表指定索引处添加一个元素，列表内将从该索引开始，往后索引上的元素都将后移一位：</p>
+<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
+print(cars)
+cars.insert(3, &quot;Lamborghini&quot;)
+print(cars)
+</code></pre><p>输出：</p>
+<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Lamborghini&#39;, Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+</code></pre><p><strong>若 insert() 方法指定的元素位置超出了列表的长度，则元素将被默认添加在列表的末尾</strong></p>
+<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
+print(cars)
+cars.insert(9, &quot;Lamborghini&quot;)
+print(cars)
+</code></pre><p>输出：</p>
+<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;, &#39;Lamborghini&#39;]
+</code></pre><h4 id="删除列表元素"><a href="#删除列表元素" class="headerlink" title="删除列表元素"></a>删除列表元素</h4><h5 id="直接删除元素"><a href="#直接删除元素" class="headerlink" title="直接删除元素"></a>直接删除元素</h5><p>可以使用 del 语句删除列表指定位置处的元素：</p>
+<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
+print(cars)
+del cars[5]
+print(cars)
+</code></pre><p>输出：</p>
+<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Jeep&#39;]
+</code></pre><h5 id="删除元素时获取被删除的元素"><a href="#删除元素时获取被删除的元素" class="headerlink" title="删除元素时获取被删除的元素"></a>删除元素时获取被删除的元素</h5><p>可以使用 pop() 方法在删除元素时获取被删除的元素：</p>
+<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
+print(cars)
+car = cars.pop()
+print(car)
+print(cars)
+</code></pre><p>输出：</p>
+<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+Jeep
+[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;]
+</code></pre><p>pop() 方法默认将删除列表末尾的列表，其和栈中弹出最近存入的元素类似。<br>要想弹出指定位置的元素可以指定索引位置：</p>
+<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
+print(cars)
+car = cars.pop(5)
+print(car)
+print(cars)
+</code></pre><p>输出：</p>
+<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+Ford
+[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Jeep&#39;]
+</code></pre><h5 id="根据值删除元素"><a href="#根据值删除元素" class="headerlink" title="根据值删除元素"></a>根据值删除元素</h5><p>Python 可以使用 remove() 方法直接根据元素的值删除来删除元素：</p>
+<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
+print(cars)
+cars.remove(&quot;Mini&quot;)
+print(cars)
+</code></pre><p>输出：</p>
+<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+</code></pre><p>若指定的元素值在列表中存在多个，则根据索引顺序只删除第一次出现该值处的元素：</p>
+<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;, &quot;Mini&quot;]
+print(cars)
+cars.remove(&quot;Mini&quot;)
+print(cars)
+</code></pre><p>输出：</p>
+<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;, &#39;Mini&#39;]
+[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;, &#39;Mini&#39;]
+</code></pre><p>若要删除的元素值提前被赋予某变量，那么执行列表的 remove() 方法对该变量没有影响：</p>
+<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
+print(cars)
+car = &quot;Mini&quot;
+cars.remove(car)
+print(car)
+print(cars)
+</code></pre><p>输出：</p>
+<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+Mini
+[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+</code></pre><p>一个特殊的地方，如想移除一个不存在的元素值，Python 无法通过编译，将提示：</p>
+<pre><code>ValueError: list.remove(x): x not in list
+</code></pre><h4 id="列表排序"><a href="#列表排序" class="headerlink" title="列表排序"></a>列表排序</h4><h5 id="列表的永久排序"><a href="#列表的永久排序" class="headerlink" title="列表的永久排序"></a>列表的永久排序</h5><p>可以使用 sort() 方法对列表进行永久排序：</p>
+<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
+print(cars)
+cars.sort()
+print(cars)
+</code></pre><p>其输出：</p>
+<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+[&#39;Audi&#39;, &#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Ford&#39;, &#39;Jeep&#39;, &#39;Mini&#39;, &#39;Smart&#39;]
+</code></pre><p>默认是按照自然排序的规则对列表元素进行排序，若想安装自然排序相反的顺序排序，可以设定 sort() 方法参数reverse=True：</p>
+<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
+print(cars)
+cars.sort(reverse=True)
+print(cars)
+</code></pre><p>其输出：</p>
+<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+[&#39;Smart&#39;, &#39;Mini&#39;, &#39;Jeep&#39;, &#39;Ford&#39;, &#39;Ferrari&#39;, &#39;BMW&#39;, &#39;Audi&#39;]
+</code></pre><h5 id="列表的临时排序"><a href="#列表的临时排序" class="headerlink" title="列表的临时排序"></a>列表的临时排序</h5><p>可以使用 sorted() 方法对列表进行临时的排序：</p>
+<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
+print(cars)
+print(sorted(cars))
+print(cars)
+</code></pre><p>其输出：</p>
+<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+[&#39;Audi&#39;, &#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Ford&#39;, &#39;Jeep&#39;, &#39;Mini&#39;, &#39;Smart&#39;]
+[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+</code></pre><p>也可以通过设置 reverse=True 参数使其按自然排序相反的顺序排序：</p>
+<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
+print(cars)
+print(sorted(cars, reverse=True))
+print(cars)
+</code></pre><p>其输出：</p>
+<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+[&#39;Smart&#39;, &#39;Mini&#39;, &#39;Jeep&#39;, &#39;Ford&#39;, &#39;Ferrari&#39;, &#39;BMW&#39;, &#39;Audi&#39;]
+[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+</code></pre><h4 id="列表的反转"><a href="#列表的反转" class="headerlink" title="列表的反转"></a>列表的反转</h4><p>可以使用 reverse() 方法对列表元素顺序进行反转：</p>
+<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
+print(cars)
+cars.reverse()
+print(cars)
+</code></pre><p>其输出：</p>
+<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
+[&#39;Jeep&#39;, &#39;Ford&#39;, &#39;Audi&#39;, &#39;Smart&#39;, &#39;Mini&#39;, &#39;Ferrari&#39;, &#39;BMW&#39;]
+</code></pre>
       
 
       
@@ -403,7 +541,15 @@
       	</div>
     </div>
   </div>
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+ $('pre').addClass('prettyprint linenums');
+   prettyPrint();
+ })
+</script>
 </footer>
+
     </div>
     <script>
 	var yiliaConfig = {

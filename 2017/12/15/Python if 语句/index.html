@@ -5,21 +5,22 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Python if 语句 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Python : 3.6.3 布尔表达式条件测试：每条 if 语句的核心都是一个值为 true 或 false 的表达式表达式也称为布尔表达式 检查是否相等大多数条件测试都是将一个变量的当前值同特定值通过相等运算符进行比较。1car == &amp;apos;bmw&amp;apos; 检查是否相等时不考虑大小写在 Python 中检查是否相等时默认区分大小写。不过某些特殊场景下可以使用 lower() 方法对测">
+  <meta name="description" content="Python : 3.6.3 布尔表达式条件测试：每条 if 语句的核心都是一个值为 true 或 false 的表达式表达式也称为布尔表达式 检查是否相等大多数条件测试都是将一个变量的当前值同特定值通过相等运算符进行比较。 car == &amp;#39;bmw&amp;#39; 检查是否相等时不考虑大小写在 Python 中检查是否相等时默认区分大小写。不过某些特殊场景下可以使用 lower() 方法对测试变">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python if 语句">
 <meta property="og:url" content="http://yoursite.com/2017/12/15/Python if 语句/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="Python : 3.6.3 布尔表达式条件测试：每条 if 语句的核心都是一个值为 true 或 false 的表达式表达式也称为布尔表达式 检查是否相等大多数条件测试都是将一个变量的当前值同特定值通过相等运算符进行比较。1car == &amp;apos;bmw&amp;apos; 检查是否相等时不考虑大小写在 Python 中检查是否相等时默认区分大小写。不过某些特殊场景下可以使用 lower() 方法对测">
+<meta property="og:description" content="Python : 3.6.3 布尔表达式条件测试：每条 if 语句的核心都是一个值为 true 或 false 的表达式表达式也称为布尔表达式 检查是否相等大多数条件测试都是将一个变量的当前值同特定值通过相等运算符进行比较。 car == &amp;#39;bmw&amp;#39; 检查是否相等时不考虑大小写在 Python 中检查是否相等时默认区分大小写。不过某些特殊场景下可以使用 lower() 方法对测试变">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2017-12-20T16:29:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python if 语句">
-<meta name="twitter:description" content="Python : 3.6.3 布尔表达式条件测试：每条 if 语句的核心都是一个值为 true 或 false 的表达式表达式也称为布尔表达式 检查是否相等大多数条件测试都是将一个变量的当前值同特定值通过相等运算符进行比较。1car == &amp;apos;bmw&amp;apos; 检查是否相等时不考虑大小写在 Python 中检查是否相等时默认区分大小写。不过某些特殊场景下可以使用 lower() 方法对测">
+<meta name="twitter:description" content="Python : 3.6.3 布尔表达式条件测试：每条 if 语句的核心都是一个值为 true 或 false 的表达式表达式也称为布尔表达式 检查是否相等大多数条件测试都是将一个变量的当前值同特定值通过相等运算符进行比较。 car == &amp;#39;bmw&amp;#39; 检查是否相等时不考虑大小写在 Python 中检查是否相等时默认区分大小写。不过某些特殊场景下可以使用 lower() 方法对测试变">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -165,31 +166,117 @@
       
         <p>Python : 3.6.3</p>
 <h3 id="布尔表达式"><a href="#布尔表达式" class="headerlink" title="布尔表达式"></a>布尔表达式</h3><p>条件测试：每条 if 语句的核心都是一个值为 true 或 false 的表达式<br>表达式也称为布尔表达式</p>
-<h6 id="检查是否相等"><a href="#检查是否相等" class="headerlink" title="检查是否相等"></a>检查是否相等</h6><p>大多数条件测试都是将一个变量的当前值同特定值通过相等运算符进行比较。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">car == &apos;bmw&apos;</span><br></pre></td></tr></table></figure></p>
-<h6 id="检查是否相等时不考虑大小写"><a href="#检查是否相等时不考虑大小写" class="headerlink" title="检查是否相等时不考虑大小写"></a>检查是否相等时不考虑大小写</h6><p>在 Python 中检查是否相等时默认区分大小写。<br>不过某些特殊场景下可以使用 lower() 方法对测试变量进行临时处理后再比较：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">car = &apos;Audi&apos;</span><br><span class="line">car.lower() == &apos;audi&apos;</span><br></pre></td></tr></table></figure></p>
-<h6 id="检查是否不相等"><a href="#检查是否不相等" class="headerlink" title="检查是否不相等"></a>检查是否不相等</h6><p>要判断两个值是否不等，可使用 “!=”：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">requested_topping = &apos;mushrooms&apos;</span><br><span class="line"></span><br><span class="line">if requested_topping != &apos;anchovies&apos;:</span><br><span class="line">	print(&quot;Hold the anchovies!&quot;)</span><br></pre></td></tr></table></figure></p>
-<h6 id="检查多个条件"><a href="#检查多个条件" class="headerlink" title="检查多个条件"></a>检查多个条件</h6><p>####### 使用 and 检查多个条件</p>
-<p>and 表示并且，需要两个条件都为 true，表达式才为 true：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age_0 = 22</span><br><span class="line">age_1 = 18</span><br><span class="line">print(age_0 &gt;= 21 and age_1 &gt;= 21)</span><br></pre></td></tr></table></figure></p>
-<p>为了提高可读性，可以使用括号：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age_0 = 22</span><br><span class="line">age_1 = 18</span><br><span class="line">print((age_0 &gt;= 21) and (age_1 &gt;= 21))</span><br></pre></td></tr></table></figure></p>
-<p>####### 使用 or 检查多个条件</p>
-<p>or 表示或，需要两个条件都为 false，表达式才为 false：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age_0 = 18</span><br><span class="line">age_1 = 18</span><br><span class="line">print(age_0 &gt;= 21 or age_1 &gt;= 21)</span><br></pre></td></tr></table></figure></p>
-<p>为了提高可读性，可以使用括号：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age_0 = 18</span><br><span class="line">age_1 = 18</span><br><span class="line">print((age_0 &gt;= 21) or (age_1 &gt;= 21)</span><br></pre></td></tr></table></figure></p>
-<h5 id="检查特定值是否包含在列表中"><a href="#检查特定值是否包含在列表中" class="headerlink" title="检查特定值是否包含在列表中"></a>检查特定值是否包含在列表中</h5><p>Python 可以使用关键字 in 判断特定的值是否已包含在列表中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">requested_toppings = [&apos;mushrooms&apos;,&apos;onions&apos;,&apos;pineapple&apos;]</span><br><span class="line">print(&apos;mushrooms&apos; in requested_toppings)</span><br></pre></td></tr></table></figure></p>
-<h5 id="检查特定值是否不包含在列表中"><a href="#检查特定值是否不包含在列表中" class="headerlink" title="检查特定值是否不包含在列表中"></a>检查特定值是否不包含在列表中</h5><p>Python 可以使用关键字 not in 判断特定的值是否未包含在列表中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">requested_toppings = [onions&apos;,&apos;pineapple&apos;]</span><br><span class="line">print(&apos;mushrooms&apos; not in requested_toppings)</span><br></pre></td></tr></table></figure></p>
-<h3 id="if-语句"><a href="#if-语句" class="headerlink" title="if 语句"></a>if 语句</h3><h5 id="简单的-if-语句"><a href="#简单的-if-语句" class="headerlink" title="简单的 if 语句"></a>简单的 if 语句</h5><p>最简单的 if 语句只有一个布尔表达式和一个操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">age = 19</span><br><span class="line">if age &gt;= 18:</span><br><span class="line">	print(&quot;You are old enough to vote!&quot;)</span><br><span class="line">    print(&quot;Have you registered to vote yet?&quot;)</span><br></pre></td></tr></table></figure></p>
-<p>if 语句的缩进和 for 语句的规则一致。</p>
-<h5 id="if-else-语句"><a href="#if-else-语句" class="headerlink" title="if-else 语句"></a>if-else 语句</h5><p>if-else 语句中若布尔表达式结果为 true，则执行 if 中的语句，反之执行 else 中的语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">age = 17</span><br><span class="line">if age &gt;= 18:</span><br><span class="line">	print(&quot;You are old enough to vote!&quot;)</span><br><span class="line">    print(&quot; Have you registered to vote yet?&quot;)</span><br><span class="line">else:</span><br><span class="line">	print(&quot;Sorry，you are too young to vote.&quot;)</span><br><span class="line">    print(&quot;Please register to vote as soon as you turn 18!&quot;)</span><br></pre></td></tr></table></figure></p>
-<h5 id="if-elif-else-语句"><a href="#if-elif-else-语句" class="headerlink" title="if-elif-else 语句"></a>if-elif-else 语句</h5><p>if-elif-else 依次检查每个条件测试，直到遇到通过了的条件测试。<br>测试通过后，Python 将执行紧跟在它后面的代码，并跳过余下的测试。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">age = 12</span><br><span class="line">if age &lt; 4:</span><br><span class="line">	print(&quot;免费&quot;)</span><br><span class="line">elif age &lt; 18:</span><br><span class="line">	print(&quot;半价&quot;)</span><br><span class="line">elif age &lt; 65:</span><br><span class="line">	print(&quot;全价&quot;)</span><br><span class="line">else:</span><br><span class="line">	print(&quot;半价&quot;)</span><br></pre></td></tr></table></figure>
-<h5 id="测试多个条件"><a href="#测试多个条件" class="headerlink" title="测试多个条件"></a>测试多个条件</h5><p>在可能有多个条件为 true，且需要在每个条件为 true 时都执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">requested_toppings = [&apos;mushrooms&apos;,&apos;extra cheese&apos;]</span><br><span class="line"></span><br><span class="line">if &apos;mushrooms&apos; in requested_toppings:</span><br><span class="line">	print(&quot;Adding mushrooms&quot;)</span><br><span class="line">if &apos;pepperoni&apos; in requested_toppings:</span><br><span class="line">	print(&quot;Adding pepperoni&quot;)</span><br><span class="line">if &apos;extra cheese&apos; in requested_toppings:</span><br><span class="line">	print(&quot;Adding extra cheese&quot;)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Adding mushrooms</span><br><span class="line">Adding extra cheese</span><br></pre></td></tr></table></figure></p>
-<h3 id="使用-if-语句处理列表"><a href="#使用-if-语句处理列表" class="headerlink" title="使用 if 语句处理列表"></a>使用 if 语句处理列表</h3><h5 id="检查特殊元素"><a href="#检查特殊元素" class="headerlink" title="检查特殊元素"></a>检查特殊元素</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">requested_toppings = [&apos;mushrooms&apos;,&apos;green peppers&apos;,&apos;extra cheese&apos;]</span><br><span class="line"></span><br><span class="line">for requested_topping in requested_toppings:</span><br><span class="line">	if &apos;green peppers&apos; == requested_topping:</span><br><span class="line">		print(&quot;Sorry, we are out of green peppers right now&quot;)</span><br><span class="line">	else:</span><br><span class="line">		print(&quot;Adding &quot; + requested_topping)</span><br><span class="line"></span><br><span class="line">print(&quot;Finished making your pizza!&quot;)</span><br></pre></td></tr></table></figure>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Adding mushrooms</span><br><span class="line">Sorry, we are out of green peppers right now</span><br><span class="line">Adding extra cheese</span><br><span class="line">Finished making your pizza!</span><br></pre></td></tr></table></figure></p>
-<h5 id="确定列表不是空的"><a href="#确定列表不是空的" class="headerlink" title="确定列表不是空的"></a>确定列表不是空的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">requested_toppings = []</span><br><span class="line"></span><br><span class="line">if requested_toppings:</span><br><span class="line">	for requested_topping in requested_toppings:</span><br><span class="line">		print(&quot;Adding &quot; + requested_topping)</span><br><span class="line">		print(&quot;Finished making your pizza!&quot;)</span><br><span class="line">else:</span><br><span class="line">	print(&quot;Are you sure you want a plain pizza?&quot;)</span><br></pre></td></tr></table></figure>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Are you sure you want a plain pizza?</span><br></pre></td></tr></table></figure></p>
-<h5 id="使用多个列表"><a href="#使用多个列表" class="headerlink" title="使用多个列表"></a>使用多个列表</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">available_toppings = [&apos;mushrooms&apos;,&apos;olives&apos;,&apos;green peppers&apos;,&apos;pepperoni&apos;,&apos;pineapple&apos;,&apos;extra cheese&apos;]</span><br><span class="line"></span><br><span class="line">requested_toppings = [&apos;mushrooms&apos;,&apos;french fries&apos;,&apos;extra cheese&apos;]</span><br><span class="line"></span><br><span class="line">for requested_topping in requested_toppings:</span><br><span class="line">	if requested_topping in available_toppings:</span><br><span class="line">		print(&quot;Adding &quot; + requested_topping)</span><br><span class="line">	else:</span><br><span class="line">		print(&quot;Sorry, we don&apos;t have &quot; + requested_topping)</span><br><span class="line"></span><br><span class="line">print(&quot;Finished making your pizza!&quot;)</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Adding mushrooms</span><br><span class="line">Sorry, we don&apos;t have french fries</span><br><span class="line">Adding extra cheese</span><br><span class="line">Finished making your pizza!</span><br></pre></td></tr></table></figure>
+<h6 id="检查是否相等"><a href="#检查是否相等" class="headerlink" title="检查是否相等"></a>检查是否相等</h6><p>大多数条件测试都是将一个变量的当前值同特定值通过相等运算符进行比较。</p>
+<pre><code>car == &#39;bmw&#39;
+</code></pre><h6 id="检查是否相等时不考虑大小写"><a href="#检查是否相等时不考虑大小写" class="headerlink" title="检查是否相等时不考虑大小写"></a>检查是否相等时不考虑大小写</h6><p>在 Python 中检查是否相等时默认区分大小写。<br>不过某些特殊场景下可以使用 lower() 方法对测试变量进行临时处理后再比较：</p>
+<pre><code>car = &#39;Audi&#39;
+car.lower() == &#39;audi&#39;
+</code></pre><h6 id="检查是否不相等"><a href="#检查是否不相等" class="headerlink" title="检查是否不相等"></a>检查是否不相等</h6><p>要判断两个值是否不等，可使用 “!=”：</p>
+<pre><code>requested_topping = &#39;mushrooms&#39;
+
+if requested_topping != &#39;anchovies&#39;:
+    print(&quot;Hold the anchovies!&quot;)
+</code></pre><h6 id="检查多个条件"><a href="#检查多个条件" class="headerlink" title="检查多个条件"></a>检查多个条件</h6><p>####### 使用 and 检查多个条件</p>
+<p>and 表示并且，需要两个条件都为 true，表达式才为 true：</p>
+<pre><code>age_0 = 22
+age_1 = 18
+print(age_0 &gt;= 21 and age_1 &gt;= 21)
+</code></pre><p>为了提高可读性，可以使用括号：</p>
+<pre><code>age_0 = 22
+age_1 = 18
+print((age_0 &gt;= 21) and (age_1 &gt;= 21))
+</code></pre><p>####### 使用 or 检查多个条件</p>
+<p>or 表示或，需要两个条件都为 false，表达式才为 false：</p>
+<pre><code>age_0 = 18
+age_1 = 18
+print(age_0 &gt;= 21 or age_1 &gt;= 21)
+</code></pre><p>为了提高可读性，可以使用括号：</p>
+<pre><code>age_0 = 18
+age_1 = 18
+print((age_0 &gt;= 21) or (age_1 &gt;= 21)
+</code></pre><h5 id="检查特定值是否包含在列表中"><a href="#检查特定值是否包含在列表中" class="headerlink" title="检查特定值是否包含在列表中"></a>检查特定值是否包含在列表中</h5><p>Python 可以使用关键字 in 判断特定的值是否已包含在列表中：</p>
+<pre><code>requested_toppings = [&#39;mushrooms&#39;,&#39;onions&#39;,&#39;pineapple&#39;]
+print(&#39;mushrooms&#39; in requested_toppings)
+</code></pre><h5 id="检查特定值是否不包含在列表中"><a href="#检查特定值是否不包含在列表中" class="headerlink" title="检查特定值是否不包含在列表中"></a>检查特定值是否不包含在列表中</h5><p>Python 可以使用关键字 not in 判断特定的值是否未包含在列表中：</p>
+<pre><code>requested_toppings = [onions&#39;,&#39;pineapple&#39;]
+print(&#39;mushrooms&#39; not in requested_toppings)
+</code></pre><h3 id="if-语句"><a href="#if-语句" class="headerlink" title="if 语句"></a>if 语句</h3><h5 id="简单的-if-语句"><a href="#简单的-if-语句" class="headerlink" title="简单的 if 语句"></a>简单的 if 语句</h5><p>最简单的 if 语句只有一个布尔表达式和一个操作：</p>
+<pre><code>age = 19
+if age &gt;= 18:
+    print(&quot;You are old enough to vote!&quot;)
+    print(&quot;Have you registered to vote yet?&quot;)
+</code></pre><p>if 语句的缩进和 for 语句的规则一致。</p>
+<h5 id="if-else-语句"><a href="#if-else-语句" class="headerlink" title="if-else 语句"></a>if-else 语句</h5><p>if-else 语句中若布尔表达式结果为 true，则执行 if 中的语句，反之执行 else 中的语句：</p>
+<pre><code>age = 17
+if age &gt;= 18:
+    print(&quot;You are old enough to vote!&quot;)
+    print(&quot; Have you registered to vote yet?&quot;)
+else:
+    print(&quot;Sorry，you are too young to vote.&quot;)
+    print(&quot;Please register to vote as soon as you turn 18!&quot;)
+</code></pre><h5 id="if-elif-else-语句"><a href="#if-elif-else-语句" class="headerlink" title="if-elif-else 语句"></a>if-elif-else 语句</h5><p>if-elif-else 依次检查每个条件测试，直到遇到通过了的条件测试。<br>测试通过后，Python 将执行紧跟在它后面的代码，并跳过余下的测试。</p>
+<pre><code>age = 12
+if age &lt; 4:
+    print(&quot;免费&quot;)
+elif age &lt; 18:
+    print(&quot;半价&quot;)
+elif age &lt; 65:
+    print(&quot;全价&quot;)
+else:
+    print(&quot;半价&quot;)
+</code></pre><h5 id="测试多个条件"><a href="#测试多个条件" class="headerlink" title="测试多个条件"></a>测试多个条件</h5><p>在可能有多个条件为 true，且需要在每个条件为 true 时都执行：</p>
+<pre><code>requested_toppings = [&#39;mushrooms&#39;,&#39;extra cheese&#39;]
+
+if &#39;mushrooms&#39; in requested_toppings:
+    print(&quot;Adding mushrooms&quot;)
+if &#39;pepperoni&#39; in requested_toppings:
+    print(&quot;Adding pepperoni&quot;)
+if &#39;extra cheese&#39; in requested_toppings:
+    print(&quot;Adding extra cheese&quot;)
+</code></pre><p>输出：</p>
+<pre><code>Adding mushrooms
+Adding extra cheese
+</code></pre><h3 id="使用-if-语句处理列表"><a href="#使用-if-语句处理列表" class="headerlink" title="使用 if 语句处理列表"></a>使用 if 语句处理列表</h3><h5 id="检查特殊元素"><a href="#检查特殊元素" class="headerlink" title="检查特殊元素"></a>检查特殊元素</h5><pre><code>requested_toppings = [&#39;mushrooms&#39;,&#39;green peppers&#39;,&#39;extra cheese&#39;]
+
+for requested_topping in requested_toppings:
+    if &#39;green peppers&#39; == requested_topping:
+        print(&quot;Sorry, we are out of green peppers right now&quot;)
+    else:
+        print(&quot;Adding &quot; + requested_topping)
+
+print(&quot;Finished making your pizza!&quot;)
+</code></pre><p>输出：</p>
+<pre><code>Adding mushrooms
+Sorry, we are out of green peppers right now
+Adding extra cheese
+Finished making your pizza!
+</code></pre><h5 id="确定列表不是空的"><a href="#确定列表不是空的" class="headerlink" title="确定列表不是空的"></a>确定列表不是空的</h5><pre><code>requested_toppings = []
+
+if requested_toppings:
+    for requested_topping in requested_toppings:
+        print(&quot;Adding &quot; + requested_topping)
+        print(&quot;Finished making your pizza!&quot;)
+else:
+    print(&quot;Are you sure you want a plain pizza?&quot;)
+</code></pre><p>输出：</p>
+<pre><code>Are you sure you want a plain pizza?
+</code></pre><h5 id="使用多个列表"><a href="#使用多个列表" class="headerlink" title="使用多个列表"></a>使用多个列表</h5><pre><code>available_toppings = [&#39;mushrooms&#39;,&#39;olives&#39;,&#39;green peppers&#39;,&#39;pepperoni&#39;,&#39;pineapple&#39;,&#39;extra cheese&#39;]
+
+requested_toppings = [&#39;mushrooms&#39;,&#39;french fries&#39;,&#39;extra cheese&#39;]
+
+for requested_topping in requested_toppings:
+    if requested_topping in available_toppings:
+        print(&quot;Adding &quot; + requested_topping)
+    else:
+        print(&quot;Sorry, we don&#39;t have &quot; + requested_topping)
+
+print(&quot;Finished making your pizza!&quot;)
+</code></pre><p>输出：</p>
+<pre><code>Adding mushrooms
+Sorry, we don&#39;t have french fries
+Adding extra cheese
+Finished making your pizza!
+</code></pre>
       
 
       
@@ -365,7 +452,15 @@
       	</div>
     </div>
   </div>
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+ $('pre').addClass('prettyprint linenums');
+   prettyPrint();
+ })
+</script>
 </footer>
+
     </div>
     <script>
 	var yiliaConfig = {

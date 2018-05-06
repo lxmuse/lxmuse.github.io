@@ -5,21 +5,22 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>MySQL You can&#39;t specify target table &#39;x&#39; for update in FROM clause | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今天执行如下SQL时：1234UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (     SELECT barcode_id FROM materials_barcode_info WHERE barcode_length != LENGTH(barcode_example)) 提示1[Err] 1093 - Y">
+  <meta name="description" content="今天执行如下SQL时：  UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (      SELECT barcode_id FROM materials_barcode_info WHERE barcode_length != LENGTH(barcode_example) )  提示 [Err] 1093 -">
 <meta name="keywords" content="MySQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL You can&#39;t specify target table &#39;x&#39; for update in FROM clause">
 <meta property="og:url" content="http://yoursite.com/2018/01/08/MySQL You can't specify target table 'x' for update in FROM clause/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="今天执行如下SQL时：1234UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (     SELECT barcode_id FROM materials_barcode_info WHERE barcode_length != LENGTH(barcode_example)) 提示1[Err] 1093 - Y">
+<meta property="og:description" content="今天执行如下SQL时：  UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (      SELECT barcode_id FROM materials_barcode_info WHERE barcode_length != LENGTH(barcode_example) )  提示 [Err] 1093 -">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-01-08T12:40:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL You can&#39;t specify target table &#39;x&#39; for update in FROM clause">
-<meta name="twitter:description" content="今天执行如下SQL时：1234UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (     SELECT barcode_id FROM materials_barcode_info WHERE barcode_length != LENGTH(barcode_example)) 提示1[Err] 1093 - Y">
+<meta name="twitter:description" content="今天执行如下SQL时：  UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (      SELECT barcode_id FROM materials_barcode_info WHERE barcode_length != LENGTH(barcode_example) )  提示 [Err] 1093 -">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -163,16 +164,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天执行如下SQL时：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (</span><br><span class="line">     SELECT barcode_id FROM materials_barcode_info WHERE barcode_length != LENGTH(barcode_example)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
-<p>提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Err] 1093 - You can&apos;t specify target table &apos;materials_barcode_info&apos; for update in FROM clause</span><br></pre></td></tr></table></figure></p>
-<p>本意是想将条码规则表中条码规则中样例实际长度和条码规则中长度不一致的条码规则进行逻辑删除</p>
+        <p>今天执行如下SQL时：</p>
+<pre><code>
+UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (
+     SELECT barcode_id FROM materials_barcode_info WHERE barcode_length != LENGTH(barcode_example)
+)
+
+</code></pre><p>提示</p>
+<pre><code>[Err] 1093 - You can&#39;t specify target table &#39;materials_barcode_info&#39; for update in FROM clause
+</code></pre><p>本意是想将条码规则表中条码规则中样例实际长度和条码规则中长度不一致的条码规则进行逻辑删除</p>
 <p>单独执行 <code>SELECT barcode_id from materials_barcode_info where barcode_length != LENGTH(barcode_example)</code> 运行正确</p>
 <p>单独执行 <code>update materials_barcode_info set del_flag = 1 where barcode_id in (&#39;x&#39;,&#39;x&#39;)</code> 运行正确</p>
 <p>MySQL 对子查询的使用存在限制：</p>
 <p><a href="https://dev.mysql.com/doc/refman/5.7/en/subquery-restrictions.html" target="_blank" rel="noopener">https://dev.mysql.com/doc/refman/5.7/en/subquery-restrictions.html</a></p>
 <p>即不能在一个SQL中先查询同一张表中的某些记录然后再更新同一张表中的某些记录</p>
 <p>修改一下SQL，再嵌套一层</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (</span><br><span class="line">     SELECT barcode_id FROM (</span><br><span class="line">         SELECT barcode_id FROM materials_barcode_info WHERE barcode_length != LENGTH(barcode_example)</span><br><span class="line">     ) a</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<pre><code>UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (
+     SELECT barcode_id FROM (
+         SELECT barcode_id FROM materials_barcode_info WHERE barcode_length != LENGTH(barcode_example)
+     ) a
+)
+</code></pre>
       
 
       
@@ -348,7 +360,15 @@
       	</div>
     </div>
   </div>
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+ $('pre').addClass('prettyprint linenums');
+   prettyPrint();
+ })
+</script>
 </footer>
+
     </div>
     <script>
 	var yiliaConfig = {

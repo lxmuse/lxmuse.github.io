@@ -5,21 +5,22 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Python 变量和简单数据类型 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="变量的命名规范变量名只能包含字母、数字和下划线。变量名可以字母或下划线打头，但不能以数字打头。变量名不能包含空格，但可以使用下划线来分隔其中的单词。变量名不能使用关键字和函数名。 字符串在 Python 中，用引号括起的都是字符串，其中的引号可以是单引号，也可以是双引号。 使单词首字母大写title() 方法可以使单词首字母大写： 12hello = &amp;quot;hello python&amp;quot">
+  <meta name="description" content="变量的命名规范变量名只能包含字母、数字和下划线。变量名可以字母或下划线打头，但不能以数字打头。变量名不能包含空格，但可以使用下划线来分隔其中的单词。变量名不能使用关键字和函数名。 字符串在 Python 中，用引号括起的都是字符串，其中的引号可以是单引号，也可以是双引号。 使单词首字母大写title() 方法可以使单词首字母大写： hello = &amp;quot;hello python&amp;quot;">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 变量和简单数据类型">
 <meta property="og:url" content="http://yoursite.com/2017/12/12/Python 变量和简单数据类型/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="变量的命名规范变量名只能包含字母、数字和下划线。变量名可以字母或下划线打头，但不能以数字打头。变量名不能包含空格，但可以使用下划线来分隔其中的单词。变量名不能使用关键字和函数名。 字符串在 Python 中，用引号括起的都是字符串，其中的引号可以是单引号，也可以是双引号。 使单词首字母大写title() 方法可以使单词首字母大写： 12hello = &amp;quot;hello python&amp;quot">
+<meta property="og:description" content="变量的命名规范变量名只能包含字母、数字和下划线。变量名可以字母或下划线打头，但不能以数字打头。变量名不能包含空格，但可以使用下划线来分隔其中的单词。变量名不能使用关键字和函数名。 字符串在 Python 中，用引号括起的都是字符串，其中的引号可以是单引号，也可以是双引号。 使单词首字母大写title() 方法可以使单词首字母大写： hello = &amp;quot;hello python&amp;quot;">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2017-12-20T16:30:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 变量和简单数据类型">
-<meta name="twitter:description" content="变量的命名规范变量名只能包含字母、数字和下划线。变量名可以字母或下划线打头，但不能以数字打头。变量名不能包含空格，但可以使用下划线来分隔其中的单词。变量名不能使用关键字和函数名。 字符串在 Python 中，用引号括起的都是字符串，其中的引号可以是单引号，也可以是双引号。 使单词首字母大写title() 方法可以使单词首字母大写： 12hello = &amp;quot;hello python&amp;quot">
+<meta name="twitter:description" content="变量的命名规范变量名只能包含字母、数字和下划线。变量名可以字母或下划线打头，但不能以数字打头。变量名不能包含空格，但可以使用下划线来分隔其中的单词。变量名不能使用关键字和函数名。 字符串在 Python 中，用引号括起的都是字符串，其中的引号可以是单引号，也可以是双引号。 使单词首字母大写title() 方法可以使单词首字母大写： hello = &amp;quot;hello python&amp;quot;">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -166,31 +167,87 @@
         <h4 id="变量的命名规范"><a href="#变量的命名规范" class="headerlink" title="变量的命名规范"></a>变量的命名规范</h4><p>变量名只能包含字母、数字和下划线。<br>变量名可以字母或下划线打头，但不能以数字打头。<br>变量名不能包含空格，但可以使用下划线来分隔其中的单词。<br>变量名不能使用关键字和函数名。</p>
 <h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><p>在 Python 中，用引号括起的都是字符串，其中的引号可以是单引号，也可以是双引号。</p>
 <h5 id="使单词首字母大写"><a href="#使单词首字母大写" class="headerlink" title="使单词首字母大写"></a>使单词首字母大写</h5><p>title() 方法可以使单词首字母大写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hello = &quot;hello python&quot;</span><br><span class="line">print(hello.title())</span><br></pre></td></tr></table></figure>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello Python</span><br></pre></td></tr></table></figure></p>
-<p>如果单词之间以下划线分隔，首字母也可以大写：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hello = &quot;hello_python&quot;</span><br><span class="line">print(hello.title())</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello_Python</span><br></pre></td></tr></table></figure></p>
-<p>但是如果中间没有空格或者下划线，则无法被识别为两个单词：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hello = &quot;hellopython&quot;</span><br><span class="line">print(hello.title())</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hellopython</span><br></pre></td></tr></table></figure></p>
-<h5 id="批量使字母大写或小写"><a href="#批量使字母大写或小写" class="headerlink" title="批量使字母大写或小写"></a>批量使字母大写或小写</h5><p>upper() 方法可以使字符串内的字母全部变成大写<br>lower() 方法可以使字符串内的字母全部变成小写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hello = &quot;hello python&quot;</span><br><span class="line">print(hello.upper())</span><br><span class="line">print(hello.lower())</span><br></pre></td></tr></table></figure>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HELLO PYTHON</span><br><span class="line">hello python</span><br></pre></td></tr></table></figure></p>
-<h5 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h5><p>在 Python 中可以通过 “+” 之间连接两个字符串，或者字符串与变量， 或字符串变量与字符串变量，期间可以结合字符串的 API 方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">print(&quot;Hello&quot; + &quot; &quot; + &quot;Python&quot;)</span><br><span class="line">hello = &quot;hello&quot;</span><br><span class="line">print(hello.title() + &quot; Python&quot;)</span><br><span class="line">name = &quot;python&quot;</span><br><span class="line">print(hello.title() + &quot; &quot; + name.title())</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Hello Python</span><br><span class="line">Hello Python</span><br><span class="line">Hello Python</span><br></pre></td></tr></table></figure></p>
-<h5 id="字符串添加制表符和换行符"><a href="#字符串添加制表符和换行符" class="headerlink" title="字符串添加制表符和换行符"></a>字符串添加制表符和换行符</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(&quot;Languages:\n\tPython\n\tJava\n\tJavaScript&quot;)</span><br></pre></td></tr></table></figure>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Languages:</span><br><span class="line">	Python</span><br><span class="line">	Java</span><br><span class="line">	JavaScript</span><br></pre></td></tr></table></figure></p>
-<h5 id="字符串删除空白"><a href="#字符串删除空白" class="headerlink" title="字符串删除空白"></a>字符串删除空白</h5><p>空白可以分为左空白和右空白，Ptyton 提供了三种删除空白的方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">favorite_language = &quot;  Python  &quot;</span><br><span class="line">print(favorite_language.lstrip())</span><br><span class="line">print(favorite_language.rstrip())</span><br><span class="line">print(favorite_language.strip())</span><br></pre></td></tr></table></figure>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Python</span><br><span class="line">  Python</span><br><span class="line">Python</span><br></pre></td></tr></table></figure></p>
-<h4 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h4><h5 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">print(2 + 3)</span><br><span class="line">print(2 * 3)</span><br><span class="line">print(3 - 1)</span><br><span class="line">print(3 / 2)</span><br><span class="line">print(3 ** 2)</span><br><span class="line">print(2 + 3 * 2)</span><br><span class="line">print((2 + 3) * 2)</span><br></pre></td></tr></table></figure>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">5</span><br><span class="line">6</span><br><span class="line">2</span><br><span class="line">1.5</span><br><span class="line">9</span><br><span class="line">8</span><br><span class="line">10</span><br></pre></td></tr></table></figure></p>
-<h5 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(0.1 + 0.1)</span><br><span class="line">print(2 * 0.3)</span><br></pre></td></tr></table></figure>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0.2</span><br><span class="line">0.6</span><br></pre></td></tr></table></figure></p>
-<h4 id="字符串和数字混合连接"><a href="#字符串和数字混合连接" class="headerlink" title="字符串和数字混合连接"></a>字符串和数字混合连接</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age = 20</span><br><span class="line">message = &quot;Happy &quot; + age + &quot;rd Birthday!&quot;</span><br><span class="line">print(message)</span><br></pre></td></tr></table></figure>
-<p>Python 默认不支持混合计算，若想输出  “Happy 20rd Birthday!” 需要使用特殊的函数 str() :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age = 20</span><br><span class="line">message = &quot;Happy &quot; + str(age) + &quot;rd Birthday!&quot;</span><br><span class="line">print(message)</span><br></pre></td></tr></table></figure></p>
-<p>输出:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Happy 20rd Birthday!</span><br></pre></td></tr></table></figure></p>
-<h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><p>Python 忽略被 # 开头的行，# 后的语句代表注释：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 打印欢迎语</span><br><span class="line">age = 20</span><br><span class="line">message = &quot;Happy &quot; + str(age) + &quot;rd Birthday!&quot;</span><br><span class="line">print(message)</span><br></pre></td></tr></table></figure></p>
-
+<pre><code>hello = &quot;hello python&quot;
+print(hello.title())
+</code></pre><p>输出：</p>
+<pre><code>Hello Python
+</code></pre><p>如果单词之间以下划线分隔，首字母也可以大写：</p>
+<pre><code>hello = &quot;hello_python&quot;
+print(hello.title())
+</code></pre><p>输出：</p>
+<pre><code>Hello_Python
+</code></pre><p>但是如果中间没有空格或者下划线，则无法被识别为两个单词：</p>
+<pre><code>hello = &quot;hellopython&quot;
+print(hello.title())
+</code></pre><p>输出：</p>
+<pre><code>Hellopython
+</code></pre><h5 id="批量使字母大写或小写"><a href="#批量使字母大写或小写" class="headerlink" title="批量使字母大写或小写"></a>批量使字母大写或小写</h5><p>upper() 方法可以使字符串内的字母全部变成大写<br>lower() 方法可以使字符串内的字母全部变成小写</p>
+<pre><code>hello = &quot;hello python&quot;
+print(hello.upper())
+print(hello.lower())
+</code></pre><p>输出：</p>
+<pre><code>HELLO PYTHON
+hello python
+</code></pre><h5 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h5><p>在 Python 中可以通过 “+” 之间连接两个字符串，或者字符串与变量， 或字符串变量与字符串变量，期间可以结合字符串的 API 方法：</p>
+<pre><code>print(&quot;Hello&quot; + &quot; &quot; + &quot;Python&quot;)
+hello = &quot;hello&quot;
+print(hello.title() + &quot; Python&quot;)
+name = &quot;python&quot;
+print(hello.title() + &quot; &quot; + name.title())
+</code></pre><p>输出：</p>
+<pre><code>Hello Python
+Hello Python
+Hello Python
+</code></pre><h5 id="字符串添加制表符和换行符"><a href="#字符串添加制表符和换行符" class="headerlink" title="字符串添加制表符和换行符"></a>字符串添加制表符和换行符</h5><pre><code>print(&quot;Languages:\n\tPython\n\tJava\n\tJavaScript&quot;)
+</code></pre><p>输出：</p>
+<pre><code>Languages:
+    Python
+    Java
+    JavaScript
+</code></pre><h5 id="字符串删除空白"><a href="#字符串删除空白" class="headerlink" title="字符串删除空白"></a>字符串删除空白</h5><p>空白可以分为左空白和右空白，Ptyton 提供了三种删除空白的方法：</p>
+<pre><code>favorite_language = &quot;  Python  &quot;
+print(favorite_language.lstrip())
+print(favorite_language.rstrip())
+print(favorite_language.strip())
+</code></pre><p>输出：</p>
+<pre><code>Python
+  Python
+Python
+</code></pre><h4 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h4><h5 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h5><pre><code>print(2 + 3)
+print(2 * 3)
+print(3 - 1)
+print(3 / 2)
+print(3 ** 2)
+print(2 + 3 * 2)
+print((2 + 3) * 2)
+</code></pre><p>输出：</p>
+<pre><code>5
+6
+2
+1.5
+9
+8
+10
+</code></pre><h5 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h5><pre><code>print(0.1 + 0.1)
+print(2 * 0.3)
+</code></pre><p>输出：</p>
+<pre><code>0.2
+0.6
+</code></pre><h4 id="字符串和数字混合连接"><a href="#字符串和数字混合连接" class="headerlink" title="字符串和数字混合连接"></a>字符串和数字混合连接</h4><pre><code>age = 20
+message = &quot;Happy &quot; + age + &quot;rd Birthday!&quot;
+print(message)
+</code></pre><p>Python 默认不支持混合计算，若想输出  “Happy 20rd Birthday!” 需要使用特殊的函数 str() :</p>
+<pre><code>age = 20
+message = &quot;Happy &quot; + str(age) + &quot;rd Birthday!&quot;
+print(message)
+</code></pre><p>输出:</p>
+<pre><code>Happy 20rd Birthday!
+</code></pre><h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><p>Python 忽略被 # 开头的行，# 后的语句代表注释：</p>
+<pre><code># 打印欢迎语
+age = 20
+message = &quot;Happy &quot; + str(age) + &quot;rd Birthday!&quot;
+print(message)
+</code></pre>
       
 
       
@@ -366,7 +423,15 @@
       	</div>
     </div>
   </div>
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+ $('pre').addClass('prettyprint linenums');
+   prettyPrint();
+ })
+</script>
 </footer>
+
     </div>
     <script>
 	var yiliaConfig = {

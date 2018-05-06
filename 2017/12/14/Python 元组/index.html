@@ -5,21 +5,22 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Python 元组 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Python : 3.6.3 Python 中列表是可变的，列表的长度随着列表内元素的数量变化而变化，而要想创建一个长度不可变的存储数据集，可以使用元组。 定义元祖元组和列表类似，只是使用的是圆括号而不是方括号：123numbers = (1,3)print(numbers[0])print(numbers[1]) 输出：1213 元组支持和列表一样的操作，除了修改元祖的元素值：12numbers">
+  <meta name="description" content="Python : 3.6.3 Python 中列表是可变的，列表的长度随着列表内元素的数量变化而变化，而要想创建一个长度不可变的存储数据集，可以使用元组。 定义元祖元组和列表类似，只是使用的是圆括号而不是方括号： numbers = (1,3) print(numbers[0]) print(numbers[1]) 输出： 1 3 元组支持和列表一样的操作，除了修改元祖的元素值： numbers">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 元组">
 <meta property="og:url" content="http://yoursite.com/2017/12/14/Python 元组/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="Python : 3.6.3 Python 中列表是可变的，列表的长度随着列表内元素的数量变化而变化，而要想创建一个长度不可变的存储数据集，可以使用元组。 定义元祖元组和列表类似，只是使用的是圆括号而不是方括号：123numbers = (1,3)print(numbers[0])print(numbers[1]) 输出：1213 元组支持和列表一样的操作，除了修改元祖的元素值：12numbers">
+<meta property="og:description" content="Python : 3.6.3 Python 中列表是可变的，列表的长度随着列表内元素的数量变化而变化，而要想创建一个长度不可变的存储数据集，可以使用元组。 定义元祖元组和列表类似，只是使用的是圆括号而不是方括号： numbers = (1,3) print(numbers[0]) print(numbers[1]) 输出： 1 3 元组支持和列表一样的操作，除了修改元祖的元素值： numbers">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2017-12-20T16:30:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 元组">
-<meta name="twitter:description" content="Python : 3.6.3 Python 中列表是可变的，列表的长度随着列表内元素的数量变化而变化，而要想创建一个长度不可变的存储数据集，可以使用元组。 定义元祖元组和列表类似，只是使用的是圆括号而不是方括号：123numbers = (1,3)print(numbers[0])print(numbers[1]) 输出：1213 元组支持和列表一样的操作，除了修改元祖的元素值：12numbers">
+<meta name="twitter:description" content="Python : 3.6.3 Python 中列表是可变的，列表的长度随着列表内元素的数量变化而变化，而要想创建一个长度不可变的存储数据集，可以使用元组。 定义元祖元组和列表类似，只是使用的是圆括号而不是方括号： numbers = (1,3) print(numbers[0]) print(numbers[1]) 输出： 1 3 元组支持和列表一样的操作，除了修改元祖的元素值： numbers">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -165,12 +166,21 @@
       
         <p>Python : 3.6.3</p>
 <p>Python 中列表是可变的，列表的长度随着列表内元素的数量变化而变化，而要想创建一个长度不可变的存储数据集，可以使用元组。</p>
-<h4 id="定义元祖"><a href="#定义元祖" class="headerlink" title="定义元祖"></a>定义元祖</h4><p>元组和列表类似，只是使用的是圆括号而不是方括号：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">numbers = (1,3)</span><br><span class="line">print(numbers[0])</span><br><span class="line">print(numbers[1])</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">3</span><br></pre></td></tr></table></figure></p>
-<p>元组支持和列表一样的操作，除了修改元祖的元素值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">numbers = (1,3)</span><br><span class="line">numbers[0] = 20</span><br></pre></td></tr></table></figure></p>
-<p>上述的操作是错误的。</p>
-<p>但是元组支持整体的赋值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">numbers = (1,3)</span><br><span class="line">numbers = (10,30)</span><br></pre></td></tr></table></figure></p>
-<p>元组的其他操作可参考列表的操作</p>
+<h4 id="定义元祖"><a href="#定义元祖" class="headerlink" title="定义元祖"></a>定义元祖</h4><p>元组和列表类似，只是使用的是圆括号而不是方括号：</p>
+<pre><code>numbers = (1,3)
+print(numbers[0])
+print(numbers[1])
+</code></pre><p>输出：</p>
+<pre><code>1
+3
+</code></pre><p>元组支持和列表一样的操作，除了修改元祖的元素值：</p>
+<pre><code>numbers = (1,3)
+numbers[0] = 20
+</code></pre><p>上述的操作是错误的。</p>
+<p>但是元组支持整体的赋值：</p>
+<pre><code>numbers = (1,3)
+numbers = (10,30)
+</code></pre><p>元组的其他操作可参考列表的操作</p>
 
       
 
@@ -347,7 +357,15 @@
       	</div>
     </div>
   </div>
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+ $('pre').addClass('prettyprint linenums');
+   prettyPrint();
+ })
+</script>
 </footer>
+
     </div>
     <script>
 	var yiliaConfig = {

@@ -5,6 +5,7 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -167,11 +168,26 @@
 <p>如果想集成基于 XML 维护元数据，可通过 @ImportResource 注解进行集成</p>
 <p>自动配置需要使用 @EnableAutoConfiguration 注解 </p>
 <p>@SpringBootApplication 注解组合了上述注解</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">package com.example.myproject;</span><br><span class="line"></span><br><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication; </span><br><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class Application &#123;</span><br><span class="line">	public static void main(String[] args) &#123; </span><br><span class="line">		SpringApplication.run(Application.class, args);</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>@SpringBootApplication 组合了 @Configuration @EnableAutoCofiguration @ComponentScan 三个注解</p>
+<pre><code>package com.example.myproject;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication; 
+
+@SpringBootApplication
+public class Application {
+    public static void main(String[] args) { 
+        SpringApplication.run(Application.class, args);
+    } 
+}
+</code></pre><p>@SpringBootApplication 组合了 @Configuration @EnableAutoCofiguration @ComponentScan 三个注解</p>
 <p>可通过如下方式去除自动配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import org.springframework.boot.autoconfigure.*; </span><br><span class="line">import org.springframework.boot.autoconfigure.jdbc.*; import org.springframework.context.annotation.*;</span><br><span class="line"></span><br><span class="line">@Configuration @EnableAutoConfiguration(exclude=&#123;DataSourceAutoConfiguration.class&#125;) </span><br><span class="line">public class MyConfiguration &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>@EnableAutoConfiguration 可以通过 exclude 进行排除</p>
+<pre><code>import org.springframework.boot.autoconfigure.*; 
+import org.springframework.boot.autoconfigure.jdbc.*; import org.springframework.context.annotation.*;
+
+@Configuration @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class}) 
+public class MyConfiguration {
+}
+</code></pre><p>@EnableAutoConfiguration 可以通过 exclude 进行排除</p>
 
       
 
@@ -261,8 +277,37 @@
 <p>default package 不能使用，SpringBoot 特性是自动扫描，自动装配，对代码结构有一定的约定，default package 结构可能影响自动扫描，自动装配</p>
 <p><strong>启动类的位置</strong></p>
 <p>官方推荐启动类位于根目录，因为 @EnableAutoConfiguration 注解是基于当前类所在包，扫描当前类所在包及子包</p>
-<p>典型布局：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">com</span><br><span class="line"> +- example</span><br><span class="line">     +- myproject</span><br><span class="line">         +- Application.java</span><br><span class="line">         |</span><br><span class="line">         +- domain</span><br><span class="line">         |   +- Customer.java</span><br><span class="line">         |   +- CustomerRepository.java</span><br><span class="line">         |</span><br><span class="line">         +- service</span><br><span class="line">         |   +- CustomerService.java</span><br><span class="line">         |</span><br><span class="line">         +- web</span><br><span class="line">             +- CustomerController.java</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">package com.example.myproject;</span><br><span class="line"></span><br><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.EnableAutoConfiguration; </span><br><span class="line">import org.springframework.context.annotation.ComponentScan;</span><br><span class="line">import org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line">@Configuration</span><br><span class="line">@EnableAutoConfiguration</span><br><span class="line">@ComponentScan</span><br><span class="line">public class Application &#123;</span><br><span class="line">	public static void main(String[] args) &#123; </span><br><span class="line">		SpringApplication.run(Application.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>典型布局：</p>
+<pre><code>com
+ +- example
+     +- myproject
+         +- Application.java
+         |
+         +- domain
+         |   +- Customer.java
+         |   +- CustomerRepository.java
+         |
+         +- service
+         |   +- CustomerService.java
+         |
+         +- web
+             +- CustomerController.java
+</code></pre><pre><code>package com.example.myproject;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration; 
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@EnableAutoConfiguration
+@ComponentScan
+public class Application {
+    public static void main(String[] args) { 
+        SpringApplication.run(Application.class, args);
+    }
+}
+</code></pre>
       
 
       
@@ -349,10 +394,26 @@
         <p>SpringBoot：1.5.10.RELEASE</p>
 <p>SpringBoot 引入有两种方式：</p>
 <p><strong>继承</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> &lt;parent&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.5.10.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/parent&gt;</span><br></pre></td></tr></table></figure>
-<p><strong>依赖管理</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencyManagement&gt;</span><br><span class="line">	&lt;dependencies&gt;</span><br><span class="line">  		&lt;!--spring-boot--&gt;</span><br><span class="line">  		&lt;dependency&gt;</span><br><span class="line">    		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    		&lt;artifactId&gt;spring-boot-dependencies&lt;/artifactId&gt;</span><br><span class="line">    		&lt;version&gt;1.5.10.RELEASE&lt;/version&gt;</span><br><span class="line">    		&lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">    		&lt;scope&gt;import&lt;/scope&gt;</span><br><span class="line">  		&lt;/dependency&gt;</span><br><span class="line">	&lt;/dependencies&gt;</span><br><span class="line">&lt;/dependencyManagement&gt;</span><br></pre></td></tr></table></figure>
-<p>推荐使用依赖管理的方式，耦合性更低</p>
+<pre><code> &lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;1.5.10.RELEASE&lt;/version&gt;
+&lt;/parent&gt;
+
+</code></pre><p><strong>依赖管理</strong></p>
+<pre><code>&lt;dependencyManagement&gt;
+    &lt;dependencies&gt;
+          &lt;!--spring-boot--&gt;
+          &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-dependencies&lt;/artifactId&gt;
+            &lt;version&gt;1.5.10.RELEASE&lt;/version&gt;
+            &lt;type&gt;pom&lt;/type&gt;
+            &lt;scope&gt;import&lt;/scope&gt;
+          &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/dependencyManagement&gt;
+</code></pre><p>推荐使用依赖管理的方式，耦合性更低</p>
 
       
 
@@ -524,10 +585,24 @@
         <p>Spring Boot: 1.5.10.RELEASE <br><br>Spring Cloud: Dalston.SR5</p>
 <p>从之前可知路由配置规则： </p>
 <p>properties 风格：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">zuul.routes.&lt;routh&gt;.path = xxxx</span><br><span class="line">zuul.routes.&lt;routh&gt;.serviceId = xxxxx</span><br><span class="line">``` </span><br><span class="line">如：</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">zuul.routes.user-service.path = /user-service/**</span><br><span class="line">zuul.routes.user-service.serviceId = user-service</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">yml 风格：</span><br></pre></td></tr></table></figure>
-<p>zuul:<br>    routes:<br>        <routh>:<br>            path: xxxx<br>            serviceId: xxxxx<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如：</span><br></pre></td></tr></table></figure></routh></p>
-<p>zuul:<br>    routes:<br>        user-service:<br>            path: /user-service/**<br>            serviceId: user-service<br><code>`</code></p>
-<p>路径匹配主要是设置 path 参数，采用 Ant 风格定义， Ant 是根据通配符来进行匹配：</p>
+<pre><code>zuul.routes.&lt;routh&gt;.path = xxxx
+zuul.routes.&lt;routh&gt;.serviceId = xxxxx
+</code></pre><p>如：</p>
+<pre><code>zuul.routes.user-service.path = /user-service/**
+zuul.routes.user-service.serviceId = user-service
+</code></pre><p>yml 风格：</p>
+<pre><code>zuul:
+    routes: 
+        &lt;routh&gt;: 
+            path: xxxx
+            serviceId: xxxxx
+</code></pre><p>如：</p>
+<pre><code>zuul:
+    routes: 
+        user-service: 
+            path: /user-service/**
+            serviceId: user-service
+</code></pre><p>路径匹配主要是设置 path 参数，采用 Ant 风格定义， Ant 是根据通配符来进行匹配：</p>
 <table>
 <thead>
 <tr>
@@ -749,20 +824,45 @@
         <p>Lambda 可以使用现成已经实现的方法。</p>
 <p><strong>要求被调用的方法的参数类型和返回值和 Lambda 表达式中函数接口中抽象方法的参数类型和返回值一致</strong></p>
 <p><strong>对象::实例方法名</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;String&gt; consumer = x -&gt; System.out.println(x);</span><br><span class="line">		</span><br><span class="line">PrintStream printStream = System.out;</span><br><span class="line">Consumer&lt;String&gt; consumer1 = printStream::print;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;String&gt; consumer = x -&gt; System.out.println(x);</span><br><span class="line">		</span><br><span class="line">Consumer&lt;String&gt; consumer1 = System.out::print;</span><br></pre></td></tr></table></figure>
-<p><strong>类::静态方法名</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Comparator&lt;Integer&gt; comparator = (x, y) -&gt; Integer.compare(x, y);</span><br><span class="line">comparator.compare(2,3);</span><br><span class="line">	</span><br><span class="line">Comparator&lt;Integer&gt; comparator1 = Integer::compare;</span><br><span class="line">comparator1.compare(3,4);</span><br></pre></td></tr></table></figure>
-<p><strong>类::实例方法名</strong></p>
+<pre><code>Consumer&lt;String&gt; consumer = x -&gt; System.out.println(x);
+
+PrintStream printStream = System.out;
+Consumer&lt;String&gt; consumer1 = printStream::print;
+</code></pre><pre><code>Consumer&lt;String&gt; consumer = x -&gt; System.out.println(x);
+
+Consumer&lt;String&gt; consumer1 = System.out::print;
+</code></pre><p><strong>类::静态方法名</strong></p>
+<pre><code>Comparator&lt;Integer&gt; comparator = (x, y) -&gt; Integer.compare(x, y);
+comparator.compare(2,3);
+
+Comparator&lt;Integer&gt; comparator1 = Integer::compare;
+comparator1.compare(3,4);
+</code></pre><p><strong>类::实例方法名</strong></p>
 <p>要求 第一个参数是实例方法的调用者，第二个参数是实例方法的参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BiPredicate&lt;String, String&gt; biPredicate = (x, y) -&gt; x.equals(y);</span><br><span class="line">biPredicate.test(&quot;b&quot;, &quot;b&quot;);</span><br><span class="line">	</span><br><span class="line">BiPredicate&lt;String, String&gt; biPredicate1 = String::equals;</span><br><span class="line">biPredicate1.test(&quot;b&quot;, &quot;b&quot;);</span><br></pre></td></tr></table></figure>
-<p><strong>构造函数引用</strong></p>
+<pre><code>BiPredicate&lt;String, String&gt; biPredicate = (x, y) -&gt; x.equals(y);
+biPredicate.test(&quot;b&quot;, &quot;b&quot;);
+
+BiPredicate&lt;String, String&gt; biPredicate1 = String::equals;
+biPredicate1.test(&quot;b&quot;, &quot;b&quot;);
+</code></pre><p><strong>构造函数引用</strong></p>
 <p>可以自动匹配对应的构造函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Supplier&lt;String&gt; supplier = () -&gt; new String();</span><br><span class="line">System.out.println(supplier);</span><br><span class="line">	</span><br><span class="line">Supplier&lt;String&gt; supplier1 = String::new;</span><br><span class="line">System.out.println(supplier1.get());</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Function&lt;String, String&gt; function = (x) -&gt; new String(x);</span><br><span class="line">System.out.println(function.apply(&quot;a&quot;));</span><br><span class="line">	</span><br><span class="line">Function&lt;String, String&gt; function1 = String::new;</span><br><span class="line">System.out.println(function1.apply(&quot;b&quot;));</span><br></pre></td></tr></table></figure>
-<p><strong>数组引用</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Function&lt;Integer, String[]&gt; function = (x) -&gt; new String[x];</span><br><span class="line">System.out.println(function.apply(5).length);</span><br><span class="line">	</span><br><span class="line">Function&lt;Integer, String[]&gt; function1 = String[]::new;</span><br><span class="line">System.out.println(function1.apply(6).length);</span><br></pre></td></tr></table></figure>
-<p>代码可参考<a href="https://github.com/lxmuse/lxmuse-jdk8-new-feature.git" target="_blank" rel="noopener">lxmuse-jdk8-new-feature-lambda-04</a></p>
+<pre><code>Supplier&lt;String&gt; supplier = () -&gt; new String();
+System.out.println(supplier);
+
+Supplier&lt;String&gt; supplier1 = String::new;
+System.out.println(supplier1.get());
+</code></pre><pre><code>Function&lt;String, String&gt; function = (x) -&gt; new String(x);
+System.out.println(function.apply(&quot;a&quot;));
+
+Function&lt;String, String&gt; function1 = String::new;
+System.out.println(function1.apply(&quot;b&quot;));
+</code></pre><p><strong>数组引用</strong></p>
+<pre><code>Function&lt;Integer, String[]&gt; function = (x) -&gt; new String[x];
+System.out.println(function.apply(5).length);
+
+Function&lt;Integer, String[]&gt; function1 = String[]::new;
+System.out.println(function1.apply(6).length);
+</code></pre><p>代码可参考<a href="https://github.com/lxmuse/lxmuse-jdk8-new-feature.git" target="_blank" rel="noopener">lxmuse-jdk8-new-feature-lambda-04</a></p>
 
       
 
@@ -853,29 +953,91 @@
 <p>默认 SpringCloud 因为安全机制是不允许访问，需设置 management.security.enabled=false</p>
 <h2 id="默认路由规则"><a href="#默认路由规则" class="headerlink" title="默认路由规则"></a>默认路由规则</h2><p>在上一篇 SpringCloud Zuul 请求路由中有演示配置路由规则，那么如果不配置路径规则会怎么样？会通过服务提供者的请求路径直接访问吗？</p>
 <p>还是使用上一篇的例子，只是修改配置文件 appliation.yml 如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">spring: </span><br><span class="line">	application:</span><br><span class="line">		name: zuul-server</span><br><span class="line"></span><br><span class="line">server:</span><br><span class="line">	port: 8888</span><br><span class="line">	</span><br><span class="line">management:</span><br><span class="line">	security:</span><br><span class="line">		enabled: false</span><br><span class="line"></span><br><span class="line">eureka:</span><br><span class="line">	instance:</span><br><span class="line">		prefer-ip-address: false</span><br><span class="line">	client:</span><br><span class="line">		service-url:</span><br><span class="line">			defaultZone: http://localhost:8761/eureka</span><br></pre></td></tr></table></figure>
-<p>POST 请求路由管理端点：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8888/routes</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> &quot;/hello-world-service-provide/**&quot;:&quot;hello-world-service-provide&quot;,</span><br><span class="line"> &quot;/hello-world-service/**&quot;:&quot;hello-world-service&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>而实际路径如下：<br><br>hello-world-service:9001 的 /hello URL  <br><br>hello-world-service-provide:9004 的 /hello URL  <br><br>hello-world-service-provide:9005 的 /hello URL  <br></p>
+<pre><code>spring: 
+    application:
+        name: zuul-server
+
+server:
+    port: 8888
+
+management:
+    security:
+        enabled: false
+
+eureka:
+    instance:
+        prefer-ip-address: false
+    client:
+        service-url:
+            defaultZone: http://localhost:8761/eureka    
+</code></pre><p>POST 请求路由管理端点：</p>
+<pre><code>http://localhost:8888/routes
+</code></pre><p>结果：</p>
+<pre><code>{
+ &quot;/hello-world-service-provide/**&quot;:&quot;hello-world-service-provide&quot;,
+ &quot;/hello-world-service/**&quot;:&quot;hello-world-service&quot;
+}
+</code></pre><p>而实际路径如下：<br><br>hello-world-service:9001 的 /hello URL  <br><br>hello-world-service-provide:9004 的 /hello URL  <br><br>hello-world-service-provide:9005 的 /hello URL  <br></p>
 <p>可以发现 Zuul 默认会帮我们配置一个路由规则：<strong>默认以服务名称作为path的请求前缀</strong></p>
 <p>调用如下URL：</p>
 <p><a href="http://localhost:8888/hello-world-service/hello" target="_blank" rel="noopener">http://localhost:8888/hello-world-service/hello</a> <br><br><a href="http://localhost:8888/hello-world-service-provide/hello" target="_blank" rel="noopener">http://localhost:8888/hello-world-service-provide/hello</a> <br></p>
 <h2 id="屏蔽路由"><a href="#屏蔽路由" class="headerlink" title="屏蔽路由"></a>屏蔽路由</h2><p>因为 Zuul 的默认路由规则存在，那么等于默认是开放了所有的服务路径。故若想有选择的开放路由，则需要利用zuul.ignored-service= /* 进行路由屏蔽然后再通过开放指定路由的方式。</p>
 <p>修改配置文件 appliation.yml 如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">spring: </span><br><span class="line">	application:</span><br><span class="line">		name: zuul-server</span><br><span class="line"></span><br><span class="line">server:</span><br><span class="line">	port: 8888</span><br><span class="line">	</span><br><span class="line">management:</span><br><span class="line">	security:</span><br><span class="line">		enabled: false</span><br><span class="line"></span><br><span class="line">eureka:</span><br><span class="line">	instance:</span><br><span class="line">		prefer-ip-address: false</span><br><span class="line">	client:</span><br><span class="line">		service-url:</span><br><span class="line">			defaultZone: http://localhost:8761/eureka</span><br><span class="line">			</span><br><span class="line">zuul: </span><br><span class="line">	ignored-services: &apos;*&apos;</span><br></pre></td></tr></table></figure>
-<p>POST 请求路由管理端点：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8888/routes</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>修改配置文件 appliation.yml 如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">spring: </span><br><span class="line">	application:</span><br><span class="line">		name: zuul-server</span><br><span class="line"></span><br><span class="line">server:</span><br><span class="line">	port: 8888</span><br><span class="line">	</span><br><span class="line">management:</span><br><span class="line">	security:</span><br><span class="line">		enabled: false</span><br><span class="line"></span><br><span class="line">eureka:</span><br><span class="line">	instance:</span><br><span class="line">		prefer-ip-address: false</span><br><span class="line">	client:</span><br><span class="line">		service-url:</span><br><span class="line">			defaultZone: http://localhost:8761/eureka</span><br><span class="line">			</span><br><span class="line">zuul: </span><br><span class="line">	ignored-services: &apos;*&apos;</span><br><span class="line">	routes:</span><br><span class="line">		hello-world-service: /hello-world-service/**</span><br></pre></td></tr></table></figure>
-<p>POST 请求路由管理端点：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8888/routes</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;/hello-world-service/**&quot;:&quot;hello-world-service&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>调用如下URL：</p>
+<pre><code>spring: 
+    application:
+        name: zuul-server
+
+server:
+    port: 8888
+
+management:
+    security:
+        enabled: false
+
+eureka:
+    instance:
+        prefer-ip-address: false
+    client:
+        service-url:
+            defaultZone: http://localhost:8761/eureka
+
+zuul: 
+    ignored-services: &#39;*&#39;                
+
+</code></pre><p>POST 请求路由管理端点：</p>
+<pre><code>http://localhost:8888/routes
+</code></pre><p>结果：</p>
+<pre><code>{}
+</code></pre><p>修改配置文件 appliation.yml 如下：</p>
+<pre><code>spring: 
+    application:
+        name: zuul-server
+
+server:
+    port: 8888
+
+management:
+    security:
+        enabled: false
+
+eureka:
+    instance:
+        prefer-ip-address: false
+    client:
+        service-url:
+            defaultZone: http://localhost:8761/eureka
+
+zuul: 
+    ignored-services: &#39;*&#39;
+    routes:
+        hello-world-service: /hello-world-service/**                    
+</code></pre><p>POST 请求路由管理端点：</p>
+<pre><code>http://localhost:8888/routes
+</code></pre><p>结果：</p>
+<pre><code>{
+&quot;/hello-world-service/**&quot;:&quot;hello-world-service&quot;
+}
+</code></pre><p>调用如下URL：</p>
 <p><a href="http://localhost:8888/hello-world-service/hello" target="_blank" rel="noopener">http://localhost:8888/hello-world-service/hello</a> 可以正常访问 <br><br><a href="http://localhost:8888/hello-world-service-provide/hello" target="_blank" rel="noopener">http://localhost:8888/hello-world-service-provide/hello</a> 不可以正常访问 <br></p>
 <p>详细代码请参考 <a href="https://github.com/lxmuse/lxmuse-spring-cloud.git" target="_blank" rel="noopener">lxmuse-spring-cloud 下 example-zuul-02</a></p>
 
@@ -963,23 +1125,58 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><strong>Consumer 接口</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Consumer&lt;T&gt; &#123;</span><br><span class="line">    void accept(T t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public void happy(double money, Consumer&lt;Double&gt; consumer) &#123;</span><br><span class="line">		consumer.accept(money);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">happy(1000, money -&gt; System.out.println(&quot;吃喝玩乐&quot;));</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">happy(10000, money -&gt; System.out.println(&quot;旅游&quot;));</span><br></pre></td></tr></table></figure>
-<p><strong>Supplier 接口</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Supplier&lt;T&gt; &#123;</span><br><span class="line">    T get();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public List&lt;Integer&gt; getNumList(int num, Supplier&lt;Integer&gt; supplier) &#123;</span><br><span class="line">	List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">	</span><br><span class="line">	for(int i = 0; i &lt; num; i++) &#123;</span><br><span class="line">		Integer n = supplier.get();</span><br><span class="line">		list.add(n);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return list;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getNumList(10, () -&gt; (int)(Math.random() * 100))</span><br></pre></td></tr></table></figure>
-<p><strong>Function 接口</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Function&lt;T, R&gt; &#123;</span><br><span class="line">    R apply(T t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public String strHandler(String str, Function&lt;String, String&gt; function) &#123;</span><br><span class="line">		return function.apply(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strHandler(&quot;   Lambda  &quot;, str -&gt; str.trim().toUpperCase())</span><br></pre></td></tr></table></figure>
-<p><strong>Predicate 接口</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Predicate&lt;T&gt; &#123;</span><br><span class="line">    boolean test(T t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public List&lt;String&gt; filterStr(List&lt;String&gt; list, Predicate&lt;String&gt; predicate) &#123;</span><br><span class="line">	List&lt;String&gt; strList = new ArrayList&lt;&gt;();</span><br><span class="line">	</span><br><span class="line">	for(String str : list) &#123;</span><br><span class="line">		if(predicate.test(str)) &#123;</span><br><span class="line">			strList.add(str);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return strList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; strings = Arrays.asList(&quot;Hello&quot;, &quot;Lambda&quot;, &quot;Function&quot;, &quot;Java&quot;);</span><br><span class="line">filterStr(strings, str -&gt; str.length() &gt; 5);</span><br></pre></td></tr></table></figure>
-<p>代码可参考<a href="https://github.com/lxmuse/lxmuse-jdk8-new-feature.git" target="_blank" rel="noopener">lxmuse-jdk8-new-feature-lambda-03</a></p>
+<pre><code>public interface Consumer&lt;T&gt; {
+    void accept(T t);
+}
+</code></pre><pre><code>public void happy(double money, Consumer&lt;Double&gt; consumer) {
+        consumer.accept(money);
+}
+</code></pre><pre><code>happy(1000, money -&gt; System.out.println(&quot;吃喝玩乐&quot;));
+</code></pre><pre><code>happy(10000, money -&gt; System.out.println(&quot;旅游&quot;));
+</code></pre><p><strong>Supplier 接口</strong></p>
+<pre><code>public interface Supplier&lt;T&gt; {
+    T get();
+}
+
+</code></pre><pre><code>public List&lt;Integer&gt; getNumList(int num, Supplier&lt;Integer&gt; supplier) {
+    List&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+
+    for(int i = 0; i &lt; num; i++) {
+        Integer n = supplier.get();
+        list.add(n);
+    }
+
+    return list;
+}
+</code></pre><pre><code>getNumList(10, () -&gt; (int)(Math.random() * 100))
+</code></pre><p><strong>Function 接口</strong></p>
+<pre><code>public interface Function&lt;T, R&gt; {
+    R apply(T t);
+}
+
+</code></pre><pre><code>public String strHandler(String str, Function&lt;String, String&gt; function) {
+        return function.apply(str);
+}
+</code></pre><pre><code>strHandler(&quot;   Lambda  &quot;, str -&gt; str.trim().toUpperCase())
+</code></pre><p><strong>Predicate 接口</strong></p>
+<pre><code>public interface Predicate&lt;T&gt; {
+    boolean test(T t);
+}
+
+</code></pre><pre><code>public List&lt;String&gt; filterStr(List&lt;String&gt; list, Predicate&lt;String&gt; predicate) {
+    List&lt;String&gt; strList = new ArrayList&lt;&gt;();
+
+    for(String str : list) {
+        if(predicate.test(str)) {
+            strList.add(str);
+        }
+    }
+
+    return strList;
+}
+</code></pre><pre><code>List&lt;String&gt; strings = Arrays.asList(&quot;Hello&quot;, &quot;Lambda&quot;, &quot;Function&quot;, &quot;Java&quot;);
+filterStr(strings, str -&gt; str.length() &gt; 5);
+</code></pre><p>代码可参考<a href="https://github.com/lxmuse/lxmuse-jdk8-new-feature.git" target="_blank" rel="noopener">lxmuse-jdk8-new-feature-lambda-03</a></p>
 
       
 
@@ -1044,19 +1241,19 @@
 
 
   
-    <article id="post-GS1 医疗行业应用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-关于版本控制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/11/GS1 医疗行业应用/">GS1 医疗行业应用</a>
+      <a class="article-title" href="/2018/01/11/关于版本控制/">关于版本控制</a>
     </h1>
   
 
         
-        <a href="/2018/01/11/GS1 医疗行业应用/" class="archive-article-date">
+        <a href="/2018/01/11/关于版本控制/" class="archive-article-date">
   	<time datetime="2018-01-11T13:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
 </a>
         
@@ -1064,8 +1261,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="什么是-UDI"><a href="#什么是-UDI" class="headerlink" title="什么是 UDI"></a>什么是 UDI</h5><p> 唯一器械标识（Unique Device Identification，缩写UDI）是对医疗器械在其整个生命周期赋予的身份标识，是其在产品供应链中的唯一“身份证”。全球采用统一的、标准的UDI有利于提高供应链透明度和运作效率；有利于降低运营成本；有利于实现信息共享与交换；有利于不良事件的监控和问题产品召回，提高医疗服务质量，保障患者安全。</p>
-
+        <p>版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。</p>
+<h4 id="版本控制的演变"><a href="#版本控制的演变" class="headerlink" title="版本控制的演变"></a>版本控制的演变</h4>
       
 
       
@@ -1078,11 +1275,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GS1</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">UDI</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
         		</li>
       		
 		</ul>
@@ -1094,7 +1287,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/行业知识//" class="article-tag-list-link color5">行业知识</a>
+        			<a href="/categories/开发管理系列//" class="article-tag-list-link color2">开发管理系列</a>
         		</li>
       		
 		</ul>
@@ -1103,7 +1296,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/11/GS1 医疗行业应用/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/01/11/关于版本控制/">展开全文 >></a>
         </p>
       
 
@@ -1154,7 +1347,15 @@
       	</div>
     </div>
   </div>
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+ $('pre').addClass('prettyprint linenums');
+   prettyPrint();
+ })
+</script>
 </footer>
+
     </div>
     <script>
 	var yiliaConfig = {

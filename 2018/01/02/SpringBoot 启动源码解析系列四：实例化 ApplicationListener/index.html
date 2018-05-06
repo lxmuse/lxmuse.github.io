@@ -5,21 +5,22 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>SpringBoot 启动源码解析系列四：实例化 ApplicationListener | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SpringApplication initialize 方法： 12345678910private void initialize(Object[] sources) &amp;#123;    if (sources != null &amp;amp;&amp;amp; sources.length &amp;gt; 0) &amp;#123;        this.sources.addAll(Arrays.asList(so">
+  <meta name="description" content="SpringApplication initialize 方法： private void initialize(Object[] sources) {     if (sources != null &amp;amp;&amp;amp; sources.length &amp;gt; 0) {         this.sources.addAll(Arrays.asList(sources));     }">
 <meta name="keywords" content="SpringBoot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot 启动源码解析系列四：实例化 ApplicationListener">
 <meta property="og:url" content="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列四：实例化 ApplicationListener/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="SpringApplication initialize 方法： 12345678910private void initialize(Object[] sources) &amp;#123;    if (sources != null &amp;amp;&amp;amp; sources.length &amp;gt; 0) &amp;#123;        this.sources.addAll(Arrays.asList(so">
+<meta property="og:description" content="SpringApplication initialize 方法： private void initialize(Object[] sources) {     if (sources != null &amp;amp;&amp;amp; sources.length &amp;gt; 0) {         this.sources.addAll(Arrays.asList(sources));     }">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-01-02T13:22:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot 启动源码解析系列四：实例化 ApplicationListener">
-<meta name="twitter:description" content="SpringApplication initialize 方法： 12345678910private void initialize(Object[] sources) &amp;#123;    if (sources != null &amp;amp;&amp;amp; sources.length &amp;gt; 0) &amp;#123;        this.sources.addAll(Arrays.asList(so">
+<meta name="twitter:description" content="SpringApplication initialize 方法： private void initialize(Object[] sources) {     if (sources != null &amp;amp;&amp;amp; sources.length &amp;gt; 0) {         this.sources.addAll(Arrays.asList(sources));     }">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -164,14 +165,39 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>SpringApplication initialize 方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private void initialize(Object[] sources) &#123;</span><br><span class="line">    if (sources != null &amp;&amp; sources.length &gt; 0) &#123;</span><br><span class="line">        this.sources.addAll(Arrays.asList(sources));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    this.webEnvironment = this.deduceWebEnvironment();</span><br><span class="line">    this.setInitializers(this.getSpringFactoriesInstances(ApplicationContextInitializer.class));</span><br><span class="line">    this.setListeners(this.getSpringFactoriesInstances(ApplicationListener.class));</span><br><span class="line">    this.mainApplicationClass = this.deduceMainApplicationClass();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>setListeners 方法即找到 ApplicationListener 类并实例化</p>
-<p>ApplicationListener 是 Spring 框架中事件监听器接口，即 SpringApplicationRunListener 发布通知事件时，由 ApplicationListener 负责接收。具体可以参考 Spring 事件监听机制。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface ApplicationListener&lt;E extends ApplicationEvent&gt; extends EventListener &#123;</span><br><span class="line">    void onApplicationEvent(E var1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>ApplicationListener 在 SpringBoot 中包含两块：</p>
-<p>spring-boot-x.x.x.RELEASE.jar/META-INF/spring.factories中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># Application Listeners</span><br><span class="line">org.springframework.context.ApplicationListener=\</span><br><span class="line">org.springframework.boot.ClearCachesApplicationListener,\</span><br><span class="line">org.springframework.boot.builder.ParentContextCloserApplicationListener,\</span><br><span class="line">org.springframework.boot.context.FileEncodingApplicationListener,\</span><br><span class="line">org.springframework.boot.context.config.AnsiOutputApplicationListener,\</span><br><span class="line">org.springframework.boot.context.config.ConfigFileApplicationListener,\</span><br><span class="line">org.springframework.boot.context.config.DelegatingApplicationListener,\</span><br><span class="line">org.springframework.boot.liquibase.LiquibaseServiceLocatorApplicationListener,\</span><br><span class="line">org.springframework.boot.logging.ClasspathLoggingApplicationListener,\</span><br><span class="line">org.springframework.boot.logging.LoggingApplicationListener</span><br></pre></td></tr></table></figure></p>
-<p>spring-boot-autoconfigure-x.x.x.RELEASE.jar/META-INF/spring.factories中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Application Listeners</span><br><span class="line">org.springframework.context.ApplicationListener=\</span><br><span class="line">org.springframework.boot.autoconfigure.BackgroundPreinitializer</span><br></pre></td></tr></table></figure></p>
+<pre><code>private void initialize(Object[] sources) {
+    if (sources != null &amp;&amp; sources.length &gt; 0) {
+        this.sources.addAll(Arrays.asList(sources));
+    }
 
+    this.webEnvironment = this.deduceWebEnvironment();
+    this.setInitializers(this.getSpringFactoriesInstances(ApplicationContextInitializer.class));
+    this.setListeners(this.getSpringFactoriesInstances(ApplicationListener.class));
+    this.mainApplicationClass = this.deduceMainApplicationClass();
+}
+</code></pre><p>setListeners 方法即找到 ApplicationListener 类并实例化</p>
+<p>ApplicationListener 是 Spring 框架中事件监听器接口，即 SpringApplicationRunListener 发布通知事件时，由 ApplicationListener 负责接收。具体可以参考 Spring 事件监听机制。</p>
+<pre><code>public interface ApplicationListener&lt;E extends ApplicationEvent&gt; extends EventListener {
+    void onApplicationEvent(E var1);
+}
+</code></pre><p>ApplicationListener 在 SpringBoot 中包含两块：</p>
+<p>spring-boot-x.x.x.RELEASE.jar/META-INF/spring.factories中：</p>
+<pre><code># Application Listeners
+org.springframework.context.ApplicationListener=\
+org.springframework.boot.ClearCachesApplicationListener,\
+org.springframework.boot.builder.ParentContextCloserApplicationListener,\
+org.springframework.boot.context.FileEncodingApplicationListener,\
+org.springframework.boot.context.config.AnsiOutputApplicationListener,\
+org.springframework.boot.context.config.ConfigFileApplicationListener,\
+org.springframework.boot.context.config.DelegatingApplicationListener,\
+org.springframework.boot.liquibase.LiquibaseServiceLocatorApplicationListener,\
+org.springframework.boot.logging.ClasspathLoggingApplicationListener,\
+org.springframework.boot.logging.LoggingApplicationListener
+</code></pre><p>spring-boot-autoconfigure-x.x.x.RELEASE.jar/META-INF/spring.factories中：</p>
+<pre><code># Application Listeners
+org.springframework.context.ApplicationListener=\
+org.springframework.boot.autoconfigure.BackgroundPreinitializer
+</code></pre>
       
 
       
@@ -347,7 +373,15 @@
       	</div>
     </div>
   </div>
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+ $('pre').addClass('prettyprint linenums');
+   prettyPrint();
+ })
+</script>
 </footer>
+
     </div>
     <script>
 	var yiliaConfig = {
