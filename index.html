@@ -140,6 +140,100 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-记一次 MySQL 查询慢原因查询" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/06/记一次 MySQL 查询慢原因查询/">记一次 MySQL 查询慢原因查询</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/06/记一次 MySQL 查询慢原因查询/" class="archive-article-date">
+  	<time datetime="2018-05-06T14:57:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在测试环境中，发现有个列表页面加载非常的缓慢，分析 SQL 看起来也很简单，没有问题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">    oo.org_name,</span><br><span class="line">    dd.distributor_org_id,</span><br><span class="line">    dd.auto_distribute_flag</span><br><span class="line">FROM</span><br><span class="line">    distribute_distributor_info dd</span><br><span class="line">    LEFT JOIN org_organization_info oo </span><br><span class="line">    ON dd.distributor_org_id = oo.org_id </span><br><span class="line">    AND oo.del_flag = 0 </span><br><span class="line">    AND dd.del_flag = 0 </span><br><span class="line">WHERE</span><br><span class="line">    dd.supplier_org_id = &apos;4B60CCB94D547D14E050080A0D0536B1&apos; </span><br><span class="line">    AND dd.customer_org_id = &apos;0D49B1E2D212024AE050A8C00A01E580&apos; </span><br><span class="line">ORDER BY</span><br><span class="line">    dd.add_time DESC</span><br></pre></td></tr></table></figure>
+<p>测试环境的数据量也只有100多条的记录，可以单独执行 SQL 执行时间却花费了 <strong>15 秒</strong>！！！</p>
+<p>通过 <strong>EXPLAIN </strong>检查也未看出异常。</p>
+<p>不过经过最终排除对比，发现原因出在 <strong>字段的排序规则不一致的原因上</strong>：</p>
+<p><code>org_organization_info</code> 表中 <code>org_id</code> 字段的排序规则是 <code>utf8_general_ci</code></p>
+<p><code>distributor_org_id</code> 表中 <code>distributor_org_id</code> 字段的排序规则是 <code>utf8_bin</code></p>
+<p>将 <code>distributor_org_id</code> 表中 <code>distributor_org_id</code> 字段的排序规则改成 </p>
+<p><code>utf8_general_ci</code> 查询即恢复正常</p>
+<p>云栖社区有篇文章讲述到了类似的问题 <a href="https://yq.aliyun.com/articles/69138" target="_blank" rel="noopener">RDS for MySQL 字符序（collation）引发的性能问题</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/MySQL//" class="article-tag-list-link color1">MySQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/06/记一次 MySQL 查询慢原因查询/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-集合框架基础之迭代器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -973,102 +1067,6 @@
 
 
   
-    <article id="post-SpringBoot 配置类和自动配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/17/SpringBoot 配置类和自动配置/">SpringBoot 配置类和自动配置</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/17/SpringBoot 配置类和自动配置/" class="archive-article-date">
-  	<time datetime="2018-01-17T13:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>SpringBoot：1.5.10.RELEASE</p>
-<p>SpringBoot 推荐基于 Java 维护元数据信息，但是也支持基于 XML 维护元数据信息。</p>
-<p>配置类通过 @Configuration 注解可以进行自动扫描</p>
-<p>SpringBoot 支持多个配置类单独配置，可通过 @Import 注解进行集中导入或者通过 @ComponentScan 自动扫描</p>
-<p>如果想集成基于 XML 维护元数据，可通过 @ImportResource 注解进行集成</p>
-<p>自动配置需要使用 @EnableAutoConfiguration 注解 </p>
-<p>@SpringBootApplication 注解组合了上述注解</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">package com.example.myproject;</span><br><span class="line"></span><br><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication; </span><br><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class Application &#123;</span><br><span class="line">	public static void main(String[] args) &#123; </span><br><span class="line">		SpringApplication.run(Application.class, args);</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>@SpringBootApplication 组合了 @Configuration @EnableAutoCofiguration @ComponentScan 三个注解</p>
-<p>可通过如下方式去除自动配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import org.springframework.boot.autoconfigure.*; </span><br><span class="line">import org.springframework.boot.autoconfigure.jdbc.*; import org.springframework.context.annotation.*;</span><br><span class="line"></span><br><span class="line">@Configuration @EnableAutoConfiguration(exclude=&#123;DataSourceAutoConfiguration.class&#125;) </span><br><span class="line">public class MyConfiguration &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>@EnableAutoConfiguration 可以通过 exclude 进行排除</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/SpringBoot//" class="article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/17/SpringBoot 配置类和自动配置/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1254,15 +1252,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Shiro</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">RestTemplate</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shiro</a>
               </li>
              
               <li class="article-tag-list-item">

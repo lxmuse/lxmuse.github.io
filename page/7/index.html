@@ -140,6 +140,107 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Java 多线程之实例变量与线程安全" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/03/Java 多线程之实例变量与线程安全/">Java 多线程之实例变量与线程安全</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/03/Java 多线程之实例变量与线程安全/" class="archive-article-date">
+  	<time datetime="2017-12-03T11:51:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一个自定义的线程类，其也是一个普通的类，不同的使用方式，其实例变量对调用其的线程来说存在共享和不共享的情形。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class CustomThread extends Thread &#123;</span><br><span class="line"></span><br><span class="line">	private int count = 3;</span><br><span class="line"></span><br><span class="line">	public CustomThread() &#123;</span><br><span class="line">		super();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		super.run();</span><br><span class="line">		while (count &gt; 0) &#123;</span><br><span class="line">			System.out.println(this.currentThread().getId() + &quot; 计算，count=&quot; + count);</span><br><span class="line">            count--;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h6 id="不共享的情形"><a href="#不共享的情形" class="headerlink" title="不共享的情形"></a>不共享的情形</h6><p>不共享实例变量的情形是创建多个自定义线程类的实例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class CustomThreadTest &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		CustomThread customThreadA = new CustomThread();</span><br><span class="line">		CustomThread customThreadB = new CustomThread();</span><br><span class="line">		CustomThread customThreadC = new CustomThread();</span><br><span class="line">		customThreadA.start();</span><br><span class="line">		customThreadB.start();</span><br><span class="line">		customThreadC.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>结果可能：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">11 计算，count=3</span><br><span class="line">11 计算，count=2</span><br><span class="line">11 计算，count=1</span><br><span class="line">12 计算，count=3</span><br><span class="line">12 计算，count=2</span><br><span class="line">12 计算，count=1</span><br><span class="line">13 计算，count=3</span><br><span class="line">13 计算，count=2</span><br><span class="line">13 计算，count=1</span><br></pre></td></tr></table></figure></p>
+<p>结果可能：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">11 计算，count=3</span><br><span class="line">13 计算，count=3</span><br><span class="line">12 计算，count=3</span><br><span class="line">13 计算，count=2</span><br><span class="line">12 计算，count=2</span><br><span class="line">13 计算，count=1</span><br><span class="line">12 计算，count=1</span><br><span class="line">11 计算，count=2</span><br><span class="line">11 计算，count=1</span><br></pre></td></tr></table></figure></p>
+<p>虽然由于线程执行顺序的随机性，但是每个线程实例均各自计算各自的实例变量 count</p>
+<h6 id="共享的情形"><a href="#共享的情形" class="headerlink" title="共享的情形"></a>共享的情形</h6><p>共享实例变量的情形是创建一个自定义线程类的实例，然后多个其他线程实例调用自定义线程类实例（此时自定义线程类相当于一个普通的类）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class CustomThreadTest &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		CustomThread customThread = new CustomThread();</span><br><span class="line">		Thread threadA = new Thread(customThread);</span><br><span class="line">		Thread threadB = new Thread(customThread);</span><br><span class="line">		Thread threadC = new Thread(customThread);</span><br><span class="line">		threadA.start();</span><br><span class="line">		threadB.start();</span><br><span class="line">		threadC.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>结果可能：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">12 计算，count=3</span><br><span class="line">13 计算，count=3</span><br><span class="line">12 计算，count=2</span><br><span class="line">13 计算，count=1</span><br></pre></td></tr></table></figure></p>
+<p>结果可能：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">12 计算，count=3</span><br><span class="line">14 计算，count=3</span><br><span class="line">13 计算，count=3</span><br><span class="line">14 计算，count=1</span><br><span class="line">12 计算，count=2</span><br></pre></td></tr></table></figure></p>
+<p>结果可能：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">13 计算，count=3</span><br><span class="line">13 计算，count=2</span><br><span class="line">13 计算，count=1</span><br><span class="line">14 计算，count=3</span><br><span class="line">12 计算，count=-1</span><br></pre></td></tr></table></figure></p>
+<p>虽然由于线程执行顺序的随机性，但是每个线程实例均计算了 CustomThread 实例 customThread 的实例变量 count。<br>而且上述结果，看起来非常奇怪，与期望的相差甚远！这就是线程安全问题！</p>
+<p>以上述例子为例，某些 JVM 中，i– 实际是三步操作：<br>1）获取原 i 值<br>2）计算 i-1<br>3) 对 i 进行赋值</p>
+<p>正是因为分步操作，可能在执行完第一步以后，线程执行就会切换，导致执行结果千奇百怪，和期望不符。</p>
+<p>若想解决线程安全问题，则需要执行线程同步策略。</p>
+<p>synchronized 关键字修改线程内的方法，可以使其即使被多个线程调用，其也是按顺序执行，从而保证线程安全。<br>使用 synchronized 关键字修饰 run() 方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class CustomThread extends Thread &#123;</span><br><span class="line"></span><br><span class="line">	private int count = 3;</span><br><span class="line"></span><br><span class="line">	public CustomThread() &#123;</span><br><span class="line">		super();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public synchronized void run() &#123;</span><br><span class="line">		super.run();</span><br><span class="line">		while (count &gt; 0) &#123;</span><br><span class="line">			System.out.println(this.currentThread().getId() + &quot; 计算，count=&quot; + count);</span><br><span class="line">			count--;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>结果可能是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">12 计算，count=3</span><br><span class="line">12 计算，count=2</span><br><span class="line">12 计算，count=1</span><br></pre></td></tr></table></figure></p>
+<p>结果可能是:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">14 计算，count=3</span><br><span class="line">14 计算，count=2</span><br><span class="line">14 计算，count=1</span><br></pre></td></tr></table></figure></p>
+<p>执行结果只是因为线程执行的随机而不同，但是计算过程是与期望一致的：count 计算三次</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Java-并发编程系列//" class="article-tag-list-link color2">Java 并发编程系列</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/03/Java 多线程之实例变量与线程安全/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Java 多线程基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1136,109 +1237,6 @@
 
 
   
-    <article id="post-单例模式六种实现方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/18/单例模式六种实现方式/">单例模式六种实现方式</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/18/单例模式六种实现方式/" class="archive-article-date">
-  	<time datetime="2017-07-18T14:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="懒汉式，线程不安全"><a href="#懒汉式，线程不安全" class="headerlink" title="懒汉式，线程不安全"></a>懒汉式，线程不安全</h2><p><strong>是否 Lazy 初始化:</strong> 是 <br><br><strong>是否多线程安全:</strong> 否 <br><br><strong>实现难度:</strong> 容易 <br></p>
-<p>该方式最大的问题就是不支持多线程</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;  </span><br><span class="line">    private static Singleton instance;  </span><br><span class="line">    private Singleton ()&#123;&#125;  </span><br><span class="line">  </span><br><span class="line">    public static Singleton getInstance() &#123;  </span><br><span class="line">	    if (instance == null) &#123;  </span><br><span class="line">	        instance = new Singleton();  </span><br><span class="line">	    &#125;  </span><br><span class="line">	    </span><br><span class="line">	    return instance;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h2><p><strong>是否 Lazy 初始化:</strong> 是 <br><br><strong>是否多线程安全:</strong> 是 <br><br><strong>实现难度:</strong> 容易 <br></p>
-<p>该方式最大的问题是效率低，因为加锁仅仅只是对第一调用起效，99% 情况下实际不需要同步</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;  </span><br><span class="line">    private static Singleton instance;  </span><br><span class="line">    private Singleton ()&#123;&#125;  </span><br><span class="line">    </span><br><span class="line">    public static synchronized Singleton getInstance() &#123;  </span><br><span class="line">	    if (instance == null) &#123;  </span><br><span class="line">	        instance = new Singleton();  </span><br><span class="line">	    &#125;  </span><br><span class="line">	    return instance;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h2><p><strong>是否 Lazy 初始化:</strong> 否 <br><br><strong>是否多线程安全:</strong> 是 <br><br><strong>实现难度:</strong> 容易 <br></p>
-<p>该方式最大的问题是类加载时就初始化，浪费内存</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;  </span><br><span class="line">    private static Singleton instance = new Singleton();  </span><br><span class="line">    private Singleton ()&#123;&#125;  </span><br><span class="line">    </span><br><span class="line">    public static Singleton getInstance() &#123;  </span><br><span class="line">    	return instance;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="双重校验锁"><a href="#双重校验锁" class="headerlink" title="双重校验锁"></a>双重校验锁</h2><p><strong>JDK 版本:</strong> JDK 1.5+ <br><br><strong>是否 Lazy 初始化:</strong> 是 <br><br><strong>是否多线程安全:</strong> 是 <br><br><strong>实现难度:</strong> 一般 <br></p>
-<p>该方式最大的问题是需要 JDK 1.5 及 JDK 1.5 以后</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;  </span><br><span class="line">    private volatile static Singleton singleton;  </span><br><span class="line">    private Singleton ()&#123;&#125;  </span><br><span class="line">    </span><br><span class="line">    public static Singleton getSingleton() &#123;  </span><br><span class="line">	    if (singleton == null) &#123;  </span><br><span class="line">	        synchronized (Singleton.class) &#123;  </span><br><span class="line">		        if (singleton == null) &#123;  </span><br><span class="line">		            singleton = new Singleton();  </span><br><span class="line">		        &#125;  </span><br><span class="line">	        &#125;  </span><br><span class="line">	    &#125;  </span><br><span class="line">	    return singleton;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="登记式-静态内部类"><a href="#登记式-静态内部类" class="headerlink" title="登记式/静态内部类"></a>登记式/静态内部类</h2><p><strong>是否 Lazy 初始化:</strong> 是 <br><br><strong>是否多线程安全:</strong> 是 <br><br><strong>实现难度:</strong> 一般 <br></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;  </span><br><span class="line">    private static class SingletonHolder &#123;  </span><br><span class="line">    	private static final Singleton INSTANCE = new Singleton();  </span><br><span class="line">    &#125;  </span><br><span class="line">    </span><br><span class="line">    private Singleton ()&#123;&#125;  </span><br><span class="line">   </span><br><span class="line">    public static final Singleton getInstance() &#123;  </span><br><span class="line">    	return SingletonHolder.INSTANCE;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>该方式和 饿汉式 不同之处是支持 Lazy 初始化的，只有当第一次被调用时才会初始化</p>
-<h2 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h2><p><strong>JDK 版本:</strong> JDK 1.5+ <br><br><strong>是否 Lazy 初始化:</strong> 否 <br><br><strong>是否多线程安全:</strong> 是 <br><br><strong>实现难度:</strong> 容易 <br></p>
-<p>该方式是 Effective Java 作者 Josh Bloch 推荐的方式，是实现单例模式最佳的方式。简洁，自动支持序列化机制，绝对防止多次实例化。最大的问题是需要 JDK 1.5 及 JDK 1.5 以后</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public enum Singleton &#123;  </span><br><span class="line">    INSTANCE;  </span><br><span class="line">    public void whateverMethod() &#123;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>一般情况下，不建议使用第 1 种和第 2 种懒汉方式，建议使用第 3 种饿汉方式。只有在要明确实现 lazy loading 效果时，才会使用第 5 种登记方式。如果涉及到反序列化创建对象时，可以尝试使用第 6 种枚举方式。如果有其他特殊的需求，可以考虑使用第 4 种双检锁方式。</strong></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">单例模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/设计模式//" class="article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/18/单例模式六种实现方式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
@@ -1424,15 +1422,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Shiro</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">RestTemplate</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shiro</a>
               </li>
              
               <li class="article-tag-list-item">
