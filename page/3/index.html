@@ -140,19 +140,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Spring Cloud Zuul 初识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-GS1 医疗行业应用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/11/Spring Cloud Zuul 初识/">Spring Cloud Zuul 初识</a>
+      <a class="article-title" href="/2018/01/11/GS1 医疗行业应用/">GS1 医疗行业应用</a>
     </h1>
   
 
         
-        <a href="/2018/01/11/Spring Cloud Zuul 初识/" class="archive-article-date">
+        <a href="/2018/01/11/GS1 医疗行业应用/" class="archive-article-date">
   	<time datetime="2018-01-11T13:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
 </a>
         
@@ -160,27 +160,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Spring Boot: 1.5.10.RELEASE <br><br>Spring Cloud: Dalston.SR5</p>
-<h2 id="什么是-Zuul"><a href="#什么是-Zuul" class="headerlink" title="什么是 Zuul"></a>什么是 Zuul</h2><p>Zuul 最主要的两大功能：请求路由和请求过滤</p>
-<p><strong>请求路由</strong></p>
-<p>请求路由是指将外部请求转发到具体的微服务实例上，实现外部访问统一入口的基础</p>
-<p><strong>请求过滤</strong></p>
-<p>请求过滤是指对外部请求进行干预，实现请求校验，服务聚合等功能的基础</p>
-<p>Zuul 一般和 Eureka 集成使用</p>
-<h2 id="Zuul-初识"><a href="#Zuul-初识" class="headerlink" title="Zuul 初识"></a>Zuul 初识</h2><p>利用前期的相关工程实现环境搭建：<br><br>example-01 : eureka-server  <br><br>example-01 : 服务提供者1    <br><br>example-04 : 服务提供者2    <br><br>example-05 : 服务提供者3    <br></p>
-<p>创建 zuul 工程，引入依赖：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-cloud-starter-eureka&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-cloud-starter-zuul&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-<p>spring-cloud-starter-zuul 是必须引入的依赖 <br><br>spring-cloud-starter-eureka 是为了使 zuul 可以 eureka 进行无缝集成</p>
-<p>启动类上添加 @EnableZuulProxy 注解：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line">import org.springframework.cloud.netflix.zuul.EnableZuulProxy;</span><br><span class="line"></span><br><span class="line">@EnableZuulProxy</span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class Application &#123;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication application = new SpringApplication(Application.class);</span><br><span class="line">		application.run(args);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>配置文件集成 eureka 并配置路由规则：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: zuul-server</span><br><span class="line"></span><br><span class="line">server:</span><br><span class="line">  port: 8888</span><br><span class="line"></span><br><span class="line">eureka:</span><br><span class="line">  instance:</span><br><span class="line">    prefer-ip-address: false</span><br><span class="line">  client:</span><br><span class="line">    service-url:</span><br><span class="line">      defaultZone: http://localhost:8761/eureka</span><br><span class="line"></span><br><span class="line">zuul:</span><br><span class="line">  routes:</span><br><span class="line">    api-a.path: /api-a/**</span><br><span class="line">    api-a.serviceId: hello-world-service</span><br><span class="line">    api-b.path: /api-b/*</span><br><span class="line">    api-b.serviceId: hello-world-service-provide</span><br></pre></td></tr></table></figure>
-<p>路由配置规则： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">格式：zuul.routes.&lt;routh&gt;.path </span><br><span class="line">格式：zuul.routes.&lt;routh&gt;.serviceId</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">这里定义了两个简单的转发规则：</span><br><span class="line">拦截所有 api-a 开头的请求，将其转发到 hello-world-service 服务中</span><br><span class="line">拦截所有 api-b 开头的请求，将其转发到 hello-world-service-provide 服务中</span><br><span class="line"></span><br><span class="line">将服务运行以后，可以测试：&lt;br&gt;</span><br><span class="line">http://localhost:8888/api-a/hello &lt;br&gt;</span><br><span class="line">http://localhost:8888/api-b/hello &lt;br&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">上述路由配置可以简化为：</span><br></pre></td></tr></table></figure>
-<p>zuul:<br>  routes:<br>    hello-world-service: /api-a/<strong><br>    hello-world-service-provide: /api-b/</strong>    </p>
-<pre><code>
-</code></pre><p>格式：zuul.routes.<serviceid>=<path></path><br><code>`</code> </serviceid></p>
-<p>详细代码请参考 <a href="https://github.com/lxmuse/lxmuse-spring-cloud.git" target="_blank" rel="noopener">lxmuse-spring-cloud 下 example-zuul-01</a></p>
+        <h5 id="什么是-UDI"><a href="#什么是-UDI" class="headerlink" title="什么是 UDI"></a>什么是 UDI</h5><p> 唯一器械标识（Unique Device Identification，缩写UDI）是对医疗器械在其整个生命周期赋予的身份标识，是其在产品供应链中的唯一“身份证”。全球采用统一的、标准的UDI有利于提高供应链透明度和运作效率；有利于降低运营成本；有利于实现信息共享与交换；有利于不良事件的监控和问题产品召回，提高医疗服务质量，保障患者安全。</p>
 
       
 
@@ -194,7 +174,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Spring Cloud</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GS1</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">UDI</a>
         		</li>
       		
 		</ul>
@@ -206,7 +190,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Spring-Cloud//" class="article-tag-list-link color3">Spring Cloud</a>
+        			<a href="/categories/行业知识//" class="article-tag-list-link color5">行业知识</a>
         		</li>
       		
 		</ul>
@@ -215,7 +199,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/11/Spring Cloud Zuul 初识/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/01/11/GS1 医疗行业应用/">展开全文 >></a>
         </p>
       
 
@@ -1284,11 +1268,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JDK 8</a>
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1300,7 +1280,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JDK 8</a>
               </li>
              
               <li class="article-tag-list-item">
