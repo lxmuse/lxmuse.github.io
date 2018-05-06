@@ -5,7 +5,6 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java 排序算法之选择排序和插入排序 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -171,52 +170,9 @@
 <p>排序结果：[45, 50, 55, 60, 67]</p>
 <p>（1）一次排序：从原始数组中选择最小的数据 45，将其和第一个数据进行交换，交换后：[45, 55, 60, 67, 50]<br>（2）二次排序：从第二个数据开始，选择最小的数据 50，将其和第二个数据进行交换，交换后：[45, 50, 60, 67, 55]<br>（3）三次排序：从第三个数据开始，选择最小的数据 55，将其和第三个数据进行交换，交换后：[45, 50, 55, 67, 60]<br>（4）四次排序：从第四个数据开始，选择最小的数据 60，将其和第四个数据进行交换，交换后：[45, 50, 55, 60, 67]</p>
 <p>选择升序排序：</p>
-<pre><code>public static int[] selectAscSort(int[] arr) {
-
-    int size = arr.length ;
-    int index;
-    int temp;
-
-    for(int i = 0; i &lt; size - 1; i++) {
-        index = i;
-        for(int j = i+1; j &lt; size; j++) {
-            if (arr[j] &lt; arr[index]) {
-                index = j;
-            }
-        }
-        if (index != i) {
-            temp = arr[i];
-            arr[i] = arr[index];
-            arr[index] = temp;
-        }
-    }
-
-    return arr;
-}
-</code></pre><p>插入降序排序：</p>
-<pre><code>public static int[] selectAscSort(int[] arr) {
-
-    int size = arr.length ;
-    int index;
-    int temp;
-
-    for(int i = 0; i &lt; size - 1; i++) {
-        index = i;
-        for(int j = i+1; j &lt; size; j++) {
-            if (arr[j] &gt; arr[index]) {
-                index = j;
-            }
-        }
-        if (index != i) {
-            temp = arr[i];
-            arr[i] = arr[index];
-            arr[index] = temp;
-        }
-    }
-
-    return arr;
-}
-</code></pre><h4 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h4><h5 id="插入排序的基本思想"><a href="#插入排序的基本思想" class="headerlink" title="插入排序的基本思想"></a>插入排序的基本思想</h5><p>插入排序算法的基本思想是通过比较和插入来实现排序：<br>（1）首先对数组的前两个数据进行排序<br>（2）接着将第 3 个数据与已排好序的两个数据比较，将第 3 个数据插入合适的位置<br>（3）然后将第 4 个数据与已排好序的三个数据比较，将第 4 个数据插入合适的位置<br>（4）重复上述步骤，直至最后一个数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public static int[] selectAscSort(int[] arr) &#123;</span><br><span class="line"></span><br><span class="line">	int size = arr.length ;</span><br><span class="line">	int index;</span><br><span class="line">	int temp;</span><br><span class="line"></span><br><span class="line">	for(int i = 0; i &lt; size - 1; i++) &#123;</span><br><span class="line">		index = i;</span><br><span class="line">		for(int j = i+1; j &lt; size; j++) &#123;</span><br><span class="line">			if (arr[j] &lt; arr[index]) &#123;</span><br><span class="line">				index = j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		if (index != i) &#123;</span><br><span class="line">			temp = arr[i];</span><br><span class="line">			arr[i] = arr[index];</span><br><span class="line">			arr[index] = temp;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>插入降序排序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public static int[] selectAscSort(int[] arr) &#123;</span><br><span class="line"></span><br><span class="line">	int size = arr.length ;</span><br><span class="line">	int index;</span><br><span class="line">	int temp;</span><br><span class="line"></span><br><span class="line">	for(int i = 0; i &lt; size - 1; i++) &#123;</span><br><span class="line">		index = i;</span><br><span class="line">		for(int j = i+1; j &lt; size; j++) &#123;</span><br><span class="line">			if (arr[j] &gt; arr[index]) &#123;</span><br><span class="line">				index = j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		if (index != i) &#123;</span><br><span class="line">			temp = arr[i];</span><br><span class="line">			arr[i] = arr[index];</span><br><span class="line">			arr[index] = temp;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h4><h5 id="插入排序的基本思想"><a href="#插入排序的基本思想" class="headerlink" title="插入排序的基本思想"></a>插入排序的基本思想</h5><p>插入排序算法的基本思想是通过比较和插入来实现排序：<br>（1）首先对数组的前两个数据进行排序<br>（2）接着将第 3 个数据与已排好序的两个数据比较，将第 3 个数据插入合适的位置<br>（3）然后将第 4 个数据与已排好序的三个数据比较，将第 4 个数据插入合适的位置<br>（4）重复上述步骤，直至最后一个数据</p>
 <h5 id="插入排序示例"><a href="#插入排序示例" class="headerlink" title="插入排序示例"></a>插入排序示例</h5><p>以升序排序为例：从左向右排序，小的在左边，大的在右边</p>
 <p>初始数据：[67, 60, 55, 50, 45]</p>
 <p>一次排序：[60, 67, 55, 50, 45]<br>二次排序：[55, 60, 67, 50, 45]<br>三次排序：[50, 55, 60, 67, 45]<br>四次排序：[45, 50, 55, 60, 67]</p>
@@ -225,49 +181,9 @@
 <p>（2）二次排序：取第三个数据和已排序好的前两个数据进行比较<br>首先将第三个数据和第二个数据比较，55 比 67 小，将 67 移动到第三个位置<br>继续将原第三个数据和第一个数据比较，55 比 60 小，将 60 移动到第二个位置<br>将原第三个数据放入第一个位置，最终数据：[55, 60, 67, 50, 45]</p>
 <p>（3）三次排序：取第四个数据和已排序好的前三个数据进行比较<br>参考第二步</p>
 <p>（4）四次排序：取第五个数据和已排序好的前四个数据进行比较<br>参考第三步</p>
-<p>插入升序排序：</p>
-<pre><code>public static int[] insertAscSort(int[] arr) {
+<p>插入升序排序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public static int[] insertAscSort(int[] arr) &#123;</span><br><span class="line"></span><br><span class="line">    int size = arr.length;</span><br><span class="line">    int temp;</span><br><span class="line">    int j;</span><br><span class="line">    // 从第二位开始循环</span><br><span class="line">    for (int i = 1; i &lt; size; i++) &#123;</span><br><span class="line">        // 暂存当前循环开始位置的数据</span><br><span class="line">        temp = arr[i];</span><br><span class="line">        // 获取前一位位置</span><br><span class="line">        j = i-1;</span><br><span class="line">        while (j &gt;= 0 &amp;&amp; temp &lt; arr[j]) &#123;</span><br><span class="line">            arr[j+1] = arr[j];</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        arr[j+1] = temp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>插入降序排序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public static int[] insertAscSort(int[] arr) &#123;</span><br><span class="line"></span><br><span class="line">    int size = arr.length;</span><br><span class="line">    int temp;</span><br><span class="line">    int j;</span><br><span class="line">    // 从第二位开始循环</span><br><span class="line">    for (int i = 1; i &lt; size; i++) &#123;</span><br><span class="line">        // 暂存当前循环开始位置的数据</span><br><span class="line">        temp = arr[i];</span><br><span class="line">        // 获取前一位位置</span><br><span class="line">        j = i-1;</span><br><span class="line">        while (j &gt;= 0 &amp;&amp; temp &gt; arr[j]) &#123;</span><br><span class="line">            arr[j+1] = arr[j];</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        arr[j+1] = temp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
-    int size = arr.length;
-    int temp;
-    int j;
-    // 从第二位开始循环
-    for (int i = 1; i &lt; size; i++) {
-        // 暂存当前循环开始位置的数据
-        temp = arr[i];
-        // 获取前一位位置
-        j = i-1;
-        while (j &gt;= 0 &amp;&amp; temp &lt; arr[j]) {
-            arr[j+1] = arr[j];
-            j--;
-        }
-        arr[j+1] = temp;
-    }
-
-    return arr;
-}
-</code></pre><p>插入降序排序：</p>
-<pre><code>public static int[] insertAscSort(int[] arr) {
-
-    int size = arr.length;
-    int temp;
-    int j;
-    // 从第二位开始循环
-    for (int i = 1; i &lt; size; i++) {
-        // 暂存当前循环开始位置的数据
-        temp = arr[i];
-        // 获取前一位位置
-        j = i-1;
-        while (j &gt;= 0 &amp;&amp; temp &gt; arr[j]) {
-            arr[j+1] = arr[j];
-            j--;
-        }
-        arr[j+1] = temp;
-    }
-
-    return arr;
-}
-</code></pre>
       
 
       
@@ -443,13 +359,6 @@
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -564,10 +473,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -577,6 +482,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -652,11 +561,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

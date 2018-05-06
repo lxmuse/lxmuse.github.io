@@ -5,22 +5,21 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>MyBatis 之 配置文件 TypeAliases 元素 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网MyBatis 官方网站（中文）：MyBatis 中文官网MyBatis 源码：MyBatis 源码 MyBatis 配置文件层次结构&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;&amp;gt; &amp;lt;configurati">
+  <meta name="description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网MyBatis 官方网站（中文）：MyBatis 中文官网MyBatis 源码：MyBatis 源码 MyBatis 配置文件层次结构1234567891011121314151617&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;">
 <meta name="keywords" content="MyBatis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MyBatis 之 配置文件 TypeAliases 元素">
 <meta property="og:url" content="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 TypeAliases 元素/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网MyBatis 官方网站（中文）：MyBatis 中文官网MyBatis 源码：MyBatis 源码 MyBatis 配置文件层次结构&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;&amp;gt; &amp;lt;configurati">
+<meta property="og:description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网MyBatis 官方网站（中文）：MyBatis 中文官网MyBatis 源码：MyBatis 源码 MyBatis 配置文件层次结构1234567891011121314151617&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-01-07T12:20:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis 之 配置文件 TypeAliases 元素">
-<meta name="twitter:description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网MyBatis 官方网站（中文）：MyBatis 中文官网MyBatis 源码：MyBatis 源码 MyBatis 配置文件层次结构&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;&amp;gt; &amp;lt;configurati">
+<meta name="twitter:description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网MyBatis 官方网站（中文）：MyBatis 中文官网MyBatis 源码：MyBatis 源码 MyBatis 配置文件层次结构1234567891011121314151617&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -166,24 +165,8 @@
       
         <p>MyBatis 版本：MyBatis 3.3.0</p>
 <p>MyBatis 官方网站（英文）：<a href="http://www.mybatis.org/mybatis-3/" target="_blank" rel="noopener">MyBatis 英文官网</a><br>MyBatis 官方网站（中文）：<a href="http://www.mybatis.org/mybatis-3/zh/" target="_blank" rel="noopener">MyBatis 中文官网</a><br>MyBatis 源码：<a href="https://github.com/mybatis/mybatis-3" target="_blank" rel="noopener">MyBatis 源码</a></p>
-<h5 id="MyBatis-配置文件层次结构"><a href="#MyBatis-配置文件层次结构" class="headerlink" title="MyBatis 配置文件层次结构"></a>MyBatis 配置文件层次结构</h5><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;&gt;
-&lt;configuration&gt; &lt;!--配置--&gt;
-  &lt;properties/&gt; &lt;!--属性--&gt;
-  &lt;settings/&gt; &lt;!--设置--&gt;
-  &lt;typeAliases/&gt; &lt;!--类型命名--&gt;
-  &lt;typeHandlers/&gt; &lt;!--类型处理器--&gt;
-  &lt;objetFactory/&gt; &lt;!--对象工厂--&gt;
-  &lt;plugins/&gt; &lt;!--插件--&gt;
-  &lt;environments&gt; &lt;!--配置环境--&gt;
-    &lt;environment&gt; &lt;!--环境变量--&gt;
-      &lt;transactionManager/&gt; &lt;!--事务管理器--&gt;
-      &lt;dataSource/&gt; &lt;!--数据源--&gt;
-    &lt;/environment&gt;
-  &lt;/environments&gt;
-  &lt;databaseIdProvider/&gt; &lt;!--数据库厂商标识--&gt;
-  &lt;mappers/&gt; &lt;!--映射器--&gt;
-&lt;/configuration&gt;
-</code></pre><h5 id="TypeAliases-元素"><a href="#TypeAliases-元素" class="headerlink" title="TypeAliases 元素"></a>TypeAliases 元素</h5><p>别名是当类全限定名过长时可以用一个简短的名称去指代它，且该名称可以在 MyBatis 上下文中使用。<br>别名分为：</p>
+<h5 id="MyBatis-配置文件层次结构"><a href="#MyBatis-配置文件层次结构" class="headerlink" title="MyBatis 配置文件层次结构"></a>MyBatis 配置文件层次结构</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;&gt;</span><br><span class="line">&lt;configuration&gt; &lt;!--配置--&gt;</span><br><span class="line">  &lt;properties/&gt; &lt;!--属性--&gt;</span><br><span class="line">  &lt;settings/&gt; &lt;!--设置--&gt;</span><br><span class="line">  &lt;typeAliases/&gt; &lt;!--类型命名--&gt;</span><br><span class="line">  &lt;typeHandlers/&gt; &lt;!--类型处理器--&gt;</span><br><span class="line">  &lt;objetFactory/&gt; &lt;!--对象工厂--&gt;</span><br><span class="line">  &lt;plugins/&gt; &lt;!--插件--&gt;</span><br><span class="line">  &lt;environments&gt; &lt;!--配置环境--&gt;</span><br><span class="line">    &lt;environment&gt; &lt;!--环境变量--&gt;</span><br><span class="line">      &lt;transactionManager/&gt; &lt;!--事务管理器--&gt;</span><br><span class="line">      &lt;dataSource/&gt; &lt;!--数据源--&gt;</span><br><span class="line">    &lt;/environment&gt;</span><br><span class="line">  &lt;/environments&gt;</span><br><span class="line">  &lt;databaseIdProvider/&gt; &lt;!--数据库厂商标识--&gt;</span><br><span class="line">  &lt;mappers/&gt; &lt;!--映射器--&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="TypeAliases-元素"><a href="#TypeAliases-元素" class="headerlink" title="TypeAliases 元素"></a>TypeAliases 元素</h5><p>别名是当类全限定名过长时可以用一个简短的名称去指代它，且该名称可以在 MyBatis 上下文中使用。<br>别名分为：</p>
 <ul>
 <li>系统定义别名</li>
 <li>自定义别名</li>
@@ -342,86 +325,22 @@
 </tbody>
 </table>
 <p>支持数组即可以使用类似于 date[] 这样的别名。</p>
-<p>org.apache.ibatis.type.TypeAliasRegistry#TypeAliasRegistry 源码：</p>
-<pre><code>public TypeAliasRegistry() {
-    this.registerAlias(&quot;string&quot;, String.class);
-    this.registerAlias(&quot;byte&quot;, Byte.class);
-    this.registerAlias(&quot;long&quot;, Long.class);
-    this.registerAlias(&quot;short&quot;, Short.class);
-    this.registerAlias(&quot;int&quot;, Integer.class);
-    this.registerAlias(&quot;integer&quot;, Integer.class);
-    this.registerAlias(&quot;double&quot;, Double.class);
-    this.registerAlias(&quot;float&quot;, Float.class);
-    this.registerAlias(&quot;boolean&quot;, Boolean.class);
-    this.registerAlias(&quot;byte[]&quot;, Byte[].class);
-    this.registerAlias(&quot;long[]&quot;, Long[].class);
-    this.registerAlias(&quot;short[]&quot;, Short[].class);
-    this.registerAlias(&quot;int[]&quot;, Integer[].class);
-    this.registerAlias(&quot;integer[]&quot;, Integer[].class);
-    this.registerAlias(&quot;double[]&quot;, Double[].class);
-    this.registerAlias(&quot;float[]&quot;, Float[].class);
-    this.registerAlias(&quot;boolean[]&quot;, Boolean[].class);
-    this.registerAlias(&quot;_byte&quot;, Byte.TYPE);
-    this.registerAlias(&quot;_long&quot;, Long.TYPE);
-    this.registerAlias(&quot;_short&quot;, Short.TYPE);
-    this.registerAlias(&quot;_int&quot;, Integer.TYPE);
-    this.registerAlias(&quot;_integer&quot;, Integer.TYPE);
-    this.registerAlias(&quot;_double&quot;, Double.TYPE);
-    this.registerAlias(&quot;_float&quot;, Float.TYPE);
-    this.registerAlias(&quot;_boolean&quot;, Boolean.TYPE);
-    this.registerAlias(&quot;_byte[]&quot;, byte[].class);
-    this.registerAlias(&quot;_long[]&quot;, long[].class);
-    this.registerAlias(&quot;_short[]&quot;, short[].class);
-    this.registerAlias(&quot;_int[]&quot;, int[].class);
-    this.registerAlias(&quot;_integer[]&quot;, int[].class);
-    this.registerAlias(&quot;_double[]&quot;, double[].class);
-    this.registerAlias(&quot;_float[]&quot;, float[].class);
-    this.registerAlias(&quot;_boolean[]&quot;, boolean[].class);
-    this.registerAlias(&quot;date&quot;, Date.class);
-    this.registerAlias(&quot;decimal&quot;, BigDecimal.class);
-    this.registerAlias(&quot;bigdecimal&quot;, BigDecimal.class);
-    this.registerAlias(&quot;biginteger&quot;, BigInteger.class);
-    this.registerAlias(&quot;object&quot;, Object.class);
-    this.registerAlias(&quot;date[]&quot;, Date[].class);
-    this.registerAlias(&quot;decimal[]&quot;, BigDecimal[].class);
-    this.registerAlias(&quot;bigdecimal[]&quot;, BigDecimal[].class);
-    this.registerAlias(&quot;biginteger[]&quot;, BigInteger[].class);
-    this.registerAlias(&quot;object[]&quot;, Object[].class);
-    this.registerAlias(&quot;map&quot;, Map.class);
-    this.registerAlias(&quot;hashmap&quot;, HashMap.class);
-    this.registerAlias(&quot;list&quot;, List.class);
-    this.registerAlias(&quot;arraylist&quot;, ArrayList.class);
-    this.registerAlias(&quot;collection&quot;, Collection.class);
-    this.registerAlias(&quot;iterator&quot;, Iterator.class);
-    this.registerAlias(&quot;ResultSet&quot;, ResultSet.class);
-}
-</code></pre><h6 id="自定义别名"><a href="#自定义别名" class="headerlink" title="自定义别名"></a>自定义别名</h6><p>类型别名是为 Java 类型设置一个短的名字。它只和 XML 配置有关，存在的意义仅在于用来减少类完全限定名的冗余。</p>
+<p>org.apache.ibatis.type.TypeAliasRegistry#TypeAliasRegistry 源码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">public TypeAliasRegistry() &#123;</span><br><span class="line">    this.registerAlias(&quot;string&quot;, String.class);</span><br><span class="line">    this.registerAlias(&quot;byte&quot;, Byte.class);</span><br><span class="line">    this.registerAlias(&quot;long&quot;, Long.class);</span><br><span class="line">    this.registerAlias(&quot;short&quot;, Short.class);</span><br><span class="line">    this.registerAlias(&quot;int&quot;, Integer.class);</span><br><span class="line">    this.registerAlias(&quot;integer&quot;, Integer.class);</span><br><span class="line">    this.registerAlias(&quot;double&quot;, Double.class);</span><br><span class="line">    this.registerAlias(&quot;float&quot;, Float.class);</span><br><span class="line">    this.registerAlias(&quot;boolean&quot;, Boolean.class);</span><br><span class="line">    this.registerAlias(&quot;byte[]&quot;, Byte[].class);</span><br><span class="line">    this.registerAlias(&quot;long[]&quot;, Long[].class);</span><br><span class="line">    this.registerAlias(&quot;short[]&quot;, Short[].class);</span><br><span class="line">    this.registerAlias(&quot;int[]&quot;, Integer[].class);</span><br><span class="line">    this.registerAlias(&quot;integer[]&quot;, Integer[].class);</span><br><span class="line">    this.registerAlias(&quot;double[]&quot;, Double[].class);</span><br><span class="line">    this.registerAlias(&quot;float[]&quot;, Float[].class);</span><br><span class="line">    this.registerAlias(&quot;boolean[]&quot;, Boolean[].class);</span><br><span class="line">    this.registerAlias(&quot;_byte&quot;, Byte.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_long&quot;, Long.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_short&quot;, Short.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_int&quot;, Integer.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_integer&quot;, Integer.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_double&quot;, Double.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_float&quot;, Float.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_boolean&quot;, Boolean.TYPE);</span><br><span class="line">    this.registerAlias(&quot;_byte[]&quot;, byte[].class);</span><br><span class="line">    this.registerAlias(&quot;_long[]&quot;, long[].class);</span><br><span class="line">    this.registerAlias(&quot;_short[]&quot;, short[].class);</span><br><span class="line">    this.registerAlias(&quot;_int[]&quot;, int[].class);</span><br><span class="line">    this.registerAlias(&quot;_integer[]&quot;, int[].class);</span><br><span class="line">    this.registerAlias(&quot;_double[]&quot;, double[].class);</span><br><span class="line">    this.registerAlias(&quot;_float[]&quot;, float[].class);</span><br><span class="line">    this.registerAlias(&quot;_boolean[]&quot;, boolean[].class);</span><br><span class="line">    this.registerAlias(&quot;date&quot;, Date.class);</span><br><span class="line">    this.registerAlias(&quot;decimal&quot;, BigDecimal.class);</span><br><span class="line">    this.registerAlias(&quot;bigdecimal&quot;, BigDecimal.class);</span><br><span class="line">    this.registerAlias(&quot;biginteger&quot;, BigInteger.class);</span><br><span class="line">    this.registerAlias(&quot;object&quot;, Object.class);</span><br><span class="line">    this.registerAlias(&quot;date[]&quot;, Date[].class);</span><br><span class="line">    this.registerAlias(&quot;decimal[]&quot;, BigDecimal[].class);</span><br><span class="line">    this.registerAlias(&quot;bigdecimal[]&quot;, BigDecimal[].class);</span><br><span class="line">    this.registerAlias(&quot;biginteger[]&quot;, BigInteger[].class);</span><br><span class="line">    this.registerAlias(&quot;object[]&quot;, Object[].class);</span><br><span class="line">    this.registerAlias(&quot;map&quot;, Map.class);</span><br><span class="line">    this.registerAlias(&quot;hashmap&quot;, HashMap.class);</span><br><span class="line">    this.registerAlias(&quot;list&quot;, List.class);</span><br><span class="line">    this.registerAlias(&quot;arraylist&quot;, ArrayList.class);</span><br><span class="line">    this.registerAlias(&quot;collection&quot;, Collection.class);</span><br><span class="line">    this.registerAlias(&quot;iterator&quot;, Iterator.class);</span><br><span class="line">    this.registerAlias(&quot;ResultSet&quot;, ResultSet.class);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h6 id="自定义别名"><a href="#自定义别名" class="headerlink" title="自定义别名"></a>自定义别名</h6><p>类型别名是为 Java 类型设置一个短的名字。它只和 XML 配置有关，存在的意义仅在于用来减少类完全限定名的冗余。</p>
 <p>定义自定义别名有三种方式：</p>
 <ul>
 <li>指定类别名</li>
 </ul>
-<pre><code>&lt;typeAliases&gt;
-  &lt;typeAlias alias=&quot;Author&quot; type=&quot;domain.blog.Author&quot;/&gt;
-  &lt;typeAlias alias=&quot;Blog&quot; type=&quot;domain.blog.Blog&quot;/&gt;
-  &lt;typeAlias alias=&quot;Comment&quot; type=&quot;domain.blog.Comment&quot;/&gt;
-  &lt;typeAlias alias=&quot;Post&quot; type=&quot;domain.blog.Post&quot;/&gt;
-  &lt;typeAlias alias=&quot;Section&quot; type=&quot;domain.blog.Section&quot;/&gt;
-  &lt;typeAlias alias=&quot;Tag&quot; type=&quot;domain.blog.Tag&quot;/&gt;
-&lt;/typeAliases&gt;
-</code></pre><ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;typeAliases&gt;</span><br><span class="line">  &lt;typeAlias alias=&quot;Author&quot; type=&quot;domain.blog.Author&quot;/&gt;</span><br><span class="line">  &lt;typeAlias alias=&quot;Blog&quot; type=&quot;domain.blog.Blog&quot;/&gt;</span><br><span class="line">  &lt;typeAlias alias=&quot;Comment&quot; type=&quot;domain.blog.Comment&quot;/&gt;</span><br><span class="line">  &lt;typeAlias alias=&quot;Post&quot; type=&quot;domain.blog.Post&quot;/&gt;</span><br><span class="line">  &lt;typeAlias alias=&quot;Section&quot; type=&quot;domain.blog.Section&quot;/&gt;</span><br><span class="line">  &lt;typeAlias alias=&quot;Tag&quot; type=&quot;domain.blog.Tag&quot;/&gt;</span><br><span class="line">&lt;/typeAliases&gt;</span><br></pre></td></tr></table></figure>
+<ul>
 <li>包扫描（在没有注解的情况下，会使用 Bean 的首字母小写的非限定类名来作为它的别名）</li>
 </ul>
-<pre><code>&lt;typeAliases&gt;
-  &lt;package name=&quot;domain.blog&quot;/&gt;
-&lt;/typeAliases&gt;
-</code></pre><ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;typeAliases&gt;</span><br><span class="line">  &lt;package name=&quot;domain.blog&quot;/&gt;</span><br><span class="line">&lt;/typeAliases&gt;</span><br></pre></td></tr></table></figure>
+<ul>
 <li>注解</li>
 </ul>
-<pre><code>@Alias(&quot;author&quot;)
-public class Author {
-    ...
-}
-</code></pre><p>注解的优先级最高，若有注解，则别名是注解中指定的别名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Alias(&quot;author&quot;)</span><br><span class="line">public class Author &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注解的优先级最高，若有注解，则别名是注解中指定的别名</p>
 
       
 
@@ -598,13 +517,6 @@ public class Author {
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -719,10 +631,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -732,6 +640,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -807,11 +719,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

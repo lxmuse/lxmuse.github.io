@@ -5,7 +5,6 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Spring Framework 依赖注入 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -179,82 +178,19 @@
 <li>index 属性：构造函数参数的索引</li>
 </ul>
 <p>创建一个 Car 类，并重载构造函数：</p>
-<pre><code>
-public class Car {
-
-    private String brand;
-    private double price;
-    private int maxSpeed;
-
-    public Car(String brand, double price, int maxSpeed) {
-        this.brand = brand;
-        this.price = price;
-        this.maxSpeed = maxSpeed;
-    }
-
-    public Car(String brand, double price) {
-        this.brand = brand;
-        this.price = price;
-    }
-
-    public Car(String brand, int maxSpeed) {
-        this.brand = brand;
-        this.maxSpeed = maxSpeed;
-    }
-
-    @Override
-    public String toString() {
-        return &quot;Car{&quot; +
-            &quot;brand=&#39;&quot; + brand + &#39;\&#39;&#39; +
-            &quot;, price=&quot; + price +
-            &quot;, maxSpeed=&quot; + maxSpeed +
-            &#39;}&#39;;
-    }
-}
-
-</code></pre><p>使用如下构造函数注入：</p>
-<pre><code>public Car(String brand, double price, int maxSpeed) {
-    this.brand = brand;
-    this.price = price;
-    this.maxSpeed = maxSpeed;
-}
-</code></pre><pre><code>&lt;bean id=&quot;smart&quot; class=&quot;com.example.spring.Car&quot;&gt;
-    &lt;constructor-arg value=&quot;Smart&quot;&gt;&lt;/constructor-arg&gt;
-    &lt;constructor-arg value=&quot;250000&quot;&gt;&lt;/constructor-arg&gt;
-    &lt;constructor-arg value=&quot;100&quot;&gt;&lt;/constructor-arg&gt;
-&lt;/bean&gt;
-</code></pre><p>如果按如下方式注入：</p>
-<pre><code>&lt;bean id=&quot;bmw&quot; class=&quot;com.example.spring.Car&quot;&gt;
-    &lt;constructor-arg value=&quot;BMW&quot;&gt;&lt;/constructor-arg&gt;
-    &lt;constructor-arg value=&quot;250000&quot;&gt;&lt;/constructor-arg&gt;
-&lt;/bean&gt;
-</code></pre><p>会选择哪个构造函数：</p>
-<pre><code>public Car(String brand, double price) {
-    this.brand = brand;
-    this.price = price;
-}
-
-public Car(String brand, int maxSpeed) {
-    this.brand = brand;
-    this.maxSpeed = maxSpeed;
-}
-</code></pre><p>故此时可通过 type 属性进行明确指定：</p>
-<pre><code>&lt;bean id=&quot;audi&quot; class=&quot;com.example.spring.Car&quot;&gt;
-    &lt;constructor-arg type=&quot;java.lang.String&quot; value=&quot;Audi&quot;&gt;&lt;/constructor-arg&gt;
-    &lt;constructor-arg type=&quot;double&quot; value=&quot;250000&quot;&gt;&lt;/constructor-arg&gt;
-&lt;/bean&gt;
-
-&lt;bean id=&quot;ferrari&quot; class=&quot;com.example.spring.Car&quot;&gt;
-    &lt;constructor-arg type=&quot;java.lang.String&quot; value=&quot;Ferrari&quot;&gt;&lt;/constructor-arg&gt;
-    &lt;constructor-arg type=&quot;int&quot; value=&quot;380&quot;&gt;&lt;/constructor-arg&gt;
-&lt;/bean&gt;
-</code></pre><p>也可以通过 index 属性进行指定：</p>
-<pre><code> &lt;bean id=&quot;ford&quot; class=&quot;com.example.spring.Car&quot;&gt;
-    &lt;constructor-arg index=&quot;0&quot; value=&quot;Ford&quot;&gt;&lt;/constructor-arg&gt;
-    &lt;constructor-arg index=&quot;1&quot; value=&quot;150000&quot;&gt;&lt;/constructor-arg&gt;
-    &lt;constructor-arg index=&quot;2&quot; value=&quot;180&quot;&gt;&lt;/constructor-arg&gt;
-&lt;/bean&gt;
-</code></pre><p>官方推荐使用构造函数注入，可以确保依赖项不为空<br>但是构造函数参数过多时，不合适</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class Car &#123;</span><br><span class="line">	</span><br><span class="line">	private String brand;</span><br><span class="line">	private double price;</span><br><span class="line">	private int maxSpeed;</span><br><span class="line">	</span><br><span class="line">	public Car(String brand, double price, int maxSpeed) &#123;</span><br><span class="line">		this.brand = brand;</span><br><span class="line">		this.price = price;</span><br><span class="line">		this.maxSpeed = maxSpeed;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public Car(String brand, double price) &#123;</span><br><span class="line">		this.brand = brand;</span><br><span class="line">		this.price = price;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public Car(String brand, int maxSpeed) &#123;</span><br><span class="line">		this.brand = brand;</span><br><span class="line">		this.maxSpeed = maxSpeed;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@Override</span><br><span class="line">	public String toString() &#123;</span><br><span class="line">		return &quot;Car&#123;&quot; +</span><br><span class="line">			&quot;brand=&apos;&quot; + brand + &apos;\&apos;&apos; +</span><br><span class="line">			&quot;, price=&quot; + price +</span><br><span class="line">			&quot;, maxSpeed=&quot; + maxSpeed +</span><br><span class="line">			&apos;&#125;&apos;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用如下构造函数注入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public Car(String brand, double price, int maxSpeed) &#123;</span><br><span class="line">	this.brand = brand;</span><br><span class="line">	this.price = price;</span><br><span class="line">	this.maxSpeed = maxSpeed;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;smart&quot; class=&quot;com.example.spring.Car&quot;&gt;</span><br><span class="line">    &lt;constructor-arg value=&quot;Smart&quot;&gt;&lt;/constructor-arg&gt;</span><br><span class="line">    &lt;constructor-arg value=&quot;250000&quot;&gt;&lt;/constructor-arg&gt;</span><br><span class="line">    &lt;constructor-arg value=&quot;100&quot;&gt;&lt;/constructor-arg&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>如果按如下方式注入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;bmw&quot; class=&quot;com.example.spring.Car&quot;&gt;</span><br><span class="line">    &lt;constructor-arg value=&quot;BMW&quot;&gt;&lt;/constructor-arg&gt;</span><br><span class="line">    &lt;constructor-arg value=&quot;250000&quot;&gt;&lt;/constructor-arg&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>会选择哪个构造函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public Car(String brand, double price) &#123;</span><br><span class="line">	this.brand = brand;</span><br><span class="line">	this.price = price;</span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line">public Car(String brand, int maxSpeed) &#123;</span><br><span class="line">	this.brand = brand;</span><br><span class="line">	this.maxSpeed = maxSpeed;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>故此时可通过 type 属性进行明确指定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;audi&quot; class=&quot;com.example.spring.Car&quot;&gt;</span><br><span class="line">    &lt;constructor-arg type=&quot;java.lang.String&quot; value=&quot;Audi&quot;&gt;&lt;/constructor-arg&gt;</span><br><span class="line">    &lt;constructor-arg type=&quot;double&quot; value=&quot;250000&quot;&gt;&lt;/constructor-arg&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean id=&quot;ferrari&quot; class=&quot;com.example.spring.Car&quot;&gt;</span><br><span class="line">    &lt;constructor-arg type=&quot;java.lang.String&quot; value=&quot;Ferrari&quot;&gt;&lt;/constructor-arg&gt;</span><br><span class="line">    &lt;constructor-arg type=&quot;int&quot; value=&quot;380&quot;&gt;&lt;/constructor-arg&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>也可以通过 index 属性进行指定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> &lt;bean id=&quot;ford&quot; class=&quot;com.example.spring.Car&quot;&gt;</span><br><span class="line">    &lt;constructor-arg index=&quot;0&quot; value=&quot;Ford&quot;&gt;&lt;/constructor-arg&gt;</span><br><span class="line">    &lt;constructor-arg index=&quot;1&quot; value=&quot;150000&quot;&gt;&lt;/constructor-arg&gt;</span><br><span class="line">    &lt;constructor-arg index=&quot;2&quot; value=&quot;180&quot;&gt;&lt;/constructor-arg&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>官方推荐使用构造函数注入，可以确保依赖项不为空<br>但是构造函数参数过多时，不合适</p>
 <p><strong>基于Setter方法的依赖注入</strong></p>
 <p>在 bean 标签内通过使用 property 子标签进行 Setter 方法的依赖注入。</p>
 <ul>
@@ -263,44 +199,14 @@ public Car(String brand, int maxSpeed) {
 <li>value 子标签：等同于 value 属性</li>
 <li>ref 属性：Bean 中的引用属性</li>
 </ul>
-<pre><code>&lt;bean id=&quot;user&quot; class=&quot;com.example.spring.User&quot;&gt;
-    &lt;property name=&quot;name&quot; value=&quot;Spring Framework&quot;&gt;&lt;/property&gt;
-&lt;/bean&gt;
-</code></pre><p>或</p>
-<pre><code>&lt;bean id=&quot;user&quot; class=&quot;com.example.spring.User&quot;&gt;
-    &lt;property name=&quot;name&quot;&gt;&lt;value&gt;Spring Framework&lt;/value&gt;&lt;/property&gt;
-&lt;/bean&gt;
-</code></pre><p>或 </p>
-<pre><code>&lt;bean id=&quot;foo&quot; class=&quot;com.example.spring.Foo&quot;&gt;
-    &lt;property name=&quot;user&quot; ref=&quot;user&quot;&gt;&lt;/property&gt;
-&lt;/bean&gt;
-</code></pre><p>基于 Setter 方法的依赖注入可以在 Setter 方法上添加 @Required 注解标识该属性是必须注入的依赖项：</p>
-<pre><code>import org.springframework.beans.factory.annotation.Required;
-
-public class RequiredFoo {
-
-    private String name;
-
-    private Boolean required;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Boolean getRequired() {
-        return required;
-    }
-
-    @Required
-    public void setRequired(Boolean required) {
-        this.required = required;
-    }
-}
-</code></pre><p>上述示例中，若进行 Setter 注入时，required 属性不注入则会提示错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;user&quot; class=&quot;com.example.spring.User&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;name&quot; value=&quot;Spring Framework&quot;&gt;&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;user&quot; class=&quot;com.example.spring.User&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;name&quot;&gt;&lt;value&gt;Spring Framework&lt;/value&gt;&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>或 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;foo&quot; class=&quot;com.example.spring.Foo&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;user&quot; ref=&quot;user&quot;&gt;&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>基于 Setter 方法的依赖注入可以在 Setter 方法上添加 @Required 注解标识该属性是必须注入的依赖项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import org.springframework.beans.factory.annotation.Required;</span><br><span class="line"></span><br><span class="line">public class RequiredFoo &#123;</span><br><span class="line">	</span><br><span class="line">	private String name;</span><br><span class="line">	</span><br><span class="line">	private Boolean required;</span><br><span class="line">	</span><br><span class="line">	public String getName() &#123;</span><br><span class="line">		return name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void setName(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public Boolean getRequired() &#123;</span><br><span class="line">		return required;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@Required</span><br><span class="line">	public void setRequired(Boolean required) &#123;</span><br><span class="line">		this.required = required;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述示例中，若进行 Setter 注入时，required 属性不注入则会提示错误</p>
 <p>基于 Setter 方法的依赖注入是最常用的依赖注入方式<br>基于 Setter 方法的依赖注入可以让依赖项可控</p>
 <p>并且基于基于构造函数的依赖注入和基于 Setter 方法的依赖注入可以同时使用</p>
 <p>代码请参考example-04:<br><a href="https://github.com/lxmuse/lxmuse-spring.git" target="_blank" rel="noopener">lxmuse-spring-example-04</a></p>
@@ -480,13 +386,6 @@ public class RequiredFoo {
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -601,10 +500,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -614,6 +509,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -689,11 +588,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

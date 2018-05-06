@@ -5,22 +5,21 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Spring Framework Bean 实例化 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Spring Framework：4.3.14.RELEASE 本文主要是论述 Spring Framework IOC 容器中 Bean 的实例化。 Bean 的实例化主要是两种方式：  通过构造函数实例化 通过静态方法实例化  通过构造函数实例化 通过构造函数实例化，前提条件是 Bean 含有一个无参构造器，可以是隐式无参构造器，也可以是显式无参构造器。 public class Exampl">
+  <meta name="description" content="Spring Framework：4.3.14.RELEASE 本文主要是论述 Spring Framework IOC 容器中 Bean 的实例化。 Bean 的实例化主要是两种方式：  通过构造函数实例化 通过静态方法实例化  通过构造函数实例化 通过构造函数实例化，前提条件是 Bean 含有一个无参构造器，可以是隐式无参构造器，也可以是显式无参构造器。 12345678910111213pu">
 <meta name="keywords" content="Spring Framework">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Framework Bean 实例化">
 <meta property="og:url" content="http://yoursite.com/2017/01/13/Spring Framework Bean 实例化/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="Spring Framework：4.3.14.RELEASE 本文主要是论述 Spring Framework IOC 容器中 Bean 的实例化。 Bean 的实例化主要是两种方式：  通过构造函数实例化 通过静态方法实例化  通过构造函数实例化 通过构造函数实例化，前提条件是 Bean 含有一个无参构造器，可以是隐式无参构造器，也可以是显式无参构造器。 public class Exampl">
+<meta property="og:description" content="Spring Framework：4.3.14.RELEASE 本文主要是论述 Spring Framework IOC 容器中 Bean 的实例化。 Bean 的实例化主要是两种方式：  通过构造函数实例化 通过静态方法实例化  通过构造函数实例化 通过构造函数实例化，前提条件是 Bean 含有一个无参构造器，可以是隐式无参构造器，也可以是显式无参构造器。 12345678910111213pu">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-04-09T10:20:09.692Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Framework Bean 实例化">
-<meta name="twitter:description" content="Spring Framework：4.3.14.RELEASE 本文主要是论述 Spring Framework IOC 容器中 Bean 的实例化。 Bean 的实例化主要是两种方式：  通过构造函数实例化 通过静态方法实例化  通过构造函数实例化 通过构造函数实例化，前提条件是 Bean 含有一个无参构造器，可以是隐式无参构造器，也可以是显式无参构造器。 public class Exampl">
+<meta name="twitter:description" content="Spring Framework：4.3.14.RELEASE 本文主要是论述 Spring Framework IOC 容器中 Bean 的实例化。 Bean 的实例化主要是两种方式：  通过构造函数实例化 通过静态方法实例化  通过构造函数实例化 通过构造函数实例化，前提条件是 Bean 含有一个无参构造器，可以是隐式无参构造器，也可以是显式无参构造器。 12345678910111213pu">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -173,98 +172,15 @@
 </ul>
 <p><strong>通过构造函数实例化</strong></p>
 <p>通过构造函数实例化，前提条件是 Bean 含有一个无参构造器，可以是隐式无参构造器，也可以是显式无参构造器。</p>
-<pre><code>public class ExampleBeanOne {
-
-    private String name;
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String hello() {
-        return &quot;Hello &quot; + name;
-    }
-
-}
-</code></pre><pre><code>public class ExampleBeanTwo {
-
-    private String name;
-
-    public ExampleBeanTwo() {
-    }
-
-    public ExampleBeanTwo(String name) {
-        this.name = name;
-    }
-
-    public String hello() {
-        return &quot;Hello &quot; + name;
-    }
-
-}
-</code></pre><pre><code>&lt;bean id=&quot;exampleBeanOne&quot; class=&quot;com.example.spring.ExampleBeanOne&quot;&gt;
-    &lt;property name=&quot;name&quot; value=&quot;ExampleBeanOne&quot;&gt;&lt;/property&gt;
-&lt;/bean&gt;
-
-&lt;bean id=&quot;exampleBeanTwo&quot; class=&quot;com.example.spring.ExampleBeanTwo&quot;&gt;
-    &lt;constructor-arg value=&quot;ExampleBeanTwo&quot;&gt;&lt;/constructor-arg&gt;
-&lt;/bean&gt;
-</code></pre><p><strong>通过静态方法实例化</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class ExampleBeanOne &#123;</span><br><span class="line"></span><br><span class="line">	private String name;</span><br><span class="line"></span><br><span class="line">	public void setName(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String hello() &#123;</span><br><span class="line">		return &quot;Hello &quot; + name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class ExampleBeanTwo &#123;</span><br><span class="line"></span><br><span class="line">	private String name;</span><br><span class="line">	</span><br><span class="line">	public ExampleBeanTwo() &#123;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public ExampleBeanTwo(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public String hello() &#123;</span><br><span class="line">		return &quot;Hello &quot; + name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;exampleBeanOne&quot; class=&quot;com.example.spring.ExampleBeanOne&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;name&quot; value=&quot;ExampleBeanOne&quot;&gt;&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean id=&quot;exampleBeanTwo&quot; class=&quot;com.example.spring.ExampleBeanTwo&quot;&gt;</span><br><span class="line">    &lt;constructor-arg value=&quot;ExampleBeanTwo&quot;&gt;&lt;/constructor-arg&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>通过静态方法实例化</strong></p>
 <p>通过静态方法实例化，前提条件是有一个静态方法可以实例化 Bean，可以是自身提供的静态方法，也可以是其他类提供的静态方法。</p>
-<pre><code>public class ExampleBeanThree {
-
-    private static ExampleBeanThree exampleBeanThree = new ExampleBeanThree(&quot;ExampleBeanThree&quot;);
-
-    private String name;
-
-    public static ExampleBeanThree createInstance() {
-        return exampleBeanThree;
-    }
-
-    private ExampleBeanThree(String name) {
-        this.name = name;
-    }
-
-    public String hello() {
-        return &quot;Hello &quot; + name;
-    }
-
-}
-
-</code></pre><pre><code>
-public class ExampleBeanFive {
-    private String name;
-
-    public ExampleBeanFive() {
-    }
-
-    public ExampleBeanFive(String name) {
-        this.name = name;
-    }
-
-    public String hello() {
-        return &quot;Hello &quot; + name;
-    }
-}
-
-public class ExampleBeanSix {
-
-    private static ExampleBeanFive exampleBeanFive = new ExampleBeanFive(&quot;ExampleBeanFive&quot;);
-
-    public ExampleBeanFive createClientInstance() {
-        return exampleBeanFive;
-    }
-
-}
-</code></pre><pre><code>&lt;bean id=&quot;exampleBeanThree&quot; class=&quot;com.example.spring.ExampleBeanThree&quot; factory-method=&quot;createInstance&quot;&gt;
-&lt;/bean&gt;
-
-&lt;bean id=&quot;exampleBeanSix&quot; class=&quot;com.example.spring.ExampleBeanSix&quot;&gt;
-&lt;/bean&gt;
-
-&lt;bean id=&quot;exampleBeanFive&quot; factory-bean=&quot;exampleBeanSix&quot; factory-method=&quot;createClientInstance&quot;&gt;
-&lt;/bean&gt;
-</code></pre><p>通过静态方法实例化不常见，推荐使用构造函数实例化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class ExampleBeanThree &#123;</span><br><span class="line"></span><br><span class="line">	private static ExampleBeanThree exampleBeanThree = new ExampleBeanThree(&quot;ExampleBeanThree&quot;);</span><br><span class="line">	</span><br><span class="line">	private String name;</span><br><span class="line">	</span><br><span class="line">	public static ExampleBeanThree createInstance() &#123;</span><br><span class="line">		return exampleBeanThree;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	private ExampleBeanThree(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public String hello() &#123;</span><br><span class="line">		return &quot;Hello &quot; + name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class ExampleBeanFive &#123;</span><br><span class="line">	private String name;</span><br><span class="line">	</span><br><span class="line">	public ExampleBeanFive() &#123;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public ExampleBeanFive(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public String hello() &#123;</span><br><span class="line">		return &quot;Hello &quot; + name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class ExampleBeanSix &#123;</span><br><span class="line">	</span><br><span class="line">	private static ExampleBeanFive exampleBeanFive = new ExampleBeanFive(&quot;ExampleBeanFive&quot;);</span><br><span class="line">	</span><br><span class="line">	public ExampleBeanFive createClientInstance() &#123;</span><br><span class="line">		return exampleBeanFive;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;exampleBeanThree&quot; class=&quot;com.example.spring.ExampleBeanThree&quot; factory-method=&quot;createInstance&quot;&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean id=&quot;exampleBeanSix&quot; class=&quot;com.example.spring.ExampleBeanSix&quot;&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean id=&quot;exampleBeanFive&quot; factory-bean=&quot;exampleBeanSix&quot; factory-method=&quot;createClientInstance&quot;&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>通过静态方法实例化不常见，推荐使用构造函数实例化</p>
 <p>代码请参考example-03:<br><a href="https://github.com/lxmuse/lxmuse-spring.git" target="_blank" rel="noopener">lxmuse-spring-example-03</a></p>
 
       
@@ -442,13 +358,6 @@ public class ExampleBeanSix {
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -563,10 +472,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -576,6 +481,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -651,11 +560,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

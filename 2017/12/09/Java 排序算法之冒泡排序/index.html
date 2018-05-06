@@ -5,7 +5,6 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java 排序算法之冒泡排序 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -174,81 +173,15 @@
 <p>（2）第 2 轮排序：从数组的头部开始向尾部依次排序。<br>首先比较 60 和 55 ，由于 60 比 55 大，两者需要交换位置，交换位置后 [55, 60, 50, 45, 67]；<br>继续比较 60 和 50 ，由于 60 比 50 大，两者需要交换位置，交换位置后 [55, 50, 60, 45, 67]；<br>继续比较 60 和 45 ，由于 60 比 45 大，两者需要交换位置，交换位置后 [55, 50, 45, 60, 67]；<br>继续比较 60 和 67 ，由于 60 比 67 小，两者不需要交换位置；</p>
 <p>（3）第 3 轮排序：从数组的头部开始向尾部依次排序。<br>首先比较 55 和 50 ，由于 55 比 50 大，两者需要交换位置，交换位置后 [50, 55, 45, 60, 67]；<br>继续比较 55 和 45 ，由于 55 比 45 大，两者需要交换位置，交换位置后 [50, 45, 55, 60, 67]；<br>继续比较 55 和 60 ，由于 55 比 60 小，两者不需要交换位置；</p>
 <p>（4）第 4 轮排序：从数组的头部开始向尾部依次排序。<br>首先比较 50 和 45 ，由于 55 比 45 大，两者需要交换位置，交换位置后 [45, 50, 55, 60, 67]；<br>继续比较 50 和 55 ，由于 50 比 55 小，两者不需要交换位置；</p>
-<p>升序排序：</p>
-<pre><code>public static int[] bubbleAscSort(int[] arr) {
-    int size = arr.length;
-    int temp;
-    for (int i = 1; i &lt; size; i++) {
-        for (int j = 0; j &lt; size - i; j++) {
-            if (arr[j] &gt; arr[j + 1]) {
-                temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
-        }
-    }
-    return arr;
-}
-</code></pre><p>降序排序：只需要更换一下比较运算符即可</p>
-<pre><code>public static int[] bubbleDescSort(int[] arr) {
-    int size = arr.length;
-    int temp;
-    for (int i = 1; i &lt; size; i++) {
-        for (int j = 0; j &lt; size - i; j++) {
-            if (arr[j] &lt; arr[j + 1]) {
-                temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
-        }
-    }
-    return arr;
-}
-</code></pre><h5 id="冒泡排序的优化"><a href="#冒泡排序的优化" class="headerlink" title="冒泡排序的优化"></a>冒泡排序的优化</h5><p>常规冒泡排序采用双层循环的方式，单向循环，通过比较相邻数据，进行交换实现排序，优化方向就两点：</p>
+<p>升序排序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public static int[] bubbleAscSort(int[] arr) &#123;</span><br><span class="line">    int size = arr.length;</span><br><span class="line">    int temp;</span><br><span class="line">    for (int i = 1; i &lt; size; i++) &#123;</span><br><span class="line">        for (int j = 0; j &lt; size - i; j++) &#123;</span><br><span class="line">            if (arr[j] &gt; arr[j + 1]) &#123;</span><br><span class="line">                temp = arr[j];</span><br><span class="line">                arr[j] = arr[j + 1];</span><br><span class="line">                arr[j + 1] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>降序排序：只需要更换一下比较运算符即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public static int[] bubbleDescSort(int[] arr) &#123;</span><br><span class="line">    int size = arr.length;</span><br><span class="line">    int temp;</span><br><span class="line">    for (int i = 1; i &lt; size; i++) &#123;</span><br><span class="line">        for (int j = 0; j &lt; size - i; j++) &#123;</span><br><span class="line">            if (arr[j] &lt; arr[j + 1]) &#123;</span><br><span class="line">                temp = arr[j];</span><br><span class="line">                arr[j] = arr[j + 1];</span><br><span class="line">                arr[j + 1] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="冒泡排序的优化"><a href="#冒泡排序的优化" class="headerlink" title="冒泡排序的优化"></a>冒泡排序的优化</h5><p>常规冒泡排序采用双层循环的方式，单向循环，通过比较相邻数据，进行交换实现排序，优化方向就两点：</p>
 <h6 id="冒泡排序优化之减少无用循环轮数"><a href="#冒泡排序优化之减少无用循环轮数" class="headerlink" title="冒泡排序优化之减少无用循环轮数"></a>冒泡排序优化之减少无用循环轮数</h6><p>假设初始数据是：[67, 45, 50, 55, 60]，那么实际上有效的排序只需要一轮，数据就已经排序完毕。但是默认还是会进行 4 轮排序。</p>
-<p>可以设置一个标志，标记本轮排序是否存在数据交换，若没有交换则不需要进行下一轮排序，反之则需要继续下一轮排序<br>以升序排序为例：</p>
-<pre><code>public static int[] bubbleAscSort(int[] arr) {
-    boolean isAscSorted = false;
-    int size = arr.length;
-    int temp;
-    for (int i = 1; !isAscSorted &amp;&amp; i &lt; size ; i++) {
-        isAscSorted = true;
-        for (int j = 0; j &lt; size - i; j++) {
-            if (arr[j] &gt; arr[j + 1]) {
-                isAscSorted = false;
-                temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
-        }
-    }
-    return arr;
-}
-</code></pre><p>那么，在第 2 轮排序时，因为没有数据交换，则标志被标记为已排序，第 3 轮排序 和 第 4 轮排序则不必进行，这样可以减少排序轮数。</p>
+<p>可以设置一个标志，标记本轮排序是否存在数据交换，若没有交换则不需要进行下一轮排序，反之则需要继续下一轮排序<br>以升序排序为例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public static int[] bubbleAscSort(int[] arr) &#123;</span><br><span class="line">    boolean isAscSorted = false;</span><br><span class="line">    int size = arr.length;</span><br><span class="line">    int temp;</span><br><span class="line">    for (int i = 1; !isAscSorted &amp;&amp; i &lt; size ; i++) &#123;</span><br><span class="line">        isAscSorted = true;</span><br><span class="line">        for (int j = 0; j &lt; size - i; j++) &#123;</span><br><span class="line">            if (arr[j] &gt; arr[j + 1]) &#123;</span><br><span class="line">                isAscSorted = false;</span><br><span class="line">                temp = arr[j];</span><br><span class="line">                arr[j] = arr[j + 1];</span><br><span class="line">                arr[j + 1] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>那么，在第 2 轮排序时，因为没有数据交换，则标志被标记为已排序，第 3 轮排序 和 第 4 轮排序则不必进行，这样可以减少排序轮数。</p>
 <h6 id="冒泡排序优化之减少无用轮内循环比较"><a href="#冒泡排序优化之减少无用轮内循环比较" class="headerlink" title="冒泡排序优化之减少无用轮内循环比较"></a>冒泡排序优化之减少无用轮内循环比较</h6><p>假设初始数据是：[45, 55, 67, 50, 60]</p>
-<p>以带标记的升序排序为例：</p>
-<pre><code>public static int[] bubbleAscSort(int[] arr) {
-    boolean isAscSorted = false;
-    int size = arr.length;
-    int maxSwapIndex = size - 1;
-    int temp;
-    int lastSwapIndex = 0;
-    for (int i = 1; !isAscSorted &amp;&amp; i &lt; size ; i++) {
-        isAscSorted = true;
-        for (int j = 0; j &lt;  maxSwapIndex; j++) {
-            if (arr[j] &gt; arr[j + 1]) {
-                isAscSorted = false;
-                temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-                lastSwapIndex = j;
-            }
-        }
-        maxSwapIndex = lastSwapIndex;
-    }
-    return arr;
-}
-</code></pre><p>一轮排序：[45, 55, 50, 60, 67]<br>二轮排序：[45, 50, 55, 60, 67]<br>三轮排序：[45, 50, 55, 60, 67]</p>
+<p>以带标记的升序排序为例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public static int[] bubbleAscSort(int[] arr) &#123;</span><br><span class="line">    boolean isAscSorted = false;</span><br><span class="line">    int size = arr.length;</span><br><span class="line">	int maxSwapIndex = size - 1;</span><br><span class="line">    int temp;</span><br><span class="line">    int lastSwapIndex = 0;</span><br><span class="line">    for (int i = 1; !isAscSorted &amp;&amp; i &lt; size ; i++) &#123;</span><br><span class="line">        isAscSorted = true;</span><br><span class="line">        for (int j = 0; j &lt;  maxSwapIndex; j++) &#123;</span><br><span class="line">            if (arr[j] &gt; arr[j + 1]) &#123;</span><br><span class="line">                isAscSorted = false;</span><br><span class="line">                temp = arr[j];</span><br><span class="line">                arr[j] = arr[j + 1];</span><br><span class="line">                arr[j + 1] = temp;</span><br><span class="line">                lastSwapIndex = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        maxSwapIndex = lastSwapIndex;</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>一轮排序：[45, 55, 50, 60, 67]<br>二轮排序：[45, 50, 55, 60, 67]<br>三轮排序：[45, 50, 55, 60, 67]</p>
 <p>排序结果：[45, 50, 55, 60, 67]</p>
 <p>开始排序：<br>标记单轮最大的数据交换位置 maxSwapIndex ：size - 1<br>标记最后一次数据交换位置 lastSwapIndex : 0</p>
 <p>（1）第 1 轮排序：从数组的头部开始向尾部依次排序：[45, 55, 67, 50, 60]<br>首先比较 45 和 55 ，由于 45 比 55 小，两者不需要交换位置，数据：[45, 55, 67, 50, 60]；<br>继续比较 55 和 67 ，由于 55 比 67 小，两者不需要交换位置，数据：[45, 55, 67, 50, 60]；<br>继续比较 67 和 50 ，由于 67 比 50 大，两者需要交换位置，交换位置后 [45, 55, 50, 67, 60]，以本次数据交换位置标记为最后一次数据交换位置，lastSwapIndex = 2；<br>继续比较 67 和 60 ，由于 67 比 60 小，两者需要交换位置，交换位置后 [45, 55, 50, 60, 67]，以本次数据交换位置标记为最后一次数据交换位置，lastSwapIndex = 3；</p>
@@ -256,40 +189,8 @@
 <p>（2）第 2 轮排序：从数组的头部开始向尾部依次排序：[45, 55, 50, 60, 67]<br>首先比较 45 和 55 ，由于 45 比 55 小，两者不需要交换位置；<br>继续比较 55 和 50 ，由于 55 比 50 大，两者需要交换位置，交换位置后 [45, 50, 55, 60, 67]，以本次数据交换位置标记为最后一次数据交换位置，lastSwapIndex = 2；<br>继续比较 55 和 60 ，由于 55 比 60 小，两者不需要交换位置；<br>j 自增后已经是 3 ，不小于 maxSwapIndex ，结束本轮排序<br>标记下一轮最大的数据交换位置 maxSwapIndex = 2；即后续位置的元素顺序已经排序完毕。</p>
 <p>（3）第 3 轮排序：从数组的头部开始向尾部依次排序，数据：[45, 50, 55, 60, 67]<br>首先比较 45 和 50 ，由于 45 比 50 小，两者不需要交换位置；<br>继续比较 50 和 55 ，由于 50 比 55 小，两者不需要交换位置；<br>j 自增后已经是 2 ，不小于 maxSwapIndex ，结束本轮排序<br>且 isAscSorted 被标记为 已排序，结束排序</p>
 <h6 id="冒泡排序优化之双向冒泡"><a href="#冒泡排序优化之双向冒泡" class="headerlink" title="冒泡排序优化之双向冒泡"></a>冒泡排序优化之双向冒泡</h6><p>以升序排序为例：<br>双向冒泡即结合上述升序排序和降序排序，在一轮排序内先正向升序排序一次，然后从最后交换数据的位置往前再进行一次反向的降序排序</p>
-<pre><code>public static int[] bubbleAscSort(int[] arr) {
-    int size = arr.length;
-    int maxSwapIndex = size - 1;
-    int minSwapIndex = 0;
-    int temp;
-    int lastSwapIndex = 0;
-    while (maxSwapIndex &gt; minSwapIndex) {
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public static int[] bubbleAscSort(int[] arr) &#123;</span><br><span class="line">    int size = arr.length;</span><br><span class="line">    int maxSwapIndex = size - 1;</span><br><span class="line">    int minSwapIndex = 0;</span><br><span class="line">    int temp;</span><br><span class="line">    int lastSwapIndex = 0;</span><br><span class="line">    while (maxSwapIndex &gt; minSwapIndex) &#123;</span><br><span class="line"></span><br><span class="line">        for (int i = minSwapIndex; i &lt; maxSwapIndex; i++) &#123;</span><br><span class="line">            if (arr[i] &gt; arr[i + 1]) &#123;</span><br><span class="line">                temp = arr[i];</span><br><span class="line">                arr[i] = arr[i + 1];</span><br><span class="line">                arr[i + 1] = temp;</span><br><span class="line">                lastSwapIndex = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        maxSwapIndex = lastSwapIndex;</span><br><span class="line"></span><br><span class="line">        for (int j = maxSwapIndex; j &gt; minSwapIndex; j--) &#123;</span><br><span class="line">            if (arr[j] &lt; arr[j - 1]) &#123;</span><br><span class="line">                temp = arr[j];</span><br><span class="line">                arr[j] = arr[j - 1];</span><br><span class="line">                arr[j - 1] = temp;</span><br><span class="line">                lastSwapIndex = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        minSwapIndex = lastSwapIndex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        for (int i = minSwapIndex; i &lt; maxSwapIndex; i++) {
-            if (arr[i] &gt; arr[i + 1]) {
-                temp = arr[i];
-                arr[i] = arr[i + 1];
-                arr[i + 1] = temp;
-                lastSwapIndex = i;
-            }
-        }
-
-        maxSwapIndex = lastSwapIndex;
-
-        for (int j = maxSwapIndex; j &gt; minSwapIndex; j--) {
-            if (arr[j] &lt; arr[j - 1]) {
-                temp = arr[j];
-                arr[j] = arr[j - 1];
-                arr[j - 1] = temp;
-                lastSwapIndex = j;
-            }
-        }
-
-        minSwapIndex = lastSwapIndex;
-    }
-
-    return arr;
-}
-</code></pre>
       
 
       
@@ -465,13 +366,6 @@
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -586,10 +480,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -599,6 +489,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -674,11 +568,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -5,22 +5,21 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>《深入理解Java虚拟机》学习系列环境准备篇 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本学习系列将基于《深入理解Java虚拟机》第2版环境使用 CentOS 6.5 64.bit 操作系统。选择安装 OpenJDK 8。 切换 CentOS 6.5 镜像源[root@localhost openjdk]# cd /etc/yum.repos.d/ [root@localhost yum.repos.d]# mv CentOS-Base.repo CentOS-Base.repo.b">
+  <meta name="description" content="本学习系列将基于《深入理解Java虚拟机》第2版环境使用 CentOS 6.5 64.bit 操作系统。选择安装 OpenJDK 8。 切换 CentOS 6.5 镜像源12345[root@localhost openjdk]# cd /etc/yum.repos.d/[root@localhost yum.repos.d]# mv CentOS-Base.repo CentOS-Base.re">
 <meta name="keywords" content="Java虚拟机">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《深入理解Java虚拟机》学习系列环境准备篇">
 <meta property="og:url" content="http://yoursite.com/2017/11/29/《深入理解Java虚拟机》学习系列一/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="本学习系列将基于《深入理解Java虚拟机》第2版环境使用 CentOS 6.5 64.bit 操作系统。选择安装 OpenJDK 8。 切换 CentOS 6.5 镜像源[root@localhost openjdk]# cd /etc/yum.repos.d/ [root@localhost yum.repos.d]# mv CentOS-Base.repo CentOS-Base.repo.b">
+<meta property="og:description" content="本学习系列将基于《深入理解Java虚拟机》第2版环境使用 CentOS 6.5 64.bit 操作系统。选择安装 OpenJDK 8。 切换 CentOS 6.5 镜像源12345[root@localhost openjdk]# cd /etc/yum.repos.d/[root@localhost yum.repos.d]# mv CentOS-Base.repo CentOS-Base.re">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2017-11-30T14:06:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《深入理解Java虚拟机》学习系列环境准备篇">
-<meta name="twitter:description" content="本学习系列将基于《深入理解Java虚拟机》第2版环境使用 CentOS 6.5 64.bit 操作系统。选择安装 OpenJDK 8。 切换 CentOS 6.5 镜像源[root@localhost openjdk]# cd /etc/yum.repos.d/ [root@localhost yum.repos.d]# mv CentOS-Base.repo CentOS-Base.repo.b">
+<meta name="twitter:description" content="本学习系列将基于《深入理解Java虚拟机》第2版环境使用 CentOS 6.5 64.bit 操作系统。选择安装 OpenJDK 8。 切换 CentOS 6.5 镜像源12345[root@localhost openjdk]# cd /etc/yum.repos.d/[root@localhost yum.repos.d]# mv CentOS-Base.repo CentOS-Base.re">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -165,54 +164,18 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>本学习系列将基于《深入理解Java虚拟机》第2版<br>环境使用 CentOS 6.5 64.bit 操作系统。<br>选择安装 OpenJDK 8。</p>
-<h4 id="切换-CentOS-6-5-镜像源"><a href="#切换-CentOS-6-5-镜像源" class="headerlink" title="切换 CentOS 6.5 镜像源"></a>切换 CentOS 6.5 镜像源</h4><pre><code>[root@localhost openjdk]# cd /etc/yum.repos.d/
-[root@localhost yum.repos.d]# mv CentOS-Base.repo CentOS-Base.repo.bk
-[root@localhost yum.repos.d]# wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
-[root@localhost yum.repos.d]# yum clean all
-[root@localhost yum.repos.d]# yum makecache
-</code></pre><h4 id="安装-Bootstrap-JDK"><a href="#安装-Bootstrap-JDK" class="headerlink" title="安装 Bootstrap JDK"></a>安装 Bootstrap JDK</h4><p>参考<a href="http://openjdk.java.net/install/" target="_blank" rel="noopener">官方说明</a>，CentOS 6.5 下执行 <code>yum install java-1.8.0-openjdk</code></p>
-<pre><code>[root@localhost Desktop]# yum -y install java-1.8.0-openjdk
-</code></pre><p>安装完毕以后执行 <code>java -version</code> :</p>
-<pre><code>[root@localhost Desktop]# java -version
-openjdk version &quot;1.8.0_151&quot;
-OpenJDK Runtime Environment (build 1.8.0_151-b12)
-OpenJDK 64-Bit Server VM (build 25.151-b12, mixed mode)
-</code></pre><h4 id="下载-OpenJDK-1-8-源码"><a href="#下载-OpenJDK-1-8-源码" class="headerlink" title="下载 OpenJDK 1.8 源码"></a>下载 OpenJDK 1.8 源码</h4><p>安装 hg：</p>
-<pre><code>[root@localhost Desktop]# yum -y install hg
-</code></pre><p>执行下载：</p>
-<pre><code>[root@localhost Desktop]# hg clone http://hg.openjdk.java.net/jdk8u/jdk8u openjdk8
-</code></pre><p>该方式非常缓慢，经常中断，故直接从网站通过其他方式下载源码：<a href="http://download.java.net/openjdk/jdk8" target="_blank" rel="noopener">下载链接</a></p>
-<pre><code>[root@localhost Desktop]# ll
-total 121192
--rw-r--r--. 1 root root 124099402 Nov 29 15:36 openjdk-8-src-b132-03_mar_2014.zip
-</code></pre><h4 id="安装编译依赖"><a href="#安装编译依赖" class="headerlink" title="安装编译依赖"></a>安装编译依赖</h4><pre><code>[root@localhost Desktop]# yum -y install alsa-lib-devel cups-devel libX* gcc gcc-c++ freetype-devel libstdc++-static ant make
-</code></pre><h4 id="编译配置"><a href="#编译配置" class="headerlink" title="编译配置"></a>编译配置</h4><pre><code>[root@localhost Desktop]# cd openjdk
-[root@localhost openjdk]# chmod +x configure
-[root@localhost openjdk]# ./configure --enable-debug
-</code></pre><h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><pre><code>[root@localhost openjdk]# make CONF=linux-x86_64-normal-server-fastdebug
-</code></pre><p>出现如下信息，表示编译结束：</p>
-<pre><code>----- Build times -------
-Start 2017-11-29 15:55:35
-End   2017-11-29 16:04:09
-00:00:25 corba
-00:04:38 hotspot
-00:00:14 jaxp
-00:00:19 jaxws
-00:02:25 jdk
-00:00:33 langtools
-00:08:34 TOTAL
--------------------------
-Finished building OpenJDK for target &#39;default&#39;
-</code></pre><h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><pre><code>[root@localhost openjdk]# build/linux-x86_64-normal-server-fastdebug/jdk/bin/java -version
-openjdk version &quot;1.8.0-internal-fastdebug&quot;
-OpenJDK Runtime Environment (build 1.8.0-internal-fastdebug-root_2017_11_29_15_46-b00)
-OpenJDK 64-Bit Server VM (build 25.0-b70-fastdebug, mixed mode)
+<h4 id="切换-CentOS-6-5-镜像源"><a href="#切换-CentOS-6-5-镜像源" class="headerlink" title="切换 CentOS 6.5 镜像源"></a>切换 CentOS 6.5 镜像源</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost openjdk]# cd /etc/yum.repos.d/</span><br><span class="line">[root@localhost yum.repos.d]# mv CentOS-Base.repo CentOS-Base.repo.bk</span><br><span class="line">[root@localhost yum.repos.d]# wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo</span><br><span class="line">[root@localhost yum.repos.d]# yum clean all</span><br><span class="line">[root@localhost yum.repos.d]# yum makecache</span><br></pre></td></tr></table></figure>
+<h4 id="安装-Bootstrap-JDK"><a href="#安装-Bootstrap-JDK" class="headerlink" title="安装 Bootstrap JDK"></a>安装 Bootstrap JDK</h4><p>参考<a href="http://openjdk.java.net/install/" target="_blank" rel="noopener">官方说明</a>，CentOS 6.5 下执行 <code>yum install java-1.8.0-openjdk</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Desktop]# yum -y install java-1.8.0-openjdk</span><br></pre></td></tr></table></figure></p>
+<p>安装完毕以后执行 <code>java -version</code> :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Desktop]# java -version</span><br><span class="line">openjdk version &quot;1.8.0_151&quot;</span><br><span class="line">OpenJDK Runtime Environment (build 1.8.0_151-b12)</span><br><span class="line">OpenJDK 64-Bit Server VM (build 25.151-b12, mixed mode)</span><br></pre></td></tr></table></figure></p>
+<h4 id="下载-OpenJDK-1-8-源码"><a href="#下载-OpenJDK-1-8-源码" class="headerlink" title="下载 OpenJDK 1.8 源码"></a>下载 OpenJDK 1.8 源码</h4><p>安装 hg：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Desktop]# yum -y install hg</span><br></pre></td></tr></table></figure></p>
+<p>执行下载：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Desktop]# hg clone http://hg.openjdk.java.net/jdk8u/jdk8u openjdk8</span><br></pre></td></tr></table></figure></p>
+<p>该方式非常缓慢，经常中断，故直接从网站通过其他方式下载源码：<a href="http://download.java.net/openjdk/jdk8" target="_blank" rel="noopener">下载链接</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Desktop]# ll</span><br><span class="line">total 121192</span><br><span class="line">-rw-r--r--. 1 root root 124099402 Nov 29 15:36 openjdk-8-src-b132-03_mar_2014.zip</span><br></pre></td></tr></table></figure></p>
+<h4 id="安装编译依赖"><a href="#安装编译依赖" class="headerlink" title="安装编译依赖"></a>安装编译依赖</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Desktop]# yum -y install alsa-lib-devel cups-devel libX* gcc gcc-c++ freetype-devel libstdc++-static ant make</span><br></pre></td></tr></table></figure>
+<h4 id="编译配置"><a href="#编译配置" class="headerlink" title="编译配置"></a>编译配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Desktop]# cd openjdk</span><br><span class="line">[root@localhost openjdk]# chmod +x configure</span><br><span class="line">[root@localhost openjdk]# ./configure --enable-debug</span><br></pre></td></tr></table></figure>
+<h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost openjdk]# make CONF=linux-x86_64-normal-server-fastdebug</span><br></pre></td></tr></table></figure>
+<p>出现如下信息，表示编译结束：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">----- Build times -------</span><br><span class="line">Start 2017-11-29 15:55:35</span><br><span class="line">End   2017-11-29 16:04:09</span><br><span class="line">00:00:25 corba</span><br><span class="line">00:04:38 hotspot</span><br><span class="line">00:00:14 jaxp</span><br><span class="line">00:00:19 jaxws</span><br><span class="line">00:02:25 jdk</span><br><span class="line">00:00:33 langtools</span><br><span class="line">00:08:34 TOTAL</span><br><span class="line">-------------------------</span><br><span class="line">Finished building OpenJDK for target &apos;default&apos;</span><br></pre></td></tr></table></figure></p>
+<h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost openjdk]# build/linux-x86_64-normal-server-fastdebug/jdk/bin/java -version</span><br><span class="line">openjdk version &quot;1.8.0-internal-fastdebug&quot;</span><br><span class="line">OpenJDK Runtime Environment (build 1.8.0-internal-fastdebug-root_2017_11_29_15_46-b00)</span><br><span class="line">OpenJDK 64-Bit Server VM (build 25.0-b70-fastdebug, mixed mode)</span><br><span class="line"></span><br><span class="line">[root@localhost openjdk]# java -version</span><br><span class="line">openjdk version &quot;1.8.0_151&quot;</span><br><span class="line">OpenJDK Runtime Environment (build 1.8.0_151-b12)</span><br><span class="line">OpenJDK 64-Bit Server VM (build 25.151-b12, mixed mode)</span><br></pre></td></tr></table></figure>
 
-[root@localhost openjdk]# java -version
-openjdk version &quot;1.8.0_151&quot;
-OpenJDK Runtime Environment (build 1.8.0_151-b12)
-OpenJDK 64-Bit Server VM (build 25.151-b12, mixed mode)
-</code></pre>
       
 
       
@@ -337,8 +300,8 @@ OpenJDK 64-Bit Server VM (build 25.151-b12, mixed mode)
     </a>
   
   
-    <a href="/2017/11/29/SpringBoot 初识/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">SpringBoot 初识</div>
+    <a href="/2017/11/29/SpringBoot CommandLineRunner 初识/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SpringBoot CommandLineRunner 初识</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -388,13 +351,6 @@ OpenJDK 64-Bit Server VM (build 25.151-b12, mixed mode)
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -509,10 +465,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -522,6 +474,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -597,11 +553,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

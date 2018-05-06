@@ -5,22 +5,21 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>SpringBoot 启动源码解析系列一：构造器实例化 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SpringBoot 启动类示例： import org.springframework.boot.SpringApplication; import org.springframework.boot.autoconfigure.SpringBootApplication;  @SpringBootApplication public class DemoApplication {      pu">
+  <meta name="description" content="SpringBoot 启动类示例：12345678910import org.springframework.boot.SpringApplication;import org.springframework.boot.autoconfigure.SpringBootApplication;@SpringBootApplicationpublic class DemoApplication &amp;#1">
 <meta name="keywords" content="SpringBoot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot 启动源码解析系列一：构造器实例化">
 <meta property="og:url" content="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列一：构造器实例化/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="SpringBoot 启动类示例： import org.springframework.boot.SpringApplication; import org.springframework.boot.autoconfigure.SpringBootApplication;  @SpringBootApplication public class DemoApplication {      pu">
+<meta property="og:description" content="SpringBoot 启动类示例：12345678910import org.springframework.boot.SpringApplication;import org.springframework.boot.autoconfigure.SpringBootApplication;@SpringBootApplicationpublic class DemoApplication &amp;#1">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-01-02T12:53:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot 启动源码解析系列一：构造器实例化">
-<meta name="twitter:description" content="SpringBoot 启动类示例： import org.springframework.boot.SpringApplication; import org.springframework.boot.autoconfigure.SpringBootApplication;  @SpringBootApplication public class DemoApplication {      pu">
+<meta name="twitter:description" content="SpringBoot 启动类示例：12345678910import org.springframework.boot.SpringApplication;import org.springframework.boot.autoconfigure.SpringBootApplication;@SpringBootApplicationpublic class DemoApplication &amp;#1">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -164,47 +163,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>SpringBoot 启动类示例：</p>
-<pre><code>import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
-public class DemoApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
-    }
-}
-</code></pre><p>通过 SpringApplication 静态方法 run 执行启动：</p>
-<pre><code>public static ConfigurableApplicationContext run(Object source, String... args) {
-    return run(new Object[]{source}, args);
-}
-
-public static ConfigurableApplicationContext run(Object[] sources, String[] args) {
-    return (new SpringApplication(sources)).run(args);
-}
-</code></pre><p>调用构造函数：</p>
-<pre><code>public SpringApplication(Object... sources) {
-    this.bannerMode = Mode.CONSOLE;
-    this.logStartupInfo = true;
-    this.addCommandLineProperties = true;
-    this.headless = true;
-    this.registerShutdownHook = true;
-    this.additionalProfiles = new HashSet();
-    this.initialize(sources);
-}
-</code></pre><p>核心方法 initalize ：</p>
-<pre><code>private void initialize(Object[] sources) {
-    if (sources != null &amp;&amp; sources.length &gt; 0) {
-        this.sources.addAll(Arrays.asList(sources));
-    }
-
-    this.webEnvironment = this.deduceWebEnvironment();
-    this.setInitializers(this.getSpringFactoriesInstances(ApplicationContextInitializer.class));
-    this.setListeners(this.getSpringFactoriesInstances(ApplicationListener.class));
-    this.mainApplicationClass = this.deduceMainApplicationClass();
-}
-</code></pre><p>首先：把 DemoApplication 类对象设置到 SpringApplication 持有的 sources 属性中，是个 Set 集合<br>其次：判断是否是 Web 程序环境<br>第三：设置初始化器<br>第四：设置事件监听器<br>第五：找出程序入口</p>
+        <p>SpringBoot 启动类示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class DemoApplication &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(DemoApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过 SpringApplication 静态方法 run 执行启动：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public static ConfigurableApplicationContext run(Object source, String... args) &#123;</span><br><span class="line">    return run(new Object[]&#123;source&#125;, args);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static ConfigurableApplicationContext run(Object[] sources, String[] args) &#123;</span><br><span class="line">    return (new SpringApplication(sources)).run(args);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用构造函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public SpringApplication(Object... sources) &#123;</span><br><span class="line">    this.bannerMode = Mode.CONSOLE;</span><br><span class="line">    this.logStartupInfo = true;</span><br><span class="line">    this.addCommandLineProperties = true;</span><br><span class="line">    this.headless = true;</span><br><span class="line">    this.registerShutdownHook = true;</span><br><span class="line">    this.additionalProfiles = new HashSet();</span><br><span class="line">    this.initialize(sources);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>核心方法 initalize ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private void initialize(Object[] sources) &#123;</span><br><span class="line">    if (sources != null &amp;&amp; sources.length &gt; 0) &#123;</span><br><span class="line">        this.sources.addAll(Arrays.asList(sources));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    this.webEnvironment = this.deduceWebEnvironment();</span><br><span class="line">    this.setInitializers(this.getSpringFactoriesInstances(ApplicationContextInitializer.class));</span><br><span class="line">    this.setListeners(this.getSpringFactoriesInstances(ApplicationListener.class));</span><br><span class="line">    this.mainApplicationClass = this.deduceMainApplicationClass();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>首先：把 DemoApplication 类对象设置到 SpringApplication 持有的 sources 属性中，是个 Set 集合<br>其次：判断是否是 Web 程序环境<br>第三：设置初始化器<br>第四：设置事件监听器<br>第五：找出程序入口</p>
 
       
 
@@ -330,8 +294,8 @@ public static ConfigurableApplicationContext run(Object[] sources, String[] args
     </a>
   
   
-    <a href="/2018/01/01/CentOS 6.5 64bit 安装 JIRA/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">CentOS 6.5 64bit 安装 JIRA</div>
+    <a href="/2018/01/01/2018年年度小目标/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2018年年度小目标</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -381,13 +345,6 @@ public static ConfigurableApplicationContext run(Object[] sources, String[] args
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -502,10 +459,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -515,6 +468,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -590,11 +547,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

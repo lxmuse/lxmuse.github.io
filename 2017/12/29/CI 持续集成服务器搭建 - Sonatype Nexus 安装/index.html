@@ -5,22 +5,21 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>CI 持续集成服务器搭建 - Sonatype Nexus 安装 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="操作系统：CentOS 6.5 64bitSonatype Nexus 版本：nexus-2.14.5-02-bundleJDK 版本：JDK 1.8 安装JDK执行 rpm 安装命令： [root@localhost ~]# rpm -ivh jdk-8u151-linux-x64.rpm 默认的 JDK 安装目录： /usr/java/jdk1.8.0_151 配置 JDK 环境变量： [ro">
+  <meta name="description" content="操作系统：CentOS 6.5 64bitSonatype Nexus 版本：nexus-2.14.5-02-bundleJDK 版本：JDK 1.8 安装JDK执行 rpm 安装命令：1[root@localhost ~]# rpm -ivh jdk-8u151-linux-x64.rpm 默认的 JDK 安装目录：1/usr/java/jdk1.8.0_151 配置 JDK 环境变量：1[ro">
 <meta name="keywords" content="CI,Sonatype Nexus,持续集成">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CI 持续集成服务器搭建 - Sonatype Nexus 安装">
 <meta property="og:url" content="http://yoursite.com/2017/12/29/CI 持续集成服务器搭建 - Sonatype Nexus 安装/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="操作系统：CentOS 6.5 64bitSonatype Nexus 版本：nexus-2.14.5-02-bundleJDK 版本：JDK 1.8 安装JDK执行 rpm 安装命令： [root@localhost ~]# rpm -ivh jdk-8u151-linux-x64.rpm 默认的 JDK 安装目录： /usr/java/jdk1.8.0_151 配置 JDK 环境变量： [ro">
+<meta property="og:description" content="操作系统：CentOS 6.5 64bitSonatype Nexus 版本：nexus-2.14.5-02-bundleJDK 版本：JDK 1.8 安装JDK执行 rpm 安装命令：1[root@localhost ~]# rpm -ivh jdk-8u151-linux-x64.rpm 默认的 JDK 安装目录：1/usr/java/jdk1.8.0_151 配置 JDK 环境变量：1[ro">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2017-12-30T02:52:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CI 持续集成服务器搭建 - Sonatype Nexus 安装">
-<meta name="twitter:description" content="操作系统：CentOS 6.5 64bitSonatype Nexus 版本：nexus-2.14.5-02-bundleJDK 版本：JDK 1.8 安装JDK执行 rpm 安装命令： [root@localhost ~]# rpm -ivh jdk-8u151-linux-x64.rpm 默认的 JDK 安装目录： /usr/java/jdk1.8.0_151 配置 JDK 环境变量： [ro">
+<meta name="twitter:description" content="操作系统：CentOS 6.5 64bitSonatype Nexus 版本：nexus-2.14.5-02-bundleJDK 版本：JDK 1.8 安装JDK执行 rpm 安装命令：1[root@localhost ~]# rpm -ivh jdk-8u151-linux-x64.rpm 默认的 JDK 安装目录：1/usr/java/jdk1.8.0_151 配置 JDK 环境变量：1[ro">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -165,92 +164,33 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>操作系统：CentOS 6.5 64bit<br>Sonatype Nexus 版本：nexus-2.14.5-02-bundle<br>JDK 版本：JDK 1.8</p>
-<h3 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h3><p>执行 rpm 安装命令：</p>
-<pre><code>[root@localhost ~]# rpm -ivh jdk-8u151-linux-x64.rpm
-</code></pre><p>默认的 JDK 安装目录：</p>
-<pre><code>/usr/java/jdk1.8.0_151
-</code></pre><p>配置 JDK 环境变量：</p>
-<pre><code>[root@localhost ~]# vim /etc/profile
-</code></pre><p>添加如下内容：</p>
-<pre><code>#set jdk environment
-export JAVA_HOME=/usr/java/jdk1.8.0_151
-export PATH=$PATH:$JAVA_HOME/bin
-export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-</code></pre><p>启用配置文件：</p>
-<pre><code>[root@localhost ~]# source /etc/profile
-</code></pre><p>验证 JDK：</p>
-<pre><code>[root@localhost ~]# java -version
-java version &quot;1.8.0_151&quot;
-Java(TM) SE Runtime Environment (build 1.8.0_151-b12)
-Java HotSpot(TM) 64-Bit Server VM (build 25.151-b12, mixed mode)
-</code></pre><h3 id="安装-Sonatype-Nexus"><a href="#安装-Sonatype-Nexus" class="headerlink" title="安装 Sonatype Nexus"></a>安装 Sonatype Nexus</h3><p>准备安装目录：</p>
-<pre><code>[root@localhost ~]# cd /user/local
-[root@localhost local]# mkdir nexus
-[root@localhost local]# cd nexus
-</code></pre><p>解压 Sonatype Nexus：</p>
-<pre><code>[root@localhost nexus]# tar –zxvf nexus-2.14.5-02-bundle.tar.gz
-</code></pre><p>解压之后将出现两个目录：</p>
-<pre><code>[root@localhost nexus]# ls
-nexus-2.14.5-02  sonatype-work
-</code></pre><p>前者是 nexus 服务目录，后者是私库目录</p>
-<h3 id="启动-停止-Sonatype-Nexus"><a href="#启动-停止-Sonatype-Nexus" class="headerlink" title="启动/停止 Sonatype Nexus"></a>启动/停止 Sonatype Nexus</h3><p>Sonatype Nexus 的启动脚本目录位于：</p>
-<pre><code>[root@localhost bin]# pwd
-/usr/local/nexus/nexus-2.14.5-02/bin
-</code></pre><p>Sonatype Nexus 默认不推荐使用 root 用户启动：</p>
-<pre><code>[root@localhost bin]# ls
-jsw  nexus  nexus.bat
-[root@localhost bin]# ./nexus start
-****************************************
-WARNING - NOT RECOMMENDED TO RUN AS ROOT
-****************************************
-If you insist running as root, then set the environment variable RUN_AS_USER=root before running this script.
-</code></pre><p>若想通过 root 用户启动 Sonatype Nexus 需要修改启动脚本 nexus:</p>
-<pre><code>[root@localhost bin]# vim nexus
-</code></pre><p>设置启动脚本中 RUN_AS_USER 内容：</p>
-<pre><code>RUN_AS_USER=root
-</code></pre><p>重新启动 Sonatype Nexus：</p>
-<pre><code>[root@localhost bin]# ./nexus start
-****************************************
-WARNING - NOT RECOMMENDED TO RUN AS ROOT
-****************************************
-Starting Nexus OSS...
-Started Nexus OSS.
-</code></pre><p>停止 Sonatype Nexus：</p>
-<pre><code>[root@localhost bin]# ./nexus stop
-****************************************
-WARNING - NOT RECOMMENDED TO RUN AS ROOT
-****************************************
-Stopping Nexus OSS...
-Stopped Nexus OSS.
-</code></pre><h3 id="配置-Sonatype-Nexus-开机启动"><a href="#配置-Sonatype-Nexus-开机启动" class="headerlink" title="配置 Sonatype Nexus 开机启动"></a>配置 Sonatype Nexus 开机启动</h3><pre><code>[root@localhost bin]# ln -s /usr/local/nexus/nexus-2.14.5-02/bin/nexus /etc/init.d/nexus
-[root@localhost bin]# chkconfig --add nexus
-[root@localhost bin]# chkconfig --levels 345 nexus on
-</code></pre><p>以系统服务方式启动 Sonatype Nexus：</p>
-<pre><code>[root@localhost conf]# service nexus start
-****************************************
-WARNING - NOT RECOMMENDED TO RUN AS ROOT
-****************************************
-Starting Nexus OSS...
-Started Nexus OSS.
-</code></pre><h3 id="配置-Sonatype-Nexus-防火墙端口"><a href="#配置-Sonatype-Nexus-防火墙端口" class="headerlink" title="配置 Sonatype Nexus 防火墙端口"></a>配置 Sonatype Nexus 防火墙端口</h3><p>Sonatype Nexus 默认使用 Jetty，其配置文件目录：</p>
-<pre><code>/usr/local/nexus/nexus-2.14.5-02/conf
-</code></pre><p>查看配置文件：</p>
-<pre><code>[root@localhost conf]# vim nexus.properties 
-</code></pre><pre><code># Jetty section
-application-port=8081
-application-host=0.0.0.0
-nexus-webapp=${bundleBasedir}/nexus
-</code></pre><p>默认使用 8081 端口。<br>在防火墙中添加 8081 端口：</p>
-<pre><code>[root@localhost ~]# vim /etc/sysconfig/iptables
-</code></pre><p>添加一条规则：</p>
-<pre><code>-A INPUT -m state --state NEW -m tcp -p tcp --dport 8081 -j ACCEPT
-</code></pre><p>重启防火墙服务：</p>
-<pre><code>[root@localhost ~]# service iptables restart
-</code></pre><h3 id="访问-Sonatype-Nexus"><a href="#访问-Sonatype-Nexus" class="headerlink" title="访问 Sonatype Nexus"></a>访问 Sonatype Nexus</h3><p>默认的访问地址：</p>
-<pre><code>http://IP:8081/nexus
-</code></pre><p>默认的用户名和密码：</p>
-<pre><code>admin/admin123
-</code></pre>
+<h3 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h3><p>执行 rpm 安装命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -ivh jdk-8u151-linux-x64.rpm</span><br></pre></td></tr></table></figure></p>
+<p>默认的 JDK 安装目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/java/jdk1.8.0_151</span><br></pre></td></tr></table></figure></p>
+<p>配置 JDK 环境变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# vim /etc/profile</span><br></pre></td></tr></table></figure></p>
+<p>添加如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#set jdk environment</span><br><span class="line">export JAVA_HOME=/usr/java/jdk1.8.0_151</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br></pre></td></tr></table></figure></p>
+<p>启用配置文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# source /etc/profile</span><br></pre></td></tr></table></figure></p>
+<p>验证 JDK：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# java -version</span><br><span class="line">java version &quot;1.8.0_151&quot;</span><br><span class="line">Java(TM) SE Runtime Environment (build 1.8.0_151-b12)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 25.151-b12, mixed mode)</span><br></pre></td></tr></table></figure></p>
+<h3 id="安装-Sonatype-Nexus"><a href="#安装-Sonatype-Nexus" class="headerlink" title="安装 Sonatype Nexus"></a>安装 Sonatype Nexus</h3><p>准备安装目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cd /user/local</span><br><span class="line">[root@localhost local]# mkdir nexus</span><br><span class="line">[root@localhost local]# cd nexus</span><br></pre></td></tr></table></figure></p>
+<p>解压 Sonatype Nexus：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost nexus]# tar –zxvf nexus-2.14.5-02-bundle.tar.gz</span><br></pre></td></tr></table></figure></p>
+<p>解压之后将出现两个目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost nexus]# ls</span><br><span class="line">nexus-2.14.5-02  sonatype-work</span><br></pre></td></tr></table></figure></p>
+<p>前者是 nexus 服务目录，后者是私库目录</p>
+<h3 id="启动-停止-Sonatype-Nexus"><a href="#启动-停止-Sonatype-Nexus" class="headerlink" title="启动/停止 Sonatype Nexus"></a>启动/停止 Sonatype Nexus</h3><p>Sonatype Nexus 的启动脚本目录位于：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]# pwd</span><br><span class="line">/usr/local/nexus/nexus-2.14.5-02/bin</span><br></pre></td></tr></table></figure></p>
+<p>Sonatype Nexus 默认不推荐使用 root 用户启动：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]# ls</span><br><span class="line">jsw  nexus  nexus.bat</span><br><span class="line">[root@localhost bin]# ./nexus start</span><br><span class="line">****************************************</span><br><span class="line">WARNING - NOT RECOMMENDED TO RUN AS ROOT</span><br><span class="line">****************************************</span><br><span class="line">If you insist running as root, then set the environment variable RUN_AS_USER=root before running this script.</span><br></pre></td></tr></table></figure></p>
+<p>若想通过 root 用户启动 Sonatype Nexus 需要修改启动脚本 nexus:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]# vim nexus</span><br></pre></td></tr></table></figure></p>
+<p>设置启动脚本中 RUN_AS_USER 内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RUN_AS_USER=root</span><br></pre></td></tr></table></figure></p>
+<p>重新启动 Sonatype Nexus：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]# ./nexus start</span><br><span class="line">****************************************</span><br><span class="line">WARNING - NOT RECOMMENDED TO RUN AS ROOT</span><br><span class="line">****************************************</span><br><span class="line">Starting Nexus OSS...</span><br><span class="line">Started Nexus OSS.</span><br></pre></td></tr></table></figure></p>
+<p>停止 Sonatype Nexus：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]# ./nexus stop</span><br><span class="line">****************************************</span><br><span class="line">WARNING - NOT RECOMMENDED TO RUN AS ROOT</span><br><span class="line">****************************************</span><br><span class="line">Stopping Nexus OSS...</span><br><span class="line">Stopped Nexus OSS.</span><br></pre></td></tr></table></figure></p>
+<h3 id="配置-Sonatype-Nexus-开机启动"><a href="#配置-Sonatype-Nexus-开机启动" class="headerlink" title="配置 Sonatype Nexus 开机启动"></a>配置 Sonatype Nexus 开机启动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]# ln -s /usr/local/nexus/nexus-2.14.5-02/bin/nexus /etc/init.d/nexus</span><br><span class="line">[root@localhost bin]# chkconfig --add nexus</span><br><span class="line">[root@localhost bin]# chkconfig --levels 345 nexus on</span><br></pre></td></tr></table></figure>
+<p>以系统服务方式启动 Sonatype Nexus：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost conf]# service nexus start</span><br><span class="line">****************************************</span><br><span class="line">WARNING - NOT RECOMMENDED TO RUN AS ROOT</span><br><span class="line">****************************************</span><br><span class="line">Starting Nexus OSS...</span><br><span class="line">Started Nexus OSS.</span><br></pre></td></tr></table></figure></p>
+<h3 id="配置-Sonatype-Nexus-防火墙端口"><a href="#配置-Sonatype-Nexus-防火墙端口" class="headerlink" title="配置 Sonatype Nexus 防火墙端口"></a>配置 Sonatype Nexus 防火墙端口</h3><p>Sonatype Nexus 默认使用 Jetty，其配置文件目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nexus/nexus-2.14.5-02/conf</span><br></pre></td></tr></table></figure></p>
+<p>查看配置文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost conf]# vim nexus.properties</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Jetty section</span><br><span class="line">application-port=8081</span><br><span class="line">application-host=0.0.0.0</span><br><span class="line">nexus-webapp=$&#123;bundleBasedir&#125;/nexus</span><br></pre></td></tr></table></figure>
+<p>默认使用 8081 端口。<br>在防火墙中添加 8081 端口：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# vim /etc/sysconfig/iptables</span><br></pre></td></tr></table></figure></p>
+<p>添加一条规则：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 8081 -j ACCEPT</span><br></pre></td></tr></table></figure></p>
+<p>重启防火墙服务：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# service iptables restart</span><br></pre></td></tr></table></figure></p>
+<h3 id="访问-Sonatype-Nexus"><a href="#访问-Sonatype-Nexus" class="headerlink" title="访问 Sonatype Nexus"></a>访问 Sonatype Nexus</h3><p>默认的访问地址：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://IP:8081/nexus</span><br></pre></td></tr></table></figure></p>
+<p>默认的用户名和密码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin/admin123</span><br></pre></td></tr></table></figure></p>
+
       
 
       
@@ -373,11 +313,11 @@ nexus-webapp=${bundleBasedir}/nexus
   
 <nav id="article-nav">
   
-    <a href="/2018/01/01/2018年年度小目标/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/01/01/CentOS 6.5 64bit 安装 JIRA/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          2018年年度小目标
+          CentOS 6.5 64bit 安装 JIRA
         
       </div>
     </a>
@@ -434,13 +374,6 @@ nexus-webapp=${bundleBasedir}/nexus
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -555,10 +488,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -568,6 +497,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -643,11 +576,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -5,7 +5,6 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -162,90 +161,29 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Python : 3.6.3</p>
-<h4 id="遍历列表"><a href="#遍历列表" class="headerlink" title="遍历列表"></a>遍历列表</h4><pre><code>cars = [&quot;BMW&quot;, &quot;Jeep&quot;, &quot;Ford&quot;, &quot;Smart&quot;]
-for car in cars:
-    print(car)
-print(cars)
-</code></pre><p>输出：</p>
-<pre><code>BMW
-Jeep
-Ford
-Smart
-[&#39;BMW&#39;, &#39;Jeep&#39;, &#39;Ford&#39;, &#39;Smart&#39;]
-</code></pre><p>Python 的 for 循环语法有点特殊：<br>（1）语法格式：for [变量名] in [集合]：<br>（2）for 循环以冒号结尾<br>（3）for 循环后的代码缩进都表示使循环体内部语句<br>（4）变量名可以任意命名<br>（5）for 循环后没有缩进的代码表示循环结束</p>
-<h4 id="创建数值列表"><a href="#创建数值列表" class="headerlink" title="创建数值列表"></a>创建数值列表</h4><p>Python 的 range() 方法可以轻松地生成一系列的数字。而且也可以指定生成的数值范围：</p>
-<pre><code>for value in range(1,5):
-    print(value)
-</code></pre><p>输出：</p>
-<pre><code>1
-2
-3
-4
-</code></pre><p>其数值范围默认使左闭右开的，即包含左边的数值，但不包含右边的数值。</p>
-<p>要创建数值列表，可以在 list() 方法内通过设定参数来生成：</p>
-<pre><code>numbers = list(range(1,5))
-print(numbers)
-</code></pre><p>输出：</p>
-<pre><code>[1, 2, 3, 4]
-</code></pre><p>也可以手动往列表里面添加数值：</p>
-<pre><code>numbers = []
-for value in range(1,10):
-    numbers.append(value)
-print(numbers)
-</code></pre><p>输出：</p>
-<pre><code>[1, 2, 3, 4, 5, 6, 7, 8, 9]
-</code></pre><h4 id="数值列表的统计计算"><a href="#数值列表的统计计算" class="headerlink" title="数值列表的统计计算"></a>数值列表的统计计算</h4><p>求数值列表的最小值、最大值、总和：</p>
-<pre><code>numbers = [1,2,3,4,5,6,7,8,9,0]
-print(min(numbers))
-print(max(numbers))
-print(sum(numbers))
-</code></pre><p>输出：</p>
-<pre><code>0
-9
-45
-</code></pre><h4 id="列表解析"><a href="#列表解析" class="headerlink" title="列表解析"></a>列表解析</h4><p>Python 支持将for循环和创建新元素的代码合并成一行，并自动附加新元素：</p>
-<pre><code>numbers = [value**2 for value in range(1,5)]
-print(numbers)
-</code></pre><p>输出：</p>
-<pre><code>[1, 4, 9, 16]
-</code></pre><h4 id="取列表的一部分"><a href="#取列表的一部分" class="headerlink" title="取列表的一部分"></a>取列表的一部分</h4><p>Python 可以从列表中获取一部分元素，称为切片：</p>
-<pre><code>numbers = [value**2 for value in range(1,5)]
-print(numbers)
-print(numbers[0:3])
-</code></pre><p>输出：</p>
-<pre><code>[1, 4, 9, 16]
-[1, 4, 9]
-</code></pre><p>起始索引可以都不指定，也可以只指定开始索引，也可以只指定结束索引，还可以使用负数：</p>
-<pre><code>numbers = [value**2 for value in range(1,5)]
-print(numbers)
-print(numbers[:])
-print(numbers[1:])
-print(numbers[:3])
-print(numbers[2:3])
-print(numbers[-2:])
-</code></pre><p>输出：</p>
-<pre><code>[1, 4, 9, 16]
-[1, 4, 9, 16]
-[4, 9, 16]
-[1, 4, 9]
-[9]
-[9, 16]
-</code></pre><h4 id="遍历切片"><a href="#遍历切片" class="headerlink" title="遍历切片"></a>遍历切片</h4><pre><code>numbers = [value**2 for value in range(1,5)]
-print(numbers)
-for number in numbers[1:3]:
-    print(number)
-</code></pre><p>输出：</p>
-<pre><code>[1, 4, 9, 16]
-4
-9
-</code></pre><h4 id="利用切片复制列表"><a href="#利用切片复制列表" class="headerlink" title="利用切片复制列表"></a>利用切片复制列表</h4><pre><code>numbers = [value**2 for value in range(1,5)]
-print(numbers)
-values = numbers[:]
-print(values)
-</code></pre><p>输出：</p>
-<pre><code>[1, 4, 9, 16]
-[1, 4, 9, 16]
-</code></pre>
+<h4 id="遍历列表"><a href="#遍历列表" class="headerlink" title="遍历列表"></a>遍历列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;, &quot;Jeep&quot;, &quot;Ford&quot;, &quot;Smart&quot;]</span><br><span class="line">for car in cars:</span><br><span class="line">	print(car)</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BMW</span><br><span class="line">Jeep</span><br><span class="line">Ford</span><br><span class="line">Smart</span><br><span class="line">[&apos;BMW&apos;, &apos;Jeep&apos;, &apos;Ford&apos;, &apos;Smart&apos;]</span><br></pre></td></tr></table></figure></p>
+<p>Python 的 for 循环语法有点特殊：<br>（1）语法格式：for [变量名] in [集合]：<br>（2）for 循环以冒号结尾<br>（3）for 循环后的代码缩进都表示使循环体内部语句<br>（4）变量名可以任意命名<br>（5）for 循环后没有缩进的代码表示循环结束</p>
+<h4 id="创建数值列表"><a href="#创建数值列表" class="headerlink" title="创建数值列表"></a>创建数值列表</h4><p>Python 的 range() 方法可以轻松地生成一系列的数字。而且也可以指定生成的数值范围：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for value in range(1,5):</span><br><span class="line">	print(value)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td></tr></table></figure></p>
+<p>其数值范围默认使左闭右开的，即包含左边的数值，但不包含右边的数值。</p>
+<p>要创建数值列表，可以在 list() 方法内通过设定参数来生成：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">numbers = list(range(1,5))</span><br><span class="line">print(numbers)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1, 2, 3, 4]</span><br></pre></td></tr></table></figure></p>
+<p>也可以手动往列表里面添加数值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numbers = []</span><br><span class="line">for value in range(1,10):</span><br><span class="line">	numbers.append(value)</span><br><span class="line">print(numbers)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1, 2, 3, 4, 5, 6, 7, 8, 9]</span><br></pre></td></tr></table></figure></p>
+<h4 id="数值列表的统计计算"><a href="#数值列表的统计计算" class="headerlink" title="数值列表的统计计算"></a>数值列表的统计计算</h4><p>求数值列表的最小值、最大值、总和：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numbers = [1,2,3,4,5,6,7,8,9,0]</span><br><span class="line">print(min(numbers))</span><br><span class="line">print(max(numbers))</span><br><span class="line">print(sum(numbers))</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0</span><br><span class="line">9</span><br><span class="line">45</span><br></pre></td></tr></table></figure></p>
+<h4 id="列表解析"><a href="#列表解析" class="headerlink" title="列表解析"></a>列表解析</h4><p>Python 支持将for循环和创建新元素的代码合并成一行，并自动附加新元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">numbers = [value**2 for value in range(1,5)]</span><br><span class="line">print(numbers)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1, 4, 9, 16]</span><br></pre></td></tr></table></figure></p>
+<h4 id="取列表的一部分"><a href="#取列表的一部分" class="headerlink" title="取列表的一部分"></a>取列表的一部分</h4><p>Python 可以从列表中获取一部分元素，称为切片：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">numbers = [value**2 for value in range(1,5)]</span><br><span class="line">print(numbers)</span><br><span class="line">print(numbers[0:3])</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[1, 4, 9, 16]</span><br><span class="line">[1, 4, 9]</span><br></pre></td></tr></table></figure></p>
+<p>起始索引可以都不指定，也可以只指定开始索引，也可以只指定结束索引，还可以使用负数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">numbers = [value**2 for value in range(1,5)]</span><br><span class="line">print(numbers)</span><br><span class="line">print(numbers[:])</span><br><span class="line">print(numbers[1:])</span><br><span class="line">print(numbers[:3])</span><br><span class="line">print(numbers[2:3])</span><br><span class="line">print(numbers[-2:])</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[1, 4, 9, 16]</span><br><span class="line">[1, 4, 9, 16]</span><br><span class="line">[4, 9, 16]</span><br><span class="line">[1, 4, 9]</span><br><span class="line">[9]</span><br><span class="line">[9, 16]</span><br></pre></td></tr></table></figure></p>
+<h4 id="遍历切片"><a href="#遍历切片" class="headerlink" title="遍历切片"></a>遍历切片</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numbers = [value**2 for value in range(1,5)]</span><br><span class="line">print(numbers)</span><br><span class="line">for number in numbers[1:3]:</span><br><span class="line">	print(number)</span><br></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[1, 4, 9, 16]</span><br><span class="line">4</span><br><span class="line">9</span><br></pre></td></tr></table></figure></p>
+<h4 id="利用切片复制列表"><a href="#利用切片复制列表" class="headerlink" title="利用切片复制列表"></a>利用切片复制列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numbers = [value**2 for value in range(1,5)]</span><br><span class="line">print(numbers)</span><br><span class="line">values = numbers[:]</span><br><span class="line">print(values)</span><br></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[1, 4, 9, 16]</span><br><span class="line">[1, 4, 9, 16]</span><br></pre></td></tr></table></figure></p>
+
       
 
       
@@ -331,68 +269,10 @@ print(values)
       
         <h2 id="Spring-Cloud-版本选择"><a href="#Spring-Cloud-版本选择" class="headerlink" title="Spring Cloud 版本选择"></a>Spring Cloud 版本选择</h2><p><strong>Spring Boot: 1.5.10.RELEASE</strong> <br><br><strong>Spring Cloud: Dalston.SR5</strong></p>
 <h2 id="Maven-工程"><a href="#Maven-工程" class="headerlink" title="Maven 工程"></a>Maven 工程</h2><p>利用 Maven 父子工程进行工程聚合，使用 <strong>dependencyManagement</strong> 标签统一管理依赖版本：</p>
-<pre><code>&lt;dependencyManagement&gt;
-    &lt;dependencies&gt;
-      &lt;!--spring-cloud--&gt;
-      &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;
-        &lt;version&gt;Dalston.SR5&lt;/version&gt;
-        &lt;type&gt;pom&lt;/type&gt;
-        &lt;scope&gt;import&lt;/scope&gt;
-      &lt;/dependency&gt;
-      &lt;!--spring-boot--&gt;
-      &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-dependencies&lt;/artifactId&gt;
-        &lt;version&gt;1.5.10.RELEASE&lt;/version&gt;
-        &lt;type&gt;pom&lt;/type&gt;
-        &lt;scope&gt;import&lt;/scope&gt;
-      &lt;/dependency&gt;
-    &lt;/dependencies&gt;
-&lt;/dependencyManagement&gt;
-</code></pre><p>配置构建插件：</p>
-<pre><code>&lt;build&gt;
-    &lt;plugins&gt;
-      &lt;plugin&gt;
-        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-        &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
-        &lt;version&gt;3.1&lt;/version&gt;
-        &lt;configuration&gt;
-          &lt;source&gt;1.8&lt;/source&gt;
-          &lt;target&gt;1.8&lt;/target&gt;
-          &lt;encoding&gt;UTF-8&lt;/encoding&gt;
-        &lt;/configuration&gt;
-      &lt;/plugin&gt;
-      &lt;plugin&gt;
-        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-        &lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt;
-        &lt;configuration&gt;
-          &lt;encoding&gt;UTF-8&lt;/encoding&gt;
-        &lt;/configuration&gt;
-      &lt;/plugin&gt;
-      &lt;plugin&gt;
-        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-        &lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;
-        &lt;configuration&gt;
-          &lt;skipTests&gt;true&lt;/skipTests&gt;
-        &lt;/configuration&gt;
-      &lt;/plugin&gt;
-      &lt;plugin&gt;
-        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-        &lt;artifactId&gt;maven-source-plugin&lt;/artifactId&gt;
-        &lt;executions&gt;
-          &lt;execution&gt;
-            &lt;id&gt;attach-sources&lt;/id&gt;
-            &lt;goals&gt;
-              &lt;goal&gt;jar&lt;/goal&gt;
-            &lt;/goals&gt;
-          &lt;/execution&gt;
-        &lt;/executions&gt;
-      &lt;/plugin&gt;
-    &lt;/plugins&gt;
-&lt;/build&gt;
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencyManagement&gt;</span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">      &lt;!--spring-cloud--&gt;</span><br><span class="line">      &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;Dalston.SR5&lt;/version&gt;</span><br><span class="line">        &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">        &lt;scope&gt;import&lt;/scope&gt;</span><br><span class="line">      &lt;/dependency&gt;</span><br><span class="line">      &lt;!--spring-boot--&gt;</span><br><span class="line">      &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-dependencies&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;1.5.10.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">        &lt;scope&gt;import&lt;/scope&gt;</span><br><span class="line">      &lt;/dependency&gt;</span><br><span class="line">    &lt;/dependencies&gt;</span><br><span class="line">&lt;/dependencyManagement&gt;</span><br></pre></td></tr></table></figure>
+<p>配置构建插件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;build&gt;</span><br><span class="line">    &lt;plugins&gt;</span><br><span class="line">      &lt;plugin&gt;</span><br><span class="line">        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;3.1&lt;/version&gt;</span><br><span class="line">        &lt;configuration&gt;</span><br><span class="line">          &lt;source&gt;1.8&lt;/source&gt;</span><br><span class="line">          &lt;target&gt;1.8&lt;/target&gt;</span><br><span class="line">          &lt;encoding&gt;UTF-8&lt;/encoding&gt;</span><br><span class="line">        &lt;/configuration&gt;</span><br><span class="line">      &lt;/plugin&gt;</span><br><span class="line">      &lt;plugin&gt;</span><br><span class="line">        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt;</span><br><span class="line">        &lt;configuration&gt;</span><br><span class="line">          &lt;encoding&gt;UTF-8&lt;/encoding&gt;</span><br><span class="line">        &lt;/configuration&gt;</span><br><span class="line">      &lt;/plugin&gt;</span><br><span class="line">      &lt;plugin&gt;</span><br><span class="line">        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;</span><br><span class="line">        &lt;configuration&gt;</span><br><span class="line">          &lt;skipTests&gt;true&lt;/skipTests&gt;</span><br><span class="line">        &lt;/configuration&gt;</span><br><span class="line">      &lt;/plugin&gt;</span><br><span class="line">      &lt;plugin&gt;</span><br><span class="line">        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;maven-source-plugin&lt;/artifactId&gt;</span><br><span class="line">        &lt;executions&gt;</span><br><span class="line">          &lt;execution&gt;</span><br><span class="line">            &lt;id&gt;attach-sources&lt;/id&gt;</span><br><span class="line">            &lt;goals&gt;</span><br><span class="line">              &lt;goal&gt;jar&lt;/goal&gt;</span><br><span class="line">            &lt;/goals&gt;</span><br><span class="line">          &lt;/execution&gt;</span><br><span class="line">        &lt;/executions&gt;</span><br><span class="line">      &lt;/plugin&gt;</span><br><span class="line">    &lt;/plugins&gt;</span><br><span class="line">&lt;/build&gt;</span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -483,52 +363,9 @@ print(values)
 <p>排序结果：[45, 50, 55, 60, 67]</p>
 <p>（1）一次排序：从原始数组中选择最小的数据 45，将其和第一个数据进行交换，交换后：[45, 55, 60, 67, 50]<br>（2）二次排序：从第二个数据开始，选择最小的数据 50，将其和第二个数据进行交换，交换后：[45, 50, 60, 67, 55]<br>（3）三次排序：从第三个数据开始，选择最小的数据 55，将其和第三个数据进行交换，交换后：[45, 50, 55, 67, 60]<br>（4）四次排序：从第四个数据开始，选择最小的数据 60，将其和第四个数据进行交换，交换后：[45, 50, 55, 60, 67]</p>
 <p>选择升序排序：</p>
-<pre><code>public static int[] selectAscSort(int[] arr) {
-
-    int size = arr.length ;
-    int index;
-    int temp;
-
-    for(int i = 0; i &lt; size - 1; i++) {
-        index = i;
-        for(int j = i+1; j &lt; size; j++) {
-            if (arr[j] &lt; arr[index]) {
-                index = j;
-            }
-        }
-        if (index != i) {
-            temp = arr[i];
-            arr[i] = arr[index];
-            arr[index] = temp;
-        }
-    }
-
-    return arr;
-}
-</code></pre><p>插入降序排序：</p>
-<pre><code>public static int[] selectAscSort(int[] arr) {
-
-    int size = arr.length ;
-    int index;
-    int temp;
-
-    for(int i = 0; i &lt; size - 1; i++) {
-        index = i;
-        for(int j = i+1; j &lt; size; j++) {
-            if (arr[j] &gt; arr[index]) {
-                index = j;
-            }
-        }
-        if (index != i) {
-            temp = arr[i];
-            arr[i] = arr[index];
-            arr[index] = temp;
-        }
-    }
-
-    return arr;
-}
-</code></pre><h4 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h4><h5 id="插入排序的基本思想"><a href="#插入排序的基本思想" class="headerlink" title="插入排序的基本思想"></a>插入排序的基本思想</h5><p>插入排序算法的基本思想是通过比较和插入来实现排序：<br>（1）首先对数组的前两个数据进行排序<br>（2）接着将第 3 个数据与已排好序的两个数据比较，将第 3 个数据插入合适的位置<br>（3）然后将第 4 个数据与已排好序的三个数据比较，将第 4 个数据插入合适的位置<br>（4）重复上述步骤，直至最后一个数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public static int[] selectAscSort(int[] arr) &#123;</span><br><span class="line"></span><br><span class="line">	int size = arr.length ;</span><br><span class="line">	int index;</span><br><span class="line">	int temp;</span><br><span class="line"></span><br><span class="line">	for(int i = 0; i &lt; size - 1; i++) &#123;</span><br><span class="line">		index = i;</span><br><span class="line">		for(int j = i+1; j &lt; size; j++) &#123;</span><br><span class="line">			if (arr[j] &lt; arr[index]) &#123;</span><br><span class="line">				index = j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		if (index != i) &#123;</span><br><span class="line">			temp = arr[i];</span><br><span class="line">			arr[i] = arr[index];</span><br><span class="line">			arr[index] = temp;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>插入降序排序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public static int[] selectAscSort(int[] arr) &#123;</span><br><span class="line"></span><br><span class="line">	int size = arr.length ;</span><br><span class="line">	int index;</span><br><span class="line">	int temp;</span><br><span class="line"></span><br><span class="line">	for(int i = 0; i &lt; size - 1; i++) &#123;</span><br><span class="line">		index = i;</span><br><span class="line">		for(int j = i+1; j &lt; size; j++) &#123;</span><br><span class="line">			if (arr[j] &gt; arr[index]) &#123;</span><br><span class="line">				index = j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		if (index != i) &#123;</span><br><span class="line">			temp = arr[i];</span><br><span class="line">			arr[i] = arr[index];</span><br><span class="line">			arr[index] = temp;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h4><h5 id="插入排序的基本思想"><a href="#插入排序的基本思想" class="headerlink" title="插入排序的基本思想"></a>插入排序的基本思想</h5><p>插入排序算法的基本思想是通过比较和插入来实现排序：<br>（1）首先对数组的前两个数据进行排序<br>（2）接着将第 3 个数据与已排好序的两个数据比较，将第 3 个数据插入合适的位置<br>（3）然后将第 4 个数据与已排好序的三个数据比较，将第 4 个数据插入合适的位置<br>（4）重复上述步骤，直至最后一个数据</p>
 <h5 id="插入排序示例"><a href="#插入排序示例" class="headerlink" title="插入排序示例"></a>插入排序示例</h5><p>以升序排序为例：从左向右排序，小的在左边，大的在右边</p>
 <p>初始数据：[67, 60, 55, 50, 45]</p>
 <p>一次排序：[60, 67, 55, 50, 45]<br>二次排序：[55, 60, 67, 50, 45]<br>三次排序：[50, 55, 60, 67, 45]<br>四次排序：[45, 50, 55, 60, 67]</p>
@@ -537,49 +374,9 @@ print(values)
 <p>（2）二次排序：取第三个数据和已排序好的前两个数据进行比较<br>首先将第三个数据和第二个数据比较，55 比 67 小，将 67 移动到第三个位置<br>继续将原第三个数据和第一个数据比较，55 比 60 小，将 60 移动到第二个位置<br>将原第三个数据放入第一个位置，最终数据：[55, 60, 67, 50, 45]</p>
 <p>（3）三次排序：取第四个数据和已排序好的前三个数据进行比较<br>参考第二步</p>
 <p>（4）四次排序：取第五个数据和已排序好的前四个数据进行比较<br>参考第三步</p>
-<p>插入升序排序：</p>
-<pre><code>public static int[] insertAscSort(int[] arr) {
+<p>插入升序排序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public static int[] insertAscSort(int[] arr) &#123;</span><br><span class="line"></span><br><span class="line">    int size = arr.length;</span><br><span class="line">    int temp;</span><br><span class="line">    int j;</span><br><span class="line">    // 从第二位开始循环</span><br><span class="line">    for (int i = 1; i &lt; size; i++) &#123;</span><br><span class="line">        // 暂存当前循环开始位置的数据</span><br><span class="line">        temp = arr[i];</span><br><span class="line">        // 获取前一位位置</span><br><span class="line">        j = i-1;</span><br><span class="line">        while (j &gt;= 0 &amp;&amp; temp &lt; arr[j]) &#123;</span><br><span class="line">            arr[j+1] = arr[j];</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        arr[j+1] = temp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>插入降序排序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public static int[] insertAscSort(int[] arr) &#123;</span><br><span class="line"></span><br><span class="line">    int size = arr.length;</span><br><span class="line">    int temp;</span><br><span class="line">    int j;</span><br><span class="line">    // 从第二位开始循环</span><br><span class="line">    for (int i = 1; i &lt; size; i++) &#123;</span><br><span class="line">        // 暂存当前循环开始位置的数据</span><br><span class="line">        temp = arr[i];</span><br><span class="line">        // 获取前一位位置</span><br><span class="line">        j = i-1;</span><br><span class="line">        while (j &gt;= 0 &amp;&amp; temp &gt; arr[j]) &#123;</span><br><span class="line">            arr[j+1] = arr[j];</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        arr[j+1] = temp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
-    int size = arr.length;
-    int temp;
-    int j;
-    // 从第二位开始循环
-    for (int i = 1; i &lt; size; i++) {
-        // 暂存当前循环开始位置的数据
-        temp = arr[i];
-        // 获取前一位位置
-        j = i-1;
-        while (j &gt;= 0 &amp;&amp; temp &lt; arr[j]) {
-            arr[j+1] = arr[j];
-            j--;
-        }
-        arr[j+1] = temp;
-    }
-
-    return arr;
-}
-</code></pre><p>插入降序排序：</p>
-<pre><code>public static int[] insertAscSort(int[] arr) {
-
-    int size = arr.length;
-    int temp;
-    int j;
-    // 从第二位开始循环
-    for (int i = 1; i &lt; size; i++) {
-        // 暂存当前循环开始位置的数据
-        temp = arr[i];
-        // 获取前一位位置
-        j = i-1;
-        while (j &gt;= 0 &amp;&amp; temp &gt; arr[j]) {
-            arr[j+1] = arr[j];
-            j--;
-        }
-        arr[j+1] = temp;
-    }
-
-    return arr;
-}
-</code></pre>
       
 
       
@@ -664,207 +461,70 @@ print(values)
     <div class="article-entry" itemprop="articleBody">
       
         <p>Python : 3.6.3 </p>
-<h4 id="创建列表"><a href="#创建列表" class="headerlink" title="创建列表"></a>创建列表</h4><p>列表即由一系列按照一定顺序排列的元素组成。<br>在 Python 中，用方括号（[]）来表示列表，并用逗号来分隔其中的元素：</p>
-<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
-</code></pre><p>如果将列表打印：</p>
-<pre><code>print(cars)
-</code></pre><p>其输出：</p>
-<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-</code></pre><p>Python 将打印列表的内部元素，包括方括号，且元素将被引号包裹。</p>
+<h4 id="创建列表"><a href="#创建列表" class="headerlink" title="创建列表"></a>创建列表</h4><p>列表即由一系列按照一定顺序排列的元素组成。<br>在 Python 中，用方括号（[]）来表示列表，并用逗号来分隔其中的元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br></pre></td></tr></table></figure></p>
+<p>如果将列表打印：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
+<p>其输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br></pre></td></tr></table></figure></p>
+<p>Python 将打印列表的内部元素，包括方括号，且元素将被引号包裹。</p>
 <p><strong>创建空列表</strong></p>
-<pre><code>cars = []
-</code></pre><p><strong>Python 无法向其他编程语言一样（如 Java）初始化创建指定长度的空列表：</strong></p>
-<pre><code>cars = [8]
-print(cars)
-</code></pre><p>其输出是：</p>
-<pre><code>8
-</code></pre><p><strong>Python 列表内的元素不要求一致，可以混合：</strong></p>
-<pre><code>cars = [&quot;BMW&quot;,8,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
-print(cars)
-</code></pre><p>其输出：</p>
-<pre><code>[&#39;BMW&#39;, 8, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-</code></pre><p>不过，实际编程中应当使列表内的元素类型保持一致。</p>
-<h4 id="访问列表元素"><a href="#访问列表元素" class="headerlink" title="访问列表元素"></a>访问列表元素</h4><p>列表是有序集合，可直接通过元素的位置（索引）访问其列表元素：</p>
-<pre><code>print(cars[0])
-</code></pre><p>输出：</p>
-<pre><code>BMW
-</code></pre><p>Python 将只返回元素内容，而不包括方括号和引号。<br>Python 的索引是从 0 开始，和大多数编程语言一致。<br>同理，要想访问第3个元素：</p>
-<pre><code>print(cars[2])
-</code></pre><p>输出：</p>
-<pre><code>Mini
-</code></pre><p>若不知道一个列表包含多少个元素，而又想直接获取最后一个元素，Python 提供一个特殊的语法：</p>
-<pre><code>print(cars[-1])
-</code></pre><p>输出：</p>
-<pre><code>Jeep
-</code></pre><p>同理，要想访问倒数第2个元素：</p>
-<pre><code>print(cars[-2])
-</code></pre><p>输出：</p>
-<pre><code>Ford
-</code></pre><p>可以直接使用列表中的各个元素值：</p>
-<pre><code>print(&quot;My first car is a &quot; + cars[0] + &quot;.&quot;)
-</code></pre><p>输出：</p>
-<pre><code>My first car is a BMW.
-</code></pre><p>甚至可以结合字符串的 API ：</p>
-<pre><code>print(&quot;My first car is a &quot; + cars[0].title() + &quot;.&quot;)
-</code></pre><p>输出：</p>
-<pre><code>My first car is a BMW.
-</code></pre><p>因为此处元素值首字母本身已大写，故 titile() 后结果不会发生变化。</p>
-<h4 id="获取列表的长度"><a href="#获取列表的长度" class="headerlink" title="获取列表的长度"></a>获取列表的长度</h4><p>使用 len() 方法可以直接获取列表的长度（元素个数）：</p>
-<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
-print(len(cars))
-</code></pre><p>输出：</p>
-<pre><code>7
-</code></pre><p>元素个数的计算从 1 开始，这点和其他编程语言也是相同的。</p>
-<p>若访问一个错误索引位置的元素，Python 无法通过编译，将提示错误：</p>
-<pre><code>IndexError：list index out of range
-</code></pre><h4 id="修改列表元素"><a href="#修改列表元素" class="headerlink" title="修改列表元素"></a>修改列表元素</h4><pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
-print(cars)
-cars[0] = &quot;Aston Martin&quot;
-print(cars)
-</code></pre><p>输出：</p>
-<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-[&#39;Aston Martin&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-</code></pre><p>通过 “=” 可将新的元素值赋予指定索引位置的元素，其值将发生修改</p>
-<h4 id="添加列表元素"><a href="#添加列表元素" class="headerlink" title="添加列表元素"></a>添加列表元素</h4><h5 id="从列表末尾添加元素"><a href="#从列表末尾添加元素" class="headerlink" title="从列表末尾添加元素"></a>从列表末尾添加元素</h5><p>可以使用 append() 方法向列表的末尾追加一个新的元素：</p>
-<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
-print(cars)
-cars.append(&quot;Aston Martin&quot;)
-print(cars)
-</code></pre><p>输出：</p>
-<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;, &#39;Aston Martin&#39;]
-</code></pre><p>可以先创建一个空列表，通过 append() 方法不断的向列表中添加新元素：</p>
-<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
-print(cars)
-cars = []
-cars.append(&quot;BMW&quot;)
-cars.append(&quot;Ferrari&quot;)
-cars.append(&quot;Mini&quot;)
-cars.append(&quot;Smart&quot;)
-cars.append(&quot;Audi&quot;)
-cars.append(&quot;Ford&quot;)
-cars.append(&quot;Jeep&quot;)
-print(cars)
-</code></pre><p>输出：</p>
-<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-</code></pre><p>两者输出结果是一致的。</p>
-<h5 id="可以在列表的指定位置处添加元素"><a href="#可以在列表的指定位置处添加元素" class="headerlink" title="可以在列表的指定位置处添加元素"></a>可以在列表的指定位置处添加元素</h5><p>可以使用 insert() 方法向列表指定索引处添加一个元素，列表内将从该索引开始，往后索引上的元素都将后移一位：</p>
-<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
-print(cars)
-cars.insert(3, &quot;Lamborghini&quot;)
-print(cars)
-</code></pre><p>输出：</p>
-<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Lamborghini&#39;, Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-</code></pre><p><strong>若 insert() 方法指定的元素位置超出了列表的长度，则元素将被默认添加在列表的末尾</strong></p>
-<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
-print(cars)
-cars.insert(9, &quot;Lamborghini&quot;)
-print(cars)
-</code></pre><p>输出：</p>
-<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;, &#39;Lamborghini&#39;]
-</code></pre><h4 id="删除列表元素"><a href="#删除列表元素" class="headerlink" title="删除列表元素"></a>删除列表元素</h4><h5 id="直接删除元素"><a href="#直接删除元素" class="headerlink" title="直接删除元素"></a>直接删除元素</h5><p>可以使用 del 语句删除列表指定位置处的元素：</p>
-<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
-print(cars)
-del cars[5]
-print(cars)
-</code></pre><p>输出：</p>
-<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Jeep&#39;]
-</code></pre><h5 id="删除元素时获取被删除的元素"><a href="#删除元素时获取被删除的元素" class="headerlink" title="删除元素时获取被删除的元素"></a>删除元素时获取被删除的元素</h5><p>可以使用 pop() 方法在删除元素时获取被删除的元素：</p>
-<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
-print(cars)
-car = cars.pop()
-print(car)
-print(cars)
-</code></pre><p>输出：</p>
-<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-Jeep
-[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;]
-</code></pre><p>pop() 方法默认将删除列表末尾的列表，其和栈中弹出最近存入的元素类似。<br>要想弹出指定位置的元素可以指定索引位置：</p>
-<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
-print(cars)
-car = cars.pop(5)
-print(car)
-print(cars)
-</code></pre><p>输出：</p>
-<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-Ford
-[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Jeep&#39;]
-</code></pre><h5 id="根据值删除元素"><a href="#根据值删除元素" class="headerlink" title="根据值删除元素"></a>根据值删除元素</h5><p>Python 可以使用 remove() 方法直接根据元素的值删除来删除元素：</p>
-<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
-print(cars)
-cars.remove(&quot;Mini&quot;)
-print(cars)
-</code></pre><p>输出：</p>
-<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-</code></pre><p>若指定的元素值在列表中存在多个，则根据索引顺序只删除第一次出现该值处的元素：</p>
-<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;, &quot;Mini&quot;]
-print(cars)
-cars.remove(&quot;Mini&quot;)
-print(cars)
-</code></pre><p>输出：</p>
-<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;, &#39;Mini&#39;]
-[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;, &#39;Mini&#39;]
-</code></pre><p>若要删除的元素值提前被赋予某变量，那么执行列表的 remove() 方法对该变量没有影响：</p>
-<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
-print(cars)
-car = &quot;Mini&quot;
-cars.remove(car)
-print(car)
-print(cars)
-</code></pre><p>输出：</p>
-<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-Mini
-[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-</code></pre><p>一个特殊的地方，如想移除一个不存在的元素值，Python 无法通过编译，将提示：</p>
-<pre><code>ValueError: list.remove(x): x not in list
-</code></pre><h4 id="列表排序"><a href="#列表排序" class="headerlink" title="列表排序"></a>列表排序</h4><h5 id="列表的永久排序"><a href="#列表的永久排序" class="headerlink" title="列表的永久排序"></a>列表的永久排序</h5><p>可以使用 sort() 方法对列表进行永久排序：</p>
-<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
-print(cars)
-cars.sort()
-print(cars)
-</code></pre><p>其输出：</p>
-<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-[&#39;Audi&#39;, &#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Ford&#39;, &#39;Jeep&#39;, &#39;Mini&#39;, &#39;Smart&#39;]
-</code></pre><p>默认是按照自然排序的规则对列表元素进行排序，若想安装自然排序相反的顺序排序，可以设定 sort() 方法参数reverse=True：</p>
-<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
-print(cars)
-cars.sort(reverse=True)
-print(cars)
-</code></pre><p>其输出：</p>
-<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-[&#39;Smart&#39;, &#39;Mini&#39;, &#39;Jeep&#39;, &#39;Ford&#39;, &#39;Ferrari&#39;, &#39;BMW&#39;, &#39;Audi&#39;]
-</code></pre><h5 id="列表的临时排序"><a href="#列表的临时排序" class="headerlink" title="列表的临时排序"></a>列表的临时排序</h5><p>可以使用 sorted() 方法对列表进行临时的排序：</p>
-<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
-print(cars)
-print(sorted(cars))
-print(cars)
-</code></pre><p>其输出：</p>
-<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-[&#39;Audi&#39;, &#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Ford&#39;, &#39;Jeep&#39;, &#39;Mini&#39;, &#39;Smart&#39;]
-[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-</code></pre><p>也可以通过设置 reverse=True 参数使其按自然排序相反的顺序排序：</p>
-<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
-print(cars)
-print(sorted(cars, reverse=True))
-print(cars)
-</code></pre><p>其输出：</p>
-<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-[&#39;Smart&#39;, &#39;Mini&#39;, &#39;Jeep&#39;, &#39;Ford&#39;, &#39;Ferrari&#39;, &#39;BMW&#39;, &#39;Audi&#39;]
-[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-</code></pre><h4 id="列表的反转"><a href="#列表的反转" class="headerlink" title="列表的反转"></a>列表的反转</h4><p>可以使用 reverse() 方法对列表元素顺序进行反转：</p>
-<pre><code>cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]
-print(cars)
-cars.reverse()
-print(cars)
-</code></pre><p>其输出：</p>
-<pre><code>[&#39;BMW&#39;, &#39;Ferrari&#39;, &#39;Mini&#39;, &#39;Smart&#39;, &#39;Audi&#39;, &#39;Ford&#39;, &#39;Jeep&#39;]
-[&#39;Jeep&#39;, &#39;Ford&#39;, &#39;Audi&#39;, &#39;Smart&#39;, &#39;Mini&#39;, &#39;Ferrari&#39;, &#39;BMW&#39;]
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cars = []</span><br></pre></td></tr></table></figure>
+<p><strong>Python 无法向其他编程语言一样（如 Java）初始化创建指定长度的空列表：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cars = [8]</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
+<p>其输出是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8</span><br></pre></td></tr></table></figure></p>
+<p><strong>Python 列表内的元素不要求一致，可以混合：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,8,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
+<p>其输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, 8, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br></pre></td></tr></table></figure></p>
+<p>不过，实际编程中应当使列表内的元素类型保持一致。</p>
+<h4 id="访问列表元素"><a href="#访问列表元素" class="headerlink" title="访问列表元素"></a>访问列表元素</h4><p>列表是有序集合，可直接通过元素的位置（索引）访问其列表元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(cars[0])</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BMW</span><br></pre></td></tr></table></figure></p>
+<p>Python 将只返回元素内容，而不包括方括号和引号。<br>Python 的索引是从 0 开始，和大多数编程语言一致。<br>同理，要想访问第3个元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(cars[2])</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mini</span><br></pre></td></tr></table></figure></p>
+<p>若不知道一个列表包含多少个元素，而又想直接获取最后一个元素，Python 提供一个特殊的语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(cars[-1])</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Jeep</span><br></pre></td></tr></table></figure></p>
+<p>同理，要想访问倒数第2个元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(cars[-2])</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ford</span><br></pre></td></tr></table></figure></p>
+<p>可以直接使用列表中的各个元素值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(&quot;My first car is a &quot; + cars[0] + &quot;.&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">My first car is a BMW.</span><br></pre></td></tr></table></figure></p>
+<p>甚至可以结合字符串的 API ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(&quot;My first car is a &quot; + cars[0].title() + &quot;.&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">My first car is a BMW.</span><br></pre></td></tr></table></figure></p>
+<p>因为此处元素值首字母本身已大写，故 titile() 后结果不会发生变化。</p>
+<h4 id="获取列表的长度"><a href="#获取列表的长度" class="headerlink" title="获取列表的长度"></a>获取列表的长度</h4><p>使用 len() 方法可以直接获取列表的长度（元素个数）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(len(cars))</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7</span><br></pre></td></tr></table></figure></p>
+<p>元素个数的计算从 1 开始，这点和其他编程语言也是相同的。</p>
+<p>若访问一个错误索引位置的元素，Python 无法通过编译，将提示错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IndexError：list index out of range</span><br></pre></td></tr></table></figure></p>
+<h4 id="修改列表元素"><a href="#修改列表元素" class="headerlink" title="修改列表元素"></a>修改列表元素</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">cars[0] = &quot;Aston Martin&quot;</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;Aston Martin&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br></pre></td></tr></table></figure></p>
+<p>通过 “=” 可将新的元素值赋予指定索引位置的元素，其值将发生修改</p>
+<h4 id="添加列表元素"><a href="#添加列表元素" class="headerlink" title="添加列表元素"></a>添加列表元素</h4><h5 id="从列表末尾添加元素"><a href="#从列表末尾添加元素" class="headerlink" title="从列表末尾添加元素"></a>从列表末尾添加元素</h5><p>可以使用 append() 方法向列表的末尾追加一个新的元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">cars.append(&quot;Aston Martin&quot;)</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;, &apos;Aston Martin&apos;]</span><br></pre></td></tr></table></figure></p>
+<p>可以先创建一个空列表，通过 append() 方法不断的向列表中添加新元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">cars = []</span><br><span class="line">cars.append(&quot;BMW&quot;)</span><br><span class="line">cars.append(&quot;Ferrari&quot;)</span><br><span class="line">cars.append(&quot;Mini&quot;)</span><br><span class="line">cars.append(&quot;Smart&quot;)</span><br><span class="line">cars.append(&quot;Audi&quot;)</span><br><span class="line">cars.append(&quot;Ford&quot;)</span><br><span class="line">cars.append(&quot;Jeep&quot;)</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br></pre></td></tr></table></figure></p>
+<p>两者输出结果是一致的。</p>
+<h5 id="可以在列表的指定位置处添加元素"><a href="#可以在列表的指定位置处添加元素" class="headerlink" title="可以在列表的指定位置处添加元素"></a>可以在列表的指定位置处添加元素</h5><p>可以使用 insert() 方法向列表指定索引处添加一个元素，列表内将从该索引开始，往后索引上的元素都将后移一位：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">cars.insert(3, &quot;Lamborghini&quot;)</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Lamborghini&apos;, Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br></pre></td></tr></table></figure></p>
+<p><strong>若 insert() 方法指定的元素位置超出了列表的长度，则元素将被默认添加在列表的末尾</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">cars.insert(9, &quot;Lamborghini&quot;)</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;, &apos;Lamborghini&apos;]</span><br></pre></td></tr></table></figure></p>
+<h4 id="删除列表元素"><a href="#删除列表元素" class="headerlink" title="删除列表元素"></a>删除列表元素</h4><h5 id="直接删除元素"><a href="#直接删除元素" class="headerlink" title="直接删除元素"></a>直接删除元素</h5><p>可以使用 del 语句删除列表指定位置处的元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">del cars[5]</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Jeep&apos;]</span><br></pre></td></tr></table></figure></p>
+<h5 id="删除元素时获取被删除的元素"><a href="#删除元素时获取被删除的元素" class="headerlink" title="删除元素时获取被删除的元素"></a>删除元素时获取被删除的元素</h5><p>可以使用 pop() 方法在删除元素时获取被删除的元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">car = cars.pop()</span><br><span class="line">print(car)</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">Jeep</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;]</span><br></pre></td></tr></table></figure></p>
+<p>pop() 方法默认将删除列表末尾的列表，其和栈中弹出最近存入的元素类似。<br>要想弹出指定位置的元素可以指定索引位置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">car = cars.pop(5)</span><br><span class="line">print(car)</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">Ford</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Jeep&apos;]</span><br></pre></td></tr></table></figure></p>
+<h5 id="根据值删除元素"><a href="#根据值删除元素" class="headerlink" title="根据值删除元素"></a>根据值删除元素</h5><p>Python 可以使用 remove() 方法直接根据元素的值删除来删除元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">cars.remove(&quot;Mini&quot;)</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br></pre></td></tr></table></figure></p>
+<p>若指定的元素值在列表中存在多个，则根据索引顺序只删除第一次出现该值处的元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;, &quot;Mini&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">cars.remove(&quot;Mini&quot;)</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;, &apos;Mini&apos;]</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;, &apos;Mini&apos;]</span><br></pre></td></tr></table></figure></p>
+<p>若要删除的元素值提前被赋予某变量，那么执行列表的 remove() 方法对该变量没有影响：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">car = &quot;Mini&quot;</span><br><span class="line">cars.remove(car)</span><br><span class="line">print(car)</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">Mini</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br></pre></td></tr></table></figure></p>
+<p>一个特殊的地方，如想移除一个不存在的元素值，Python 无法通过编译，将提示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ValueError: list.remove(x): x not in list</span><br></pre></td></tr></table></figure></p>
+<h4 id="列表排序"><a href="#列表排序" class="headerlink" title="列表排序"></a>列表排序</h4><h5 id="列表的永久排序"><a href="#列表的永久排序" class="headerlink" title="列表的永久排序"></a>列表的永久排序</h5><p>可以使用 sort() 方法对列表进行永久排序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">cars.sort()</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
+<p>其输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;Audi&apos;, &apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Ford&apos;, &apos;Jeep&apos;, &apos;Mini&apos;, &apos;Smart&apos;]</span><br></pre></td></tr></table></figure></p>
+<p>默认是按照自然排序的规则对列表元素进行排序，若想安装自然排序相反的顺序排序，可以设定 sort() 方法参数reverse=True：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">cars.sort(reverse=True)</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
+<p>其输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;Smart&apos;, &apos;Mini&apos;, &apos;Jeep&apos;, &apos;Ford&apos;, &apos;Ferrari&apos;, &apos;BMW&apos;, &apos;Audi&apos;]</span><br></pre></td></tr></table></figure></p>
+<h5 id="列表的临时排序"><a href="#列表的临时排序" class="headerlink" title="列表的临时排序"></a>列表的临时排序</h5><p>可以使用 sorted() 方法对列表进行临时的排序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">print(sorted(cars))</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
+<p>其输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;Audi&apos;, &apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Ford&apos;, &apos;Jeep&apos;, &apos;Mini&apos;, &apos;Smart&apos;]</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br></pre></td></tr></table></figure></p>
+<p>也可以通过设置 reverse=True 参数使其按自然排序相反的顺序排序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">print(sorted(cars, reverse=True))</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
+<p>其输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;Smart&apos;, &apos;Mini&apos;, &apos;Jeep&apos;, &apos;Ford&apos;, &apos;Ferrari&apos;, &apos;BMW&apos;, &apos;Audi&apos;]</span><br><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br></pre></td></tr></table></figure></p>
+<h4 id="列表的反转"><a href="#列表的反转" class="headerlink" title="列表的反转"></a>列表的反转</h4><p>可以使用 reverse() 方法对列表元素顺序进行反转：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [&quot;BMW&quot;,&quot;Ferrari&quot;,&quot;Mini&quot;,&quot;Smart&quot;,&quot;Audi&quot;,&quot;Ford&quot;,&quot;Jeep&quot;]</span><br><span class="line">print(cars)</span><br><span class="line">cars.reverse()</span><br><span class="line">print(cars)</span><br></pre></td></tr></table></figure></p>
+<p>其输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[&apos;BMW&apos;, &apos;Ferrari&apos;, &apos;Mini&apos;, &apos;Smart&apos;, &apos;Audi&apos;, &apos;Ford&apos;, &apos;Jeep&apos;]</span><br><span class="line">[&apos;Jeep&apos;, &apos;Ford&apos;, &apos;Audi&apos;, &apos;Smart&apos;, &apos;Mini&apos;, &apos;Ferrari&apos;, &apos;BMW&apos;]</span><br></pre></td></tr></table></figure></p>
+
       
 
       
@@ -1046,87 +706,31 @@ print(cars)
         <h4 id="变量的命名规范"><a href="#变量的命名规范" class="headerlink" title="变量的命名规范"></a>变量的命名规范</h4><p>变量名只能包含字母、数字和下划线。<br>变量名可以字母或下划线打头，但不能以数字打头。<br>变量名不能包含空格，但可以使用下划线来分隔其中的单词。<br>变量名不能使用关键字和函数名。</p>
 <h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><p>在 Python 中，用引号括起的都是字符串，其中的引号可以是单引号，也可以是双引号。</p>
 <h5 id="使单词首字母大写"><a href="#使单词首字母大写" class="headerlink" title="使单词首字母大写"></a>使单词首字母大写</h5><p>title() 方法可以使单词首字母大写：</p>
-<pre><code>hello = &quot;hello python&quot;
-print(hello.title())
-</code></pre><p>输出：</p>
-<pre><code>Hello Python
-</code></pre><p>如果单词之间以下划线分隔，首字母也可以大写：</p>
-<pre><code>hello = &quot;hello_python&quot;
-print(hello.title())
-</code></pre><p>输出：</p>
-<pre><code>Hello_Python
-</code></pre><p>但是如果中间没有空格或者下划线，则无法被识别为两个单词：</p>
-<pre><code>hello = &quot;hellopython&quot;
-print(hello.title())
-</code></pre><p>输出：</p>
-<pre><code>Hellopython
-</code></pre><h5 id="批量使字母大写或小写"><a href="#批量使字母大写或小写" class="headerlink" title="批量使字母大写或小写"></a>批量使字母大写或小写</h5><p>upper() 方法可以使字符串内的字母全部变成大写<br>lower() 方法可以使字符串内的字母全部变成小写</p>
-<pre><code>hello = &quot;hello python&quot;
-print(hello.upper())
-print(hello.lower())
-</code></pre><p>输出：</p>
-<pre><code>HELLO PYTHON
-hello python
-</code></pre><h5 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h5><p>在 Python 中可以通过 “+” 之间连接两个字符串，或者字符串与变量， 或字符串变量与字符串变量，期间可以结合字符串的 API 方法：</p>
-<pre><code>print(&quot;Hello&quot; + &quot; &quot; + &quot;Python&quot;)
-hello = &quot;hello&quot;
-print(hello.title() + &quot; Python&quot;)
-name = &quot;python&quot;
-print(hello.title() + &quot; &quot; + name.title())
-</code></pre><p>输出：</p>
-<pre><code>Hello Python
-Hello Python
-Hello Python
-</code></pre><h5 id="字符串添加制表符和换行符"><a href="#字符串添加制表符和换行符" class="headerlink" title="字符串添加制表符和换行符"></a>字符串添加制表符和换行符</h5><pre><code>print(&quot;Languages:\n\tPython\n\tJava\n\tJavaScript&quot;)
-</code></pre><p>输出：</p>
-<pre><code>Languages:
-    Python
-    Java
-    JavaScript
-</code></pre><h5 id="字符串删除空白"><a href="#字符串删除空白" class="headerlink" title="字符串删除空白"></a>字符串删除空白</h5><p>空白可以分为左空白和右空白，Ptyton 提供了三种删除空白的方法：</p>
-<pre><code>favorite_language = &quot;  Python  &quot;
-print(favorite_language.lstrip())
-print(favorite_language.rstrip())
-print(favorite_language.strip())
-</code></pre><p>输出：</p>
-<pre><code>Python
-  Python
-Python
-</code></pre><h4 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h4><h5 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h5><pre><code>print(2 + 3)
-print(2 * 3)
-print(3 - 1)
-print(3 / 2)
-print(3 ** 2)
-print(2 + 3 * 2)
-print((2 + 3) * 2)
-</code></pre><p>输出：</p>
-<pre><code>5
-6
-2
-1.5
-9
-8
-10
-</code></pre><h5 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h5><pre><code>print(0.1 + 0.1)
-print(2 * 0.3)
-</code></pre><p>输出：</p>
-<pre><code>0.2
-0.6
-</code></pre><h4 id="字符串和数字混合连接"><a href="#字符串和数字混合连接" class="headerlink" title="字符串和数字混合连接"></a>字符串和数字混合连接</h4><pre><code>age = 20
-message = &quot;Happy &quot; + age + &quot;rd Birthday!&quot;
-print(message)
-</code></pre><p>Python 默认不支持混合计算，若想输出  “Happy 20rd Birthday!” 需要使用特殊的函数 str() :</p>
-<pre><code>age = 20
-message = &quot;Happy &quot; + str(age) + &quot;rd Birthday!&quot;
-print(message)
-</code></pre><p>输出:</p>
-<pre><code>Happy 20rd Birthday!
-</code></pre><h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><p>Python 忽略被 # 开头的行，# 后的语句代表注释：</p>
-<pre><code># 打印欢迎语
-age = 20
-message = &quot;Happy &quot; + str(age) + &quot;rd Birthday!&quot;
-print(message)
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hello = &quot;hello python&quot;</span><br><span class="line">print(hello.title())</span><br></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello Python</span><br></pre></td></tr></table></figure></p>
+<p>如果单词之间以下划线分隔，首字母也可以大写：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hello = &quot;hello_python&quot;</span><br><span class="line">print(hello.title())</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello_Python</span><br></pre></td></tr></table></figure></p>
+<p>但是如果中间没有空格或者下划线，则无法被识别为两个单词：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hello = &quot;hellopython&quot;</span><br><span class="line">print(hello.title())</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hellopython</span><br></pre></td></tr></table></figure></p>
+<h5 id="批量使字母大写或小写"><a href="#批量使字母大写或小写" class="headerlink" title="批量使字母大写或小写"></a>批量使字母大写或小写</h5><p>upper() 方法可以使字符串内的字母全部变成大写<br>lower() 方法可以使字符串内的字母全部变成小写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hello = &quot;hello python&quot;</span><br><span class="line">print(hello.upper())</span><br><span class="line">print(hello.lower())</span><br></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HELLO PYTHON</span><br><span class="line">hello python</span><br></pre></td></tr></table></figure></p>
+<h5 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h5><p>在 Python 中可以通过 “+” 之间连接两个字符串，或者字符串与变量， 或字符串变量与字符串变量，期间可以结合字符串的 API 方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">print(&quot;Hello&quot; + &quot; &quot; + &quot;Python&quot;)</span><br><span class="line">hello = &quot;hello&quot;</span><br><span class="line">print(hello.title() + &quot; Python&quot;)</span><br><span class="line">name = &quot;python&quot;</span><br><span class="line">print(hello.title() + &quot; &quot; + name.title())</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Hello Python</span><br><span class="line">Hello Python</span><br><span class="line">Hello Python</span><br></pre></td></tr></table></figure></p>
+<h5 id="字符串添加制表符和换行符"><a href="#字符串添加制表符和换行符" class="headerlink" title="字符串添加制表符和换行符"></a>字符串添加制表符和换行符</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(&quot;Languages:\n\tPython\n\tJava\n\tJavaScript&quot;)</span><br></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Languages:</span><br><span class="line">	Python</span><br><span class="line">	Java</span><br><span class="line">	JavaScript</span><br></pre></td></tr></table></figure></p>
+<h5 id="字符串删除空白"><a href="#字符串删除空白" class="headerlink" title="字符串删除空白"></a>字符串删除空白</h5><p>空白可以分为左空白和右空白，Ptyton 提供了三种删除空白的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">favorite_language = &quot;  Python  &quot;</span><br><span class="line">print(favorite_language.lstrip())</span><br><span class="line">print(favorite_language.rstrip())</span><br><span class="line">print(favorite_language.strip())</span><br></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Python</span><br><span class="line">  Python</span><br><span class="line">Python</span><br></pre></td></tr></table></figure></p>
+<h4 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h4><h5 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">print(2 + 3)</span><br><span class="line">print(2 * 3)</span><br><span class="line">print(3 - 1)</span><br><span class="line">print(3 / 2)</span><br><span class="line">print(3 ** 2)</span><br><span class="line">print(2 + 3 * 2)</span><br><span class="line">print((2 + 3) * 2)</span><br></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">5</span><br><span class="line">6</span><br><span class="line">2</span><br><span class="line">1.5</span><br><span class="line">9</span><br><span class="line">8</span><br><span class="line">10</span><br></pre></td></tr></table></figure></p>
+<h5 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(0.1 + 0.1)</span><br><span class="line">print(2 * 0.3)</span><br></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0.2</span><br><span class="line">0.6</span><br></pre></td></tr></table></figure></p>
+<h4 id="字符串和数字混合连接"><a href="#字符串和数字混合连接" class="headerlink" title="字符串和数字混合连接"></a>字符串和数字混合连接</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age = 20</span><br><span class="line">message = &quot;Happy &quot; + age + &quot;rd Birthday!&quot;</span><br><span class="line">print(message)</span><br></pre></td></tr></table></figure>
+<p>Python 默认不支持混合计算，若想输出  “Happy 20rd Birthday!” 需要使用特殊的函数 str() :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age = 20</span><br><span class="line">message = &quot;Happy &quot; + str(age) + &quot;rd Birthday!&quot;</span><br><span class="line">print(message)</span><br></pre></td></tr></table></figure></p>
+<p>输出:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Happy 20rd Birthday!</span><br></pre></td></tr></table></figure></p>
+<h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><p>Python 忽略被 # 开头的行，# 后的语句代表注释：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 打印欢迎语</span><br><span class="line">age = 20</span><br><span class="line">message = &quot;Happy &quot; + str(age) + &quot;rd Birthday!&quot;</span><br><span class="line">print(message)</span><br></pre></td></tr></table></figure></p>
+
       
 
       
@@ -1331,81 +935,15 @@ print(message)
 <p>（2）第 2 轮排序：从数组的头部开始向尾部依次排序。<br>首先比较 60 和 55 ，由于 60 比 55 大，两者需要交换位置，交换位置后 [55, 60, 50, 45, 67]；<br>继续比较 60 和 50 ，由于 60 比 50 大，两者需要交换位置，交换位置后 [55, 50, 60, 45, 67]；<br>继续比较 60 和 45 ，由于 60 比 45 大，两者需要交换位置，交换位置后 [55, 50, 45, 60, 67]；<br>继续比较 60 和 67 ，由于 60 比 67 小，两者不需要交换位置；</p>
 <p>（3）第 3 轮排序：从数组的头部开始向尾部依次排序。<br>首先比较 55 和 50 ，由于 55 比 50 大，两者需要交换位置，交换位置后 [50, 55, 45, 60, 67]；<br>继续比较 55 和 45 ，由于 55 比 45 大，两者需要交换位置，交换位置后 [50, 45, 55, 60, 67]；<br>继续比较 55 和 60 ，由于 55 比 60 小，两者不需要交换位置；</p>
 <p>（4）第 4 轮排序：从数组的头部开始向尾部依次排序。<br>首先比较 50 和 45 ，由于 55 比 45 大，两者需要交换位置，交换位置后 [45, 50, 55, 60, 67]；<br>继续比较 50 和 55 ，由于 50 比 55 小，两者不需要交换位置；</p>
-<p>升序排序：</p>
-<pre><code>public static int[] bubbleAscSort(int[] arr) {
-    int size = arr.length;
-    int temp;
-    for (int i = 1; i &lt; size; i++) {
-        for (int j = 0; j &lt; size - i; j++) {
-            if (arr[j] &gt; arr[j + 1]) {
-                temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
-        }
-    }
-    return arr;
-}
-</code></pre><p>降序排序：只需要更换一下比较运算符即可</p>
-<pre><code>public static int[] bubbleDescSort(int[] arr) {
-    int size = arr.length;
-    int temp;
-    for (int i = 1; i &lt; size; i++) {
-        for (int j = 0; j &lt; size - i; j++) {
-            if (arr[j] &lt; arr[j + 1]) {
-                temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
-        }
-    }
-    return arr;
-}
-</code></pre><h5 id="冒泡排序的优化"><a href="#冒泡排序的优化" class="headerlink" title="冒泡排序的优化"></a>冒泡排序的优化</h5><p>常规冒泡排序采用双层循环的方式，单向循环，通过比较相邻数据，进行交换实现排序，优化方向就两点：</p>
+<p>升序排序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public static int[] bubbleAscSort(int[] arr) &#123;</span><br><span class="line">    int size = arr.length;</span><br><span class="line">    int temp;</span><br><span class="line">    for (int i = 1; i &lt; size; i++) &#123;</span><br><span class="line">        for (int j = 0; j &lt; size - i; j++) &#123;</span><br><span class="line">            if (arr[j] &gt; arr[j + 1]) &#123;</span><br><span class="line">                temp = arr[j];</span><br><span class="line">                arr[j] = arr[j + 1];</span><br><span class="line">                arr[j + 1] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>降序排序：只需要更换一下比较运算符即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public static int[] bubbleDescSort(int[] arr) &#123;</span><br><span class="line">    int size = arr.length;</span><br><span class="line">    int temp;</span><br><span class="line">    for (int i = 1; i &lt; size; i++) &#123;</span><br><span class="line">        for (int j = 0; j &lt; size - i; j++) &#123;</span><br><span class="line">            if (arr[j] &lt; arr[j + 1]) &#123;</span><br><span class="line">                temp = arr[j];</span><br><span class="line">                arr[j] = arr[j + 1];</span><br><span class="line">                arr[j + 1] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="冒泡排序的优化"><a href="#冒泡排序的优化" class="headerlink" title="冒泡排序的优化"></a>冒泡排序的优化</h5><p>常规冒泡排序采用双层循环的方式，单向循环，通过比较相邻数据，进行交换实现排序，优化方向就两点：</p>
 <h6 id="冒泡排序优化之减少无用循环轮数"><a href="#冒泡排序优化之减少无用循环轮数" class="headerlink" title="冒泡排序优化之减少无用循环轮数"></a>冒泡排序优化之减少无用循环轮数</h6><p>假设初始数据是：[67, 45, 50, 55, 60]，那么实际上有效的排序只需要一轮，数据就已经排序完毕。但是默认还是会进行 4 轮排序。</p>
-<p>可以设置一个标志，标记本轮排序是否存在数据交换，若没有交换则不需要进行下一轮排序，反之则需要继续下一轮排序<br>以升序排序为例：</p>
-<pre><code>public static int[] bubbleAscSort(int[] arr) {
-    boolean isAscSorted = false;
-    int size = arr.length;
-    int temp;
-    for (int i = 1; !isAscSorted &amp;&amp; i &lt; size ; i++) {
-        isAscSorted = true;
-        for (int j = 0; j &lt; size - i; j++) {
-            if (arr[j] &gt; arr[j + 1]) {
-                isAscSorted = false;
-                temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
-        }
-    }
-    return arr;
-}
-</code></pre><p>那么，在第 2 轮排序时，因为没有数据交换，则标志被标记为已排序，第 3 轮排序 和 第 4 轮排序则不必进行，这样可以减少排序轮数。</p>
+<p>可以设置一个标志，标记本轮排序是否存在数据交换，若没有交换则不需要进行下一轮排序，反之则需要继续下一轮排序<br>以升序排序为例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public static int[] bubbleAscSort(int[] arr) &#123;</span><br><span class="line">    boolean isAscSorted = false;</span><br><span class="line">    int size = arr.length;</span><br><span class="line">    int temp;</span><br><span class="line">    for (int i = 1; !isAscSorted &amp;&amp; i &lt; size ; i++) &#123;</span><br><span class="line">        isAscSorted = true;</span><br><span class="line">        for (int j = 0; j &lt; size - i; j++) &#123;</span><br><span class="line">            if (arr[j] &gt; arr[j + 1]) &#123;</span><br><span class="line">                isAscSorted = false;</span><br><span class="line">                temp = arr[j];</span><br><span class="line">                arr[j] = arr[j + 1];</span><br><span class="line">                arr[j + 1] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>那么，在第 2 轮排序时，因为没有数据交换，则标志被标记为已排序，第 3 轮排序 和 第 4 轮排序则不必进行，这样可以减少排序轮数。</p>
 <h6 id="冒泡排序优化之减少无用轮内循环比较"><a href="#冒泡排序优化之减少无用轮内循环比较" class="headerlink" title="冒泡排序优化之减少无用轮内循环比较"></a>冒泡排序优化之减少无用轮内循环比较</h6><p>假设初始数据是：[45, 55, 67, 50, 60]</p>
-<p>以带标记的升序排序为例：</p>
-<pre><code>public static int[] bubbleAscSort(int[] arr) {
-    boolean isAscSorted = false;
-    int size = arr.length;
-    int maxSwapIndex = size - 1;
-    int temp;
-    int lastSwapIndex = 0;
-    for (int i = 1; !isAscSorted &amp;&amp; i &lt; size ; i++) {
-        isAscSorted = true;
-        for (int j = 0; j &lt;  maxSwapIndex; j++) {
-            if (arr[j] &gt; arr[j + 1]) {
-                isAscSorted = false;
-                temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-                lastSwapIndex = j;
-            }
-        }
-        maxSwapIndex = lastSwapIndex;
-    }
-    return arr;
-}
-</code></pre><p>一轮排序：[45, 55, 50, 60, 67]<br>二轮排序：[45, 50, 55, 60, 67]<br>三轮排序：[45, 50, 55, 60, 67]</p>
+<p>以带标记的升序排序为例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public static int[] bubbleAscSort(int[] arr) &#123;</span><br><span class="line">    boolean isAscSorted = false;</span><br><span class="line">    int size = arr.length;</span><br><span class="line">	int maxSwapIndex = size - 1;</span><br><span class="line">    int temp;</span><br><span class="line">    int lastSwapIndex = 0;</span><br><span class="line">    for (int i = 1; !isAscSorted &amp;&amp; i &lt; size ; i++) &#123;</span><br><span class="line">        isAscSorted = true;</span><br><span class="line">        for (int j = 0; j &lt;  maxSwapIndex; j++) &#123;</span><br><span class="line">            if (arr[j] &gt; arr[j + 1]) &#123;</span><br><span class="line">                isAscSorted = false;</span><br><span class="line">                temp = arr[j];</span><br><span class="line">                arr[j] = arr[j + 1];</span><br><span class="line">                arr[j + 1] = temp;</span><br><span class="line">                lastSwapIndex = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        maxSwapIndex = lastSwapIndex;</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>一轮排序：[45, 55, 50, 60, 67]<br>二轮排序：[45, 50, 55, 60, 67]<br>三轮排序：[45, 50, 55, 60, 67]</p>
 <p>排序结果：[45, 50, 55, 60, 67]</p>
 <p>开始排序：<br>标记单轮最大的数据交换位置 maxSwapIndex ：size - 1<br>标记最后一次数据交换位置 lastSwapIndex : 0</p>
 <p>（1）第 1 轮排序：从数组的头部开始向尾部依次排序：[45, 55, 67, 50, 60]<br>首先比较 45 和 55 ，由于 45 比 55 小，两者不需要交换位置，数据：[45, 55, 67, 50, 60]；<br>继续比较 55 和 67 ，由于 55 比 67 小，两者不需要交换位置，数据：[45, 55, 67, 50, 60]；<br>继续比较 67 和 50 ，由于 67 比 50 大，两者需要交换位置，交换位置后 [45, 55, 50, 67, 60]，以本次数据交换位置标记为最后一次数据交换位置，lastSwapIndex = 2；<br>继续比较 67 和 60 ，由于 67 比 60 小，两者需要交换位置，交换位置后 [45, 55, 50, 60, 67]，以本次数据交换位置标记为最后一次数据交换位置，lastSwapIndex = 3；</p>
@@ -1413,40 +951,8 @@ print(message)
 <p>（2）第 2 轮排序：从数组的头部开始向尾部依次排序：[45, 55, 50, 60, 67]<br>首先比较 45 和 55 ，由于 45 比 55 小，两者不需要交换位置；<br>继续比较 55 和 50 ，由于 55 比 50 大，两者需要交换位置，交换位置后 [45, 50, 55, 60, 67]，以本次数据交换位置标记为最后一次数据交换位置，lastSwapIndex = 2；<br>继续比较 55 和 60 ，由于 55 比 60 小，两者不需要交换位置；<br>j 自增后已经是 3 ，不小于 maxSwapIndex ，结束本轮排序<br>标记下一轮最大的数据交换位置 maxSwapIndex = 2；即后续位置的元素顺序已经排序完毕。</p>
 <p>（3）第 3 轮排序：从数组的头部开始向尾部依次排序，数据：[45, 50, 55, 60, 67]<br>首先比较 45 和 50 ，由于 45 比 50 小，两者不需要交换位置；<br>继续比较 50 和 55 ，由于 50 比 55 小，两者不需要交换位置；<br>j 自增后已经是 2 ，不小于 maxSwapIndex ，结束本轮排序<br>且 isAscSorted 被标记为 已排序，结束排序</p>
 <h6 id="冒泡排序优化之双向冒泡"><a href="#冒泡排序优化之双向冒泡" class="headerlink" title="冒泡排序优化之双向冒泡"></a>冒泡排序优化之双向冒泡</h6><p>以升序排序为例：<br>双向冒泡即结合上述升序排序和降序排序，在一轮排序内先正向升序排序一次，然后从最后交换数据的位置往前再进行一次反向的降序排序</p>
-<pre><code>public static int[] bubbleAscSort(int[] arr) {
-    int size = arr.length;
-    int maxSwapIndex = size - 1;
-    int minSwapIndex = 0;
-    int temp;
-    int lastSwapIndex = 0;
-    while (maxSwapIndex &gt; minSwapIndex) {
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public static int[] bubbleAscSort(int[] arr) &#123;</span><br><span class="line">    int size = arr.length;</span><br><span class="line">    int maxSwapIndex = size - 1;</span><br><span class="line">    int minSwapIndex = 0;</span><br><span class="line">    int temp;</span><br><span class="line">    int lastSwapIndex = 0;</span><br><span class="line">    while (maxSwapIndex &gt; minSwapIndex) &#123;</span><br><span class="line"></span><br><span class="line">        for (int i = minSwapIndex; i &lt; maxSwapIndex; i++) &#123;</span><br><span class="line">            if (arr[i] &gt; arr[i + 1]) &#123;</span><br><span class="line">                temp = arr[i];</span><br><span class="line">                arr[i] = arr[i + 1];</span><br><span class="line">                arr[i + 1] = temp;</span><br><span class="line">                lastSwapIndex = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        maxSwapIndex = lastSwapIndex;</span><br><span class="line"></span><br><span class="line">        for (int j = maxSwapIndex; j &gt; minSwapIndex; j--) &#123;</span><br><span class="line">            if (arr[j] &lt; arr[j - 1]) &#123;</span><br><span class="line">                temp = arr[j];</span><br><span class="line">                arr[j] = arr[j - 1];</span><br><span class="line">                arr[j - 1] = temp;</span><br><span class="line">                lastSwapIndex = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        minSwapIndex = lastSwapIndex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        for (int i = minSwapIndex; i &lt; maxSwapIndex; i++) {
-            if (arr[i] &gt; arr[i + 1]) {
-                temp = arr[i];
-                arr[i] = arr[i + 1];
-                arr[i + 1] = temp;
-                lastSwapIndex = i;
-            }
-        }
-
-        maxSwapIndex = lastSwapIndex;
-
-        for (int j = maxSwapIndex; j &gt; minSwapIndex; j--) {
-            if (arr[j] &lt; arr[j - 1]) {
-                temp = arr[j];
-                arr[j] = arr[j - 1];
-                arr[j - 1] = temp;
-                lastSwapIndex = j;
-            }
-        }
-
-        minSwapIndex = lastSwapIndex;
-    }
-
-    return arr;
-}
-</code></pre>
       
 
       
@@ -1531,137 +1037,18 @@ print(message)
     <div class="article-entry" itemprop="articleBody">
       
         <p>SpringBoot：1.5.9.RELEASE<br>JDK：1.8<br>IDEA：2017.2</p>
-<h5 id="Value-注解读取-application-properties-文件中的属性"><a href="#Value-注解读取-application-properties-文件中的属性" class="headerlink" title="@Value 注解读取 application.properties 文件中的属性"></a>@Value 注解读取 application.properties 文件中的属性</h5><p>Controller：</p>
-<pre><code>import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-public class ExConfigController {
-
-    @Value(&quot;${my.user.name}&quot;)
-    private String name;
-
-    @GetMapping(&quot;/user/name&quot;)
-    public String getUserName() {
-        System.out.println(name);
-        return name;
-    }
-
-}
-</code></pre><p>application.properties：</p>
-<pre><code>my.user.name=Hello-孙悟空
-</code></pre><h6 id="中文乱码问题"><a href="#中文乱码问题" class="headerlink" title="中文乱码问题"></a>中文乱码问题</h6><p>该方式有时会遇到中文乱码问题，此时可能需要检查一下application.properties文件的编码格式。<br>以 IDEA 为例：<br>File -&gt; Settings -&gt; File Encoding<br>将Properties Files (*.properties)下的Default encoding for properties files设置为UTF-8，将Transparent native-to-ascii conversion前的勾选上。</p>
+<h5 id="Value-注解读取-application-properties-文件中的属性"><a href="#Value-注解读取-application-properties-文件中的属性" class="headerlink" title="@Value 注解读取 application.properties 文件中的属性"></a>@Value 注解读取 application.properties 文件中的属性</h5><p>Controller：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import org.springframework.beans.factory.annotation.Value;</span><br><span class="line">import org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line">import org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line">@RestController</span><br><span class="line">public class ExConfigController &#123;</span><br><span class="line"></span><br><span class="line">	@Value(&quot;$&#123;my.user.name&#125;&quot;)</span><br><span class="line">	private String name;</span><br><span class="line"></span><br><span class="line">	@GetMapping(&quot;/user/name&quot;)</span><br><span class="line">	public String getUserName() &#123;</span><br><span class="line">		System.out.println(name);</span><br><span class="line">		return name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>application.properties：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my.user.name=Hello-孙悟空</span><br></pre></td></tr></table></figure></p>
+<h6 id="中文乱码问题"><a href="#中文乱码问题" class="headerlink" title="中文乱码问题"></a>中文乱码问题</h6><p>该方式有时会遇到中文乱码问题，此时可能需要检查一下application.properties文件的编码格式。<br>以 IDEA 为例：<br>File -&gt; Settings -&gt; File Encoding<br>将Properties Files (*.properties)下的Default encoding for properties files设置为UTF-8，将Transparent native-to-ascii conversion前的勾选上。</p>
 <p>yml 默认就是 UTF-8 格式，所以天然支持中文。推荐使用 application.yml 替代 application.properties</p>
-<h5 id="ConfigurationProperties-注解及配置类读取-application-properties-或-application-yml-文件中的属性"><a href="#ConfigurationProperties-注解及配置类读取-application-properties-或-application-yml-文件中的属性" class="headerlink" title="@ConfigurationProperties 注解及配置类读取 application.properties 或 application.yml 文件中的属性"></a>@ConfigurationProperties 注解及配置类读取 application.properties 或 application.yml 文件中的属性</h5><p>application.yml：</p>
-<pre><code>my.book.author: 罗贯中
-my.book.name: 三国演义
-my.book.price: 60
-</code></pre><p>ExConfig :</p>
-<pre><code>package com.example.ec.config;
-
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
-
-@Configuration
-@ConfigurationProperties(prefix = &quot;my.book&quot;)
-public class ExConfig {
-
-    private String name;
-    private String author;
-    private int price;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-}
-</code></pre><p>ExConfigController：</p>
-<pre><code>package com.example.ec.controller;
-
-import com.example.ec.config.ExConfig;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-public class ExConfigController {
-
-    @Autowired
-    private ExConfig exConfig;
-
-    @GetMapping(&quot;/book&quot;)
-    public String getBook() {
-        return exConfig.getAuthor() + &quot; &quot; + exConfig.getName() + &quot; &quot; + exConfig.getPrice();
-    }
-
-}
-</code></pre><p>不同的 SpringBoot 版本使用方式又些许不同。一些低版本的需要在启动类中配置 @EnableConfigurationProperties 注解</p>
+<h5 id="ConfigurationProperties-注解及配置类读取-application-properties-或-application-yml-文件中的属性"><a href="#ConfigurationProperties-注解及配置类读取-application-properties-或-application-yml-文件中的属性" class="headerlink" title="@ConfigurationProperties 注解及配置类读取 application.properties 或 application.yml 文件中的属性"></a>@ConfigurationProperties 注解及配置类读取 application.properties 或 application.yml 文件中的属性</h5><p>application.yml：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">my.book.author: 罗贯中</span><br><span class="line">my.book.name: 三国演义</span><br><span class="line">my.book.price: 60</span><br></pre></td></tr></table></figure></p>
+<p>ExConfig :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">package com.example.ec.config;</span><br><span class="line"></span><br><span class="line">import org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line">import org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line">@Configuration</span><br><span class="line">@ConfigurationProperties(prefix = &quot;my.book&quot;)</span><br><span class="line">public class ExConfig &#123;</span><br><span class="line"></span><br><span class="line">	private String name;</span><br><span class="line">	private String author;</span><br><span class="line">	private int price;</span><br><span class="line"></span><br><span class="line">	public String getName() &#123;</span><br><span class="line">		return name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setName(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String getAuthor() &#123;</span><br><span class="line">		return author;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setAuthor(String author) &#123;</span><br><span class="line">		this.author = author;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public int getPrice() &#123;</span><br><span class="line">		return price;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setPrice(int price) &#123;</span><br><span class="line">		this.price = price;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>ExConfigController：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package com.example.ec.controller;</span><br><span class="line"></span><br><span class="line">import com.example.ec.config.ExConfig;</span><br><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line">import org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line">import org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line">@RestController</span><br><span class="line">public class ExConfigController &#123;</span><br><span class="line"></span><br><span class="line">	@Autowired</span><br><span class="line">	private ExConfig exConfig;</span><br><span class="line"></span><br><span class="line">	@GetMapping(&quot;/book&quot;)</span><br><span class="line">	public String getBook() &#123;</span><br><span class="line">		return exConfig.getAuthor() + &quot; &quot; + exConfig.getName() + &quot; &quot; + exConfig.getPrice();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>不同的 SpringBoot 版本使用方式又些许不同。一些低版本的需要在启动类中配置 @EnableConfigurationProperties 注解</p>
 <h5 id="ConfigurationProperties-注解及配置类读取-custom-properties-或-custom-yml-文件中的属性"><a href="#ConfigurationProperties-注解及配置类读取-custom-properties-或-custom-yml-文件中的属性" class="headerlink" title="@ConfigurationProperties 注解及配置类读取 custom.properties 或 custom.yml 文件中的属性"></a>@ConfigurationProperties 注解及配置类读取 custom.properties 或 custom.yml 文件中的属性</h5><p>读取自定义属性文件中的属性</p>
-<p>book.yml：</p>
-<pre><code>my.book.author: 罗贯中
-my.book.name: 三国演义
-my.book.price: 60
-</code></pre><p>ExConfig :</p>
-<pre><code>package com.example.ec.config;
-
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-
-@Configuration
-@ConfigurationProperties(prefix = &quot;my.book&quot;)
-@PropertySource(value = &quot;book.yml&quot;, encoding = &quot;UTF-8&quot;)
-public class ExConfig {
-
-    private String name;
-    private String author;
-    private int price;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-}
-</code></pre><p>具体代码已上传<a href="https://github.com/lxmuse/lxmuse-spring-boot.git" target="_blank" rel="noopener">GitHub-lxmuse</a></p>
+<p>book.yml：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">my.book.author: 罗贯中</span><br><span class="line">my.book.name: 三国演义</span><br><span class="line">my.book.price: 60</span><br></pre></td></tr></table></figure></p>
+<p>ExConfig :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">package com.example.ec.config;</span><br><span class="line"></span><br><span class="line">import org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line">import org.springframework.context.annotation.Configuration;</span><br><span class="line">import org.springframework.context.annotation.PropertySource;</span><br><span class="line"></span><br><span class="line">@Configuration</span><br><span class="line">@ConfigurationProperties(prefix = &quot;my.book&quot;)</span><br><span class="line">@PropertySource(value = &quot;book.yml&quot;, encoding = &quot;UTF-8&quot;)</span><br><span class="line">public class ExConfig &#123;</span><br><span class="line"></span><br><span class="line">	private String name;</span><br><span class="line">	private String author;</span><br><span class="line">	private int price;</span><br><span class="line"></span><br><span class="line">	public String getName() &#123;</span><br><span class="line">		return name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setName(String name) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String getAuthor() &#123;</span><br><span class="line">		return author;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setAuthor(String author) &#123;</span><br><span class="line">		this.author = author;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public int getPrice() &#123;</span><br><span class="line">		return price;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setPrice(int price) &#123;</span><br><span class="line">		this.price = price;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>具体代码已上传<a href="https://github.com/lxmuse/lxmuse-spring-boot.git" target="_blank" rel="noopener">GitHub-lxmuse</a></p>
 
       
 
@@ -1746,100 +1133,20 @@ public class ExConfig {
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="Thread-currentThread-方法"><a href="#Thread-currentThread-方法" class="headerlink" title="Thread.currentThread() 方法"></a>Thread.currentThread() 方法</h5><p>Thread.currentThread() 方法可以返回调用当前代码块的线程的信息。</p>
-<pre><code>public class CustomThread extends Thread {
-
-    public CustomThread() {
-        super();
-        System.out.println(&quot;构造方法：&quot; + Thread.currentThread().getName());
-    }
-
-    @Override
-    public synchronized void run() {
-        super.run();
-        System.out.println(&quot;run() 方法：&quot; + Thread.currentThread().getName());
-    }
-
-}
-</code></pre><pre><code>public class CustomThreadTest {
-
-    public static void main(String[] args) {
-        CustomThread customThread = new CustomThread();
-        customThread.start();
-    }
-}
-</code></pre><p>Thread.currentThread() 方法可以返回是什么线程调用了CustomThread的构造方法，什么线程调用了CustomThread的run()方法：</p>
-<pre><code>构造方法：main
-run() 方法：Thread-0
-</code></pre><p>main 线程调用了CustomThread的构造方法，一个名叫Thread-0的线程调用了CustomThread的run()方法（若线程没有指定名称，则会默认生成一个名称）</p>
-<h6 id="Thread-currentThread-getName-方法与-this-getName-方法"><a href="#Thread-currentThread-getName-方法与-this-getName-方法" class="headerlink" title="Thread.currentThread().getName() 方法与 this.getName() 方法"></a>Thread.currentThread().getName() 方法与 this.getName() 方法</h6><pre><code>public class CustomThread extends Thread {
-
-    public CustomThread() {
-        super();
-        System.out.println(&quot;构造方法：&quot; + Thread.currentThread().getName());
-        System.out.println(&quot;构造方法：&quot; + this.getName());
-    }
-
-    @Override
-    public synchronized void run() {
-        super.run();
-        System.out.println(&quot;run() 方法：&quot; + Thread.currentThread().getName());
-        System.out.println(&quot;run() 方法：&quot; + this.getName());
-    }
-
-}
-</code></pre><pre><code>public class CustomThreadTest {
-
-    public static void main(String[] args) {
-        CustomThread customThread = new CustomThread();
-        customThread.start();
-    }
-}
-</code></pre><p>输出：</p>
-<pre><code>构造方法：main
-构造方法：Thread-0
-run() 方法：Thread-0
-run() 方法：Thread-0
-</code></pre><p>可以发现this.getName() 方法两个结果是一样的，因为this实际是指代当前被调用的类实例是哪个：<br>当构造方法被调用时，main线程调用了CustomThread类实例，当run()方法被调用时，Thread-0 线程调用了CustomThead类实例</p>
-<h5 id="isAlive-方法"><a href="#isAlive-方法" class="headerlink" title="isAlive() 方法"></a>isAlive() 方法</h5><p>isAlive() 方法可以判断当前的线程是否处于活动状态。</p>
-<pre><code>public class CustomThread extends Thread {
-
-    @Override
-    public synchronized void run() {
-        super.run();
-        System.out.println(&quot;run() 方法：&quot; + this.isAlive());
-    }
-
-}
-</code></pre><pre><code>public class CustomThreadTest {
-
-    public static void main(String[] args) {
-        CustomThread customThread = new CustomThread();
-        System.out.println(&quot;before start：&quot; + customThread.isAlive());
-        customThread.start();
-        System.out.println(&quot;before end：&quot; + customThread.isAlive());
-    }
-}
-</code></pre><p>输出：</p>
-<pre><code>before start：false
-before end：true
-run() 方法：true
-</code></pre><p>若调用 main 线程调用customThread 执行 start() 方法后休眠一会：</p>
-<pre><code>public class CustomThreadTest {
-
-    public static void main(String[] args) throws InterruptedException {
-        CustomThread customThread = new CustomThread();
-        System.out.println(&quot;before start：&quot; + customThread.isAlive());
-        customThread.start();
-        Thread.sleep(1000);
-        System.out.println(&quot;before end：&quot; + customThread.isAlive());
-    }
-}
-</code></pre><p>输出：</p>
-<pre><code>before start：false
-run() 方法：true
-before end：false
-</code></pre><p>因为经过休眠，customThread 线程已经执行完毕了</p>
+        <h5 id="Thread-currentThread-方法"><a href="#Thread-currentThread-方法" class="headerlink" title="Thread.currentThread() 方法"></a>Thread.currentThread() 方法</h5><p>Thread.currentThread() 方法可以返回调用当前代码块的线程的信息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class CustomThread extends Thread &#123;</span><br><span class="line"></span><br><span class="line">	public CustomThread() &#123;</span><br><span class="line">		super();</span><br><span class="line">		System.out.println(&quot;构造方法：&quot; + Thread.currentThread().getName());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public synchronized void run() &#123;</span><br><span class="line">		super.run();</span><br><span class="line">		System.out.println(&quot;run() 方法：&quot; + Thread.currentThread().getName());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class CustomThreadTest &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		CustomThread customThread = new CustomThread();</span><br><span class="line">		customThread.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Thread.currentThread() 方法可以返回是什么线程调用了CustomThread的构造方法，什么线程调用了CustomThread的run()方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">构造方法：main</span><br><span class="line">run() 方法：Thread-0</span><br></pre></td></tr></table></figure></p>
+<p>main 线程调用了CustomThread的构造方法，一个名叫Thread-0的线程调用了CustomThread的run()方法（若线程没有指定名称，则会默认生成一个名称）</p>
+<h6 id="Thread-currentThread-getName-方法与-this-getName-方法"><a href="#Thread-currentThread-getName-方法与-this-getName-方法" class="headerlink" title="Thread.currentThread().getName() 方法与 this.getName() 方法"></a>Thread.currentThread().getName() 方法与 this.getName() 方法</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class CustomThread extends Thread &#123;</span><br><span class="line"></span><br><span class="line">	public CustomThread() &#123;</span><br><span class="line">		super();</span><br><span class="line">		System.out.println(&quot;构造方法：&quot; + Thread.currentThread().getName());</span><br><span class="line">		System.out.println(&quot;构造方法：&quot; + this.getName());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public synchronized void run() &#123;</span><br><span class="line">		super.run();</span><br><span class="line">		System.out.println(&quot;run() 方法：&quot; + Thread.currentThread().getName());</span><br><span class="line">		System.out.println(&quot;run() 方法：&quot; + this.getName());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class CustomThreadTest &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		CustomThread customThread = new CustomThread();</span><br><span class="line">		customThread.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">构造方法：main</span><br><span class="line">构造方法：Thread-0</span><br><span class="line">run() 方法：Thread-0</span><br><span class="line">run() 方法：Thread-0</span><br></pre></td></tr></table></figure></p>
+<p>可以发现this.getName() 方法两个结果是一样的，因为this实际是指代当前被调用的类实例是哪个：<br>当构造方法被调用时，main线程调用了CustomThread类实例，当run()方法被调用时，Thread-0 线程调用了CustomThead类实例</p>
+<h5 id="isAlive-方法"><a href="#isAlive-方法" class="headerlink" title="isAlive() 方法"></a>isAlive() 方法</h5><p>isAlive() 方法可以判断当前的线程是否处于活动状态。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class CustomThread extends Thread &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public synchronized void run() &#123;</span><br><span class="line">		super.run();</span><br><span class="line">		System.out.println(&quot;run() 方法：&quot; + this.isAlive());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class CustomThreadTest &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		CustomThread customThread = new CustomThread();</span><br><span class="line">		System.out.println(&quot;before start：&quot; + customThread.isAlive());</span><br><span class="line">		customThread.start();</span><br><span class="line">		System.out.println(&quot;before end：&quot; + customThread.isAlive());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">before start：false</span><br><span class="line">before end：true</span><br><span class="line">run() 方法：true</span><br></pre></td></tr></table></figure></p>
+<p>若调用 main 线程调用customThread 执行 start() 方法后休眠一会：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class CustomThreadTest &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) throws InterruptedException &#123;</span><br><span class="line">		CustomThread customThread = new CustomThread();</span><br><span class="line">		System.out.println(&quot;before start：&quot; + customThread.isAlive());</span><br><span class="line">		customThread.start();</span><br><span class="line">		Thread.sleep(1000);</span><br><span class="line">		System.out.println(&quot;before end：&quot; + customThread.isAlive());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">before start：false</span><br><span class="line">run() 方法：true</span><br><span class="line">before end：false</span><br></pre></td></tr></table></figure></p>
+<p>因为经过休眠，customThread 线程已经执行完毕了</p>
 <h5 id="sleep-方法"><a href="#sleep-方法" class="headerlink" title="sleep() 方法"></a>sleep() 方法</h5><p>sleep() 方法的作用是在指定的毫秒数内让当前正在执行的线程休眠。<br>可参考上述例子。</p>
 <h5 id="getId-方法"><a href="#getId-方法" class="headerlink" title="getId() 方法"></a>getId() 方法</h5><p>获取线程的唯一标识</p>
 <h5 id="setName-方法"><a href="#setName-方法" class="headerlink" title="setName() 方法"></a>setName() 方法</h5><p>设置线程的名称</p>
@@ -1929,13 +1236,6 @@ before end：false
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -2050,10 +1350,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -2063,6 +1359,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2138,11 +1438,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

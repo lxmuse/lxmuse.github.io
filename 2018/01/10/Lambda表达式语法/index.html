@@ -5,22 +5,21 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Lambda表达式语法 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Java 8 引入新操作符：-&amp;gt;  操作符左侧： Lambda 表达式的参数列表 操作符右侧： Lambda 表达式所需执行的功能，即 Lambda 体  函数接口函数接口是只有一个抽象方法的接口，Lambda 表达式使用函数接口。多抽象方法的接口，并不能使用 Lambda 表达式。 Java 8 java.util.function 包下定义了一些函数接口： public interfac">
+  <meta name="description" content="Java 8 引入新操作符：-&amp;gt;  操作符左侧： Lambda 表达式的参数列表 操作符右侧： Lambda 表达式所需执行的功能，即 Lambda 体  函数接口函数接口是只有一个抽象方法的接口，Lambda 表达式使用函数接口。多抽象方法的接口，并不能使用 Lambda 表达式。 Java 8 java.util.function 包下定义了一些函数接口： 123456789101112">
 <meta name="keywords" content="JDK 8">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Lambda表达式语法">
 <meta property="og:url" content="http://yoursite.com/2018/01/10/Lambda表达式语法/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="Java 8 引入新操作符：-&amp;gt;  操作符左侧： Lambda 表达式的参数列表 操作符右侧： Lambda 表达式所需执行的功能，即 Lambda 体  函数接口函数接口是只有一个抽象方法的接口，Lambda 表达式使用函数接口。多抽象方法的接口，并不能使用 Lambda 表达式。 Java 8 java.util.function 包下定义了一些函数接口： public interfac">
+<meta property="og:description" content="Java 8 引入新操作符：-&amp;gt;  操作符左侧： Lambda 表达式的参数列表 操作符右侧： Lambda 表达式所需执行的功能，即 Lambda 体  函数接口函数接口是只有一个抽象方法的接口，Lambda 表达式使用函数接口。多抽象方法的接口，并不能使用 Lambda 表达式。 Java 8 java.util.function 包下定义了一些函数接口： 123456789101112">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-04-11T10:37:48.959Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lambda表达式语法">
-<meta name="twitter:description" content="Java 8 引入新操作符：-&amp;gt;  操作符左侧： Lambda 表达式的参数列表 操作符右侧： Lambda 表达式所需执行的功能，即 Lambda 体  函数接口函数接口是只有一个抽象方法的接口，Lambda 表达式使用函数接口。多抽象方法的接口，并不能使用 Lambda 表达式。 Java 8 java.util.function 包下定义了一些函数接口： public interfac">
+<meta name="twitter:description" content="Java 8 引入新操作符：-&amp;gt;  操作符左侧： Lambda 表达式的参数列表 操作符右侧： Lambda 表达式所需执行的功能，即 Lambda 体  函数接口函数接口是只有一个抽象方法的接口，Lambda 表达式使用函数接口。多抽象方法的接口，并不能使用 Lambda 表达式。 Java 8 java.util.function 包下定义了一些函数接口： 123456789101112">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -171,52 +170,29 @@
 </ul>
 <h2 id="函数接口"><a href="#函数接口" class="headerlink" title="函数接口"></a>函数接口</h2><p>函数接口是只有一个抽象方法的接口，Lambda 表达式使用函数接口。<br>多抽象方法的接口，并不能使用 Lambda 表达式。</p>
 <p>Java 8 java.util.function 包下定义了一些函数接口：</p>
-<pre><code>public interface Predicate&lt;T&gt; {
-    boolean test(T t);
-}
-
-public interface Consumer&lt;T&gt; {
-    void accept(T t);
-}
-
-public interface Function&lt;T, R&gt; {
-    R apply(T t);
-}
-
-public interface Supplier&lt;T&gt; {
-    T get();
-}
-
-</code></pre><p>而且很多原接口都继承了这些函数接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public interface Predicate&lt;T&gt; &#123;</span><br><span class="line">    boolean test(T t);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public interface Consumer&lt;T&gt; &#123;</span><br><span class="line">    void accept(T t);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public interface Function&lt;T, R&gt; &#123;</span><br><span class="line">    R apply(T t);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public interface Supplier&lt;T&gt; &#123;</span><br><span class="line">    T get();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而且很多原接口都继承了这些函数接口</p>
 <p>函数接口可以使用 @FunctionalInterface 注解修饰<br>使用 @FunctionalInterface 修饰的接口必须是函数接口</p>
 <h2 id="Lambda-表达式语法格式"><a href="#Lambda-表达式语法格式" class="headerlink" title="Lambda 表达式语法格式"></a>Lambda 表达式语法格式</h2><p><strong>无参 无返回值</strong></p>
 <p>Lambda 表达式不包含参数，使用空括号 () 表示没有参数：</p>
-<pre><code>Runnable runnable = () -&gt; System.out.println(&quot;Hello Lambda!&quot;);
-</code></pre><p><strong>一个参数 有返回值</strong></p>
-<pre><code>Consumer&lt;String&gt; consumer = (x) -&gt; System.out.println(x);
-consumer.accept(&quot;Lambda 表达式&quot;);
-</code></pre><p>Lambda 表达式包含且只包含一个参数，可以省略参数的括号</p>
-<pre><code>Consumer&lt;String&gt; consumer = x -&gt; System.out.println(x);
-consumer.accept(&quot;Lambda 表达式&quot;);
-</code></pre><p><strong>表达式是代码块</strong></p>
-<pre><code>Runnable runnable = () -&gt; {
-    System.out.println(&quot;Hello Lambda!&quot;);
-    System.out.println(&quot;Hello Lambda!&quot;);
-};
-</code></pre><p>如果 Lambda 表达式是一段代码块，则必须使用大括号包裹代码块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Runnable runnable = () -&gt; System.out.println(&quot;Hello Lambda!&quot;);</span><br></pre></td></tr></table></figure>
+<p><strong>一个参数 有返回值</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;String&gt; consumer = (x) -&gt; System.out.println(x);</span><br><span class="line">consumer.accept(&quot;Lambda 表达式&quot;);</span><br></pre></td></tr></table></figure>
+<p>Lambda 表达式包含且只包含一个参数，可以省略参数的括号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;String&gt; consumer = x -&gt; System.out.println(x);</span><br><span class="line">consumer.accept(&quot;Lambda 表达式&quot;);</span><br></pre></td></tr></table></figure>
+<p><strong>表达式是代码块</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Runnable runnable = () -&gt; &#123;</span><br><span class="line">	System.out.println(&quot;Hello Lambda!&quot;);</span><br><span class="line">	System.out.println(&quot;Hello Lambda!&quot;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果 Lambda 表达式是一段代码块，则必须使用大括号包裹代码块</p>
 <p><strong>多参数，有返回值</strong></p>
-<pre><code>Comparator&lt;Integer&gt; comparator = (x, y) -&gt; {
-    System.out.println(&quot;Hello Lambda!&quot;);
-    return Integer.compare(x, y);
-};
-</code></pre><p>如果表达式只有一条语句，大括号和 return 可以省略</p>
-<pre><code>Comparator&lt;Integer&gt; comparator = (x, y) -&gt; Integer.compare(x, y);
-</code></pre><p><strong>显式声明参数类型</strong></p>
-<pre><code>Comparator&lt;Integer&gt; comparator = (Integer x, Integer y) -&gt; Integer.compare(x, y);
-</code></pre><h2 id="引用值"><a href="#引用值" class="headerlink" title="引用值"></a>引用值</h2><p>在 Java 7 时，匿名内部类需要使用外部变量，外部变量需要 final 修饰。<br>在 Java 8 时，虽然无须显式声明为 final, 但默认还是 fianl 的。<br>同理 Lambda 表达式引用的也是事实上 final 修饰的变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Comparator&lt;Integer&gt; comparator = (x, y) -&gt; &#123;</span><br><span class="line">	System.out.println(&quot;Hello Lambda!&quot;);</span><br><span class="line">	return Integer.compare(x, y);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果表达式只有一条语句，大括号和 return 可以省略</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Comparator&lt;Integer&gt; comparator = (x, y) -&gt; Integer.compare(x, y);</span><br></pre></td></tr></table></figure>
+<p><strong>显式声明参数类型</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Comparator&lt;Integer&gt; comparator = (Integer x, Integer y) -&gt; Integer.compare(x, y);</span><br></pre></td></tr></table></figure>
+<h2 id="引用值"><a href="#引用值" class="headerlink" title="引用值"></a>引用值</h2><p>在 Java 7 时，匿名内部类需要使用外部变量，外部变量需要 final 修饰。<br>在 Java 8 时，虽然无须显式声明为 final, 但默认还是 fianl 的。<br>同理 Lambda 表达式引用的也是事实上 final 修饰的变量</p>
 <h2 id="类型推断"><a href="#类型推断" class="headerlink" title="类型推断"></a>类型推断</h2><p>Java 7 就引入了目录类型推断：</p>
-<pre><code>List&lt;String&gt; strList =  new ArrayList&lt;&gt;(8);
-</code></pre><p>Java 8 中对类型推断进一步升级：编译器可以根据上下文进行推断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; strList =  new ArrayList&lt;&gt;(8);</span><br></pre></td></tr></table></figure>
+<p>Java 8 中对类型推断进一步升级：编译器可以根据上下文进行推断</p>
 <p>若推断不出，编辑期会报错。</p>
 <p>代码可参考<a href="https://github.com/lxmuse/lxmuse-jdk8-new-feature.git" target="_blank" rel="noopener">lxmuse-jdk8-new-feature-lambda-02</a></p>
 
@@ -395,13 +371,6 @@ consumer.accept(&quot;Lambda 表达式&quot;);
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -516,10 +485,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -529,6 +494,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -604,11 +573,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

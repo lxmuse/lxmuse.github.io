@@ -5,22 +5,21 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java 8 四大内置函数接口使用示例 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Consumer 接口 public interface Consumer&amp;lt;T&amp;gt; {     void accept(T t); } public void happy(double money, Consumer&amp;lt;Double&amp;gt; consumer) {         consumer.accept(money); } happy(1000, money -&amp;gt; Sy">
+  <meta name="description" content="Consumer 接口 123public interface Consumer&amp;lt;T&amp;gt; &amp;#123;    void accept(T t);&amp;#125; 123public void happy(double money, Consumer&amp;lt;Double&amp;gt; consumer) &amp;#123;		consumer.accept(money);&amp;#125; 1happy(100">
 <meta name="keywords" content="JDK 8">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 8 四大内置函数接口使用示例">
 <meta property="og:url" content="http://yoursite.com/2018/01/11/Java 8  四大内置函数接口使用示例/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="Consumer 接口 public interface Consumer&amp;lt;T&amp;gt; {     void accept(T t); } public void happy(double money, Consumer&amp;lt;Double&amp;gt; consumer) {         consumer.accept(money); } happy(1000, money -&amp;gt; Sy">
+<meta property="og:description" content="Consumer 接口 123public interface Consumer&amp;lt;T&amp;gt; &amp;#123;    void accept(T t);&amp;#125; 123public void happy(double money, Consumer&amp;lt;Double&amp;gt; consumer) &amp;#123;		consumer.accept(money);&amp;#125; 1happy(100">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-04-11T11:21:35.325Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 8 四大内置函数接口使用示例">
-<meta name="twitter:description" content="Consumer 接口 public interface Consumer&amp;lt;T&amp;gt; {     void accept(T t); } public void happy(double money, Consumer&amp;lt;Double&amp;gt; consumer) {         consumer.accept(money); } happy(1000, money -&amp;gt; Sy">
+<meta name="twitter:description" content="Consumer 接口 123public interface Consumer&amp;lt;T&amp;gt; &amp;#123;    void accept(T t);&amp;#125; 123public void happy(double money, Consumer&amp;lt;Double&amp;gt; consumer) &amp;#123;		consumer.accept(money);&amp;#125; 1happy(100">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -165,58 +164,23 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><strong>Consumer 接口</strong></p>
-<pre><code>public interface Consumer&lt;T&gt; {
-    void accept(T t);
-}
-</code></pre><pre><code>public void happy(double money, Consumer&lt;Double&gt; consumer) {
-        consumer.accept(money);
-}
-</code></pre><pre><code>happy(1000, money -&gt; System.out.println(&quot;吃喝玩乐&quot;));
-</code></pre><pre><code>happy(10000, money -&gt; System.out.println(&quot;旅游&quot;));
-</code></pre><p><strong>Supplier 接口</strong></p>
-<pre><code>public interface Supplier&lt;T&gt; {
-    T get();
-}
-
-</code></pre><pre><code>public List&lt;Integer&gt; getNumList(int num, Supplier&lt;Integer&gt; supplier) {
-    List&lt;Integer&gt; list = new ArrayList&lt;&gt;();
-
-    for(int i = 0; i &lt; num; i++) {
-        Integer n = supplier.get();
-        list.add(n);
-    }
-
-    return list;
-}
-</code></pre><pre><code>getNumList(10, () -&gt; (int)(Math.random() * 100))
-</code></pre><p><strong>Function 接口</strong></p>
-<pre><code>public interface Function&lt;T, R&gt; {
-    R apply(T t);
-}
-
-</code></pre><pre><code>public String strHandler(String str, Function&lt;String, String&gt; function) {
-        return function.apply(str);
-}
-</code></pre><pre><code>strHandler(&quot;   Lambda  &quot;, str -&gt; str.trim().toUpperCase())
-</code></pre><p><strong>Predicate 接口</strong></p>
-<pre><code>public interface Predicate&lt;T&gt; {
-    boolean test(T t);
-}
-
-</code></pre><pre><code>public List&lt;String&gt; filterStr(List&lt;String&gt; list, Predicate&lt;String&gt; predicate) {
-    List&lt;String&gt; strList = new ArrayList&lt;&gt;();
-
-    for(String str : list) {
-        if(predicate.test(str)) {
-            strList.add(str);
-        }
-    }
-
-    return strList;
-}
-</code></pre><pre><code>List&lt;String&gt; strings = Arrays.asList(&quot;Hello&quot;, &quot;Lambda&quot;, &quot;Function&quot;, &quot;Java&quot;);
-filterStr(strings, str -&gt; str.length() &gt; 5);
-</code></pre><p>代码可参考<a href="https://github.com/lxmuse/lxmuse-jdk8-new-feature.git" target="_blank" rel="noopener">lxmuse-jdk8-new-feature-lambda-03</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Consumer&lt;T&gt; &#123;</span><br><span class="line">    void accept(T t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public void happy(double money, Consumer&lt;Double&gt; consumer) &#123;</span><br><span class="line">		consumer.accept(money);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">happy(1000, money -&gt; System.out.println(&quot;吃喝玩乐&quot;));</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">happy(10000, money -&gt; System.out.println(&quot;旅游&quot;));</span><br></pre></td></tr></table></figure>
+<p><strong>Supplier 接口</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Supplier&lt;T&gt; &#123;</span><br><span class="line">    T get();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public List&lt;Integer&gt; getNumList(int num, Supplier&lt;Integer&gt; supplier) &#123;</span><br><span class="line">	List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">	</span><br><span class="line">	for(int i = 0; i &lt; num; i++) &#123;</span><br><span class="line">		Integer n = supplier.get();</span><br><span class="line">		list.add(n);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return list;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getNumList(10, () -&gt; (int)(Math.random() * 100))</span><br></pre></td></tr></table></figure>
+<p><strong>Function 接口</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Function&lt;T, R&gt; &#123;</span><br><span class="line">    R apply(T t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public String strHandler(String str, Function&lt;String, String&gt; function) &#123;</span><br><span class="line">		return function.apply(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strHandler(&quot;   Lambda  &quot;, str -&gt; str.trim().toUpperCase())</span><br></pre></td></tr></table></figure>
+<p><strong>Predicate 接口</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Predicate&lt;T&gt; &#123;</span><br><span class="line">    boolean test(T t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public List&lt;String&gt; filterStr(List&lt;String&gt; list, Predicate&lt;String&gt; predicate) &#123;</span><br><span class="line">	List&lt;String&gt; strList = new ArrayList&lt;&gt;();</span><br><span class="line">	</span><br><span class="line">	for(String str : list) &#123;</span><br><span class="line">		if(predicate.test(str)) &#123;</span><br><span class="line">			strList.add(str);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return strList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; strings = Arrays.asList(&quot;Hello&quot;, &quot;Lambda&quot;, &quot;Function&quot;, &quot;Java&quot;);</span><br><span class="line">filterStr(strings, str -&gt; str.length() &gt; 5);</span><br></pre></td></tr></table></figure>
+<p>代码可参考<a href="https://github.com/lxmuse/lxmuse-jdk8-new-feature.git" target="_blank" rel="noopener">lxmuse-jdk8-new-feature-lambda-03</a></p>
 
       
 
@@ -332,18 +296,18 @@ filterStr(strings, str -&gt; str.length() &gt; 5);
   
 <nav id="article-nav">
   
-    <a href="/2018/01/11/Spring Cloud Zuul 默认路由规则/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/01/11/Lambda 表达式方法引用/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Spring Cloud Zuul 默认路由规则
+          Lambda 表达式方法引用
         
       </div>
     </a>
   
   
-    <a href="/2018/01/11/关于版本控制/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">关于版本控制</div>
+    <a href="/2018/01/11/Spring Cloud Zuul 初识/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spring Cloud Zuul 初识</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -393,13 +357,6 @@ filterStr(strings, str -&gt; str.length() &gt; 5);
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -514,10 +471,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -527,6 +480,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -602,11 +559,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -5,7 +5,6 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -141,19 +140,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Spring Cloud Zuul 初识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-关于版本控制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/11/Spring Cloud Zuul 初识/">Spring Cloud Zuul 初识</a>
+      <a class="article-title" href="/2018/01/11/关于版本控制/">关于版本控制</a>
     </h1>
   
 
         
-        <a href="/2018/01/11/Spring Cloud Zuul 初识/" class="archive-article-date">
+        <a href="/2018/01/11/关于版本控制/" class="archive-article-date">
   	<time datetime="2018-01-11T13:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
 </a>
         
@@ -161,73 +160,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Spring Boot: 1.5.10.RELEASE <br><br>Spring Cloud: Dalston.SR5</p>
-<h2 id="什么是-Zuul"><a href="#什么是-Zuul" class="headerlink" title="什么是 Zuul"></a>什么是 Zuul</h2><p>Zuul 最主要的两大功能：请求路由和请求过滤</p>
-<p><strong>请求路由</strong></p>
-<p>请求路由是指将外部请求转发到具体的微服务实例上，实现外部访问统一入口的基础</p>
-<p><strong>请求过滤</strong></p>
-<p>请求过滤是指对外部请求进行干预，实现请求校验，服务聚合等功能的基础</p>
-<p>Zuul 一般和 Eureka 集成使用</p>
-<h2 id="Zuul-初识"><a href="#Zuul-初识" class="headerlink" title="Zuul 初识"></a>Zuul 初识</h2><p>利用前期的相关工程实现环境搭建：<br><br>example-01 : eureka-server  <br><br>example-01 : 服务提供者1    <br><br>example-04 : 服务提供者2    <br><br>example-05 : 服务提供者3    <br></p>
-<p>创建 zuul 工程，引入依赖：</p>
-<pre><code>&lt;dependency&gt;
-  &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-  &lt;artifactId&gt;spring-cloud-starter-eureka&lt;/artifactId&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-  &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-  &lt;artifactId&gt;spring-cloud-starter-zuul&lt;/artifactId&gt;
-&lt;/dependency&gt;
-</code></pre><p>spring-cloud-starter-zuul 是必须引入的依赖 <br><br>spring-cloud-starter-eureka 是为了使 zuul 可以 eureka 进行无缝集成</p>
-<p>启动类上添加 @EnableZuulProxy 注解：</p>
-<pre><code>import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
-
-@EnableZuulProxy
-@SpringBootApplication
-public class Application {
-
-    public static void main(String[] args) {
-        SpringApplication application = new SpringApplication(Application.class);
-        application.run(args);
-    }
-
-}
-</code></pre><p>配置文件集成 eureka 并配置路由规则：</p>
-<pre><code>spring:
-  application:
-    name: zuul-server
-
-server:
-  port: 8888
-
-eureka:
-  instance:
-    prefer-ip-address: false
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-
-zuul:
-  routes:
-    api-a.path: /api-a/**
-    api-a.serviceId: hello-world-service
-    api-b.path: /api-b/*
-    api-b.serviceId: hello-world-service-provide
-</code></pre><p>路由配置规则： </p>
-<pre><code>格式：zuul.routes.&lt;routh&gt;.path 
-格式：zuul.routes.&lt;routh&gt;.serviceId
-</code></pre><p>这里定义了两个简单的转发规则：<br>拦截所有 api-a 开头的请求，将其转发到 hello-world-service 服务中<br>拦截所有 api-b 开头的请求，将其转发到 hello-world-service-provide 服务中</p>
-<p>将服务运行以后，可以测试：<br><br><a href="http://localhost:8888/api-a/hello" target="_blank" rel="noopener">http://localhost:8888/api-a/hello</a> <br><br><a href="http://localhost:8888/api-b/hello" target="_blank" rel="noopener">http://localhost:8888/api-b/hello</a> <br></p>
-<p>上述路由配置可以简化为：</p>
-<pre><code>zuul:
-  routes:
-    hello-world-service: /api-a/**
-    hello-world-service-provide: /api-b/**    
-</code></pre><pre><code>格式：zuul.routes.&lt;serviceId&gt;=&lt;path&gt;
-</code></pre><p>详细代码请参考 <a href="https://github.com/lxmuse/lxmuse-spring-cloud.git" target="_blank" rel="noopener">lxmuse-spring-cloud 下 example-zuul-01</a></p>
-
+        <p>版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。</p>
+<h4 id="版本控制的演变"><a href="#版本控制的演变" class="headerlink" title="版本控制的演变"></a>版本控制的演变</h4>
       
 
       
@@ -240,7 +174,7 @@ zuul:
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Spring Cloud</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
         		</li>
       		
 		</ul>
@@ -252,7 +186,7 @@ zuul:
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Spring-Cloud//" class="article-tag-list-link color3">Spring Cloud</a>
+        			<a href="/categories/开发管理系列//" class="article-tag-list-link color2">开发管理系列</a>
         		</li>
       		
 		</ul>
@@ -261,7 +195,7 @@ zuul:
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/11/Spring Cloud Zuul 初识/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/01/11/关于版本控制/">展开全文 >></a>
         </p>
       
 
@@ -407,52 +341,29 @@ zuul:
 </ul>
 <h2 id="函数接口"><a href="#函数接口" class="headerlink" title="函数接口"></a>函数接口</h2><p>函数接口是只有一个抽象方法的接口，Lambda 表达式使用函数接口。<br>多抽象方法的接口，并不能使用 Lambda 表达式。</p>
 <p>Java 8 java.util.function 包下定义了一些函数接口：</p>
-<pre><code>public interface Predicate&lt;T&gt; {
-    boolean test(T t);
-}
-
-public interface Consumer&lt;T&gt; {
-    void accept(T t);
-}
-
-public interface Function&lt;T, R&gt; {
-    R apply(T t);
-}
-
-public interface Supplier&lt;T&gt; {
-    T get();
-}
-
-</code></pre><p>而且很多原接口都继承了这些函数接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public interface Predicate&lt;T&gt; &#123;</span><br><span class="line">    boolean test(T t);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public interface Consumer&lt;T&gt; &#123;</span><br><span class="line">    void accept(T t);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public interface Function&lt;T, R&gt; &#123;</span><br><span class="line">    R apply(T t);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public interface Supplier&lt;T&gt; &#123;</span><br><span class="line">    T get();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而且很多原接口都继承了这些函数接口</p>
 <p>函数接口可以使用 @FunctionalInterface 注解修饰<br>使用 @FunctionalInterface 修饰的接口必须是函数接口</p>
 <h2 id="Lambda-表达式语法格式"><a href="#Lambda-表达式语法格式" class="headerlink" title="Lambda 表达式语法格式"></a>Lambda 表达式语法格式</h2><p><strong>无参 无返回值</strong></p>
 <p>Lambda 表达式不包含参数，使用空括号 () 表示没有参数：</p>
-<pre><code>Runnable runnable = () -&gt; System.out.println(&quot;Hello Lambda!&quot;);
-</code></pre><p><strong>一个参数 有返回值</strong></p>
-<pre><code>Consumer&lt;String&gt; consumer = (x) -&gt; System.out.println(x);
-consumer.accept(&quot;Lambda 表达式&quot;);
-</code></pre><p>Lambda 表达式包含且只包含一个参数，可以省略参数的括号</p>
-<pre><code>Consumer&lt;String&gt; consumer = x -&gt; System.out.println(x);
-consumer.accept(&quot;Lambda 表达式&quot;);
-</code></pre><p><strong>表达式是代码块</strong></p>
-<pre><code>Runnable runnable = () -&gt; {
-    System.out.println(&quot;Hello Lambda!&quot;);
-    System.out.println(&quot;Hello Lambda!&quot;);
-};
-</code></pre><p>如果 Lambda 表达式是一段代码块，则必须使用大括号包裹代码块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Runnable runnable = () -&gt; System.out.println(&quot;Hello Lambda!&quot;);</span><br></pre></td></tr></table></figure>
+<p><strong>一个参数 有返回值</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;String&gt; consumer = (x) -&gt; System.out.println(x);</span><br><span class="line">consumer.accept(&quot;Lambda 表达式&quot;);</span><br></pre></td></tr></table></figure>
+<p>Lambda 表达式包含且只包含一个参数，可以省略参数的括号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;String&gt; consumer = x -&gt; System.out.println(x);</span><br><span class="line">consumer.accept(&quot;Lambda 表达式&quot;);</span><br></pre></td></tr></table></figure>
+<p><strong>表达式是代码块</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Runnable runnable = () -&gt; &#123;</span><br><span class="line">	System.out.println(&quot;Hello Lambda!&quot;);</span><br><span class="line">	System.out.println(&quot;Hello Lambda!&quot;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果 Lambda 表达式是一段代码块，则必须使用大括号包裹代码块</p>
 <p><strong>多参数，有返回值</strong></p>
-<pre><code>Comparator&lt;Integer&gt; comparator = (x, y) -&gt; {
-    System.out.println(&quot;Hello Lambda!&quot;);
-    return Integer.compare(x, y);
-};
-</code></pre><p>如果表达式只有一条语句，大括号和 return 可以省略</p>
-<pre><code>Comparator&lt;Integer&gt; comparator = (x, y) -&gt; Integer.compare(x, y);
-</code></pre><p><strong>显式声明参数类型</strong></p>
-<pre><code>Comparator&lt;Integer&gt; comparator = (Integer x, Integer y) -&gt; Integer.compare(x, y);
-</code></pre><h2 id="引用值"><a href="#引用值" class="headerlink" title="引用值"></a>引用值</h2><p>在 Java 7 时，匿名内部类需要使用外部变量，外部变量需要 final 修饰。<br>在 Java 8 时，虽然无须显式声明为 final, 但默认还是 fianl 的。<br>同理 Lambda 表达式引用的也是事实上 final 修饰的变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Comparator&lt;Integer&gt; comparator = (x, y) -&gt; &#123;</span><br><span class="line">	System.out.println(&quot;Hello Lambda!&quot;);</span><br><span class="line">	return Integer.compare(x, y);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果表达式只有一条语句，大括号和 return 可以省略</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Comparator&lt;Integer&gt; comparator = (x, y) -&gt; Integer.compare(x, y);</span><br></pre></td></tr></table></figure>
+<p><strong>显式声明参数类型</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Comparator&lt;Integer&gt; comparator = (Integer x, Integer y) -&gt; Integer.compare(x, y);</span><br></pre></td></tr></table></figure>
+<h2 id="引用值"><a href="#引用值" class="headerlink" title="引用值"></a>引用值</h2><p>在 Java 7 时，匿名内部类需要使用外部变量，外部变量需要 final 修饰。<br>在 Java 8 时，虽然无须显式声明为 final, 但默认还是 fianl 的。<br>同理 Lambda 表达式引用的也是事实上 final 修饰的变量</p>
 <h2 id="类型推断"><a href="#类型推断" class="headerlink" title="类型推断"></a>类型推断</h2><p>Java 7 就引入了目录类型推断：</p>
-<pre><code>List&lt;String&gt; strList =  new ArrayList&lt;&gt;(8);
-</code></pre><p>Java 8 中对类型推断进一步升级：编译器可以根据上下文进行推断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; strList =  new ArrayList&lt;&gt;(8);</span><br></pre></td></tr></table></figure>
+<p>Java 8 中对类型推断进一步升级：编译器可以根据上下文进行推断</p>
 <p>若推断不出，编辑期会报错。</p>
 <p>代码可参考<a href="https://github.com/lxmuse/lxmuse-jdk8-new-feature.git" target="_blank" rel="noopener">lxmuse-jdk8-new-feature-lambda-02</a></p>
 
@@ -757,136 +668,32 @@ consumer.accept(&quot;Lambda 表达式&quot;);
     <div class="article-entry" itemprop="articleBody">
       
         <p>有一个员工类：</p>
-<pre><code>public class Employee {
-
-    private String name;
-    private int age;
-    private double salary;
-
-    public Employee(String name, int age, double salary) {
-        this.name = name;
-        this.age = age;
-        this.salary = salary;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    @Override
-    public String toString() {
-        return &quot;Employee{&quot; +
-            &quot;name=&#39;&quot; + name + &#39;\&#39;&#39; +
-            &quot;, age=&quot; + age +
-            &quot;, salary=&quot; + salary +
-            &#39;}&#39;;
-    }
-}
-</code></pre><p>准备初始数据：</p>
-<pre><code>List&lt;Employee&gt; employeeList = Arrays.asList(
-    new Employee(&quot;张三&quot;, 18, 7777),
-    new Employee(&quot;李四&quot;, 38, 22222),
-    new Employee(&quot;王五&quot;, 50, 33333),
-    new Employee(&quot;赵六&quot;, 24, 8888),
-    new Employee(&quot;钱大&quot;, 28, 9999)
-);
-</code></pre><p>初始需求：获取年龄大于 35 的员工</p>
-<pre><code>publi List&lt;Employee&gt; filterEmployeeAgeOver35(List&lt;Employee&gt; employeeList) {
-    List&lt;Employee&gt; employees = new ArrayList&lt;&gt;(8);
-    if (employeeList != null &amp;&amp; !employeeList.isEmpty()) {
-        for(Employee employee : employeeList) {
-            if (employee.getAge() &gt;= 35) {
-                employees.add(employee);
-            }
-        }
-    }
-    return employees;
-}
-</code></pre><p>当然了， 35 应该用常量代替</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public class Employee &#123;</span><br><span class="line">	</span><br><span class="line">	private String name;</span><br><span class="line">	private int age;</span><br><span class="line">	private double salary;</span><br><span class="line">	</span><br><span class="line">	public Employee(String name, int age, double salary) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">		this.age = age;</span><br><span class="line">		this.salary = salary;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public String getName() &#123;</span><br><span class="line">		return name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public int getAge() &#123;</span><br><span class="line">		return age;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public double getSalary() &#123;</span><br><span class="line">		return salary;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@Override</span><br><span class="line">	public String toString() &#123;</span><br><span class="line">		return &quot;Employee&#123;&quot; +</span><br><span class="line">			&quot;name=&apos;&quot; + name + &apos;\&apos;&apos; +</span><br><span class="line">			&quot;, age=&quot; + age +</span><br><span class="line">			&quot;, salary=&quot; + salary +</span><br><span class="line">			&apos;&#125;&apos;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>准备初始数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Employee&gt; employeeList = Arrays.asList(</span><br><span class="line">	new Employee(&quot;张三&quot;, 18, 7777),</span><br><span class="line">	new Employee(&quot;李四&quot;, 38, 22222),</span><br><span class="line">	new Employee(&quot;王五&quot;, 50, 33333),</span><br><span class="line">	new Employee(&quot;赵六&quot;, 24, 8888),</span><br><span class="line">	new Employee(&quot;钱大&quot;, 28, 9999)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>初始需求：获取年龄大于 35 的员工</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">publi List&lt;Employee&gt; filterEmployeeAgeOver35(List&lt;Employee&gt; employeeList) &#123;</span><br><span class="line">	List&lt;Employee&gt; employees = new ArrayList&lt;&gt;(8);</span><br><span class="line">	if (employeeList != null &amp;&amp; !employeeList.isEmpty()) &#123;</span><br><span class="line">		for(Employee employee : employeeList) &#123;</span><br><span class="line">			if (employee.getAge() &gt;= 35) &#123;</span><br><span class="line">				employees.add(employee);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return employees;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然了， 35 应该用常量代替</p>
 <p>需求变更：获取年龄大于 20 的员工</p>
-<pre><code>publi List&lt;Employee&gt; filterEmployeeAgeOver20(List&lt;Employee&gt; employeeList) {
-    List&lt;Employee&gt; employees = new ArrayList&lt;&gt;(8);
-    if (employeeList != null &amp;&amp; !employeeList.isEmpty()) {
-        for(Employee employee : employeeList) {
-            if (employee.getAge() &gt;= 20) {
-                employees.add(employee);
-            }
-        }
-    }
-    return employees;
-}
-</code></pre><p>对方法进行重构：</p>
-<pre><code>publi List&lt;Employee&gt; filterEmployeeByAge(List&lt;Employee&gt; employeeList, int overAge) {
-    List&lt;Employee&gt; employees = new ArrayList&lt;&gt;(8);
-    if (employeeList != null &amp;&amp; !employeeList.isEmpty()) {
-        for(Employee employee : employeeList) {
-            if (employee.getAge() &gt;= overAge) {
-                employees.add(employee);
-            }
-        }
-    }
-    return employees;
-}
-</code></pre><p>此时需求再次发生变更：获取工资大于 10000 的员工</p>
-<pre><code>publi List&lt;Employee&gt; filterEmployeeBySalary(List&lt;Employee&gt; employeeList, double overSalary) {
-    List&lt;Employee&gt; employees = new ArrayList&lt;&gt;(8);
-    if (employeeList != null &amp;&amp; !employeeList.isEmpty()) {
-        for(Employee employee : employeeList) {
-            if (employee.getSalary() &gt;= overSalary) {
-                employees.add(employee);
-            }
-        }
-    }
-    return employees;
-}
-</code></pre><p>此时发现两个方法非常相似，且如果需求变的更加灵活复杂，如：<br>获取员工工资大于8000小于2000的员工；获取员工年龄小于35但工资大于10000的员工等等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">publi List&lt;Employee&gt; filterEmployeeAgeOver20(List&lt;Employee&gt; employeeList) &#123;</span><br><span class="line">	List&lt;Employee&gt; employees = new ArrayList&lt;&gt;(8);</span><br><span class="line">	if (employeeList != null &amp;&amp; !employeeList.isEmpty()) &#123;</span><br><span class="line">		for(Employee employee : employeeList) &#123;</span><br><span class="line">			if (employee.getAge() &gt;= 20) &#123;</span><br><span class="line">				employees.add(employee);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return employees;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对方法进行重构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">publi List&lt;Employee&gt; filterEmployeeByAge(List&lt;Employee&gt; employeeList, int overAge) &#123;</span><br><span class="line">	List&lt;Employee&gt; employees = new ArrayList&lt;&gt;(8);</span><br><span class="line">	if (employeeList != null &amp;&amp; !employeeList.isEmpty()) &#123;</span><br><span class="line">		for(Employee employee : employeeList) &#123;</span><br><span class="line">			if (employee.getAge() &gt;= overAge) &#123;</span><br><span class="line">				employees.add(employee);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return employees;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时需求再次发生变更：获取工资大于 10000 的员工</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">publi List&lt;Employee&gt; filterEmployeeBySalary(List&lt;Employee&gt; employeeList, double overSalary) &#123;</span><br><span class="line">	List&lt;Employee&gt; employees = new ArrayList&lt;&gt;(8);</span><br><span class="line">	if (employeeList != null &amp;&amp; !employeeList.isEmpty()) &#123;</span><br><span class="line">		for(Employee employee : employeeList) &#123;</span><br><span class="line">			if (employee.getSalary() &gt;= overSalary) &#123;</span><br><span class="line">				employees.add(employee);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return employees;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时发现两个方法非常相似，且如果需求变的更加灵活复杂，如：<br>获取员工工资大于8000小于2000的员工；获取员工年龄小于35但工资大于10000的员工等等</p>
 <p>为了继续优化，此时需要引入策略设计模式：</p>
 <p>定义比较策略方法：</p>
-<pre><code>public interface MyEmployeeFilter&lt;T&gt; {
-
-    boolean test(T t);
-
-}
-</code></pre><p>通过策略方法实现比较：</p>
-<pre><code>public List&lt;Employee&gt; filterEmployee(List&lt;Employee&gt; employeeList, MyEmployeeFilter&lt;Employee&gt; employeeFilter) {
-    List&lt;Employee&gt; employees = new ArrayList&lt;&gt;(8);
-    if (employeeList != null &amp;&amp; !employeeList.isEmpty()) {
-        for(Employee employee : employeeList) {
-            if (employeeFilter.test(employee)) {
-                employees.add(employee);
-            }
-        }
-    }
-    return employees;
-}
-</code></pre><p>那么不管是什么比较的需求，只需要实现 MyEmployeeFilter 接口即可， 不能的需求，实现不同的比较。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public interface MyEmployeeFilter&lt;T&gt; &#123;</span><br><span class="line">	</span><br><span class="line">	boolean test(T t);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过策略方法实现比较：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public List&lt;Employee&gt; filterEmployee(List&lt;Employee&gt; employeeList, MyEmployeeFilter&lt;Employee&gt; employeeFilter) &#123;</span><br><span class="line">	List&lt;Employee&gt; employees = new ArrayList&lt;&gt;(8);</span><br><span class="line">	if (employeeList != null &amp;&amp; !employeeList.isEmpty()) &#123;</span><br><span class="line">		for(Employee employee : employeeList) &#123;</span><br><span class="line">			if (employeeFilter.test(employee)) &#123;</span><br><span class="line">				employees.add(employee);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return employees;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么不管是什么比较的需求，只需要实现 MyEmployeeFilter 接口即可， 不能的需求，实现不同的比较。</p>
 <p>比如：</p>
-<pre><code>public class FileterEmployeeByAgeOver35 implements MyEmployeeFilter&lt;Employee&gt; {
-
-    @Override
-    public boolean test(Employee employee) {
-        return employee.getAge() &gt;= 35;
-    }
-
-}
-</code></pre><p>如果不想每次都创建一个新的实现类，可以使用匿名内部类的方式：</p>
-<pre><code>List&lt;Employee&gt; employeeList = filterEmployee(employees, new MyEmployeeFilter&lt;Employee&gt;() {
-    @Override
-    public boolean test(Employee employee) {
-        return employee.getAge() &gt;= 35;
-    }
-});
-</code></pre><p>使用 Lambda 表达式：</p>
-<pre><code>List&lt;Employee&gt; employees = filterEmployee(employeeList, (e) -&gt; (e).getAge() &gt;= 35);
-</code></pre><p>Lambda 表达式相对于匿名内部类，代码更加简洁，更加可读</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class FileterEmployeeByAgeOver35 implements MyEmployeeFilter&lt;Employee&gt; &#123;</span><br><span class="line">	</span><br><span class="line">	@Override</span><br><span class="line">	public boolean test(Employee employee) &#123;</span><br><span class="line">		return employee.getAge() &gt;= 35;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果不想每次都创建一个新的实现类，可以使用匿名内部类的方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Employee&gt; employeeList = filterEmployee(employees, new MyEmployeeFilter&lt;Employee&gt;() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public boolean test(Employee employee) &#123;</span><br><span class="line">		return employee.getAge() &gt;= 35;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>使用 Lambda 表达式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Employee&gt; employees = filterEmployee(employeeList, (e) -&gt; (e).getAge() &gt;= 35);</span><br></pre></td></tr></table></figure>
+<p>Lambda 表达式相对于匿名内部类，代码更加简洁，更加可读</p>
 <p>代码可参考<a href="https://github.com/lxmuse/lxmuse-jdk8-new-feature.git" target="_blank" rel="noopener">lxmuse-jdk8-new-feature-lambda-01</a></p>
 
       
@@ -972,27 +779,16 @@ consumer.accept(&quot;Lambda 表达式&quot;);
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天执行如下SQL时：</p>
-<pre><code>
-UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (
-     SELECT barcode_id FROM materials_barcode_info WHERE barcode_length != LENGTH(barcode_example)
-)
-
-</code></pre><p>提示</p>
-<pre><code>[Err] 1093 - You can&#39;t specify target table &#39;materials_barcode_info&#39; for update in FROM clause
-</code></pre><p>本意是想将条码规则表中条码规则中样例实际长度和条码规则中长度不一致的条码规则进行逻辑删除</p>
+        <p>今天执行如下SQL时：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (</span><br><span class="line">     SELECT barcode_id FROM materials_barcode_info WHERE barcode_length != LENGTH(barcode_example)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Err] 1093 - You can&apos;t specify target table &apos;materials_barcode_info&apos; for update in FROM clause</span><br></pre></td></tr></table></figure></p>
+<p>本意是想将条码规则表中条码规则中样例实际长度和条码规则中长度不一致的条码规则进行逻辑删除</p>
 <p>单独执行 <code>SELECT barcode_id from materials_barcode_info where barcode_length != LENGTH(barcode_example)</code> 运行正确</p>
 <p>单独执行 <code>update materials_barcode_info set del_flag = 1 where barcode_id in (&#39;x&#39;,&#39;x&#39;)</code> 运行正确</p>
 <p>MySQL 对子查询的使用存在限制：</p>
 <p><a href="https://dev.mysql.com/doc/refman/5.7/en/subquery-restrictions.html" target="_blank" rel="noopener">https://dev.mysql.com/doc/refman/5.7/en/subquery-restrictions.html</a></p>
 <p>即不能在一个SQL中先查询同一张表中的某些记录然后再更新同一张表中的某些记录</p>
 <p>修改一下SQL，再嵌套一层</p>
-<pre><code>UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (
-     SELECT barcode_id FROM (
-         SELECT barcode_id FROM materials_barcode_info WHERE barcode_length != LENGTH(barcode_example)
-     ) a
-)
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (</span><br><span class="line">     SELECT barcode_id FROM (</span><br><span class="line">         SELECT barcode_id FROM materials_barcode_info WHERE barcode_length != LENGTH(barcode_example)</span><br><span class="line">     ) a</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
       
 
       
@@ -1078,19 +874,18 @@ UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (
       
         <p>MySQL 中如果字段类型是 char 或 varchar 类型，在字符串比较时 MySQL 使用 PADSPACE 校对规则，会忽略字段末尾的空格字符</p>
 <p>比如有这样一个 SQL 语句 ：</p>
-<pre><code>select * from table where user = &#39;wxp    &#39;；
-</code></pre><p>但是可以查询到数据库中 user 为 wxp 的那一行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from table where user = &apos;wxp    &apos;；</span><br></pre></td></tr></table></figure>
+<p>但是可以查询到数据库中 user 为 wxp 的那一行</p>
 <p>那么若想做到精确匹配，可以有如下解决方法：</p>
 <p>第一种方法：使用 like </p>
-<pre><code>select * from table where user like &#39;wxp     &#39;；
-</code></pre><p>第二种方法：使用 BINARY </p>
-<pre><code>select * from table where user = BINARY&#39;wxp    &#39;;
-</code></pre><p>第三种方法：添加 len 函数</p>
-<pre><code>slect * form table where user = &#39;wxp   &#39; and LENGTH(user) = LENGTH(&#39;wxp    &#39;)
-</code></pre><p>官方手册说明（5.0版本）：<br><a href="http://dev.mysql.com/doc/refman/5.0/en/char.html" target="_blank" rel="noopener">http://dev.mysql.com/doc/refman/5.0/en/char.html</a></p>
-<pre><code>11.1.6.1. The CHAR and VARCHAR Types
- All MySQL collations are of type PADSPACE. This means that all CHAR, VARCHAR, and TEXT values in MySQL are compared without regard to any trailing spaces. “Comparison” in this context does not include the LIKE pattern-matching operator, for which trailing spaces are significant. 
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from table where user like &apos;wxp     &apos;；</span><br></pre></td></tr></table></figure>
+<p>第二种方法：使用 BINARY </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from table where user = BINARY&apos;wxp    &apos;;</span><br></pre></td></tr></table></figure>
+<p>第三种方法：添加 len 函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slect * form table where user = &apos;wxp   &apos; and LENGTH(user) = LENGTH(&apos;wxp    &apos;)</span><br></pre></td></tr></table></figure>
+<p>官方手册说明（5.0版本）：<br><a href="http://dev.mysql.com/doc/refman/5.0/en/char.html" target="_blank" rel="noopener">http://dev.mysql.com/doc/refman/5.0/en/char.html</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">11.1.6.1. The CHAR and VARCHAR Types</span><br><span class="line"> All MySQL collations are of type PADSPACE. This means that all CHAR, VARCHAR, and TEXT values in MySQL are compared without regard to any trailing spaces. “Comparison” in this context does not include the LIKE pattern-matching operator, for which trailing spaces are significant.</span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -1174,52 +969,15 @@ UPDATE materials_barcode_info SET del_flag = 1 WHERE barcode_id IN (
     
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code>public ConfigurableApplicationContext run(String... args) {
-    StopWatch stopWatch = new StopWatch();
-    stopWatch.start();
-    ConfigurableApplicationContext context = null;
-    FailureAnalyzers analyzers = null;
-    this.configureHeadlessProperty();
-    SpringApplicationRunListeners listeners = this.getRunListeners(args);
-    listeners.starting();
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public ConfigurableApplicationContext run(String... args) &#123;</span><br><span class="line">    StopWatch stopWatch = new StopWatch();</span><br><span class="line">    stopWatch.start();</span><br><span class="line">    ConfigurableApplicationContext context = null;</span><br><span class="line">    FailureAnalyzers analyzers = null;</span><br><span class="line">    this.configureHeadlessProperty();</span><br><span class="line">    SpringApplicationRunListeners listeners = this.getRunListeners(args);</span><br><span class="line">    listeners.starting();</span><br><span class="line"></span><br><span class="line">    try &#123;</span><br><span class="line">        ApplicationArguments applicationArguments = new DefaultApplicationArguments(args);</span><br><span class="line">        ConfigurableEnvironment environment = this.prepareEnvironment(listeners, applicationArguments);</span><br><span class="line">        Banner printedBanner = this.printBanner(environment);</span><br><span class="line">        context = this.createApplicationContext();</span><br><span class="line">        new FailureAnalyzers(context);</span><br><span class="line">        this.prepareContext(context, environment, listeners, applicationArguments, printedBanner);</span><br><span class="line">        this.refreshContext(context);</span><br><span class="line">        this.afterRefresh(context, applicationArguments);</span><br><span class="line">        listeners.finished(context, (Throwable)null);</span><br><span class="line">        stopWatch.stop();</span><br><span class="line">        if (this.logStartupInfo) &#123;</span><br><span class="line">            (new StartupInfoLogger(this.mainApplicationClass)).logStarted(this.getApplicationLog(), stopWatch);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return context;</span><br><span class="line">    &#125; catch (Throwable var9) &#123;</span><br><span class="line">        this.handleRunFailure(context, listeners, (FailureAnalyzers)analyzers, var9);</span><br><span class="line">        throw new IllegalStateException(var9);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>核心步骤一：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SpringApplicationRunListeners listeners = this.getRunListeners(args);</span><br><span class="line">listeners.starting();</span><br></pre></td></tr></table></figure></p>
+<p>核心步骤二：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ConfigurableEnvironment environment = this.prepareEnvironment(listeners, applicationArguments);</span><br></pre></td></tr></table></figure></p>
+<p>核心步骤三：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">context = this.createApplicationContext();</span><br></pre></td></tr></table></figure></p>
+<p>核心步骤四：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.prepareContext(context, environment, listeners, applicationArguments, printedBanner);</span><br></pre></td></tr></table></figure></p>
+<p>核心步骤五：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.refreshContext(context);</span><br></pre></td></tr></table></figure></p>
+<p>核心步骤六：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.afterRefresh(context, applicationArguments);</span><br></pre></td></tr></table></figure></p>
+<p>核心步骤七：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">listeners.finished(context, (Throwable)null);</span><br></pre></td></tr></table></figure></p>
 
-    try {
-        ApplicationArguments applicationArguments = new DefaultApplicationArguments(args);
-        ConfigurableEnvironment environment = this.prepareEnvironment(listeners, applicationArguments);
-        Banner printedBanner = this.printBanner(environment);
-        context = this.createApplicationContext();
-        new FailureAnalyzers(context);
-        this.prepareContext(context, environment, listeners, applicationArguments, printedBanner);
-        this.refreshContext(context);
-        this.afterRefresh(context, applicationArguments);
-        listeners.finished(context, (Throwable)null);
-        stopWatch.stop();
-        if (this.logStartupInfo) {
-            (new StartupInfoLogger(this.mainApplicationClass)).logStarted(this.getApplicationLog(), stopWatch);
-        }
-
-        return context;
-    } catch (Throwable var9) {
-        this.handleRunFailure(context, listeners, (FailureAnalyzers)analyzers, var9);
-        throw new IllegalStateException(var9);
-    }
-}
-</code></pre><p>核心步骤一：</p>
-<pre><code>SpringApplicationRunListeners listeners = this.getRunListeners(args);
-listeners.starting();
-</code></pre><p>核心步骤二：</p>
-<pre><code>ConfigurableEnvironment environment = this.prepareEnvironment(listeners, applicationArguments);
-</code></pre><p>核心步骤三：</p>
-<pre><code>context = this.createApplicationContext();
-</code></pre><p>核心步骤四：</p>
-<pre><code>this.prepareContext(context, environment, listeners, applicationArguments, printedBanner);
-</code></pre><p>核心步骤五：</p>
-<pre><code>this.refreshContext(context);
-</code></pre><p>核心步骤六：</p>
-<pre><code>this.afterRefresh(context, applicationArguments);
-</code></pre><p>核心步骤七：</p>
-<pre><code>listeners.finished(context, (Throwable)null);
-</code></pre>
       
 
       
@@ -1304,36 +1062,9 @@ listeners.starting();
     <div class="article-entry" itemprop="articleBody">
       
         <p>SpringApplication initialize 方法：</p>
-<pre><code>private void initialize(Object[] sources) {
-    if (sources != null &amp;&amp; sources.length &gt; 0) {
-        this.sources.addAll(Arrays.asList(sources));
-    }
-
-    this.webEnvironment = this.deduceWebEnvironment();
-    this.setInitializers(this.getSpringFactoriesInstances(ApplicationContextInitializer.class));
-    this.setListeners(this.getSpringFactoriesInstances(ApplicationListener.class));
-    this.mainApplicationClass = this.deduceMainApplicationClass();
-}
-</code></pre><p>deduceMainApplicationClass 方法即用于查找 main 方法类，并实例化：</p>
-<pre><code>private Class&lt;?&gt; deduceMainApplicationClass() {
-        try {
-            StackTraceElement[] stackTrace = (new RuntimeException()).getStackTrace();
-            StackTraceElement[] var2 = stackTrace;
-            int var3 = stackTrace.length;
-
-            for(int var4 = 0; var4 &lt; var3; ++var4) {
-                StackTraceElement stackTraceElement = var2[var4];
-                if (&quot;main&quot;.equals(stackTraceElement.getMethodName())) {
-                    return Class.forName(stackTraceElement.getClassName());
-                }
-            }
-        } catch (ClassNotFoundException var6) {
-            ;
-        }
-
-        return null;
-    }
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private void initialize(Object[] sources) &#123;</span><br><span class="line">    if (sources != null &amp;&amp; sources.length &gt; 0) &#123;</span><br><span class="line">        this.sources.addAll(Arrays.asList(sources));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    this.webEnvironment = this.deduceWebEnvironment();</span><br><span class="line">    this.setInitializers(this.getSpringFactoriesInstances(ApplicationContextInitializer.class));</span><br><span class="line">    this.setListeners(this.getSpringFactoriesInstances(ApplicationListener.class));</span><br><span class="line">    this.mainApplicationClass = this.deduceMainApplicationClass();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>deduceMainApplicationClass 方法即用于查找 main 方法类，并实例化：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">private Class&lt;?&gt; deduceMainApplicationClass() &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            StackTraceElement[] stackTrace = (new RuntimeException()).getStackTrace();</span><br><span class="line">            StackTraceElement[] var2 = stackTrace;</span><br><span class="line">            int var3 = stackTrace.length;</span><br><span class="line"></span><br><span class="line">            for(int var4 = 0; var4 &lt; var3; ++var4) &#123;</span><br><span class="line">                StackTraceElement stackTraceElement = var2[var4];</span><br><span class="line">                if (&quot;main&quot;.equals(stackTraceElement.getMethodName())) &#123;</span><br><span class="line">                    return Class.forName(stackTraceElement.getClassName());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (ClassNotFoundException var6) &#123;</span><br><span class="line">            ;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -1418,13 +1149,6 @@ listeners.starting();
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -1539,10 +1263,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -1552,6 +1272,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1627,11 +1351,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

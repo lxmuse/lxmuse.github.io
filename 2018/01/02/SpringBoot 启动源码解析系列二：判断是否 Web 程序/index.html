@@ -5,22 +5,21 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>SpringBoot 启动源码解析系列二：判断是否 Web 程序 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SpringApplication 类中含有如下方法： private boolean deduceWebEnvironment() {     String[] var1 = WEB_ENVIRONMENT_CLASSES;     int var2 = var1.length;      for(int var3 = 0; var3 &amp;lt; var2; ++var3) {         S">
+  <meta name="description" content="SpringApplication 类中含有如下方法： 12345678910111213private boolean deduceWebEnvironment() &amp;#123;    String[] var1 = WEB_ENVIRONMENT_CLASSES;    int var2 = var1.length;    for(int var3 = 0; var3 &amp;lt; var2; +">
 <meta name="keywords" content="SpringBoot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot 启动源码解析系列二：判断是否 Web 程序">
 <meta property="og:url" content="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列二：判断是否 Web 程序/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="SpringApplication 类中含有如下方法： private boolean deduceWebEnvironment() {     String[] var1 = WEB_ENVIRONMENT_CLASSES;     int var2 = var1.length;      for(int var3 = 0; var3 &amp;lt; var2; ++var3) {         S">
+<meta property="og:description" content="SpringApplication 类中含有如下方法： 12345678910111213private boolean deduceWebEnvironment() &amp;#123;    String[] var1 = WEB_ENVIRONMENT_CLASSES;    int var2 = var1.length;    for(int var3 = 0; var3 &amp;lt; var2; +">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-01-02T13:09:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot 启动源码解析系列二：判断是否 Web 程序">
-<meta name="twitter:description" content="SpringApplication 类中含有如下方法： private boolean deduceWebEnvironment() {     String[] var1 = WEB_ENVIRONMENT_CLASSES;     int var2 = var1.length;      for(int var3 = 0; var3 &amp;lt; var2; ++var3) {         S">
+<meta name="twitter:description" content="SpringApplication 类中含有如下方法： 12345678910111213private boolean deduceWebEnvironment() &amp;#123;    String[] var1 = WEB_ENVIRONMENT_CLASSES;    int var2 = var1.length;    for(int var3 = 0; var3 &amp;lt; var2; +">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -165,81 +164,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>SpringApplication 类中含有如下方法：</p>
-<pre><code>private boolean deduceWebEnvironment() {
-    String[] var1 = WEB_ENVIRONMENT_CLASSES;
-    int var2 = var1.length;
-
-    for(int var3 = 0; var3 &lt; var2; ++var3) {
-        String className = var1[var3];
-        if (!ClassUtils.isPresent(className, (ClassLoader)null)) {
-            return false;
-        }
-    }
-
-    return true;
-}
-</code></pre><p>其中 WEB_ENVIRONMENT_CLASSES 是 SpringApplication 持有的静态属性：</p>
-<pre><code>private static final String[] WEB_ENVIRONMENT_CLASSES =
-    new String[]{&quot;javax.servlet.Servlet&quot;, &quot;org.springframework.web.context.ConfigurableWebApplicationContext&quot;};
-</code></pre><p>SpringApplication 判断是否是 Web 程序的逻辑非常简单，即判断当前类路径下是否包含 Servlet 和 ConfigurableWebApplicationContext 类：</p>
-<pre><code>public static boolean isPresent(String className, ClassLoader classLoader) {
-    try {
-        forName(className, classLoader);
-        return true;
-    } catch (Throwable var3) {
-        return false;
-    }
-}
-</code></pre><pre><code>public static Class&lt;?&gt; forName(String name, ClassLoader classLoader) throws ClassNotFoundException, LinkageError {
-    Assert.notNull(name, &quot;Name must not be null&quot;);
-    Class&lt;?&gt; clazz = resolvePrimitiveClassName(name);
-    if (clazz == null) {
-        clazz = (Class)commonClassCache.get(name);
-    }
-
-    if (clazz != null) {
-        return clazz;
-    } else {
-        Class elementClass;
-        String elementName;
-        if (name.endsWith(&quot;[]&quot;)) {
-            elementName = name.substring(0, name.length() - &quot;[]&quot;.length());
-            elementClass = forName(elementName, classLoader);
-            return Array.newInstance(elementClass, 0).getClass();
-        } else if (name.startsWith(&quot;[L&quot;) &amp;&amp; name.endsWith(&quot;;&quot;)) {
-            elementName = name.substring(&quot;[L&quot;.length(), name.length() - 1);
-            elementClass = forName(elementName, classLoader);
-            return Array.newInstance(elementClass, 0).getClass();
-        } else if (name.startsWith(&quot;[&quot;)) {
-            elementName = name.substring(&quot;[&quot;.length());
-            elementClass = forName(elementName, classLoader);
-            return Array.newInstance(elementClass, 0).getClass();
-        } else {
-            ClassLoader clToUse = classLoader;
-            if (classLoader == null) {
-                clToUse = getDefaultClassLoader();
-            }
-
-            try {
-                return clToUse != null ? clToUse.loadClass(name) : Class.forName(name);
-            } catch (ClassNotFoundException var9) {
-                int lastDotIndex = name.lastIndexOf(46);
-                if (lastDotIndex != -1) {
-                    String innerClassName = name.substring(0, lastDotIndex) + &#39;$&#39; + name.substring(lastDotIndex + 1);
-
-                    try {
-                        return clToUse != null ? clToUse.loadClass(innerClassName) : Class.forName(innerClassName);
-                    } catch (ClassNotFoundException var8) {
-                        ;
-                    }
-                }
-
-                throw var9;
-            }
-        }
-    }
-}
-</code></pre><p>以 WEB_ENVIRONMENT_CLASSES 参数来说，ClassUtils.isPresent(className, (ClassLoader)null) 方法将始终返回true，即默认就是 Web 程序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">private boolean deduceWebEnvironment() &#123;</span><br><span class="line">    String[] var1 = WEB_ENVIRONMENT_CLASSES;</span><br><span class="line">    int var2 = var1.length;</span><br><span class="line"></span><br><span class="line">    for(int var3 = 0; var3 &lt; var2; ++var3) &#123;</span><br><span class="line">        String className = var1[var3];</span><br><span class="line">        if (!ClassUtils.isPresent(className, (ClassLoader)null)) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中 WEB_ENVIRONMENT_CLASSES 是 SpringApplication 持有的静态属性：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">private static final String[] WEB_ENVIRONMENT_CLASSES =</span><br><span class="line">	new String[]&#123;&quot;javax.servlet.Servlet&quot;, &quot;org.springframework.web.context.ConfigurableWebApplicationContext&quot;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>SpringApplication 判断是否是 Web 程序的逻辑非常简单，即判断当前类路径下是否包含 Servlet 和 ConfigurableWebApplicationContext 类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public static boolean isPresent(String className, ClassLoader classLoader) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        forName(className, classLoader);</span><br><span class="line">        return true;</span><br><span class="line">    &#125; catch (Throwable var3) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">public static Class&lt;?&gt; forName(String name, ClassLoader classLoader) throws ClassNotFoundException, LinkageError &#123;</span><br><span class="line">    Assert.notNull(name, &quot;Name must not be null&quot;);</span><br><span class="line">    Class&lt;?&gt; clazz = resolvePrimitiveClassName(name);</span><br><span class="line">    if (clazz == null) &#123;</span><br><span class="line">        clazz = (Class)commonClassCache.get(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (clazz != null) &#123;</span><br><span class="line">        return clazz;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        Class elementClass;</span><br><span class="line">        String elementName;</span><br><span class="line">        if (name.endsWith(&quot;[]&quot;)) &#123;</span><br><span class="line">            elementName = name.substring(0, name.length() - &quot;[]&quot;.length());</span><br><span class="line">            elementClass = forName(elementName, classLoader);</span><br><span class="line">            return Array.newInstance(elementClass, 0).getClass();</span><br><span class="line">        &#125; else if (name.startsWith(&quot;[L&quot;) &amp;&amp; name.endsWith(&quot;;&quot;)) &#123;</span><br><span class="line">            elementName = name.substring(&quot;[L&quot;.length(), name.length() - 1);</span><br><span class="line">            elementClass = forName(elementName, classLoader);</span><br><span class="line">            return Array.newInstance(elementClass, 0).getClass();</span><br><span class="line">        &#125; else if (name.startsWith(&quot;[&quot;)) &#123;</span><br><span class="line">            elementName = name.substring(&quot;[&quot;.length());</span><br><span class="line">            elementClass = forName(elementName, classLoader);</span><br><span class="line">            return Array.newInstance(elementClass, 0).getClass();</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            ClassLoader clToUse = classLoader;</span><br><span class="line">            if (classLoader == null) &#123;</span><br><span class="line">                clToUse = getDefaultClassLoader();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            try &#123;</span><br><span class="line">                return clToUse != null ? clToUse.loadClass(name) : Class.forName(name);</span><br><span class="line">            &#125; catch (ClassNotFoundException var9) &#123;</span><br><span class="line">                int lastDotIndex = name.lastIndexOf(46);</span><br><span class="line">                if (lastDotIndex != -1) &#123;</span><br><span class="line">                    String innerClassName = name.substring(0, lastDotIndex) + &apos;$&apos; + name.substring(lastDotIndex + 1);</span><br><span class="line"></span><br><span class="line">                    try &#123;</span><br><span class="line">                        return clToUse != null ? clToUse.loadClass(innerClassName) : Class.forName(innerClassName);</span><br><span class="line">                    &#125; catch (ClassNotFoundException var8) &#123;</span><br><span class="line">                        ;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                throw var9;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以 WEB_ENVIRONMENT_CLASSES 参数来说，ClassUtils.isPresent(className, (ClassLoader)null) 方法将始终返回true，即默认就是 Web 程序</p>
 
       
 
@@ -416,13 +345,6 @@
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -537,10 +459,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -550,6 +468,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -625,11 +547,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

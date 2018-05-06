@@ -5,7 +5,6 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java 多线程基础 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -172,61 +171,16 @@
 <li>继承 Thread 类</li>
 <li>实现 Runnable 接口</li>
 </ul>
-<h6 id="继承-Thread-类"><a href="#继承-Thread-类" class="headerlink" title="继承 Thread 类"></a>继承 Thread 类</h6><p>Java 提供 Thread 类，自定义线程只需要继承自 Thread ，并且重写 run 方法即可：</p>
-<pre><code>public class CustomThread extends Thread {
-
-    @Override
-    public void run() {
-        super.run();
-        System.out.printf(&quot;通过继承 Thread 类自定义线程&quot;);
-    }
-
-}
-</code></pre><p>使用自定义的线程类：</p>
-<pre><code>public class CustomThreadTest {
-
-    public static void main(String[] args) {
-        CustomThread customThread = new CustomThread();
-        customThread.start();
-        System.out.println(&quot;运行自定义线程结束&quot;);
-    }
-}
-</code></pre><h6 id="实现-Runnable-接口"><a href="#实现-Runnable-接口" class="headerlink" title="实现 Runnable 接口"></a>实现 Runnable 接口</h6><p>Java 提供 Runnable 接口，自定义线程只需要实现 Runnable ，并且实现 run 方法即可：</p>
-<pre><code>public class CustomRunnable implements Runnable {
-
-    public void run() {
-        System.out.printf(&quot;通过实现 Runnable 接口自定义线程&quot;);
-    }
-}
-</code></pre><p>使用自定义的线程类：</p>
-<pre><code>public class CustomRunnableTest {
-
-    public static void main(String[] args) {
-        CustomRunnable customRunnable = new CustomRunnable();
-        Thread thread = new Thread(customRunnable);
-        thread.start();
-        System.out.println(&quot;运行自定义线程结束&quot;);
-    }
-}
-</code></pre><p>两者在使用时有些许差别，通过实现 Runnable 接口的线程类使用时需要通过 Thread 类。而通过继承 Thread 类的线程类使用时不需要通过 Thread 类。<br>因为 Thread 已经实现了 Runnable 接口：</p>
-<pre><code>public class Thread implements Runnable
-</code></pre><p>Thread 类有两个常用的构造函数：</p>
-<pre><code> public Thread() {
-    init(null, null, &quot;Thread-&quot; + nextThreadNum(), 0);
-}
-
-
-public Thread(Runnable target) {
-    init(null, target, &quot;Thread-&quot; + nextThreadNum(), 0);
-}
-</code></pre><p>其分别对应了上述两种情形。<br>因为 Java 单继承的局限性，在实际使用中，优先推荐通过实现 Runnable 接口自定义线程。</p>
-<h4 id="线程运行随机性"><a href="#线程运行随机性" class="headerlink" title="线程运行随机性"></a>线程运行随机性</h4><p>运行上述自定义线程，其输出结果可能是：</p>
-<pre><code>运行自定义线程结束
-自定义线程
-</code></pre><p>可能是：</p>
-<pre><code>自定义线程
-运行自定义线程结束
-</code></pre><p>一个线程的运行依赖其被其他线程调用 start()方法，start() 方法调用线程内的 run() 方法（如果直接调用 run() 方法其和普通的 Java 类没有任何区别）。Java 应用程序最少也会有一个运行 main() 方法的线程，称为主线程。<br>上述运行结果中: “运行自定义线程结束”即主线程调用执行 main() 方法后，main() 方法输出的信息，”自定义线程”即主线程调用自定义线程的 start() 方法后，自定义线程 start() 方法调用其 run() 方法后，run() 方法输出的信息。<br>之所以出现上述情况，是因为线程作为操作系统运行的最小单位，CPU 以分时共享的方式调用，其调用是不确定的。</p>
+<h6 id="继承-Thread-类"><a href="#继承-Thread-类" class="headerlink" title="继承 Thread 类"></a>继承 Thread 类</h6><p>Java 提供 Thread 类，自定义线程只需要继承自 Thread ，并且重写 run 方法即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class CustomThread extends Thread &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		super.run();</span><br><span class="line">		System.out.printf(&quot;通过继承 Thread 类自定义线程&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用自定义的线程类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class CustomThreadTest &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		CustomThread customThread = new CustomThread();</span><br><span class="line">		customThread.start();</span><br><span class="line">		System.out.println(&quot;运行自定义线程结束&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h6 id="实现-Runnable-接口"><a href="#实现-Runnable-接口" class="headerlink" title="实现 Runnable 接口"></a>实现 Runnable 接口</h6><p>Java 提供 Runnable 接口，自定义线程只需要实现 Runnable ，并且实现 run 方法即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class CustomRunnable implements Runnable &#123;</span><br><span class="line"></span><br><span class="line">	public void run() &#123;</span><br><span class="line">		System.out.printf(&quot;通过实现 Runnable 接口自定义线程&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用自定义的线程类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class CustomRunnableTest &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		CustomRunnable customRunnable = new CustomRunnable();</span><br><span class="line">		Thread thread = new Thread(customRunnable);</span><br><span class="line">		thread.start();</span><br><span class="line">		System.out.println(&quot;运行自定义线程结束&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>两者在使用时有些许差别，通过实现 Runnable 接口的线程类使用时需要通过 Thread 类。而通过继承 Thread 类的线程类使用时不需要通过 Thread 类。<br>因为 Thread 已经实现了 Runnable 接口：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class Thread implements Runnable</span><br></pre></td></tr></table></figure></p>
+<p>Thread 类有两个常用的构造函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> public Thread() &#123;</span><br><span class="line">    init(null, null, &quot;Thread-&quot; + nextThreadNum(), 0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public Thread(Runnable target) &#123;</span><br><span class="line">    init(null, target, &quot;Thread-&quot; + nextThreadNum(), 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其分别对应了上述两种情形。<br>因为 Java 单继承的局限性，在实际使用中，优先推荐通过实现 Runnable 接口自定义线程。</p>
+<h4 id="线程运行随机性"><a href="#线程运行随机性" class="headerlink" title="线程运行随机性"></a>线程运行随机性</h4><p>运行上述自定义线程，其输出结果可能是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">运行自定义线程结束</span><br><span class="line">自定义线程</span><br></pre></td></tr></table></figure></p>
+<p>可能是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">自定义线程</span><br><span class="line">运行自定义线程结束</span><br></pre></td></tr></table></figure></p>
+<p>一个线程的运行依赖其被其他线程调用 start()方法，start() 方法调用线程内的 run() 方法（如果直接调用 run() 方法其和普通的 Java 类没有任何区别）。Java 应用程序最少也会有一个运行 main() 方法的线程，称为主线程。<br>上述运行结果中: “运行自定义线程结束”即主线程调用执行 main() 方法后，main() 方法输出的信息，”自定义线程”即主线程调用自定义线程的 start() 方法后，自定义线程 start() 方法调用其 run() 方法后，run() 方法输出的信息。<br>之所以出现上述情况，是因为线程作为操作系统运行的最小单位，CPU 以分时共享的方式调用，其调用是不确定的。</p>
 
       
 
@@ -403,13 +357,6 @@ public Thread(Runnable target) {
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -524,10 +471,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -537,6 +480,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -612,11 +559,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

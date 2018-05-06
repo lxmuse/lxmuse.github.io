@@ -5,22 +5,21 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Spring Framework 依赖注入高级特性 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Spring Framework：4.3.14.RELEASE p 命名空间 p 命名空间是简化 property 标签的 &amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot; xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xm">
+  <meta name="description" content="Spring Framework：4.3.14.RELEASE p 命名空间 p 命名空间是简化 property 标签的 1234567&amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot; xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;q">
 <meta name="keywords" content="Spring Framework">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Framework 依赖注入高级特性">
 <meta property="og:url" content="http://yoursite.com/2017/01/16/Spring Framework 依赖注入高级特性/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="Spring Framework：4.3.14.RELEASE p 命名空间 p 命名空间是简化 property 标签的 &amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot; xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xm">
+<meta property="og:description" content="Spring Framework：4.3.14.RELEASE p 命名空间 p 命名空间是简化 property 标签的 1234567&amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot; xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;q">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-04-10T02:12:57.807Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Framework 依赖注入高级特性">
-<meta name="twitter:description" content="Spring Framework：4.3.14.RELEASE p 命名空间 p 命名空间是简化 property 标签的 &amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot; xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xm">
+<meta name="twitter:description" content="Spring Framework：4.3.14.RELEASE p 命名空间 p 命名空间是简化 property 标签的 1234567&amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot; xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;q">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -167,62 +166,26 @@
         <p>Spring Framework：4.3.14.RELEASE</p>
 <p><strong>p 命名空间</strong></p>
 <p>p 命名空间是简化 property 标签的</p>
-<pre><code>&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:p=&quot;http://www.springframework.org/schema/p&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
-    &lt;bean name=&quot;classic&quot; class=&quot;com.example.ExampleBean&quot;&gt; 
-        &lt;property name=&quot;email&quot; value=&quot;foo@bar.com&quot;/&gt;
-    &lt;/bean&gt;
-    &lt;bean name=&quot;p-namespace&quot; class=&quot;com.example.ExampleBean&quot; p:email=&quot;foo@bar.com&quot;/&gt;
-&lt;/beans&gt;
-</code></pre><p>包含引用属性：</p>
-<pre><code>&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:p=&quot;http://www.springframework.org/schema/p&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
-    &lt;bean name=&quot;john-classic&quot; class=&quot;com.example.Person&quot;&gt; 
-        &lt;property name=&quot;name&quot; value=&quot;John Doe&quot;/&gt; 
-        &lt;property name=&quot;spouse&quot; ref=&quot;jane&quot;/&gt;
-    &lt;/bean&gt;
-    &lt;bean name=&quot;john-modern&quot; class=&quot;com.example.Person&quot; p:name=&quot;John Doe&quot; p:spouse-ref=&quot;jane&quot;/&gt;
-    &lt;bean name=&quot;jane&quot; class=&quot;com.example.Person&quot;&gt; 
-        &lt;property name=&quot;name&quot; value=&quot;Jane Doe&quot;/&gt;
-    &lt;/bean&gt;
-&lt;/beans&gt;
-</code></pre><p><strong>c 命名空间</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:p=&quot;http://www.springframework.org/schema/p&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans</span><br><span class="line">        http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;</span><br><span class="line">	&lt;bean name=&quot;classic&quot; class=&quot;com.example.ExampleBean&quot;&gt; </span><br><span class="line">		&lt;property name=&quot;email&quot; value=&quot;foo@bar.com&quot;/&gt;</span><br><span class="line">	&lt;/bean&gt;</span><br><span class="line">	&lt;bean name=&quot;p-namespace&quot; class=&quot;com.example.ExampleBean&quot; p:email=&quot;foo@bar.com&quot;/&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<p>包含引用属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:p=&quot;http://www.springframework.org/schema/p&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans</span><br><span class="line">        http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;</span><br><span class="line">	&lt;bean name=&quot;john-classic&quot; class=&quot;com.example.Person&quot;&gt; </span><br><span class="line">		&lt;property name=&quot;name&quot; value=&quot;John Doe&quot;/&gt; </span><br><span class="line">		&lt;property name=&quot;spouse&quot; ref=&quot;jane&quot;/&gt;</span><br><span class="line">	&lt;/bean&gt;</span><br><span class="line">	&lt;bean name=&quot;john-modern&quot; class=&quot;com.example.Person&quot; p:name=&quot;John Doe&quot; p:spouse-ref=&quot;jane&quot;/&gt;</span><br><span class="line">	&lt;bean name=&quot;jane&quot; class=&quot;com.example.Person&quot;&gt; </span><br><span class="line">		&lt;property name=&quot;name&quot; value=&quot;Jane Doe&quot;/&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>c 命名空间</strong></p>
 <p>c 命名空间是简化 constructor-arg 标签</p>
-<pre><code>&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:c=&quot;http://www.springframework.org/schema/c&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
-    &lt;bean id=&quot;bar&quot; class=&quot;x.y.Bar&quot;/&gt; &lt;bean id=&quot;baz&quot; class=&quot;x.y.Baz&quot;/&gt;
-    &lt;bean id=&quot;foo&quot; class=&quot;x.y.Foo&quot;&gt; 
-        &lt;constructor-arg ref=&quot;bar&quot;/&gt; 
-        &lt;constructor-arg ref=&quot;baz&quot;/&gt; 
-        &lt;constructor-arg value=&quot;foo@bar.com&quot;/&gt;
-    &lt;/bean&gt;    
-    &lt;bean id=&quot;foo&quot; class=&quot;x.y.Foo&quot; c:bar-ref=&quot;bar&quot; c:baz-ref=&quot;baz&quot; c:email=&quot;foo@bar.com&quot;/&gt; 
-&lt;/beans&gt;
-</code></pre><p>使用索引：</p>
-<pre><code>&lt;bean id=&quot;foo&quot; class=&quot;x.y.Foo&quot; c:_0-ref=&quot;bar&quot; c:_1-ref=&quot;baz&quot;/&gt;
-</code></pre><p><strong>级联属性</strong></p>
-<pre><code>&lt;bean id=&quot;foo&quot; class=&quot;foo.Bar&quot;&gt;
-    &lt;property name=&quot;fred.bob.sammy&quot; value=&quot;123&quot; /&gt;
-&lt;/bean&gt;
-</code></pre><p><strong>depends-on属性</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:c=&quot;http://www.springframework.org/schema/c&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans</span><br><span class="line">        http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;</span><br><span class="line">	&lt;bean id=&quot;bar&quot; class=&quot;x.y.Bar&quot;/&gt; &lt;bean id=&quot;baz&quot; class=&quot;x.y.Baz&quot;/&gt;</span><br><span class="line">	&lt;bean id=&quot;foo&quot; class=&quot;x.y.Foo&quot;&gt; </span><br><span class="line">		&lt;constructor-arg ref=&quot;bar&quot;/&gt; </span><br><span class="line">		&lt;constructor-arg ref=&quot;baz&quot;/&gt; </span><br><span class="line">		&lt;constructor-arg value=&quot;foo@bar.com&quot;/&gt;</span><br><span class="line">	&lt;/bean&gt;	</span><br><span class="line">	&lt;bean id=&quot;foo&quot; class=&quot;x.y.Foo&quot; c:bar-ref=&quot;bar&quot; c:baz-ref=&quot;baz&quot; c:email=&quot;foo@bar.com&quot;/&gt; </span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<p>使用索引：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;foo&quot; class=&quot;x.y.Foo&quot; c:_0-ref=&quot;bar&quot; c:_1-ref=&quot;baz&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>级联属性</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;foo&quot; class=&quot;foo.Bar&quot;&gt;</span><br><span class="line">	&lt;property name=&quot;fred.bob.sammy&quot; value=&quot;123&quot; /&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>depends-on属性</strong></p>
 <p>depends-on 属性用于显式声明依赖初始化的先后顺序</p>
-<pre><code>&lt;bean id=&quot;beanOne&quot; class=&quot;ExampleBean&quot; depends-on=&quot;manager&quot;/&gt; 
-&lt;bean id=&quot;manager&quot; class=&quot;ManagerBean&quot; /&gt;
-</code></pre><p>上述说明在实例化 beanOne 前需要先实例化 manager</p>
-<pre><code>&lt;bean id=&quot;beanOne&quot; class=&quot;ExampleBean&quot; depends-on=&quot;manager,accountDao&quot;&gt; 
-    &lt;property name=&quot;manager&quot; ref=&quot;manager&quot; /&gt;
-&lt;/bean&gt;
-&lt;bean id=&quot;manager&quot; class=&quot;ManagerBean&quot; /&gt;
-&lt;bean id=&quot;accountDao&quot; class=&quot;x.y.jdbc.JdbcAccountDao&quot; /&gt;
-</code></pre><p><strong>lazy-init属性</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;beanOne&quot; class=&quot;ExampleBean&quot; depends-on=&quot;manager&quot;/&gt; </span><br><span class="line">&lt;bean id=&quot;manager&quot; class=&quot;ManagerBean&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>上述说明在实例化 beanOne 前需要先实例化 manager</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;beanOne&quot; class=&quot;ExampleBean&quot; depends-on=&quot;manager,accountDao&quot;&gt; </span><br><span class="line">	&lt;property name=&quot;manager&quot; ref=&quot;manager&quot; /&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line">&lt;bean id=&quot;manager&quot; class=&quot;ManagerBean&quot; /&gt;</span><br><span class="line">&lt;bean id=&quot;accountDao&quot; class=&quot;x.y.jdbc.JdbcAccountDao&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>lazy-init属性</strong></p>
 <p>容器启动时默认对 Bean 进行初始化。 lazy-init 可以对 Bean 设置延迟初始化，当第一次访问时再去初始化。</p>
-<pre><code>&lt;bean id=&quot;lazy&quot; class=&quot;com.foo.ExpensiveToCreateBean&quot; lazy-init=&quot;true&quot;/&gt; 
-&lt;bean name=&quot;not.lazy&quot; class=&quot;com.foo.AnotherBean&quot;/&gt;
-</code></pre><p>还可以批量设置启用：</p>
-<pre><code>&lt;beans default-lazy-init=&quot;true&quot;&gt;
-
-&lt;/beans&gt;
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;lazy&quot; class=&quot;com.foo.ExpensiveToCreateBean&quot; lazy-init=&quot;true&quot;/&gt; </span><br><span class="line">&lt;bean name=&quot;not.lazy&quot; class=&quot;com.foo.AnotherBean&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>还可以批量设置启用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;beans default-lazy-init=&quot;true&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -398,13 +361,6 @@
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -519,10 +475,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -532,6 +484,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -607,11 +563,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

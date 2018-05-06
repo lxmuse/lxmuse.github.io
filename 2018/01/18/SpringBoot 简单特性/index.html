@@ -5,22 +5,21 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>SpringBoot 简单特性 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SpringBoot：1.5.10.RELEASE 定制SpringApplication 以关闭 Banner 为例： import org.springframework.boot.Banner; import org.springframework.boot.SpringApplication; import org.springframework.boot.autoconfigure.Sp">
+  <meta name="description" content="SpringBoot：1.5.10.RELEASE 定制SpringApplication 以关闭 Banner 为例： 12345678910111213import org.springframework.boot.Banner;import org.springframework.boot.SpringApplication;import org.springframework.boot.a">
 <meta name="keywords" content="SpringBoot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot 简单特性">
 <meta property="og:url" content="http://yoursite.com/2018/01/18/SpringBoot 简单特性/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="SpringBoot：1.5.10.RELEASE 定制SpringApplication 以关闭 Banner 为例： import org.springframework.boot.Banner; import org.springframework.boot.SpringApplication; import org.springframework.boot.autoconfigure.Sp">
+<meta property="og:description" content="SpringBoot：1.5.10.RELEASE 定制SpringApplication 以关闭 Banner 为例： 12345678910111213import org.springframework.boot.Banner;import org.springframework.boot.SpringApplication;import org.springframework.boot.a">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-04-10T06:47:28.928Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot 简单特性">
-<meta name="twitter:description" content="SpringBoot：1.5.10.RELEASE 定制SpringApplication 以关闭 Banner 为例： import org.springframework.boot.Banner; import org.springframework.boot.SpringApplication; import org.springframework.boot.autoconfigure.Sp">
+<meta name="twitter:description" content="SpringBoot：1.5.10.RELEASE 定制SpringApplication 以关闭 Banner 为例： 12345678910111213import org.springframework.boot.Banner;import org.springframework.boot.SpringApplication;import org.springframework.boot.a">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -167,39 +166,11 @@
         <p>SpringBoot：1.5.10.RELEASE</p>
 <p><strong>定制SpringApplication</strong></p>
 <p>以关闭 Banner 为例：</p>
-<pre><code>import org.springframework.boot.Banner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
-public class MyApplication {
-
-    public static void main(String[] args) {
-        SpringApplication application = new SpringApplication(MyApplication.class);
-        application.setBannerMode(Banner.Mode.OFF);
-        application.run(args);
-    }
-}
-</code></pre><p>或者 application.yml 中</p>
-<pre><code>spring: 
-    main:
-        banner-mode: &quot;off&quot;
-</code></pre><p><strong>流式API</strong></p>
-<pre><code>import org.springframework.boot.Banner;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-
-@SpringBootApplication
-public class MyApplication {
-
-    public static void main(String[] args) {
-        new SpringApplicationBuilder()
-            .sources(MyApplication.class)
-            .bannerMode(Banner.Mode.OFF)
-            .run(args);
-    }
-}
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import org.springframework.boot.Banner;</span><br><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class MyApplication &#123;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication application = new SpringApplication(MyApplication.class);</span><br><span class="line">		application.setBannerMode(Banner.Mode.OFF);</span><br><span class="line">		application.run(args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者 application.yml 中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spring: </span><br><span class="line">	main:</span><br><span class="line">		banner-mode: &quot;off&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>流式API</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import org.springframework.boot.Banner;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line">import org.springframework.boot.builder.SpringApplicationBuilder;</span><br><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class MyApplication &#123;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		new SpringApplicationBuilder()</span><br><span class="line">			.sources(MyApplication.class)</span><br><span class="line">			.bannerMode(Banner.Mode.OFF)</span><br><span class="line">			.run(args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -375,13 +346,6 @@ public class MyApplication {
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -496,10 +460,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -509,6 +469,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -584,11 +548,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

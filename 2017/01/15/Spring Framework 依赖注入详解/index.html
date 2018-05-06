@@ -5,22 +5,21 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Spring Framework 依赖注入详解 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Spring Framework：4.3.14.RELEASE 在了解了依赖注入后接着来详细演示不同情景的依赖注入。 属性值直接注入 原始类型，字符串等可以直接属性值注入 &amp;lt;bean id=&amp;quot;myDataSource&amp;quot; class=&amp;quot;org.apache.commons.dbcp.BasicDataSource&amp;quot; destroy-method=&amp;quo">
+  <meta name="description" content="Spring Framework：4.3.14.RELEASE 在了解了依赖注入后接着来详细演示不同情景的依赖注入。 属性值直接注入 原始类型，字符串等可以直接属性值注入 123456&amp;lt;bean id=&amp;quot;myDataSource&amp;quot; class=&amp;quot;org.apache.commons.dbcp.BasicDataSource&amp;quot; destroy-metho">
 <meta name="keywords" content="Spring Framework">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Framework 依赖注入详解">
 <meta property="og:url" content="http://yoursite.com/2017/01/15/Spring Framework 依赖注入详解/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="Spring Framework：4.3.14.RELEASE 在了解了依赖注入后接着来详细演示不同情景的依赖注入。 属性值直接注入 原始类型，字符串等可以直接属性值注入 &amp;lt;bean id=&amp;quot;myDataSource&amp;quot; class=&amp;quot;org.apache.commons.dbcp.BasicDataSource&amp;quot; destroy-method=&amp;quo">
+<meta property="og:description" content="Spring Framework：4.3.14.RELEASE 在了解了依赖注入后接着来详细演示不同情景的依赖注入。 属性值直接注入 原始类型，字符串等可以直接属性值注入 123456&amp;lt;bean id=&amp;quot;myDataSource&amp;quot; class=&amp;quot;org.apache.commons.dbcp.BasicDataSource&amp;quot; destroy-metho">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-04-10T01:56:57.031Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Framework 依赖注入详解">
-<meta name="twitter:description" content="Spring Framework：4.3.14.RELEASE 在了解了依赖注入后接着来详细演示不同情景的依赖注入。 属性值直接注入 原始类型，字符串等可以直接属性值注入 &amp;lt;bean id=&amp;quot;myDataSource&amp;quot; class=&amp;quot;org.apache.commons.dbcp.BasicDataSource&amp;quot; destroy-method=&amp;quo">
+<meta name="twitter:description" content="Spring Framework：4.3.14.RELEASE 在了解了依赖注入后接着来详细演示不同情景的依赖注入。 属性值直接注入 原始类型，字符串等可以直接属性值注入 123456&amp;lt;bean id=&amp;quot;myDataSource&amp;quot; class=&amp;quot;org.apache.commons.dbcp.BasicDataSource&amp;quot; destroy-metho">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -168,129 +167,34 @@
 <p>在了解了依赖注入后接着来详细演示不同情景的依赖注入。</p>
 <p><strong>属性值直接注入</strong></p>
 <p>原始类型，字符串等可以直接属性值注入</p>
-<pre><code>&lt;bean id=&quot;myDataSource&quot; class=&quot;org.apache.commons.dbcp.BasicDataSource&quot; destroy-method=&quot;close&quot;&gt;
-    &lt;property name=&quot;driverClassName&quot; value=&quot;com.mysql.jdbc.Driver&quot;/&gt;
-    &lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/mydb&quot;/&gt;
-    &lt;property name=&quot;username&quot; value=&quot;root&quot;/&gt;
-    &lt;property name=&quot;password&quot; value=&quot;masterkaoli&quot;/&gt; 
-&lt;/bean&gt;
-</code></pre><p>Spring Framework 可以自动将字符串的属性值按最佳的匹配方式为对应的属性进行转换</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;myDataSource&quot; class=&quot;org.apache.commons.dbcp.BasicDataSource&quot; destroy-method=&quot;close&quot;&gt;</span><br><span class="line">	&lt;property name=&quot;driverClassName&quot; value=&quot;com.mysql.jdbc.Driver&quot;/&gt;</span><br><span class="line">	&lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/mydb&quot;/&gt;</span><br><span class="line">	&lt;property name=&quot;username&quot; value=&quot;root&quot;/&gt;</span><br><span class="line">	&lt;property name=&quot;password&quot; value=&quot;masterkaoli&quot;/&gt; </span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>Spring Framework 可以自动将字符串的属性值按最佳的匹配方式为对应的属性进行转换</p>
 <p>为了简化配置，Spring Framework 提供了 P 属性命名空间：</p>
-<pre><code>&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:p=&quot;http://www.springframework.org/schema/p&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
-    &lt;bean id=&quot;myDataSource&quot; class=&quot;org.apache.commons.dbcp.BasicDataSource&quot; destroy-method=&quot;close&quot;
-        p:driverClassName=&quot;com.mysql.jdbc.Driver&quot; 
-        p:url=&quot;jdbc:mysql://localhost:3306/mydb&quot;
-        p:username=&quot;root&quot; 
-        p:password=&quot;masterkaoli&quot;/&gt;
-&lt;/beans&gt;
-</code></pre><p>Spring Framework 还支持 Properties 属性方式注入：</p>
-<pre><code>&lt;bean id=&quot;mappings&quot; class=&quot;org.springframework.beans.factory.config.PropertyPlaceholderConfigurer&quot;&gt;
-    &lt;!-- typed as a java.util.Properties --&gt;
-    &lt;property name=&quot;properties&quot;&gt; 
-        &lt;value&gt;
-            jdbc.driver.className=com.mysql.jdbc.Driver
-            jdbc.url=jdbc:mysql://localhost:3306/mydb
-       &lt;/value&gt;
-    &lt;/property&gt;
-&lt;/bean&gt;
-</code></pre><p><strong>引用属性注入</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:p=&quot;http://www.springframework.org/schema/p&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;</span><br><span class="line">	&lt;bean id=&quot;myDataSource&quot; class=&quot;org.apache.commons.dbcp.BasicDataSource&quot; destroy-method=&quot;close&quot;</span><br><span class="line">		p:driverClassName=&quot;com.mysql.jdbc.Driver&quot; </span><br><span class="line">		p:url=&quot;jdbc:mysql://localhost:3306/mydb&quot;</span><br><span class="line">		p:username=&quot;root&quot; </span><br><span class="line">		p:password=&quot;masterkaoli&quot;/&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<p>Spring Framework 还支持 Properties 属性方式注入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;mappings&quot; class=&quot;org.springframework.beans.factory.config.PropertyPlaceholderConfigurer&quot;&gt;</span><br><span class="line">    &lt;!-- typed as a java.util.Properties --&gt;</span><br><span class="line">	&lt;property name=&quot;properties&quot;&gt; </span><br><span class="line">		&lt;value&gt;</span><br><span class="line">            jdbc.driver.className=com.mysql.jdbc.Driver</span><br><span class="line">            jdbc.url=jdbc:mysql://localhost:3306/mydb</span><br><span class="line">       &lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>引用属性注入</strong></p>
 <p>使用 ref 属性：</p>
-<pre><code>&lt;bean id=&quot;user&quot; class=&quot;com.example.spring.User&quot;&gt;
-    &lt;property name=&quot;name&quot; value=&quot;Spring Framework&quot;&gt;&lt;/property&gt;
-&lt;/bean&gt;
-
-&lt;bean id=&quot;foo&quot; class=&quot;com.example.spring.Foo&quot;&gt;
-    &lt;property name=&quot;user&quot; ref=&quot;user&quot;&gt;&lt;/property&gt;
-&lt;/bean&gt;
-</code></pre><p>使用 ref 子标签：</p>
-<pre><code>&lt;bean id=&quot;theTargetBean&quot; class=&quot;...&quot;/&gt;
-&lt;bean id=&quot;theClientBean&quot; class=&quot;...&quot;&gt; 
-    &lt;property name=&quot;targetName&quot;&gt;
-        &lt;ref bean=&quot;theTargetBean&quot;/&gt; 
-    &lt;/property&gt;
-&lt;/bean&gt;
-</code></pre><p>使用 idref 子标签：</p>
-<pre><code>&lt;bean id=&quot;theTargetBean&quot; class=&quot;...&quot;/&gt;
-&lt;bean id=&quot;theClientBean&quot; class=&quot;...&quot;&gt; 
-    &lt;property name=&quot;targetName&quot;&gt;
-        &lt;idref bean=&quot;theTargetBean&quot;/&gt; 
-    &lt;/property&gt;
-&lt;/bean&gt;
-</code></pre><p>直接使用 value 属性：</p>
-<pre><code>&lt;bean id=&quot;theTargetBean&quot; class=&quot;...&quot; /&gt;
-&lt;bean id=&quot;client&quot; class=&quot;...&quot;&gt;
-    &lt;property name=&quot;targetName&quot; value=&quot;theTargetBean&quot;/&gt;
-&lt;/bean&gt;
-</code></pre><p><strong>内部类</strong></p>
-<pre><code>&lt;bean id=&quot;outer&quot; class=&quot;...&quot;&gt;
-    &lt;property name=&quot;target&quot;&gt;
-        &lt;bean class=&quot;com.example.Person&quot;&gt; 
-            &lt;property name=&quot;name&quot; value=&quot;Fiona Apple&quot;/&gt;
-            &lt;property name=&quot;age&quot; value=&quot;25&quot;/&gt;
-        &lt;/bean&gt;
-    &lt;/property&gt;
-&lt;/bean&gt;
-</code></pre><p>内部类 Bean 没有 id 属性，不可以被其他 Bean 引用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;user&quot; class=&quot;com.example.spring.User&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;name&quot; value=&quot;Spring Framework&quot;&gt;&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean id=&quot;foo&quot; class=&quot;com.example.spring.Foo&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;user&quot; ref=&quot;user&quot;&gt;&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>使用 ref 子标签：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;theTargetBean&quot; class=&quot;...&quot;/&gt;</span><br><span class="line">&lt;bean id=&quot;theClientBean&quot; class=&quot;...&quot;&gt; </span><br><span class="line">	&lt;property name=&quot;targetName&quot;&gt;</span><br><span class="line">		&lt;ref bean=&quot;theTargetBean&quot;/&gt; </span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>使用 idref 子标签：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;theTargetBean&quot; class=&quot;...&quot;/&gt;</span><br><span class="line">&lt;bean id=&quot;theClientBean&quot; class=&quot;...&quot;&gt; </span><br><span class="line">	&lt;property name=&quot;targetName&quot;&gt;</span><br><span class="line">		&lt;idref bean=&quot;theTargetBean&quot;/&gt; </span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>直接使用 value 属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;theTargetBean&quot; class=&quot;...&quot; /&gt;</span><br><span class="line">&lt;bean id=&quot;client&quot; class=&quot;...&quot;&gt;</span><br><span class="line">	&lt;property name=&quot;targetName&quot; value=&quot;theTargetBean&quot;/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>内部类</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;outer&quot; class=&quot;...&quot;&gt;</span><br><span class="line">	&lt;property name=&quot;target&quot;&gt;</span><br><span class="line">		&lt;bean class=&quot;com.example.Person&quot;&gt; </span><br><span class="line">			&lt;property name=&quot;name&quot; value=&quot;Fiona Apple&quot;/&gt;</span><br><span class="line">			&lt;property name=&quot;age&quot; value=&quot;25&quot;/&gt;</span><br><span class="line">        &lt;/bean&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>内部类 Bean 没有 id 属性，不可以被其他 Bean 引用</p>
 <p><strong>集合注入</strong></p>
 <p>集合注入支持 list、 set、 map、 properteis<br>集合元素可以是原始类型和引用类型</p>
-<pre><code>&lt;bean id=&quot;moreComplexObject&quot; class=&quot;example.ComplexObject&quot;&gt;
-    &lt;property name=&quot;adminEmails&quot;&gt;
-        &lt;props&gt;
-            &lt;prop key=&quot;administrator&quot;&gt;administrator@example.org&lt;/prop&gt; 
-            &lt;prop key=&quot;support&quot;&gt;support@example.org&lt;/prop&gt;
-            &lt;prop key=&quot;development&quot;&gt;development@example.org&lt;/prop&gt;
-        &lt;/props&gt;
-    &lt;/property&gt;
-
-    &lt;property name=&quot;someList&quot;&gt; 
-        &lt;list&gt;
-            &lt;value&gt;a list element followed by a reference&lt;/value&gt;
-            &lt;ref bean=&quot;myDataSource&quot; /&gt; 
-        &lt;/list&gt;
-    &lt;/property&gt;
-
-    &lt;property name=&quot;someMap&quot;&gt; 
-        &lt;map&gt;
-            &lt;entry key=&quot;an entry&quot; value=&quot;just some string&quot;/&gt;
-            &lt;entry key =&quot;a ref&quot; value-ref=&quot;myDataSource&quot;/&gt; 
-        &lt;/map&gt;
-    &lt;/property&gt;
-
-    &lt;property name=&quot;someSet&quot;&gt; 
-        &lt;set&gt;
-            &lt;value&gt;just some string&lt;/value&gt;
-            &lt;ref bean=&quot;myDataSource&quot; /&gt; 
-        &lt;/set&gt;
-    &lt;/property&gt;
-&lt;/bean&gt;
-</code></pre><p>支持集合合并：</p>
-<pre><code>&lt;beans&gt;
-    &lt;bean id=&quot;parent&quot; abstract=&quot;true&quot; class=&quot;example.ComplexObject&quot;&gt;
-        &lt;property name=&quot;adminEmails&quot;&gt; &lt;props&gt;
-            &lt;prop key=&quot;administrator&quot;&gt;administrator@example.com&lt;/prop&gt;
-            &lt;prop key=&quot;support&quot;&gt;support@example.com&lt;/prop&gt; &lt;/props&gt;
-        &lt;/property&gt;
-    &lt;/bean&gt;
-    &lt;bean id=&quot;child&quot; parent=&quot;parent&quot;&gt; 
-        &lt;property name=&quot;adminEmails&quot;&gt;
-            &lt;props merge=&quot;true&quot;&gt;
-                &lt;prop key=&quot;sales&quot;&gt;sales@example.com&lt;/prop&gt; 
-                &lt;prop key=&quot;support&quot;&gt;support@example.co.uk&lt;/prop&gt;
-            &lt;/props&gt;
-           &lt;/property&gt;
-   &lt;/bean&gt;
-&lt;beans&gt;
-</code></pre><p>同理 list map set 均可以支持集合合并，且子集会继承并覆盖父集的值<br><strong>必须在子集上指定 merge 属性值为 true</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;moreComplexObject&quot; class=&quot;example.ComplexObject&quot;&gt;</span><br><span class="line">	&lt;property name=&quot;adminEmails&quot;&gt;</span><br><span class="line">		&lt;props&gt;</span><br><span class="line">			&lt;prop key=&quot;administrator&quot;&gt;administrator@example.org&lt;/prop&gt; </span><br><span class="line">			&lt;prop key=&quot;support&quot;&gt;support@example.org&lt;/prop&gt;</span><br><span class="line">			&lt;prop key=&quot;development&quot;&gt;development@example.org&lt;/prop&gt;</span><br><span class="line">        &lt;/props&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    </span><br><span class="line">	&lt;property name=&quot;someList&quot;&gt; </span><br><span class="line">		&lt;list&gt;</span><br><span class="line">			&lt;value&gt;a list element followed by a reference&lt;/value&gt;</span><br><span class="line">			&lt;ref bean=&quot;myDataSource&quot; /&gt; </span><br><span class="line">		&lt;/list&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">   </span><br><span class="line">	&lt;property name=&quot;someMap&quot;&gt; </span><br><span class="line">		&lt;map&gt;</span><br><span class="line">			&lt;entry key=&quot;an entry&quot; value=&quot;just some string&quot;/&gt;</span><br><span class="line">			&lt;entry key =&quot;a ref&quot; value-ref=&quot;myDataSource&quot;/&gt; </span><br><span class="line">		&lt;/map&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">    </span><br><span class="line">	&lt;property name=&quot;someSet&quot;&gt; </span><br><span class="line">		&lt;set&gt;</span><br><span class="line">			&lt;value&gt;just some string&lt;/value&gt;</span><br><span class="line">			&lt;ref bean=&quot;myDataSource&quot; /&gt; </span><br><span class="line">		&lt;/set&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>支持集合合并：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;beans&gt;</span><br><span class="line">	&lt;bean id=&quot;parent&quot; abstract=&quot;true&quot; class=&quot;example.ComplexObject&quot;&gt;</span><br><span class="line">		&lt;property name=&quot;adminEmails&quot;&gt; &lt;props&gt;</span><br><span class="line">			&lt;prop key=&quot;administrator&quot;&gt;administrator@example.com&lt;/prop&gt;</span><br><span class="line">			&lt;prop key=&quot;support&quot;&gt;support@example.com&lt;/prop&gt; &lt;/props&gt;</span><br><span class="line">    	&lt;/property&gt;</span><br><span class="line">	&lt;/bean&gt;</span><br><span class="line">	&lt;bean id=&quot;child&quot; parent=&quot;parent&quot;&gt; </span><br><span class="line">		&lt;property name=&quot;adminEmails&quot;&gt;</span><br><span class="line">			&lt;props merge=&quot;true&quot;&gt;</span><br><span class="line">				&lt;prop key=&quot;sales&quot;&gt;sales@example.com&lt;/prop&gt; </span><br><span class="line">				&lt;prop key=&quot;support&quot;&gt;support@example.co.uk&lt;/prop&gt;</span><br><span class="line">        	&lt;/props&gt;</span><br><span class="line">   		&lt;/property&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br><span class="line">&lt;beans&gt;</span><br></pre></td></tr></table></figure>
+<p>同理 list map set 均可以支持集合合并，且子集会继承并覆盖父集的值<br><strong>必须在子集上指定 merge 属性值为 true</strong></p>
 <p><strong>null 和 空字符串注入</strong></p>
-<pre><code>&lt;bean class=&quot;ExampleBean&quot;&gt;
-    &lt;property name=&quot;email&quot; value=&quot;&quot;/&gt;
-&lt;/bean&gt;
-</code></pre><pre><code>&lt;bean class=&quot;ExampleBean&quot;&gt; 
-    &lt;property name=&quot;email&quot;&gt;
-        &lt;null/&gt;
-    &lt;/property&gt;
-&lt;/bean&gt;
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean class=&quot;ExampleBean&quot;&gt;</span><br><span class="line">	&lt;property name=&quot;email&quot; value=&quot;&quot;/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean class=&quot;ExampleBean&quot;&gt; </span><br><span class="line">	&lt;property name=&quot;email&quot;&gt;</span><br><span class="line">        &lt;null/&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -466,13 +370,6 @@
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -587,10 +484,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -600,6 +493,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -675,11 +572,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

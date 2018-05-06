@@ -5,7 +5,6 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Spring Cloud Zuul 默认路由规则 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -170,91 +169,29 @@
 <p>默认 SpringCloud 因为安全机制是不允许访问，需设置 management.security.enabled=false</p>
 <h2 id="默认路由规则"><a href="#默认路由规则" class="headerlink" title="默认路由规则"></a>默认路由规则</h2><p>在上一篇 SpringCloud Zuul 请求路由中有演示配置路由规则，那么如果不配置路径规则会怎么样？会通过服务提供者的请求路径直接访问吗？</p>
 <p>还是使用上一篇的例子，只是修改配置文件 appliation.yml 如下：</p>
-<pre><code>spring: 
-    application:
-        name: zuul-server
-
-server:
-    port: 8888
-
-management:
-    security:
-        enabled: false
-
-eureka:
-    instance:
-        prefer-ip-address: false
-    client:
-        service-url:
-            defaultZone: http://localhost:8761/eureka    
-</code></pre><p>POST 请求路由管理端点：</p>
-<pre><code>http://localhost:8888/routes
-</code></pre><p>结果：</p>
-<pre><code>{
- &quot;/hello-world-service-provide/**&quot;:&quot;hello-world-service-provide&quot;,
- &quot;/hello-world-service/**&quot;:&quot;hello-world-service&quot;
-}
-</code></pre><p>而实际路径如下：<br><br>hello-world-service:9001 的 /hello URL  <br><br>hello-world-service-provide:9004 的 /hello URL  <br><br>hello-world-service-provide:9005 的 /hello URL  <br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">spring: </span><br><span class="line">	application:</span><br><span class="line">		name: zuul-server</span><br><span class="line"></span><br><span class="line">server:</span><br><span class="line">	port: 8888</span><br><span class="line">	</span><br><span class="line">management:</span><br><span class="line">	security:</span><br><span class="line">		enabled: false</span><br><span class="line"></span><br><span class="line">eureka:</span><br><span class="line">	instance:</span><br><span class="line">		prefer-ip-address: false</span><br><span class="line">	client:</span><br><span class="line">		service-url:</span><br><span class="line">			defaultZone: http://localhost:8761/eureka</span><br></pre></td></tr></table></figure>
+<p>POST 请求路由管理端点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8888/routes</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> &quot;/hello-world-service-provide/**&quot;:&quot;hello-world-service-provide&quot;,</span><br><span class="line"> &quot;/hello-world-service/**&quot;:&quot;hello-world-service&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而实际路径如下：<br><br>hello-world-service:9001 的 /hello URL  <br><br>hello-world-service-provide:9004 的 /hello URL  <br><br>hello-world-service-provide:9005 的 /hello URL  <br></p>
 <p>可以发现 Zuul 默认会帮我们配置一个路由规则：<strong>默认以服务名称作为path的请求前缀</strong></p>
 <p>调用如下URL：</p>
 <p><a href="http://localhost:8888/hello-world-service/hello" target="_blank" rel="noopener">http://localhost:8888/hello-world-service/hello</a> <br><br><a href="http://localhost:8888/hello-world-service-provide/hello" target="_blank" rel="noopener">http://localhost:8888/hello-world-service-provide/hello</a> <br></p>
 <h2 id="屏蔽路由"><a href="#屏蔽路由" class="headerlink" title="屏蔽路由"></a>屏蔽路由</h2><p>因为 Zuul 的默认路由规则存在，那么等于默认是开放了所有的服务路径。故若想有选择的开放路由，则需要利用zuul.ignored-service= /* 进行路由屏蔽然后再通过开放指定路由的方式。</p>
 <p>修改配置文件 appliation.yml 如下：</p>
-<pre><code>spring: 
-    application:
-        name: zuul-server
-
-server:
-    port: 8888
-
-management:
-    security:
-        enabled: false
-
-eureka:
-    instance:
-        prefer-ip-address: false
-    client:
-        service-url:
-            defaultZone: http://localhost:8761/eureka
-
-zuul: 
-    ignored-services: &#39;*&#39;                
-
-</code></pre><p>POST 请求路由管理端点：</p>
-<pre><code>http://localhost:8888/routes
-</code></pre><p>结果：</p>
-<pre><code>{}
-</code></pre><p>修改配置文件 appliation.yml 如下：</p>
-<pre><code>spring: 
-    application:
-        name: zuul-server
-
-server:
-    port: 8888
-
-management:
-    security:
-        enabled: false
-
-eureka:
-    instance:
-        prefer-ip-address: false
-    client:
-        service-url:
-            defaultZone: http://localhost:8761/eureka
-
-zuul: 
-    ignored-services: &#39;*&#39;
-    routes:
-        hello-world-service: /hello-world-service/**                    
-</code></pre><p>POST 请求路由管理端点：</p>
-<pre><code>http://localhost:8888/routes
-</code></pre><p>结果：</p>
-<pre><code>{
-&quot;/hello-world-service/**&quot;:&quot;hello-world-service&quot;
-}
-</code></pre><p>调用如下URL：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">spring: </span><br><span class="line">	application:</span><br><span class="line">		name: zuul-server</span><br><span class="line"></span><br><span class="line">server:</span><br><span class="line">	port: 8888</span><br><span class="line">	</span><br><span class="line">management:</span><br><span class="line">	security:</span><br><span class="line">		enabled: false</span><br><span class="line"></span><br><span class="line">eureka:</span><br><span class="line">	instance:</span><br><span class="line">		prefer-ip-address: false</span><br><span class="line">	client:</span><br><span class="line">		service-url:</span><br><span class="line">			defaultZone: http://localhost:8761/eureka</span><br><span class="line">			</span><br><span class="line">zuul: </span><br><span class="line">	ignored-services: &apos;*&apos;</span><br></pre></td></tr></table></figure>
+<p>POST 请求路由管理端点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8888/routes</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>修改配置文件 appliation.yml 如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">spring: </span><br><span class="line">	application:</span><br><span class="line">		name: zuul-server</span><br><span class="line"></span><br><span class="line">server:</span><br><span class="line">	port: 8888</span><br><span class="line">	</span><br><span class="line">management:</span><br><span class="line">	security:</span><br><span class="line">		enabled: false</span><br><span class="line"></span><br><span class="line">eureka:</span><br><span class="line">	instance:</span><br><span class="line">		prefer-ip-address: false</span><br><span class="line">	client:</span><br><span class="line">		service-url:</span><br><span class="line">			defaultZone: http://localhost:8761/eureka</span><br><span class="line">			</span><br><span class="line">zuul: </span><br><span class="line">	ignored-services: &apos;*&apos;</span><br><span class="line">	routes:</span><br><span class="line">		hello-world-service: /hello-world-service/**</span><br></pre></td></tr></table></figure>
+<p>POST 请求路由管理端点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8888/routes</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;/hello-world-service/**&quot;:&quot;hello-world-service&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用如下URL：</p>
 <p><a href="http://localhost:8888/hello-world-service/hello" target="_blank" rel="noopener">http://localhost:8888/hello-world-service/hello</a> 可以正常访问 <br><br><a href="http://localhost:8888/hello-world-service-provide/hello" target="_blank" rel="noopener">http://localhost:8888/hello-world-service-provide/hello</a> 不可以正常访问 <br></p>
 <p>详细代码请参考 <a href="https://github.com/lxmuse/lxmuse-spring-cloud.git" target="_blank" rel="noopener">lxmuse-spring-cloud 下 example-zuul-02</a></p>
 
@@ -372,18 +309,18 @@ zuul:
   
 <nav id="article-nav">
   
-    <a href="/2018/01/11/Lambda 表达式方法引用/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/01/12/Spring Cloud Zuul 路径匹配/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Lambda 表达式方法引用
+          Spring Cloud Zuul 路径匹配
         
       </div>
     </a>
   
   
-    <a href="/2018/01/11/Java 8  四大内置函数接口使用示例/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java 8 四大内置函数接口使用示例</div>
+    <a href="/2018/01/11/Lambda 表达式方法引用/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Lambda 表达式方法引用</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -433,13 +370,6 @@ zuul:
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -554,10 +484,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -567,6 +493,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -642,11 +572,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

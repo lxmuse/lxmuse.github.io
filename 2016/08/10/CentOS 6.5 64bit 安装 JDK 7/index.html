@@ -5,22 +5,21 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>CentOS 6.5 64bit 安装 JDK 7 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="执行安装： [root@localhost ~]# rpm -ivh jdk-7u60-linux-x64.rpm 配置环境变量： [root@localhost ~]#vim /etc/profile 添加如下内容： #set jdk environment export JAVA_HOME=/usr/java/jdk1.7.0_60 export PATH=$PATH:$JAVA_HOME/b">
+  <meta name="description" content="执行安装： 1[root@localhost ~]# rpm -ivh jdk-7u60-linux-x64.rpm 配置环境变量： 1[root@localhost ~]#vim /etc/profile 添加如下内容： 1234#set jdk environmentexport JAVA_HOME=/usr/java/jdk1.7.0_60export PATH=$PATH:$JAVA_HO">
 <meta name="keywords" content="JDK">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS 6.5 64bit 安装 JDK 7">
 <meta property="og:url" content="http://yoursite.com/2016/08/10/CentOS 6.5 64bit 安装 JDK 7/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="执行安装： [root@localhost ~]# rpm -ivh jdk-7u60-linux-x64.rpm 配置环境变量： [root@localhost ~]#vim /etc/profile 添加如下内容： #set jdk environment export JAVA_HOME=/usr/java/jdk1.7.0_60 export PATH=$PATH:$JAVA_HOME/b">
+<meta property="og:description" content="执行安装： 1[root@localhost ~]# rpm -ivh jdk-7u60-linux-x64.rpm 配置环境变量： 1[root@localhost ~]#vim /etc/profile 添加如下内容： 1234#set jdk environmentexport JAVA_HOME=/usr/java/jdk1.7.0_60export PATH=$PATH:$JAVA_HO">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-01-01T12:24:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS 6.5 64bit 安装 JDK 7">
-<meta name="twitter:description" content="执行安装： [root@localhost ~]# rpm -ivh jdk-7u60-linux-x64.rpm 配置环境变量： [root@localhost ~]#vim /etc/profile 添加如下内容： #set jdk environment export JAVA_HOME=/usr/java/jdk1.7.0_60 export PATH=$PATH:$JAVA_HOME/b">
+<meta name="twitter:description" content="执行安装： 1[root@localhost ~]# rpm -ivh jdk-7u60-linux-x64.rpm 配置环境变量： 1[root@localhost ~]#vim /etc/profile 添加如下内容： 1234#set jdk environmentexport JAVA_HOME=/usr/java/jdk1.7.0_60export PATH=$PATH:$JAVA_HO">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -165,15 +164,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>执行安装：</p>
-<pre><code>[root@localhost ~]# rpm -ivh jdk-7u60-linux-x64.rpm
-</code></pre><p>配置环境变量：</p>
-<pre><code>[root@localhost ~]#vim /etc/profile
-</code></pre><p>添加如下内容：</p>
-<pre><code>#set jdk environment
-export JAVA_HOME=/usr/java/jdk1.7.0_60
-export PATH=$PATH:$JAVA_HOME/bin
-export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -ivh jdk-7u60-linux-x64.rpm</span><br></pre></td></tr></table></figure>
+<p>配置环境变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]#vim /etc/profile</span><br></pre></td></tr></table></figure>
+<p>添加如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#set jdk environment</span><br><span class="line">export JAVA_HOME=/usr/java/jdk1.7.0_60</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br></pre></td></tr></table></figure>
       
 
       
@@ -349,13 +344,6 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -470,10 +458,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -483,6 +467,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,11 +546,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

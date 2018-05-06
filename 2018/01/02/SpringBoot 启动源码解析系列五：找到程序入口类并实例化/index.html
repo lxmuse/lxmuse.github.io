@@ -5,22 +5,21 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>SpringBoot 启动源码解析系列五：找到程序入口类并实例化 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SpringApplication initialize 方法： private void initialize(Object[] sources) {     if (sources != null &amp;amp;&amp;amp; sources.length &amp;gt; 0) {         this.sources.addAll(Arrays.asList(sources));     }">
+  <meta name="description" content="SpringApplication initialize 方法： 12345678910private void initialize(Object[] sources) &amp;#123;    if (sources != null &amp;amp;&amp;amp; sources.length &amp;gt; 0) &amp;#123;        this.sources.addAll(Arrays.asList(so">
 <meta name="keywords" content="SpringBoot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot 启动源码解析系列五：找到程序入口类并实例化">
 <meta property="og:url" content="http://yoursite.com/2018/01/02/SpringBoot 启动源码解析系列五：找到程序入口类并实例化/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="SpringApplication initialize 方法： private void initialize(Object[] sources) {     if (sources != null &amp;amp;&amp;amp; sources.length &amp;gt; 0) {         this.sources.addAll(Arrays.asList(sources));     }">
+<meta property="og:description" content="SpringApplication initialize 方法： 12345678910private void initialize(Object[] sources) &amp;#123;    if (sources != null &amp;amp;&amp;amp; sources.length &amp;gt; 0) &amp;#123;        this.sources.addAll(Arrays.asList(so">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-01-02T13:27:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot 启动源码解析系列五：找到程序入口类并实例化">
-<meta name="twitter:description" content="SpringApplication initialize 方法： private void initialize(Object[] sources) {     if (sources != null &amp;amp;&amp;amp; sources.length &amp;gt; 0) {         this.sources.addAll(Arrays.asList(sources));     }">
+<meta name="twitter:description" content="SpringApplication initialize 方法： 12345678910private void initialize(Object[] sources) &amp;#123;    if (sources != null &amp;amp;&amp;amp; sources.length &amp;gt; 0) &amp;#123;        this.sources.addAll(Arrays.asList(so">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -165,36 +164,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>SpringApplication initialize 方法：</p>
-<pre><code>private void initialize(Object[] sources) {
-    if (sources != null &amp;&amp; sources.length &gt; 0) {
-        this.sources.addAll(Arrays.asList(sources));
-    }
-
-    this.webEnvironment = this.deduceWebEnvironment();
-    this.setInitializers(this.getSpringFactoriesInstances(ApplicationContextInitializer.class));
-    this.setListeners(this.getSpringFactoriesInstances(ApplicationListener.class));
-    this.mainApplicationClass = this.deduceMainApplicationClass();
-}
-</code></pre><p>deduceMainApplicationClass 方法即用于查找 main 方法类，并实例化：</p>
-<pre><code>private Class&lt;?&gt; deduceMainApplicationClass() {
-        try {
-            StackTraceElement[] stackTrace = (new RuntimeException()).getStackTrace();
-            StackTraceElement[] var2 = stackTrace;
-            int var3 = stackTrace.length;
-
-            for(int var4 = 0; var4 &lt; var3; ++var4) {
-                StackTraceElement stackTraceElement = var2[var4];
-                if (&quot;main&quot;.equals(stackTraceElement.getMethodName())) {
-                    return Class.forName(stackTraceElement.getClassName());
-                }
-            }
-        } catch (ClassNotFoundException var6) {
-            ;
-        }
-
-        return null;
-    }
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private void initialize(Object[] sources) &#123;</span><br><span class="line">    if (sources != null &amp;&amp; sources.length &gt; 0) &#123;</span><br><span class="line">        this.sources.addAll(Arrays.asList(sources));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    this.webEnvironment = this.deduceWebEnvironment();</span><br><span class="line">    this.setInitializers(this.getSpringFactoriesInstances(ApplicationContextInitializer.class));</span><br><span class="line">    this.setListeners(this.getSpringFactoriesInstances(ApplicationListener.class));</span><br><span class="line">    this.mainApplicationClass = this.deduceMainApplicationClass();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>deduceMainApplicationClass 方法即用于查找 main 方法类，并实例化：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">private Class&lt;?&gt; deduceMainApplicationClass() &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            StackTraceElement[] stackTrace = (new RuntimeException()).getStackTrace();</span><br><span class="line">            StackTraceElement[] var2 = stackTrace;</span><br><span class="line">            int var3 = stackTrace.length;</span><br><span class="line"></span><br><span class="line">            for(int var4 = 0; var4 &lt; var3; ++var4) &#123;</span><br><span class="line">                StackTraceElement stackTraceElement = var2[var4];</span><br><span class="line">                if (&quot;main&quot;.equals(stackTraceElement.getMethodName())) &#123;</span><br><span class="line">                    return Class.forName(stackTraceElement.getClassName());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (ClassNotFoundException var6) &#123;</span><br><span class="line">            ;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -370,13 +342,6 @@
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -491,10 +456,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -504,6 +465,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -579,11 +544,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -5,22 +5,21 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Spring Framework Bean 生命周期 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Spring Framework：4.3.14.RELEASE Spring IOC 容器可以管理容器中 Bean 的生命周期。 容器中 Bean 的生命周期：  通过构造器或工厂方法创建 Bean 实例 为 Bean 的属性设置属性值和属性引用 调用 Bean 指定的 init 方法 提供 Bean 正常使用 容器关闭时，调用 Bean 指定的 destroy 方法  这样一个类：  publi">
+  <meta name="description" content="Spring Framework：4.3.14.RELEASE Spring IOC 容器可以管理容器中 Bean 的生命周期。 容器中 Bean 的生命周期：  通过构造器或工厂方法创建 Bean 实例 为 Bean 的属性设置属性值和属性引用 调用 Bean 指定的 init 方法 提供 Bean 正常使用 容器关闭时，调用 Bean 指定的 destroy 方法  这样一个类： 123456">
 <meta name="keywords" content="Spring Framework">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Framework Bean 生命周期">
 <meta property="og:url" content="http://yoursite.com/2017/01/26/Spring Framework Bean 生命周期/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="Spring Framework：4.3.14.RELEASE Spring IOC 容器可以管理容器中 Bean 的生命周期。 容器中 Bean 的生命周期：  通过构造器或工厂方法创建 Bean 实例 为 Bean 的属性设置属性值和属性引用 调用 Bean 指定的 init 方法 提供 Bean 正常使用 容器关闭时，调用 Bean 指定的 destroy 方法  这样一个类：  publi">
+<meta property="og:description" content="Spring Framework：4.3.14.RELEASE Spring IOC 容器可以管理容器中 Bean 的生命周期。 容器中 Bean 的生命周期：  通过构造器或工厂方法创建 Bean 实例 为 Bean 的属性设置属性值和属性引用 调用 Bean 指定的 init 方法 提供 Bean 正常使用 容器关闭时，调用 Bean 指定的 destroy 方法  这样一个类： 123456">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-04-18T16:01:21.060Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Framework Bean 生命周期">
-<meta name="twitter:description" content="Spring Framework：4.3.14.RELEASE Spring IOC 容器可以管理容器中 Bean 的生命周期。 容器中 Bean 的生命周期：  通过构造器或工厂方法创建 Bean 实例 为 Bean 的属性设置属性值和属性引用 调用 Bean 指定的 init 方法 提供 Bean 正常使用 容器关闭时，调用 Bean 指定的 destroy 方法  这样一个类：  publi">
+<meta name="twitter:description" content="Spring Framework：4.3.14.RELEASE Spring IOC 容器可以管理容器中 Bean 的生命周期。 容器中 Bean 的生命周期：  通过构造器或工厂方法创建 Bean 实例 为 Bean 的属性设置属性值和属性引用 调用 Bean 指定的 init 方法 提供 Bean 正常使用 容器关闭时，调用 Bean 指定的 destroy 方法  这样一个类： 123456">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -175,174 +174,23 @@
 <li>容器关闭时，调用 Bean 指定的 destroy 方法</li>
 </ul>
 <p>这样一个类：</p>
-<pre><code>
-public class Car {
-
-    public Car() {
-        System.out.println(&quot;Car&#39;s Constructor...&quot;);
-    }
-
-    private String brand;
-
-    public void setBrand(String brand) {
-        System.out.println(&quot;setBrand...&quot;);
-        this.brand = brand;
-    }
-
-
-    public void init() {
-        System.out.println(&quot;init...&quot;);
-    }
-
-    public void destroy() {
-        System.out.println(&quot;destroy...&quot;);
-    }
-
-}
-
-</code></pre><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-  xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-  xsi:schemaLocation=&quot;
-        http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
-
-  &lt;!--配置 Bean--&gt;
-  &lt;bean id=&quot;car&quot; class=&quot;com.example.spring.Car&quot; init-method=&quot;init&quot; destroy-method=&quot;destroy&quot;&gt;
-    &lt;property name=&quot;brand&quot;  value=&quot;BMW&quot;&gt;&lt;/property&gt;
-  &lt;/bean&gt;
-
-&lt;/beans&gt;
-</code></pre><p>在容器启动时，可以看到 构造函数 Car() 最先被执行，然后是 SetBrand() 方法被执行，其次是 init() 方法被执行，当容器被关闭时，destrory() 方法被执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class Car &#123;</span><br><span class="line">	</span><br><span class="line">	public Car() &#123;</span><br><span class="line">		System.out.println(&quot;Car&apos;s Constructor...&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	private String brand;</span><br><span class="line">	</span><br><span class="line">	public void setBrand(String brand) &#123;</span><br><span class="line">		System.out.println(&quot;setBrand...&quot;);</span><br><span class="line">		this.brand = brand;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	public void init() &#123;</span><br><span class="line">		System.out.println(&quot;init...&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void destroy() &#123;</span><br><span class="line">		System.out.println(&quot;destroy...&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">  xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation=&quot;</span><br><span class="line">        http://www.springframework.org/schema/beans</span><br><span class="line">        http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!--配置 Bean--&gt;</span><br><span class="line">  &lt;bean id=&quot;car&quot; class=&quot;com.example.spring.Car&quot; init-method=&quot;init&quot; destroy-method=&quot;destroy&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;brand&quot;  value=&quot;BMW&quot;&gt;&lt;/property&gt;</span><br><span class="line">  &lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<p>在容器启动时，可以看到 构造函数 Car() 最先被执行，然后是 SetBrand() 方法被执行，其次是 init() 方法被执行，当容器被关闭时，destrory() 方法被执行。</p>
 <p>Spring Framework 中 bean 标签中有 init-method 属性和 destroy-method 属性分别用于指定 Bean 的 init 方法和 destroy 方法。</p>
 <p>Spring Framework 在 beans 标签还提供了 default-init-method 属性和 default-destroy-method 属性用于批量指定 Bean 的默认 init 方法和 destroy 方法。</p>
-<pre><code>
-public class Foo {
-
-    public Foo() {
-        System.out.println(&quot;Foo&#39;s Constructor...&quot;);
-    }
-
-    private String brand;
-
-    public void setBrand(String brand) {
-        System.out.println(&quot;Foo&#39;s setBrand...&quot;);
-        this.brand = brand;
-    }
-
-    public void defaultInit() {
-        System.out.println(&quot;Foo&#39;s default init...&quot;);
-    }
-
-    public void defaultDestroy() {
-        System.out.println(&quot;Foo&#39;s default destroy...&quot;);
-    }
-
-}
-
-</code></pre><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-  xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-  xsi:schemaLocation=&quot;
-        http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd&quot;
-  default-init-method=&quot;defaultInit&quot; default-destroy-method=&quot;defaultDestroy&quot;&gt;
-
-  &lt;!--配置 Bean--&gt;
-  &lt;bean id=&quot;foo&quot; class=&quot;com.example.spring.Foo&quot; &gt;
-    &lt;property name=&quot;brand&quot;  value=&quot;BMW&quot;&gt;&lt;/property&gt;
-  &lt;/bean&gt;
-
-&lt;/beans&gt;
-</code></pre><p>但是如果两者一起使用，那么 default-init-method 和 default-destroy-method 方法会被忽略</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class Foo &#123;</span><br><span class="line">	</span><br><span class="line">	public Foo() &#123;</span><br><span class="line">		System.out.println(&quot;Foo&apos;s Constructor...&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	private String brand;</span><br><span class="line">	</span><br><span class="line">	public void setBrand(String brand) &#123;</span><br><span class="line">		System.out.println(&quot;Foo&apos;s setBrand...&quot;);</span><br><span class="line">		this.brand = brand;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void defaultInit() &#123;</span><br><span class="line">		System.out.println(&quot;Foo&apos;s default init...&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void defaultDestroy() &#123;</span><br><span class="line">		System.out.println(&quot;Foo&apos;s default destroy...&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">  xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation=&quot;</span><br><span class="line">        http://www.springframework.org/schema/beans</span><br><span class="line">        http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span><br><span class="line">  default-init-method=&quot;defaultInit&quot; default-destroy-method=&quot;defaultDestroy&quot;&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!--配置 Bean--&gt;</span><br><span class="line">  &lt;bean id=&quot;foo&quot; class=&quot;com.example.spring.Foo&quot; &gt;</span><br><span class="line">    &lt;property name=&quot;brand&quot;  value=&quot;BMW&quot;&gt;&lt;/property&gt;</span><br><span class="line">  &lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<p>但是如果两者一起使用，那么 default-init-method 和 default-destroy-method 方法会被忽略</p>
 <p>Spring Framework 还提供了 InitializingBean 接口，用于在 Bean 实例化完成后进行额外处理。</p>
-<pre><code>
-import org.springframework.beans.factory.InitializingBean;
-
-public class Smart implements InitializingBean{
-
-    public Smart() {
-        System.out.println(&quot;Smart&#39;s Constructor...&quot;);
-    }
-
-    private String brand;
-
-    public void setBrand(String brand) {
-        System.out.println(&quot;Smart&#39;s setBrand...&quot;);
-        this.brand = brand;
-    }
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        System.out.println(&quot;Smart&#39;s afterPropertiesSet...&quot;);
-    }
-}
-
-</code></pre><p>在容器启动时，可以看到 构造函数 Smart() 最先被执行，然后是 SetBrand() 方法被执行，之后 afterPropertiesSet 也会被执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import org.springframework.beans.factory.InitializingBean;</span><br><span class="line"></span><br><span class="line">public class Smart implements InitializingBean&#123;</span><br><span class="line">	</span><br><span class="line">	public Smart() &#123;</span><br><span class="line">		System.out.println(&quot;Smart&apos;s Constructor...&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	private String brand;</span><br><span class="line">	</span><br><span class="line">	public void setBrand(String brand) &#123;</span><br><span class="line">		System.out.println(&quot;Smart&apos;s setBrand...&quot;);</span><br><span class="line">		this.brand = brand;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@Override</span><br><span class="line">	public void afterPropertiesSet() throws Exception &#123;</span><br><span class="line">		System.out.println(&quot;Smart&apos;s afterPropertiesSet...&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在容器启动时，可以看到 构造函数 Smart() 最先被执行，然后是 SetBrand() 方法被执行，之后 afterPropertiesSet 也会被执行。</p>
 <p>那么 InitializingBean 和 default-init-method、default-destroy-method 可否一起作用呢？</p>
-<pre><code>package com.example.spring;
-
-import org.springframework.beans.factory.InitializingBean;
-
-public class Ford implements InitializingBean{
-
-    public Ford() {
-        System.out.println(&quot;Ford&#39;s Constructor...&quot;);
-    }
-
-    private String brand;
-
-    public void setBrand(String brand) {
-        System.out.println(&quot;Ford&#39;s setBrand...&quot;);
-        this.brand = brand;
-    }
-
-    public void defaultInit() {
-        System.out.println(&quot;Ford&#39;s default init...&quot;);
-    }
-
-    public void defaultDestroy() {
-        System.out.println(&quot;Ford&#39;s default destroy...&quot;);
-    }
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        System.out.println(&quot;Smart&#39;s afterPropertiesSet...&quot;);
-    }
-}
-
-</code></pre><p>通过测试，发现两者可以一起工作，且 afterPropertiesSet() 方法会优先执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">package com.example.spring;</span><br><span class="line"></span><br><span class="line">import org.springframework.beans.factory.InitializingBean;</span><br><span class="line"></span><br><span class="line">public class Ford implements InitializingBean&#123;</span><br><span class="line">	</span><br><span class="line">	public Ford() &#123;</span><br><span class="line">		System.out.println(&quot;Ford&apos;s Constructor...&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	private String brand;</span><br><span class="line">	</span><br><span class="line">	public void setBrand(String brand) &#123;</span><br><span class="line">		System.out.println(&quot;Ford&apos;s setBrand...&quot;);</span><br><span class="line">		this.brand = brand;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void defaultInit() &#123;</span><br><span class="line">		System.out.println(&quot;Ford&apos;s default init...&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void defaultDestroy() &#123;</span><br><span class="line">		System.out.println(&quot;Ford&apos;s default destroy...&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	@Override</span><br><span class="line">	public void afterPropertiesSet() throws Exception &#123;</span><br><span class="line">		System.out.println(&quot;Smart&apos;s afterPropertiesSet...&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过测试，发现两者可以一起工作，且 afterPropertiesSet() 方法会优先执行。</p>
 <p>那么 InitializingBean 和 init-method、destroy-method 可否一起作用呢？</p>
-<pre><code>import org.springframework.beans.factory.InitializingBean;
-
-public class Toyd implements InitializingBean{
-
-    public Toyd() {
-        System.out.println(&quot;Toyd&#39;s Constructor...&quot;);
-    }
-
-    private String brand;
-
-    public void setBrand(String brand) {
-        System.out.println(&quot;Toyd&#39;s setBrand...&quot;);
-        this.brand = brand;
-    }
-
-    public void init() {
-        System.out.println(&quot;Toyd&#39;s init...&quot;);
-    }
-
-    public void destroy() {
-        System.out.println(&quot;Toyd&#39;s destroy...&quot;);
-    }
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        System.out.println(&quot;Smart&#39;s afterPropertiesSet...&quot;);
-    }
-}
-
-</code></pre><p>通过测试，发现两者可以一起工作，且 afterPropertiesSet() 方法会优先执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">import org.springframework.beans.factory.InitializingBean;</span><br><span class="line"></span><br><span class="line">public class Toyd implements InitializingBean&#123;</span><br><span class="line">	</span><br><span class="line">	public Toyd() &#123;</span><br><span class="line">		System.out.println(&quot;Toyd&apos;s Constructor...&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	private String brand;</span><br><span class="line">	</span><br><span class="line">	public void setBrand(String brand) &#123;</span><br><span class="line">		System.out.println(&quot;Toyd&apos;s setBrand...&quot;);</span><br><span class="line">		this.brand = brand;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void init() &#123;</span><br><span class="line">		System.out.println(&quot;Toyd&apos;s init...&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void destroy() &#123;</span><br><span class="line">		System.out.println(&quot;Toyd&apos;s destroy...&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@Override</span><br><span class="line">	public void afterPropertiesSet() throws Exception &#123;</span><br><span class="line">		System.out.println(&quot;Smart&apos;s afterPropertiesSet...&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过测试，发现两者可以一起工作，且 afterPropertiesSet() 方法会优先执行。</p>
 <p>同理 Spring Framework 还提供了 DisposableBean 接口 做类似的 destroy-method 方法和 default-destroy-method 方法 </p>
 <p>总结：</p>
 <p><strong>Initialization callbacks</strong> </p>
@@ -533,13 +381,6 @@ public class Toyd implements InitializingBean{
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -654,10 +495,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -667,6 +504,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -742,11 +583,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -5,22 +5,21 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>集合框架基础之迭代器 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="迭代器（Iterator）是一个接口，是 Java 集合框架中的一员。 Java 8 中的 Iterator 相比于 Java 7 中 有了些许变化： Java 7 Iterator： public interface Iterator&amp;lt;E&amp;gt; {      boolean hasNext();      E next();      void remove();  }  Java 8">
+  <meta name="description" content="迭代器（Iterator）是一个接口，是 Java 集合框架中的一员。 Java 8 中的 Iterator 相比于 Java 7 中 有了些许变化： Java 7 Iterator： 123456789public interface Iterator&amp;lt;E&amp;gt; &amp;#123;        boolean hasNext();    E next();    void remove();">
 <meta name="keywords" content="Iterator">
 <meta property="og:type" content="article">
 <meta property="og:title" content="集合框架基础之迭代器">
 <meta property="og:url" content="http://yoursite.com/2018/04/09/集合框架基础之迭代器/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="迭代器（Iterator）是一个接口，是 Java 集合框架中的一员。 Java 8 中的 Iterator 相比于 Java 7 中 有了些许变化： Java 7 Iterator： public interface Iterator&amp;lt;E&amp;gt; {      boolean hasNext();      E next();      void remove();  }  Java 8">
+<meta property="og:description" content="迭代器（Iterator）是一个接口，是 Java 集合框架中的一员。 Java 8 中的 Iterator 相比于 Java 7 中 有了些许变化： Java 7 Iterator： 123456789public interface Iterator&amp;lt;E&amp;gt; &amp;#123;        boolean hasNext();    E next();    void remove();">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-04-11T14:23:36.691Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="集合框架基础之迭代器">
-<meta name="twitter:description" content="迭代器（Iterator）是一个接口，是 Java 集合框架中的一员。 Java 8 中的 Iterator 相比于 Java 7 中 有了些许变化： Java 7 Iterator： public interface Iterator&amp;lt;E&amp;gt; {      boolean hasNext();      E next();      void remove();  }  Java 8">
+<meta name="twitter:description" content="迭代器（Iterator）是一个接口，是 Java 集合框架中的一员。 Java 8 中的 Iterator 相比于 Java 7 中 有了些许变化： Java 7 Iterator： 123456789public interface Iterator&amp;lt;E&amp;gt; &amp;#123;        boolean hasNext();    E next();    void remove();">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -167,35 +166,10 @@
         <p>迭代器（Iterator）是一个接口，是 Java 集合框架中的一员。</p>
 <p>Java 8 中的 Iterator 相比于 Java 7 中 有了些许变化：</p>
 <p>Java 7 Iterator：</p>
-<pre><code>public interface Iterator&lt;E&gt; {
-
-    boolean hasNext();
-
-    E next();
-
-    void remove();
-
-}
-
-</code></pre><p>Java 8 Iterator：</p>
-<pre><code>public interface Iterator&lt;E&gt; {
-
-    boolean hasNext();
-
-    E next();
-
-    default void remove() {
-        throw new UnsupportedOperationException(&quot;remove&quot;);
-    }
-
-    default void forEachRemaining(Consumer&lt;? super E&gt; action) {
-        Objects.requireNonNull(action);
-        while (hasNext())
-            action.accept(next());
-    }
-}
-
-</code></pre><p>在 Java 8 中将 remove 方法默认实现了，并且添加了一个默认的 forEachRemaining 方法用于遍历集合。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public interface Iterator&lt;E&gt; &#123;</span><br><span class="line">    </span><br><span class="line">    boolean hasNext();</span><br><span class="line"></span><br><span class="line">    E next();</span><br><span class="line"></span><br><span class="line">    void remove();</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Java 8 Iterator：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public interface Iterator&lt;E&gt; &#123;</span><br><span class="line">    </span><br><span class="line">    boolean hasNext();</span><br><span class="line"></span><br><span class="line">    E next();</span><br><span class="line"></span><br><span class="line">    default void remove() &#123;</span><br><span class="line">        throw new UnsupportedOperationException(&quot;remove&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    default void forEachRemaining(Consumer&lt;? super E&gt; action) &#123;</span><br><span class="line">        Objects.requireNonNull(action);</span><br><span class="line">        while (hasNext())</span><br><span class="line">            action.accept(next());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 Java 8 中将 remove 方法默认实现了，并且添加了一个默认的 forEachRemaining 方法用于遍历集合。</p>
 <p>迭代器的方法从字面上即可理解方法的用途。</p>
 
       
@@ -373,13 +347,6 @@
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -494,10 +461,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -507,6 +470,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -582,11 +549,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

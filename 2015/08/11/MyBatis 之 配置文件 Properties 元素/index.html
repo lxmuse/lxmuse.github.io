@@ -5,22 +5,21 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-<link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>MyBatis 之 配置文件 Properties 元素 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网MyBatis 官方网站（中文）：MyBatis 中文官网MyBatis 源码：MyBatis 源码 MyBatis 配置文件层次结构&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;&amp;gt; &amp;lt;configurati">
+  <meta name="description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网MyBatis 官方网站（中文）：MyBatis 中文官网MyBatis 源码：MyBatis 源码 MyBatis 配置文件层次结构1234567891011121314151617&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;">
 <meta name="keywords" content="MyBatis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MyBatis 之 配置文件 Properties 元素">
 <meta property="og:url" content="http://yoursite.com/2015/08/11/MyBatis 之 配置文件 Properties 元素/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网MyBatis 官方网站（中文）：MyBatis 中文官网MyBatis 源码：MyBatis 源码 MyBatis 配置文件层次结构&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;&amp;gt; &amp;lt;configurati">
+<meta property="og:description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网MyBatis 官方网站（中文）：MyBatis 中文官网MyBatis 源码：MyBatis 源码 MyBatis 配置文件层次结构1234567891011121314151617&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-01-07T07:22:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis 之 配置文件 Properties 元素">
-<meta name="twitter:description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网MyBatis 官方网站（中文）：MyBatis 中文官网MyBatis 源码：MyBatis 源码 MyBatis 配置文件层次结构&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;&amp;gt; &amp;lt;configurati">
+<meta name="twitter:description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网MyBatis 官方网站（中文）：MyBatis 中文官网MyBatis 源码：MyBatis 源码 MyBatis 配置文件层次结构1234567891011121314151617&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -166,56 +165,24 @@
       
         <p>MyBatis 版本：MyBatis 3.3.0</p>
 <p>MyBatis 官方网站（英文）：<a href="http://www.mybatis.org/mybatis-3/" target="_blank" rel="noopener">MyBatis 英文官网</a><br>MyBatis 官方网站（中文）：<a href="http://www.mybatis.org/mybatis-3/zh/" target="_blank" rel="noopener">MyBatis 中文官网</a><br>MyBatis 源码：<a href="https://github.com/mybatis/mybatis-3" target="_blank" rel="noopener">MyBatis 源码</a></p>
-<h5 id="MyBatis-配置文件层次结构"><a href="#MyBatis-配置文件层次结构" class="headerlink" title="MyBatis 配置文件层次结构"></a>MyBatis 配置文件层次结构</h5><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;&gt;
-&lt;configuration&gt; &lt;!--配置--&gt;
-  &lt;properties/&gt; &lt;!--属性--&gt;
-  &lt;settings/&gt; &lt;!--设置--&gt;
-  &lt;typeAliases/&gt; &lt;!--类型命名--&gt;
-  &lt;typeHandlers/&gt; &lt;!--类型处理器--&gt;
-  &lt;objetFactory/&gt; &lt;!--对象工厂--&gt;
-  &lt;plugins/&gt; &lt;!--插件--&gt;
-  &lt;environments&gt; &lt;!--配置环境--&gt;
-    &lt;environment&gt; &lt;!--环境变量--&gt;
-      &lt;transactionManager/&gt; &lt;!--事务管理器--&gt;
-      &lt;dataSource/&gt; &lt;!--数据源--&gt;
-    &lt;/environment&gt;
-  &lt;/environments&gt;
-  &lt;databaseIdProvider/&gt; &lt;!--数据库厂商标识--&gt;
-  &lt;mappers/&gt; &lt;!--映射器--&gt;
-&lt;/configuration&gt;
-</code></pre><h5 id="Properties-元素"><a href="#Properties-元素" class="headerlink" title="Properties 元素"></a>Properties 元素</h5><p>MyBatis 提供 3 种配置方式：</p>
+<h5 id="MyBatis-配置文件层次结构"><a href="#MyBatis-配置文件层次结构" class="headerlink" title="MyBatis 配置文件层次结构"></a>MyBatis 配置文件层次结构</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;&gt;</span><br><span class="line">&lt;configuration&gt; &lt;!--配置--&gt;</span><br><span class="line">  &lt;properties/&gt; &lt;!--属性--&gt;</span><br><span class="line">  &lt;settings/&gt; &lt;!--设置--&gt;</span><br><span class="line">  &lt;typeAliases/&gt; &lt;!--类型命名--&gt;</span><br><span class="line">  &lt;typeHandlers/&gt; &lt;!--类型处理器--&gt;</span><br><span class="line">  &lt;objetFactory/&gt; &lt;!--对象工厂--&gt;</span><br><span class="line">  &lt;plugins/&gt; &lt;!--插件--&gt;</span><br><span class="line">  &lt;environments&gt; &lt;!--配置环境--&gt;</span><br><span class="line">    &lt;environment&gt; &lt;!--环境变量--&gt;</span><br><span class="line">      &lt;transactionManager/&gt; &lt;!--事务管理器--&gt;</span><br><span class="line">      &lt;dataSource/&gt; &lt;!--数据源--&gt;</span><br><span class="line">    &lt;/environment&gt;</span><br><span class="line">  &lt;/environments&gt;</span><br><span class="line">  &lt;databaseIdProvider/&gt; &lt;!--数据库厂商标识--&gt;</span><br><span class="line">  &lt;mappers/&gt; &lt;!--映射器--&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="Properties-元素"><a href="#Properties-元素" class="headerlink" title="Properties 元素"></a>Properties 元素</h5><p>MyBatis 提供 3 种配置方式：</p>
 <ul>
 <li>property 子元素</li>
 </ul>
-<pre><code>&lt;properties&gt;
-  &lt;property name=&quot;driver&quot; value=&quot;com.mysql.jdbc.Driver&quot;/&gt;
-  &lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/mybatis&quot;/&gt;
-  &lt;property name=&quot;username&quot; value=&quot;dev_user&quot;/&gt;
-  &lt;property name=&quot;password&quot; value=&quot;F2Fa3!33TYyg&quot;/&gt;
-&lt;/properties&gt;
-</code></pre><p>其中的属性就可以在整个配置文件中使用来替换需要动态配置的属性值。比如:</p>
-<pre><code>&lt;dataSource type=&quot;POOLED&quot;&gt;
-  &lt;property name=&quot;driver&quot; value=&quot;${driver}&quot;/&gt;
-  &lt;property name=&quot;url&quot; value=&quot;${url}&quot;/&gt;
-  &lt;property name=&quot;username&quot; value=&quot;${username}&quot;/&gt;
-  &lt;property name=&quot;password&quot; value=&quot;${password}&quot;/&gt;
-&lt;/dataSource&gt;
-</code></pre><p>这个例子中的 username 和 password 将会由 properties 元素中设置的相应值来替换。 driver 和 url 属性将会由 config.properties 文件中对应的值来替换。这样就为配置提供了诸多灵活选择。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;properties&gt;</span><br><span class="line">  &lt;property name=&quot;driver&quot; value=&quot;com.mysql.jdbc.Driver&quot;/&gt;</span><br><span class="line">  &lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/mybatis&quot;/&gt;</span><br><span class="line">  &lt;property name=&quot;username&quot; value=&quot;dev_user&quot;/&gt;</span><br><span class="line">  &lt;property name=&quot;password&quot; value=&quot;F2Fa3!33TYyg&quot;/&gt;</span><br><span class="line">&lt;/properties&gt;</span><br></pre></td></tr></table></figure>
+<p>其中的属性就可以在整个配置文件中使用来替换需要动态配置的属性值。比如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;dataSource type=&quot;POOLED&quot;&gt;</span><br><span class="line">  &lt;property name=&quot;driver&quot; value=&quot;$&#123;driver&#125;&quot;/&gt;</span><br><span class="line">  &lt;property name=&quot;url&quot; value=&quot;$&#123;url&#125;&quot;/&gt;</span><br><span class="line">  &lt;property name=&quot;username&quot; value=&quot;$&#123;username&#125;&quot;/&gt;</span><br><span class="line">  &lt;property name=&quot;password&quot; value=&quot;$&#123;password&#125;&quot;/&gt;</span><br><span class="line">&lt;/dataSource&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这个例子中的 username 和 password 将会由 properties 元素中设置的相应值来替换。 driver 和 url 属性将会由 config.properties 文件中对应的值来替换。这样就为配置提供了诸多灵活选择。</p>
 <ul>
 <li>properties 配置文件</li>
 </ul>
-<pre><code>&lt;properties resource=&quot;org/mybatis/example/config.properties&quot;&gt;
-&lt;/properties&gt;
-</code></pre><p>使用 Properties 文件方便日后维护和随时修改。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;properties resource=&quot;org/mybatis/example/config.properties&quot;&gt;</span><br><span class="line">&lt;/properties&gt;</span><br></pre></td></tr></table></figure>
+<p>使用 Properties 文件方便日后维护和随时修改。</p>
 <ul>
 <li>程序参数传递</li>
 </ul>
-<pre><code>SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader, props);
-
-// ... or ...
-
-SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader, environment, props);
-</code></pre><p>MyBatis 支持的 3 种配置方式可能同时出现，并且属性还会重复配置，故这三种配置方式将有一个设定的优先级：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader, props);</span><br><span class="line"></span><br><span class="line">// ... or ...</span><br><span class="line"></span><br><span class="line">SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader, environment, props);</span><br></pre></td></tr></table></figure>
+<p>MyBatis 支持的 3 种配置方式可能同时出现，并且属性还会重复配置，故这三种配置方式将有一个设定的优先级：</p>
 <ol>
 <li>如果属性在不只一个地方进行了配置，那么 MyBatis 将按照下面的顺序来加载：</li>
 <li>在 properties 元素体内指定的属性首先被读取。然后根据 properties 元素中的 resource 属性读取类路径下属性文件或根据 url 属性指定的路径读取属性文件，并覆盖已读取的同名属性。</li>
@@ -404,13 +371,6 @@ SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader, environ
       	</div>
     </div>
   </div>
-<script src="/js/prettify.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
- $('pre').addClass('prettyprint linenums');
-   prettyPrint();
- })
-</script>
 </footer>
 
     </div>
@@ -525,10 +485,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">GS1</a>
               </li>
              
@@ -538,6 +494,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -613,11 +573,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
