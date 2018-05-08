@@ -55,8 +55,6 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -105,8 +103,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -121,9 +117,7 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
-		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 100%"><a href="/">主页</a></li>
 		        
 				</ul>
 			</nav>
@@ -139,6 +133,207 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-SpringBoot RESTful ExceptionHandler" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/19/SpringBoot RESTful ExceptionHandler/">SpringBoot RESTful ExceptionHandler</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/19/SpringBoot RESTful ExceptionHandler/" class="archive-article-date">
+  	<time datetime="2018-01-19T14:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SpringBoot：1.5.10.RELEASE</p>
+<p>Spring Framework 提供了 @ExceptionHandler 注解用于异常处理。</p>
+<p>定义自定义异常：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">BaseCustomExcpetion</span> <span class="keyword">extends</span> <span class="title">RuntimeException</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	public <span class="type">BaseCustomExcpetion</span>(<span class="type">String</span> message) &#123;</span><br><span class="line">		<span class="keyword">super</span>(message);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">CustomBizExceptionOne</span> <span class="keyword">extends</span> <span class="title">BaseCustomExcpetion</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	public <span class="type">CustomBizExceptionOne</span>(<span class="type">String</span> message) &#123;</span><br><span class="line">		<span class="keyword">super</span>(message);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">CustomBizExceptionTwo</span> <span class="keyword">extends</span> <span class="title">BaseCustomExcpetion</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	public <span class="type">CustomBizExceptionTwo</span>(<span class="type">String</span> message) &#123;</span><br><span class="line">		<span class="keyword">super</span>(message);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">CustomBizExceptionThree</span> <span class="keyword">extends</span> <span class="title">BaseCustomExcpetion</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	public <span class="type">CustomBizExceptionThree</span>(<span class="type">String</span> message) &#123;</span><br><span class="line">		<span class="keyword">super</span>(message);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>定义在 Controller 内部</strong></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(<span class="meta-string">"/demo01"</span>)</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo01Controller</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@GetMapping(<span class="meta-string">"/test01"</span>)</span></span><br><span class="line">	<span class="keyword">public</span> String test01() &#123;</span><br><span class="line">		<span class="keyword">throw</span> new CustomBizExceptionThree(<span class="string">"测试 抛出 业务异常 CustomBizExceptionThree"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@ExceptionHandler(CustomBizExceptionThree.class)</span></span><br><span class="line">	<span class="meta">@ResponseBody</span></span><br><span class="line">	<span class="keyword">public</span> String controllerInnerExceptionHandler(Exception e) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"Demo01Controller "</span> + e.getMessage();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义在 Controller 只能处理 Controller 内部产生的异常</p>
+<p><strong>定义在 BaseController 基类中</strong></p>
+<p>为了复用，可以将其定义在 BaseController 基类中，任何一个 Controller 只要继承 BaseController 即可。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.example.exception.BaseCustomExcpetion;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.<span class="keyword">annotation</span>.ExceptionHandler;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.<span class="keyword">annotation</span>.ResponseBody;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseController</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@ExceptionHandler(NullPointerException.class)</span></span><br><span class="line">	<span class="meta">@ResponseBody</span></span><br><span class="line">	<span class="keyword">public</span> String controllerNullPointerExceptionHandler(Exception e) &#123;</span><br><span class="line">		<span class="keyword">return</span> e.getMessage();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@ExceptionHandler(RuntimeException.class)</span></span><br><span class="line">	<span class="meta">@ResponseBody</span></span><br><span class="line">	<span class="keyword">public</span> String controllerRuntimeExceptionHandler(Exception e) &#123;</span><br><span class="line">		<span class="keyword">return</span> e.getMessage();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@ExceptionHandler(BaseCustomExcpetion.class)</span></span><br><span class="line">	<span class="meta">@ResponseBody</span></span><br><span class="line">	<span class="keyword">public</span> String controllerBaseCustomExceptionHandler(Exception e) &#123;</span><br><span class="line">		<span class="keyword">return</span> e.getMessage();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@ExceptionHandler(Exception.class)</span></span><br><span class="line">	<span class="meta">@ResponseBody</span></span><br><span class="line">	<span class="keyword">public</span> String controllerExceptionHandler(Exception e) &#123;</span><br><span class="line">		<span class="keyword">return</span> e.getMessage();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.example.exception.BaseCustomExcpetion;</span><br><span class="line"><span class="keyword">import</span> com.example.exception.CustomBizExceptionOne;</span><br><span class="line"><span class="keyword">import</span> com.example.exception.CustomBizExceptionTwo;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/demo02"</span>)</span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo02Controller</span> <span class="keyword">extends</span> <span class="title">BaseController</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@GetMapping</span>(<span class="string">"/test01"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">test01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> BaseCustomExcpetion(<span class="string">"测试 直接 抛出 BaseCustomException"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@GetMapping</span>(<span class="string">"/test02"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">test02</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> CustomBizExceptionOne(<span class="string">"测试 抛出 业务异常 CustomBizExceptionOne"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@GetMapping</span>(<span class="string">"/test03"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">test03</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> CustomBizExceptionTwo(<span class="string">"测试 抛出 业务异常 CustomBizExceptionTwo"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@GetMapping</span>(<span class="string">"/test04"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">test04</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"测试 抛出 RuntimeException"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@GetMapping</span>(<span class="string">"/test05"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">test05</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">"测试 抛出 NullPointerException"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>定义在接口中</strong></p>
+<p>为了减少单继承的影响，将其定义在接口中，利用 JDK8 default 新特性。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">import com.example.exception.BaseCustomExcpetion;</span><br><span class="line">import org.springframework.web.bind.annotation.ExceptionHandler;</span><br><span class="line">import org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"></span><br><span class="line">public<span class="built_in"> interface </span>ControllerExceptionHandler &#123;</span><br><span class="line">	</span><br><span class="line">	@ExceptionHandler(NullPointerException.class)</span><br><span class="line">	@ResponseBody</span><br><span class="line"><span class="built_in">	default </span>String controllerNullPointerExceptionHandler(Exception e) &#123;</span><br><span class="line">		return e.getMessage();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@ExceptionHandler(RuntimeException.class)</span><br><span class="line">	@ResponseBody</span><br><span class="line"><span class="built_in">	default </span>String controllerRuntimeExceptionHandler(Exception e) &#123;</span><br><span class="line">		return e.getMessage();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@ExceptionHandler(BaseCustomExcpetion.class)</span><br><span class="line">	@ResponseBody</span><br><span class="line"><span class="built_in">	default </span>String controllerBaseCustomExceptionHandler(Exception e) &#123;</span><br><span class="line">		return e.getMessage();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@ExceptionHandler(Exception.class)</span><br><span class="line">	@ResponseBody</span><br><span class="line"><span class="built_in">	default </span>String controllerExceptionHandler(Exception e) &#123;</span><br><span class="line">		return e.getMessage();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.example.exception.BaseCustomExcpetion;</span><br><span class="line"><span class="keyword">import</span> com.example.exception.CustomBizExceptionOne;</span><br><span class="line"><span class="keyword">import</span> com.example.exception.CustomBizExceptionTwo;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/demo04"</span>)</span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo04Controller</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@GetMapping</span>(<span class="string">"/test01"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">test01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> BaseCustomExcpetion(<span class="string">"测试 直接 抛出 BaseCustomException"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@GetMapping</span>(<span class="string">"/test02"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">test02</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> CustomBizExceptionOne(<span class="string">"测试 抛出 业务异常 CustomBizExceptionOne"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@GetMapping</span>(<span class="string">"/test03"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">test03</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> CustomBizExceptionTwo(<span class="string">"测试 抛出 业务异常 CustomBizExceptionTwo"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@GetMapping</span>(<span class="string">"/test04"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">test04</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"测试 抛出 RuntimeException"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@GetMapping</span>(<span class="string">"/test05"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">test05</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">"测试 抛出 NullPointerException"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>使用 @ControllerAdvice 全局拦截</strong></p>
+<p>使用 @ControllerAdvice 全局拦截可以更简便。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">com</span><span class="selector-class">.example</span><span class="selector-class">.exception</span><span class="selector-class">.BaseCustomExcpetion</span>;</span><br><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">org</span><span class="selector-class">.springframework</span><span class="selector-class">.web</span><span class="selector-class">.bind</span><span class="selector-class">.annotation</span><span class="selector-class">.ControllerAdvice</span>;</span><br><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">org</span><span class="selector-class">.springframework</span><span class="selector-class">.web</span><span class="selector-class">.bind</span><span class="selector-class">.annotation</span><span class="selector-class">.ExceptionHandler</span>;</span><br><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">org</span><span class="selector-class">.springframework</span><span class="selector-class">.web</span><span class="selector-class">.bind</span><span class="selector-class">.annotation</span><span class="selector-class">.ResponseBody</span>;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">ControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> class GlobalExceptionHandler &#123;</span><br><span class="line">	</span><br><span class="line">	@<span class="keyword">ExceptionHandler</span>(<span class="keyword">NullPointerException</span>.<span class="keyword">class</span>)</span><br><span class="line">	@ResponseBody</span><br><span class="line">	public String controllerNullPointerExceptionHandler(Exception e) &#123;</span><br><span class="line">		<span class="selector-tag">return</span> <span class="selector-tag">e</span><span class="selector-class">.getMessage</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@<span class="keyword">ExceptionHandler</span>(<span class="keyword">RuntimeException</span>.<span class="keyword">class</span>)</span><br><span class="line">	@ResponseBody</span><br><span class="line">	public String controllerRuntimeExceptionHandler(Exception e) &#123;</span><br><span class="line">		<span class="selector-tag">return</span> <span class="selector-tag">e</span><span class="selector-class">.getMessage</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@<span class="keyword">ExceptionHandler</span>(<span class="keyword">BaseCustomExcpetion</span>.<span class="keyword">class</span>)</span><br><span class="line">	@ResponseBody</span><br><span class="line">	public String controllerBaseCustomExceptionHandler(Exception e) &#123;</span><br><span class="line">		<span class="selector-tag">return</span> <span class="selector-tag">e</span><span class="selector-class">.getMessage</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@<span class="keyword">ExceptionHandler</span>(<span class="keyword">Exception</span>.<span class="keyword">class</span>)</span><br><span class="line">	@ResponseBody</span><br><span class="line">	public String controllerExceptionHandler(Exception e) &#123;</span><br><span class="line">		<span class="selector-tag">return</span> <span class="selector-tag">e</span><span class="selector-class">.getMessage</span>();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然了也可以将 GlobalExceptionHandler 结合 JDK 8 接口 default 特性。</p>
+<p><strong>Controller 内能处理的优先处理</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">com</span><span class="selector-class">.example</span><span class="selector-class">.exception</span><span class="selector-class">.BaseCustomExcpetion</span>;</span><br><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">com</span><span class="selector-class">.example</span><span class="selector-class">.exception</span><span class="selector-class">.CustomBizExceptionOne</span>;</span><br><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">com</span><span class="selector-class">.example</span><span class="selector-class">.exception</span><span class="selector-class">.CustomBizExceptionTwo</span>;</span><br><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">org</span><span class="selector-class">.springframework</span><span class="selector-class">.web</span><span class="selector-class">.bind</span><span class="selector-class">.annotation</span><span class="selector-class">.ExceptionHandler</span>;</span><br><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">org</span><span class="selector-class">.springframework</span><span class="selector-class">.web</span><span class="selector-class">.bind</span><span class="selector-class">.annotation</span><span class="selector-class">.GetMapping</span>;</span><br><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">org</span><span class="selector-class">.springframework</span><span class="selector-class">.web</span><span class="selector-class">.bind</span><span class="selector-class">.annotation</span><span class="selector-class">.RequestMapping</span>;</span><br><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">org</span><span class="selector-class">.springframework</span><span class="selector-class">.web</span><span class="selector-class">.bind</span><span class="selector-class">.annotation</span><span class="selector-class">.ResponseBody</span>;</span><br><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">org</span><span class="selector-class">.springframework</span><span class="selector-class">.web</span><span class="selector-class">.bind</span><span class="selector-class">.annotation</span><span class="selector-class">.RestController</span>;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">RequestMapping</span>("/<span class="keyword">demo05</span>")</span><br><span class="line">@<span class="keyword">RestController</span></span><br><span class="line"><span class="keyword">public</span> class Demo05Controller &#123;</span><br><span class="line">	</span><br><span class="line">	@<span class="keyword">GetMapping</span>("/<span class="keyword">test01</span>")</span><br><span class="line">	public String test01() &#123;</span><br><span class="line">		<span class="selector-tag">throw</span> <span class="selector-tag">new</span> <span class="selector-tag">BaseCustomExcpetion</span>("测试 直接 抛出 <span class="selector-tag">BaseCustomException</span>");</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@<span class="keyword">GetMapping</span>("/<span class="keyword">test02</span>")</span><br><span class="line">	public String test02() &#123;</span><br><span class="line">		<span class="selector-tag">throw</span> <span class="selector-tag">new</span> <span class="selector-tag">CustomBizExceptionOne</span>("测试 抛出 业务异常 <span class="selector-tag">CustomBizExceptionOne</span>");</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@<span class="keyword">GetMapping</span>("/<span class="keyword">test03</span>")</span><br><span class="line">	public String test03() &#123;</span><br><span class="line">		<span class="selector-tag">throw</span> <span class="selector-tag">new</span> <span class="selector-tag">CustomBizExceptionTwo</span>("测试 抛出 业务异常 <span class="selector-tag">CustomBizExceptionTwo</span>");</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@<span class="keyword">GetMapping</span>("/<span class="keyword">test04</span>")</span><br><span class="line">	public String test04() &#123;</span><br><span class="line">		<span class="selector-tag">throw</span> <span class="selector-tag">new</span> <span class="selector-tag">RuntimeException</span>("测试 抛出 <span class="selector-tag">RuntimeException</span>");</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@<span class="keyword">GetMapping</span>("/<span class="keyword">test05</span>")</span><br><span class="line">	public String test05() &#123;</span><br><span class="line">		<span class="selector-tag">throw</span> <span class="selector-tag">new</span> <span class="selector-tag">NullPointerException</span>("测试 抛出 <span class="selector-tag">NullPointerException</span>");</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@<span class="keyword">ExceptionHandler</span>(<span class="keyword">BaseCustomExcpetion</span>.<span class="keyword">class</span>)</span><br><span class="line">	@ResponseBody</span><br><span class="line">	public String controllerBaseCustomExceptionHandler(Exception e) &#123;</span><br><span class="line">		<span class="selector-tag">return</span> "<span class="selector-tag">Demo05Controller</span> " + <span class="selector-tag">e</span><span class="selector-class">.getMessage</span>();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码详见GitHub 上<br><a href="https://github.com/lxmuse/lxmuse-spring-boot.git" target="_blank" rel="noopener">example-boot/example-exception-handler</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ExceptionHandler</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/SpringBoot//" class="article-tag-list-link color1">SpringBoot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/19/SpringBoot RESTful ExceptionHandler/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-SpringBoot 简单特性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/18/SpringBoot 简单特性/">SpringBoot 简单特性</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/18/SpringBoot 简单特性/" class="archive-article-date">
+  	<time datetime="2018-01-18T11:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SpringBoot：1.5.10.RELEASE</p>
+<p><strong>定制SpringApplication</strong></p>
+<p>以关闭 Banner 为例：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><span class="meta-keyword">import</span> org.springframework.boot.Banner;</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">import</span> org.springframework.boot.SpringApplication;</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span></span><br><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyApplication</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) &#123;</span><br><span class="line">		SpringApplication application = <span class="keyword">new</span> SpringApplication(MyApplication.class);</span><br><span class="line">		application.setBannerMode(Banner.Mode.OFF);</span><br><span class="line">		application.run(args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者 application.yml 中</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">spring</span>: </span><br><span class="line">	<span class="attribute">main</span>:</span><br><span class="line">		<span class="attribute">banner-mode</span>: <span class="string">"off"</span></span><br></pre></td></tr></table></figure>
+<p><strong>流式API</strong></p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><span class="meta-keyword">import</span> org.springframework.boot.Banner;</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">import</span> org.springframework.boot.builder.SpringApplicationBuilder;</span></span><br><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyApplication</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) &#123;</span><br><span class="line">		<span class="keyword">new</span> SpringApplicationBuilder()</span><br><span class="line">			.sources(MyApplication.class)</span><br><span class="line">			.bannerMode(Banner.Mode.OFF)</span><br><span class="line">			.run(args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/SpringBoot//" class="article-tag-list-link color1">SpringBoot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/18/SpringBoot 简单特性/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-SpringBoot 配置类和自动配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -501,6 +696,92 @@
 
 
   
+    <article id="post-Stream API" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/12/Stream API/">Stream API</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/12/Stream API/" class="archive-article-date">
+  	<time datetime="2018-01-12T15:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Java 8 除 Lambda 表达式这一重大变化外，另一个就是 Stream API。</p>
+<p>Stream API 是 Java 8 处理集合的关键抽象，希望对集合可以进行非常复杂的查找、过滤和映射数据等操作。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JDK 8</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JDK-8-新特性//" class="article-tag-list-link color5">JDK 8 新特性</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/12/Stream API/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Spring Cloud Zuul 路径匹配" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -611,92 +892,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/01/12/Spring Cloud Zuul 路径匹配/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Stream API" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/12/Stream API/">Stream API</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/12/Stream API/" class="archive-article-date">
-  	<time datetime="2018-01-12T15:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Java 8 除 Lambda 表达式这一重大变化外，另一个就是 Stream API。</p>
-<p>Stream API 是 Java 8 处理集合的关键抽象，希望对集合可以进行非常复杂的查找、过滤和映射数据等操作。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JDK 8</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JDK-8-新特性//" class="article-tag-list-link color5">JDK 8 新特性</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/12/Stream API/">展开全文 >></a>
         </p>
       
 
@@ -942,213 +1137,6 @@
 
 
   
-    <article id="post-Java 8  四大内置函数接口使用示例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/11/Java 8  四大内置函数接口使用示例/">Java 8 四大内置函数接口使用示例</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/11/Java 8  四大内置函数接口使用示例/" class="archive-article-date">
-  	<time datetime="2018-01-11T14:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>Consumer 接口</strong></p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>Consumer&lt;T&gt; &#123;</span><br><span class="line">    void accept(T t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">happy</span><span class="params">(<span class="keyword">double</span> money, Consumer&lt;Double&gt; consumer)</span> </span>&#123;</span><br><span class="line">		consumer.accept(money);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">happy(<span class="number">1000</span>, money -&gt; System.out.println(<span class="string">"吃喝玩乐"</span>))<span class="comment">;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">happy(<span class="number">10000</span>, money -&gt; System.out.println(<span class="string">"旅游"</span>))<span class="comment">;</span></span><br></pre></td></tr></table></figure>
-<p><strong>Supplier 接口</strong></p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>Supplier&lt;T&gt; &#123;</span><br><span class="line">    T <span class="builtin-name">get</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="built_in">List</span>&lt;<span class="built_in">Integer</span>&gt; getNumList(int num, Supplier&lt;<span class="built_in">Integer</span>&gt; supplier) &#123;</span><br><span class="line">	<span class="built_in">List</span>&lt;<span class="built_in">Integer</span>&gt; <span class="built_in">list</span> = <span class="literal">new</span> ArrayList&lt;&gt;();</span><br><span class="line">	</span><br><span class="line">	for(int i = <span class="number">0</span>; i &lt; num; i++) &#123;</span><br><span class="line">		<span class="built_in">Integer</span> n = supplier.get();</span><br><span class="line">		<span class="built_in">list</span>.add(n);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">list</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getNumList<span class="function"><span class="params">(<span class="number">10</span>, () -&gt; (int)(Math.random() * <span class="number">100</span>))</span></span></span><br></pre></td></tr></table></figure>
-<p><strong>Function 接口</strong></p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>Function&lt;T, R&gt; &#123;</span><br><span class="line">    R apply(T t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public <span class="built_in">String</span> strHandler(<span class="built_in">String</span> str, <span class="built_in">Function</span>&lt;<span class="built_in">String</span>, <span class="built_in">String</span>&gt; <span class="function"><span class="keyword">function</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>.<span class="title">apply</span>(<span class="params">str</span>);</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strHandler(<span class="string">"   Lambda  "</span>, str -&gt; str.trim().toUpperCase())</span><br></pre></td></tr></table></figure>
-<p><strong>Predicate 接口</strong></p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>Predicate&lt;T&gt; &#123;</span><br><span class="line">    boolean test(T t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; filterStr(<span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; <span class="built_in">list</span>, Predicate&lt;<span class="built_in">String</span>&gt; predicate) &#123;</span><br><span class="line">	<span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; strList = <span class="literal">new</span> ArrayList&lt;&gt;();</span><br><span class="line">	</span><br><span class="line">	for(<span class="built_in">String</span> str : <span class="built_in">list</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span>(predicate.test(str)) &#123;</span><br><span class="line">			strList.add(str);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> strList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">List</span>&lt;<span class="keyword">String&gt; </span><span class="keyword">strings </span>= Arrays.asList(<span class="string">"Hello"</span>, <span class="string">"Lambda"</span>, <span class="string">"Function"</span>, <span class="string">"Java"</span>)<span class="comment">;</span></span><br><span class="line"><span class="symbol">filterStr</span>(<span class="keyword">strings, </span><span class="keyword">str </span>-&gt; <span class="keyword">str.length() </span>&gt; <span class="number">5</span>)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
-<p>代码可参考<a href="https://github.com/lxmuse/lxmuse-jdk8-new-feature.git" target="_blank" rel="noopener">lxmuse-jdk8-new-feature-lambda-03</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JDK 8</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JDK-8-新特性//" class="article-tag-list-link color5">JDK 8 新特性</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/11/Java 8  四大内置函数接口使用示例/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring Cloud Zuul 初识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/11/Spring Cloud Zuul 初识/">Spring Cloud Zuul 初识</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/11/Spring Cloud Zuul 初识/" class="archive-article-date">
-  	<time datetime="2018-01-11T13:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Spring Boot: 1.5.10.RELEASE <br><br>Spring Cloud: Dalston.SR5</p>
-<h2 id="什么是-Zuul"><a href="#什么是-Zuul" class="headerlink" title="什么是 Zuul"></a>什么是 Zuul</h2><p>Zuul 最主要的两大功能：请求路由和请求过滤</p>
-<p><strong>请求路由</strong></p>
-<p>请求路由是指将外部请求转发到具体的微服务实例上，实现外部访问统一入口的基础</p>
-<p><strong>请求过滤</strong></p>
-<p>请求过滤是指对外部请求进行干预，实现请求校验，服务聚合等功能的基础</p>
-<p>Zuul 一般和 Eureka 集成使用</p>
-<h2 id="Zuul-初识"><a href="#Zuul-初识" class="headerlink" title="Zuul 初识"></a>Zuul 初识</h2><p>利用前期的相关工程实现环境搭建：<br><br>example-01 : eureka-server  <br><br>example-01 : 服务提供者1    <br><br>example-04 : 服务提供者2    <br><br>example-05 : 服务提供者3    <br></p>
-<p>创建 zuul 工程，引入依赖：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-eureka<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-zuul<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>spring-cloud-starter-zuul 是必须引入的依赖 <br><br>spring-cloud-starter-eureka 是为了使 zuul 可以 eureka 进行无缝集成</p>
-<p>启动类上添加 @EnableZuulProxy 注解：</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><span class="meta-keyword">import</span> org.springframework.boot.SpringApplication;</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">import</span> org.springframework.cloud.netflix.zuul.EnableZuulProxy;</span></span><br><span class="line"></span><br><span class="line">@EnableZuulProxy</span><br><span class="line">@SpringBootApplication</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) &#123;</span><br><span class="line">		SpringApplication application = <span class="keyword">new</span> SpringApplication(Application.class);</span><br><span class="line">		application.run(args);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>配置文件集成 eureka 并配置路由规则：</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">spring</span>:</span><br><span class="line">  <span class="attribute">application</span>:</span><br><span class="line">    <span class="attribute">name</span>: zuul-server</span><br><span class="line"></span><br><span class="line"><span class="attribute">server</span>:</span><br><span class="line">  <span class="attribute">port</span>: <span class="number">8888</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">eureka</span>:</span><br><span class="line">  <span class="attribute">instance</span>:</span><br><span class="line">    <span class="attribute">prefer-ip-address</span>: false</span><br><span class="line">  <span class="attribute">client</span>:</span><br><span class="line">    <span class="attribute">service-url</span>:</span><br><span class="line">      <span class="attribute">defaultZone</span>: <span class="attribute">http</span>:<span class="comment">//localhost:8761/eureka</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">zuul</span>:</span><br><span class="line">  <span class="attribute">routes</span>:</span><br><span class="line">    api-a.<span class="attribute">path</span>: /api-a<span class="comment">/**</span></span><br><span class="line"><span class="comment">    api-a.serviceId: hello-world-service</span></span><br><span class="line"><span class="comment">    api-b.path: /api-b/*</span></span><br><span class="line"><span class="comment">    api-b.serviceId: hello-world-service-provide</span></span><br></pre></td></tr></table></figure>
-<p>路由配置规则： </p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">格式：zuul<span class="selector-class">.routes</span>.&lt;routh&gt;<span class="selector-class">.path</span> </span><br><span class="line">格式：zuul<span class="selector-class">.routes</span>.&lt;routh&gt;.serviceId</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">这里定义了两个简单的转发规则：</span><br><span class="line">拦截所有 api-<span class="selector-tag">a</span> 开头的请求，将其转发到 hello-world-service 服务中</span><br><span class="line">拦截所有 api-<span class="selector-tag">b</span> 开头的请求，将其转发到 hello-world-service-provide 服务中</span><br><span class="line"></span><br><span class="line">将服务运行以后，可以测试：&lt;br&gt;</span><br><span class="line">http:<span class="comment">//localhost:8888/api-a/hello &lt;br&gt;</span></span><br><span class="line">http:<span class="comment">//localhost:8888/api-b/hello &lt;br&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">上述路由配置可以简化为：</span><br></pre></td></tr></table></figure>
-<p>zuul:<br>  routes:<br>    hello-world-service: /api-a/<strong><br>    hello-world-service-provide: /api-b/</strong>    </p>
-<pre><code>
-</code></pre><p>格式：zuul.routes.<serviceid>=<path></path><br><code>`</code> </serviceid></p>
-<p>详细代码请参考 <a href="https://github.com/lxmuse/lxmuse-spring-cloud.git" target="_blank" rel="noopener">lxmuse-spring-cloud 下 example-zuul-01</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Spring Cloud</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Spring-Cloud//" class="article-tag-list-link color3">Spring Cloud</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/11/Spring Cloud Zuul 初识/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1248,14 +1236,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CI</a>
               </li>
              
@@ -1284,6 +1264,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
@@ -1304,11 +1292,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color3">Servlet</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Servlet</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1320,11 +1308,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">冒泡排序</a>
+                <a href="javascript:void(0)" class="js-tag color5">选择排序 插入排序</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">选择排序 插入排序</a>
+                <a href="javascript:void(0)" class="js-tag color5">冒泡排序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1352,15 +1340,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Ribbon</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring Framework</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">ExceptionHandler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Ribbon</a>
               </li>
              
               <li class="article-tag-list-item">

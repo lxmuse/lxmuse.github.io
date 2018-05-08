@@ -55,8 +55,6 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -105,8 +103,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -121,9 +117,7 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
-		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 100%"><a href="/">主页</a></li>
 		        
 				</ul>
 			</nav>
@@ -139,6 +133,214 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-RestTemplate GET 详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/28/RestTemplate GET 详解/">RestTemplate GET 请求详解</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/28/RestTemplate GET 详解/" class="archive-article-date">
+  	<time datetime="2017-12-28T12:40:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="getForEntity"><a href="#getForEntity" class="headerlink" title="getForEntity"></a>getForEntity</h5><h6 id="getForEntity-String-url-Class-responseType-Object…-urlVariables"><a href="#getForEntity-String-url-Class-responseType-Object…-urlVariables" class="headerlink" title="getForEntity(String url, Class responseType, Object… urlVariables)"></a>getForEntity(String url, Class responseType, Object… urlVariables)</h6><p>url ： 请求的地址<br>responseType : 响应体 body 的包装类型<br>urlVariables ： 参数数组，用于替换 url 中占位符对用的参数</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/get-for-entity-01"</span>)</span><br><span class="line">public <span class="built_in">String</span> getForEntity01() &#123;</span><br><span class="line">    ResponseEntity&lt;<span class="built_in">String</span>&gt; responseEntity =</span><br><span class="line">        restTemplate.getForEntity(</span><br><span class="line">            <span class="string">"http://DEMO-REST-TEMPLATE-PROVIDER-EUREKA-CLIENT/user/name?userId=1"</span>,</span><br><span class="line">            <span class="built_in">String</span>.<span class="keyword">class</span>);</span><br><span class="line">    <span class="keyword">return</span> responseEntity.getBody();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而使用参数数组的方式需要在url中指定占位符，占位符中的顺序即参数在数组中的索引：<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/get-for-entity-02"</span>)</span><br><span class="line">public <span class="built_in">String</span> getForEntity02() &#123;</span><br><span class="line">    ResponseEntity&lt;<span class="built_in">String</span>&gt; responseEntity =</span><br><span class="line">        restTemplate.getForEntity(</span><br><span class="line">            <span class="string">"http://DEMO-REST-TEMPLATE-PROVIDER-EUREKA-CLIENT/user/name?userId=&#123;1&#125;"</span>,</span><br><span class="line">            <span class="built_in">String</span>.<span class="keyword">class</span>,</span><br><span class="line">            <span class="string">"1"</span>);</span><br><span class="line">    <span class="keyword">return</span> responseEntity.getBody();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>支持字符串方式返回响应对象体：<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/get-for-entity-03"</span>)</span><br><span class="line">public <span class="built_in">String</span> getForEntity03() &#123;</span><br><span class="line">    ResponseEntity&lt;<span class="built_in">String</span>&gt; responseEntity =</span><br><span class="line">        restTemplate.getForEntity(</span><br><span class="line">            <span class="string">"http://DEMO-REST-TEMPLATE-PROVIDER-EUREKA-CLIENT/user?userId=&#123;1&#125;"</span>,</span><br><span class="line">            <span class="built_in">String</span>.<span class="keyword">class</span>,</span><br><span class="line">            <span class="string">"1"</span>);</span><br><span class="line">    <span class="keyword">return</span> responseEntity.getBody();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>支持对象方式返回响应体（SpringMVC 会将对象序列化为JSON）：<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = <span class="meta-string">"/get-for-entity-04"</span>)</span></span><br><span class="line"><span class="keyword">public</span> User getForEntity04() &#123;</span><br><span class="line">    ResponseEntity&lt;User&gt; responseEntity =</span><br><span class="line">        restTemplate.getForEntity(</span><br><span class="line">            <span class="string">"http://DEMO-REST-TEMPLATE-PROVIDER-EUREKA-CLIENT/user?userId=&#123;1&#125;"</span>,</span><br><span class="line">            User.<span class="keyword">class</span>,</span><br><span class="line">            <span class="string">"1"</span>);</span><br><span class="line">    <span class="keyword">return</span> responseEntity.getBody();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h6 id="getForEntity-String-url-Class-responseType-Map-urlVariables"><a href="#getForEntity-String-url-Class-responseType-Map-urlVariables" class="headerlink" title="getForEntity(String url, Class responseType, Map urlVariables)"></a>getForEntity(String url, Class responseType, Map urlVariables)</h6><p>该方式是将请求参数封装进 Map ：<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value = <span class="string">"/get-for-entity-05"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="built_in">String</span> getForEntity05() &#123;</span><br><span class="line">    <span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="built_in">String</span>&gt; <span class="keyword">params</span> = <span class="literal">new</span> HashMap&lt;&gt;(<span class="number">8</span>);</span><br><span class="line">    <span class="keyword">params</span>.put(<span class="string">"userId"</span>, <span class="string">"1"</span>);</span><br><span class="line">    ResponseEntity&lt;<span class="built_in">String</span>&gt; responseEntity =</span><br><span class="line">        restTemplate.getForEntity(</span><br><span class="line">            <span class="string">"http://DEMO-REST-TEMPLATE-PROVIDER-EUREKA-CLIENT/user/name?userId=&#123;userId&#125;"</span>,</span><br><span class="line">            <span class="built_in">String</span>.class,</span><br><span class="line">            <span class="keyword">params</span>);</span><br><span class="line">    <span class="keyword">return</span> responseEntity.getBody();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h6 id="getForEntity-URI-uri-Class-responseType"><a href="#getForEntity-URI-uri-Class-responseType" class="headerlink" title="getForEntity(URI uri, Class responseType)"></a>getForEntity(URI uri, Class responseType)</h6><p>该方式是以构建URI的方式传递请求参数：<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/get-for-entity-06"</span>)</span><br><span class="line">public <span class="built_in">String</span> getForEntity06() &#123;</span><br><span class="line">    UriComponents uriComponents = UriComponentsBuilder.fromUriString(</span><br><span class="line">        <span class="string">"http://DEMO-REST-TEMPLATE-PROVIDER-EUREKA-CLIENT/user/name?userId=&#123;userId&#125;"</span>)</span><br><span class="line">        .build()</span><br><span class="line">        .expand(<span class="string">"1"</span>)</span><br><span class="line">        .encode();</span><br><span class="line">    URI uri = uriComponents.toUri();</span><br><span class="line">    ResponseEntity&lt;<span class="built_in">String</span>&gt; responseEntity = restTemplate.getForEntity(uri, <span class="built_in">String</span>.<span class="keyword">class</span>);</span><br><span class="line">    <span class="keyword">return</span> responseEntity.getBody();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="getForObject"><a href="#getForObject" class="headerlink" title="getForObject"></a>getForObject</h5><p>getForObject 是对 getForEntity 的进一步封装，自动对请求响应 body 内容进行对象转换。</p>
+<h6 id="getForObject-String-url-Class-responseType-Object…-urlVariables"><a href="#getForObject-String-url-Class-responseType-Object…-urlVariables" class="headerlink" title="getForObject(String url, Class responseType, Object… urlVariables)"></a>getForObject(String url, Class responseType, Object… urlVariables)</h6><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/get-for-object-01"</span>)</span><br><span class="line">public <span class="built_in">String</span> getForObject01() &#123;</span><br><span class="line">    <span class="built_in">String</span> userName =</span><br><span class="line">        restTemplate.getForObject(</span><br><span class="line">            <span class="string">"http://DEMO-REST-TEMPLATE-PROVIDER-EUREKA-CLIENT/user/name?userId=&#123;1&#125;"</span>,</span><br><span class="line">            <span class="built_in">String</span>.<span class="keyword">class</span>,</span><br><span class="line">            <span class="string">"1"</span>);</span><br><span class="line">    <span class="keyword">return</span> userName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="getForObject-String-url-Class-responseType-Map-urlVariables"><a href="#getForObject-String-url-Class-responseType-Map-urlVariables" class="headerlink" title="getForObject(String url, Class responseType, Map urlVariables)"></a>getForObject(String url, Class responseType, Map urlVariables)</h6><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value = <span class="string">"/get-for-object-02"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="built_in">String</span> getForObject02() &#123;</span><br><span class="line">    <span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="built_in">String</span>&gt; <span class="keyword">params</span> = <span class="literal">new</span> HashMap&lt;&gt;(<span class="number">8</span>);</span><br><span class="line">    <span class="keyword">params</span>.put(<span class="string">"userId"</span>, <span class="string">"1"</span>);</span><br><span class="line">    <span class="built_in">String</span> userName =</span><br><span class="line">        restTemplate.getForObject(</span><br><span class="line">            <span class="string">"http://DEMO-REST-TEMPLATE-PROVIDER-EUREKA-CLIENT/user/name?userId=&#123;userId&#125;"</span>,</span><br><span class="line">            <span class="built_in">String</span>.class,</span><br><span class="line">            <span class="keyword">params</span>);</span><br><span class="line">    <span class="keyword">return</span> userName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="getForObject-URI-url-Class-responseType"><a href="#getForObject-URI-url-Class-responseType" class="headerlink" title="getForObject(URI url, Class responseType)"></a>getForObject(URI url, Class responseType)</h6><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/get-for-object-03"</span>)</span><br><span class="line">public <span class="built_in">String</span> getForObject03() &#123;</span><br><span class="line">    UriComponents uriComponents = UriComponentsBuilder.fromUriString(</span><br><span class="line">        <span class="string">"http://DEMO-REST-TEMPLATE-PROVIDER-EUREKA-CLIENT/user/name?userId=&#123;userId&#125;"</span>)</span><br><span class="line">        .build()</span><br><span class="line">        .expand(<span class="string">"1"</span>)</span><br><span class="line">        .encode();</span><br><span class="line">    URI uri = uriComponents.toUri();</span><br><span class="line">    <span class="built_in">String</span> userName = restTemplate.getForObject(uri, <span class="built_in">String</span>.<span class="keyword">class</span>);</span><br><span class="line">    <span class="keyword">return</span> userName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一般直接在 url 中组合参数或者使用  getForObject(String url, Class responseType, Map urlVariables)</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">RestTemplate</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/SpringBoot-系列//" class="article-tag-list-link color4">SpringBoot 系列</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/28/RestTemplate GET 详解/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-CQRS 和 Event Sourcing 系列（一）：论精益与领域设计" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/28/CQRS 和 Event Sourcing 系列（一）：论精益与领域设计/">CQRS 和 Event Sourcing 系列（一）：论精益与领域设计</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/28/CQRS 和 Event Sourcing 系列（一）：论精益与领域设计/" class="archive-article-date">
+  	<time datetime="2017-12-28T12:40:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文转自 Edison Xu <a href="http://edisonxu.org/2017/03/17/lean-and-ddd.html" target="_blank" rel="noopener">CQRS 和 Event Sourcing 系列（一）：论精益与领域设计</a></p>
+<h4 id="开始之前"><a href="#开始之前" class="headerlink" title="开始之前"></a>开始之前</h4><p>你是否遇到过这种事？一个“好”工程师，非常喜欢学习和钻研新的技术知识，JEE时代学习Spring，SSH时代学习分布式，大数据时代又开始学习Hadoop,Storm,云时代开始搞docker,k8……然后成长为一名“架构师”了，在他的公司，有一个重要项目，于是乎他决意把这个项目设计成一个全分布式的系统，毕竟“时髦”嘛。每一个小的开发团队负责分布式中的一个服务。由于架构师对这些程序员缺乏必要的指导和控制，每个程序员只熟悉自己负责的一小块工作，彼此间缺乏沟通和协作，这个项目的概念完整性很快就被破坏了，他们开始自行其事，分布式服务间大量的远程调用导致了性能和可伸缩性等多方面的问题，开发、测试、运维的工作难度与日递增。慢慢的，项目的开发人员，离职的越来越多，包含最初的架构师，代码的维护越来越难，最终只能重构，将十几个分布式服务合并为三个相对独立的集中应用。最初良好的架构，到最后沦为废墟。中间一位离职的程序员，换了一家公司，涨了一点工资，开始了另一段新系统建设的“狂欢”，周而复始，随着年龄的增大，他不再能够从软件开发中享受到乐趣，开发的生涯，对他来说痛苦开始多余快乐。学习新技术，他也比不上年轻人。运气好的话，他可以转产品、管理或做业务，运气不好的话，还得继续码代码，毕竟要养家糊口。从一家公司换到另一家公司……</p>
+<h4 id="如果"><a href="#如果" class="headerlink" title="如果"></a>如果</h4><p>这是一个悲剧的故事，尤其是最后那位程序员。然而这可能是国内很多软件开发人员的真实写照。那么，我们从“上帝视角”来开看待这一切，会怎么样呢？先从“如果”开始吧。</p>
+<ul>
+<li>如果最初那位“架构师”不盲目赶时髦，压制住自己想通过该项目展示自己功力的想法，转而根据实际的业务需要和人力资源情况，考虑适当扩展性、可维护性后，再设计这套架构，会不会好点？</li>
+<li>如果那位“架构师”抽出时间，找到合适的方法来指导和控制开发的程序员，保证整个系统的概念完整性，架构会不会发挥出它应有的能力和好处呢？</li>
+<li>如果那位程序员，发现自己志不在编码，早日转行找到适合自己的岗位，生活会不会幸福很多呢？比如之前中关村离职开水果店的那位成功”程序员”（一日程序员，终生程序员）</li>
+<li>如果那位程序员，能够及时意识到学习新知识的重要性，并以此为乐，或许，他会成为另一位最初的那位架构师</li>
+<li>如果那位程序员和那位架构师，在开始一切之前，与领域专家进行详细的领域建模，能把握相关领域的核心知识，对他们的进一步前行，转行、进阶架构、进阶CTO，会不会带来额外的好处或便利？</li>
+</ul>
+<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><p>当然，世界上不允许有如果，也没有后悔药。废话不多说，如果要在技术上继续走下去，总结起来无外乎几点：</p>
+<ol>
+<li>追求精益，即提高效率，避免浪费，哪怕你当了CTO、CEO；</li>
+<li>重视沟通，重视团队管理，而不仅仅把注意力集中在新技术和良好的架构上；</li>
+<li>一切都要透过现象看本质，把握核心要素；</li>
+<li>保持危机感和饥渴；</li>
+</ol>
+<p>如果不想在技术上走下去，可以到这里就结束了。友情提醒：当管理可比做技术难太多了，人心比海深。</p>
+<p>我们从现在回头看软件开发的历史，开发模式的演进，从瀑布式到极限到敏捷，到现在的DevOps，还是技术的演进，其实都是在1、2两点上进行不断的尝试和优化。最终，1、2其实都可以归于精益的思想。对于精益，我就不多叙述了，强烈推荐精益创业这本经典，虽然书本身是写给产品和创业者的，但精益的思想是普适的。<br>而3、4两点是针对个人的，对应到软件开发，就是DDD的出现。DDD最大的作用就是为了达到第三点（当然，对第2点也好很好的体现），把业务上真正核心要解决的问题进行建模。<br>这里我就不再详细阐述DDD的具体内容了，随便一搜一大把，下一篇我会就其中几个比较重要的概念进行解释，但是千万不要把DDD与单纯的以名词建模混为一谈。</p>
+<p>推荐看InfoQ几年前出的Domain-Driven Design Quickly(dddquickly)或中文精简版 ，有一定基础后，再去看原作者，也就是DDD概念的创始人Eric Evans的大作 Domain-Driven Design: Tacking Complexity in the Heart of Software</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">CQRS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Event Sourcing</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/架构系列//" class="article-tag-list-link color5">架构系列</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/28/CQRS 和 Event Sourcing 系列（一）：论精益与领域设计/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-Gitflow Workflow 工作流" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -928,208 +1130,6 @@
 
 
   
-    <article id="post-Python if 语句" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/15/Python if 语句/">Python if 语句</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/15/Python if 语句/" class="archive-article-date">
-  	<time datetime="2017-12-15T11:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Python : 3.6.3</p>
-<h3 id="布尔表达式"><a href="#布尔表达式" class="headerlink" title="布尔表达式"></a>布尔表达式</h3><p>条件测试：每条 if 语句的核心都是一个值为 true 或 false 的表达式<br>表达式也称为布尔表达式</p>
-<h6 id="检查是否相等"><a href="#检查是否相等" class="headerlink" title="检查是否相等"></a>检查是否相等</h6><p>大多数条件测试都是将一个变量的当前值同特定值通过相等运算符进行比较。<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">car</span> == <span class="string">'bmw'</span></span><br></pre></td></tr></table></figure></p>
-<h6 id="检查是否相等时不考虑大小写"><a href="#检查是否相等时不考虑大小写" class="headerlink" title="检查是否相等时不考虑大小写"></a>检查是否相等时不考虑大小写</h6><p>在 Python 中检查是否相等时默认区分大小写。<br>不过某些特殊场景下可以使用 lower() 方法对测试变量进行临时处理后再比较：<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">car</span> = <span class="string">'Audi'</span></span><br><span class="line">car.lower() == <span class="string">'audi'</span></span><br></pre></td></tr></table></figure></p>
-<h6 id="检查是否不相等"><a href="#检查是否不相等" class="headerlink" title="检查是否不相等"></a>检查是否不相等</h6><p>要判断两个值是否不等，可使用 “!=”：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">requested_topping = <span class="string">'mushrooms'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">if</span> requested_topping != <span class="string">'anchovies'</span>:</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"Hold the anchovies!"</span>)</span><br></pre></td></tr></table></figure></p>
-<h6 id="检查多个条件"><a href="#检查多个条件" class="headerlink" title="检查多个条件"></a>检查多个条件</h6><p>####### 使用 and 检查多个条件</p>
-<p>and 表示并且，需要两个条件都为 true，表达式才为 true：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age_0 = <span class="number">22</span></span><br><span class="line">age_1 = <span class="number">18</span></span><br><span class="line">print(age_0 &gt;= <span class="number">21</span> and age_1 &gt;= <span class="number">21</span>)</span><br></pre></td></tr></table></figure></p>
-<p>为了提高可读性，可以使用括号：<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age_0 = <span class="number">22</span></span><br><span class="line">age_1 = <span class="number">18</span></span><br><span class="line">print((<span class="name">age_0</span> &gt;= <span class="number">21</span>) and (<span class="name">age_1</span> &gt;= <span class="number">21</span>))</span><br></pre></td></tr></table></figure></p>
-<p>####### 使用 or 检查多个条件</p>
-<p>or 表示或，需要两个条件都为 false，表达式才为 false：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age_0 = <span class="number">18</span></span><br><span class="line">age_1 = <span class="number">18</span></span><br><span class="line">print(age_0 &gt;= <span class="number">21</span> or age_1 &gt;= <span class="number">21</span>)</span><br></pre></td></tr></table></figure></p>
-<p>为了提高可读性，可以使用括号：<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age_0 = <span class="number">18</span></span><br><span class="line">age_1 = <span class="number">18</span></span><br><span class="line">print((<span class="name">age_0</span> &gt;= <span class="number">21</span>) or (<span class="name">age_1</span> &gt;= <span class="number">21</span>)</span><br></pre></td></tr></table></figure></p>
-<h5 id="检查特定值是否包含在列表中"><a href="#检查特定值是否包含在列表中" class="headerlink" title="检查特定值是否包含在列表中"></a>检查特定值是否包含在列表中</h5><p>Python 可以使用关键字 in 判断特定的值是否已包含在列表中：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">requested_toppings = [<span class="string">'mushrooms'</span>,<span class="string">'onions'</span>,<span class="string">'pineapple'</span>]</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">'mushrooms'</span> in requested_toppings)</span></span></span><br></pre></td></tr></table></figure></p>
-<h5 id="检查特定值是否不包含在列表中"><a href="#检查特定值是否不包含在列表中" class="headerlink" title="检查特定值是否不包含在列表中"></a>检查特定值是否不包含在列表中</h5><p>Python 可以使用关键字 not in 判断特定的值是否未包含在列表中：<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">requested_toppings = [onions<span class="string">','</span>pineapple']</span><br><span class="line">print(<span class="symbol">'mushrooms</span>' <span class="keyword">not</span> <span class="keyword">in</span> requested_toppings)</span><br></pre></td></tr></table></figure></p>
-<h3 id="if-语句"><a href="#if-语句" class="headerlink" title="if 语句"></a>if 语句</h3><h5 id="简单的-if-语句"><a href="#简单的-if-语句" class="headerlink" title="简单的 if 语句"></a>简单的 if 语句</h5><p>最简单的 if 语句只有一个布尔表达式和一个操作：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">age = 19</span><br><span class="line"><span class="keyword">if</span> age &gt;= 18:</span><br><span class="line">	<span class="builtin-name">print</span>(<span class="string">"You are old enough to vote!"</span>)</span><br><span class="line">    <span class="builtin-name">print</span>(<span class="string">"Have you registered to vote yet?"</span>)</span><br></pre></td></tr></table></figure></p>
-<p>if 语句的缩进和 for 语句的规则一致。</p>
-<h5 id="if-else-语句"><a href="#if-else-语句" class="headerlink" title="if-else 语句"></a>if-else 语句</h5><p>if-else 语句中若布尔表达式结果为 true，则执行 if 中的语句，反之执行 else 中的语句：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">age = 17</span><br><span class="line"><span class="keyword">if</span> age &gt;= 18:</span><br><span class="line">	<span class="builtin-name">print</span>(<span class="string">"You are old enough to vote!"</span>)</span><br><span class="line">    <span class="builtin-name">print</span>(<span class="string">" Have you registered to vote yet?"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	<span class="builtin-name">print</span>(<span class="string">"Sorry，you are too young to vote."</span>)</span><br><span class="line">    <span class="builtin-name">print</span>(<span class="string">"Please register to vote as soon as you turn 18!"</span>)</span><br></pre></td></tr></table></figure></p>
-<h5 id="if-elif-else-语句"><a href="#if-elif-else-语句" class="headerlink" title="if-elif-else 语句"></a>if-elif-else 语句</h5><p>if-elif-else 依次检查每个条件测试，直到遇到通过了的条件测试。<br>测试通过后，Python 将执行紧跟在它后面的代码，并跳过余下的测试。</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">age = 12</span><br><span class="line"><span class="keyword">if</span> age &lt; 4:</span><br><span class="line">	<span class="builtin-name">print</span>(<span class="string">"免费"</span>)</span><br><span class="line">elif age &lt; 18:</span><br><span class="line">	<span class="builtin-name">print</span>(<span class="string">"半价"</span>)</span><br><span class="line">elif age &lt; 65:</span><br><span class="line">	<span class="builtin-name">print</span>(<span class="string">"全价"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	<span class="builtin-name">print</span>(<span class="string">"半价"</span>)</span><br></pre></td></tr></table></figure>
-<h5 id="测试多个条件"><a href="#测试多个条件" class="headerlink" title="测试多个条件"></a>测试多个条件</h5><p>在可能有多个条件为 true，且需要在每个条件为 true 时都执行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">requested_toppings = [<span class="string">'mushrooms'</span>,<span class="string">'extra cheese'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="string">'mushrooms'</span> <span class="keyword">in</span> requested_toppings:</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"Adding mushrooms"</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="string">'pepperoni'</span> <span class="keyword">in</span> requested_toppings:</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"Adding pepperoni"</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="string">'extra cheese'</span> <span class="keyword">in</span> requested_toppings:</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"Adding extra cheese"</span>)</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Adding </span>mushrooms</span><br><span class="line"><span class="keyword">Adding </span><span class="keyword">extra </span>cheese</span><br></pre></td></tr></table></figure></p>
-<h3 id="使用-if-语句处理列表"><a href="#使用-if-语句处理列表" class="headerlink" title="使用 if 语句处理列表"></a>使用 if 语句处理列表</h3><h5 id="检查特殊元素"><a href="#检查特殊元素" class="headerlink" title="检查特殊元素"></a>检查特殊元素</h5><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">requested_toppings = [<span class="string">'mushrooms'</span>,<span class="string">'green peppers'</span>,<span class="string">'extra cheese'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> requested_topping in requested_topping<span class="variable">s:</span></span><br><span class="line">	<span class="keyword">if</span> <span class="string">'green peppers'</span> == requested_toppin<span class="variable">g:</span></span><br><span class="line">		<span class="keyword">print</span>(<span class="string">"Sorry, we are out of green peppers right now"</span>)</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		<span class="keyword">print</span>(<span class="string">"Adding "</span> + requested_topping)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span>(<span class="string">"Finished making your pizza!"</span>)</span><br></pre></td></tr></table></figure>
-<p>输出：<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Adding </span>mushrooms</span><br><span class="line">Sorry, we are out of green peppers right now</span><br><span class="line"><span class="keyword">Adding </span><span class="keyword">extra </span>cheese</span><br><span class="line">Finished making your pizza!</span><br></pre></td></tr></table></figure></p>
-<h5 id="确定列表不是空的"><a href="#确定列表不是空的" class="headerlink" title="确定列表不是空的"></a>确定列表不是空的</h5><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">requested_toppings = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> requested_toppings:</span><br><span class="line">	<span class="keyword">for</span> requested_topping <span class="keyword">in</span> requested_toppings:</span><br><span class="line">		<span class="builtin-name">print</span>(<span class="string">"Adding "</span> + requested_topping)</span><br><span class="line">		<span class="builtin-name">print</span>(<span class="string">"Finished making your pizza!"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	<span class="builtin-name">print</span>(<span class="string">"Are you sure you want a plain pizza?"</span>)</span><br></pre></td></tr></table></figure>
-<p>输出：<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Are</span> you sure you want a plain pizza?</span><br></pre></td></tr></table></figure></p>
-<h5 id="使用多个列表"><a href="#使用多个列表" class="headerlink" title="使用多个列表"></a>使用多个列表</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">available_toppings = [<span class="string">'mushrooms'</span>,<span class="string">'olives'</span>,<span class="string">'green peppers'</span>,<span class="string">'pepperoni'</span>,<span class="string">'pineapple'</span>,<span class="string">'extra cheese'</span>]</span><br><span class="line"></span><br><span class="line">requested_toppings = [<span class="string">'mushrooms'</span>,<span class="string">'french fries'</span>,<span class="string">'extra cheese'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> requested_topping <span class="keyword">in</span> requested_toppings:</span><br><span class="line">	<span class="keyword">if</span> requested_topping <span class="keyword">in</span> available_toppings:</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">"Adding "</span> + requested_topping)</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">"Sorry, we don't have "</span> + requested_topping)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Finished making your pizza!"</span>)</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Adding mushrooms</span><br><span class="line">Sorry, we don<span class="symbol">'t</span> have french fries</span><br><span class="line">Adding extra cheese</span><br><span class="line">Finished making your pizza!</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Python-系列//" class="article-tag-list-link color5">Python 系列</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/15/Python if 语句/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python 元组" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/14/Python 元组/">Python 元组</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/14/Python 元组/" class="archive-article-date">
-  	<time datetime="2017-12-14T14:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Python : 3.6.3</p>
-<p>Python 中列表是可变的，列表的长度随着列表内元素的数量变化而变化，而要想创建一个长度不可变的存储数据集，可以使用元组。</p>
-<h4 id="定义元祖"><a href="#定义元祖" class="headerlink" title="定义元祖"></a>定义元祖</h4><p>元组和列表类似，只是使用的是圆括号而不是方括号：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">numbers = (<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(numbers[<span class="number">0</span>])</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(numbers[<span class="number">1</span>])</span></span></span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure></p>
-<p>元组支持和列表一样的操作，除了修改元祖的元素值：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">numbers</span> = (<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line"><span class="attr">numbers[0]</span> = <span class="number">20</span></span><br></pre></td></tr></table></figure></p>
-<p>上述的操作是错误的。</p>
-<p>但是元组支持整体的赋值：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">numbers</span> = (<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line"><span class="attr">numbers</span> = (<span class="number">10</span>,<span class="number">30</span>)</span><br></pre></td></tr></table></figure></p>
-<p>元组的其他操作可参考列表的操作</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Python-系列//" class="article-tag-list-link color5">Python 系列</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/14/Python 元组/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
@@ -1229,14 +1229,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CI</a>
               </li>
              
@@ -1265,6 +1257,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
@@ -1285,11 +1285,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color3">Servlet</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Servlet</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1301,11 +1301,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">冒泡排序</a>
+                <a href="javascript:void(0)" class="js-tag color5">选择排序 插入排序</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">选择排序 插入排序</a>
+                <a href="javascript:void(0)" class="js-tag color5">冒泡排序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1333,15 +1333,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Ribbon</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring Framework</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">ExceptionHandler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Ribbon</a>
               </li>
              
               <li class="article-tag-list-item">

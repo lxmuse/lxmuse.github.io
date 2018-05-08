@@ -55,8 +55,6 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -105,8 +103,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -121,9 +117,7 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
-		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 100%"><a href="/">主页</a></li>
 		        
 				</ul>
 			</nav>
@@ -139,6 +133,208 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-Python if 语句" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/15/Python if 语句/">Python if 语句</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/15/Python if 语句/" class="archive-article-date">
+  	<time datetime="2017-12-15T11:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Python : 3.6.3</p>
+<h3 id="布尔表达式"><a href="#布尔表达式" class="headerlink" title="布尔表达式"></a>布尔表达式</h3><p>条件测试：每条 if 语句的核心都是一个值为 true 或 false 的表达式<br>表达式也称为布尔表达式</p>
+<h6 id="检查是否相等"><a href="#检查是否相等" class="headerlink" title="检查是否相等"></a>检查是否相等</h6><p>大多数条件测试都是将一个变量的当前值同特定值通过相等运算符进行比较。<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">car</span> == <span class="string">'bmw'</span></span><br></pre></td></tr></table></figure></p>
+<h6 id="检查是否相等时不考虑大小写"><a href="#检查是否相等时不考虑大小写" class="headerlink" title="检查是否相等时不考虑大小写"></a>检查是否相等时不考虑大小写</h6><p>在 Python 中检查是否相等时默认区分大小写。<br>不过某些特殊场景下可以使用 lower() 方法对测试变量进行临时处理后再比较：<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">car</span> = <span class="string">'Audi'</span></span><br><span class="line">car.lower() == <span class="string">'audi'</span></span><br></pre></td></tr></table></figure></p>
+<h6 id="检查是否不相等"><a href="#检查是否不相等" class="headerlink" title="检查是否不相等"></a>检查是否不相等</h6><p>要判断两个值是否不等，可使用 “!=”：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">requested_topping = <span class="string">'mushrooms'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">if</span> requested_topping != <span class="string">'anchovies'</span>:</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"Hold the anchovies!"</span>)</span><br></pre></td></tr></table></figure></p>
+<h6 id="检查多个条件"><a href="#检查多个条件" class="headerlink" title="检查多个条件"></a>检查多个条件</h6><p>####### 使用 and 检查多个条件</p>
+<p>and 表示并且，需要两个条件都为 true，表达式才为 true：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age_0 = <span class="number">22</span></span><br><span class="line">age_1 = <span class="number">18</span></span><br><span class="line">print(age_0 &gt;= <span class="number">21</span> and age_1 &gt;= <span class="number">21</span>)</span><br></pre></td></tr></table></figure></p>
+<p>为了提高可读性，可以使用括号：<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age_0 = <span class="number">22</span></span><br><span class="line">age_1 = <span class="number">18</span></span><br><span class="line">print((<span class="name">age_0</span> &gt;= <span class="number">21</span>) and (<span class="name">age_1</span> &gt;= <span class="number">21</span>))</span><br></pre></td></tr></table></figure></p>
+<p>####### 使用 or 检查多个条件</p>
+<p>or 表示或，需要两个条件都为 false，表达式才为 false：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age_0 = <span class="number">18</span></span><br><span class="line">age_1 = <span class="number">18</span></span><br><span class="line">print(age_0 &gt;= <span class="number">21</span> or age_1 &gt;= <span class="number">21</span>)</span><br></pre></td></tr></table></figure></p>
+<p>为了提高可读性，可以使用括号：<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age_0 = <span class="number">18</span></span><br><span class="line">age_1 = <span class="number">18</span></span><br><span class="line">print((<span class="name">age_0</span> &gt;= <span class="number">21</span>) or (<span class="name">age_1</span> &gt;= <span class="number">21</span>)</span><br></pre></td></tr></table></figure></p>
+<h5 id="检查特定值是否包含在列表中"><a href="#检查特定值是否包含在列表中" class="headerlink" title="检查特定值是否包含在列表中"></a>检查特定值是否包含在列表中</h5><p>Python 可以使用关键字 in 判断特定的值是否已包含在列表中：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">requested_toppings = [<span class="string">'mushrooms'</span>,<span class="string">'onions'</span>,<span class="string">'pineapple'</span>]</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">'mushrooms'</span> in requested_toppings)</span></span></span><br></pre></td></tr></table></figure></p>
+<h5 id="检查特定值是否不包含在列表中"><a href="#检查特定值是否不包含在列表中" class="headerlink" title="检查特定值是否不包含在列表中"></a>检查特定值是否不包含在列表中</h5><p>Python 可以使用关键字 not in 判断特定的值是否未包含在列表中：<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">requested_toppings = [onions<span class="string">','</span>pineapple']</span><br><span class="line">print(<span class="symbol">'mushrooms</span>' <span class="keyword">not</span> <span class="keyword">in</span> requested_toppings)</span><br></pre></td></tr></table></figure></p>
+<h3 id="if-语句"><a href="#if-语句" class="headerlink" title="if 语句"></a>if 语句</h3><h5 id="简单的-if-语句"><a href="#简单的-if-语句" class="headerlink" title="简单的 if 语句"></a>简单的 if 语句</h5><p>最简单的 if 语句只有一个布尔表达式和一个操作：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">age = 19</span><br><span class="line"><span class="keyword">if</span> age &gt;= 18:</span><br><span class="line">	<span class="builtin-name">print</span>(<span class="string">"You are old enough to vote!"</span>)</span><br><span class="line">    <span class="builtin-name">print</span>(<span class="string">"Have you registered to vote yet?"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>if 语句的缩进和 for 语句的规则一致。</p>
+<h5 id="if-else-语句"><a href="#if-else-语句" class="headerlink" title="if-else 语句"></a>if-else 语句</h5><p>if-else 语句中若布尔表达式结果为 true，则执行 if 中的语句，反之执行 else 中的语句：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">age = 17</span><br><span class="line"><span class="keyword">if</span> age &gt;= 18:</span><br><span class="line">	<span class="builtin-name">print</span>(<span class="string">"You are old enough to vote!"</span>)</span><br><span class="line">    <span class="builtin-name">print</span>(<span class="string">" Have you registered to vote yet?"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	<span class="builtin-name">print</span>(<span class="string">"Sorry，you are too young to vote."</span>)</span><br><span class="line">    <span class="builtin-name">print</span>(<span class="string">"Please register to vote as soon as you turn 18!"</span>)</span><br></pre></td></tr></table></figure></p>
+<h5 id="if-elif-else-语句"><a href="#if-elif-else-语句" class="headerlink" title="if-elif-else 语句"></a>if-elif-else 语句</h5><p>if-elif-else 依次检查每个条件测试，直到遇到通过了的条件测试。<br>测试通过后，Python 将执行紧跟在它后面的代码，并跳过余下的测试。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">age = 12</span><br><span class="line"><span class="keyword">if</span> age &lt; 4:</span><br><span class="line">	<span class="builtin-name">print</span>(<span class="string">"免费"</span>)</span><br><span class="line">elif age &lt; 18:</span><br><span class="line">	<span class="builtin-name">print</span>(<span class="string">"半价"</span>)</span><br><span class="line">elif age &lt; 65:</span><br><span class="line">	<span class="builtin-name">print</span>(<span class="string">"全价"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	<span class="builtin-name">print</span>(<span class="string">"半价"</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="测试多个条件"><a href="#测试多个条件" class="headerlink" title="测试多个条件"></a>测试多个条件</h5><p>在可能有多个条件为 true，且需要在每个条件为 true 时都执行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">requested_toppings = [<span class="string">'mushrooms'</span>,<span class="string">'extra cheese'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="string">'mushrooms'</span> <span class="keyword">in</span> requested_toppings:</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"Adding mushrooms"</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="string">'pepperoni'</span> <span class="keyword">in</span> requested_toppings:</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"Adding pepperoni"</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="string">'extra cheese'</span> <span class="keyword">in</span> requested_toppings:</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"Adding extra cheese"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Adding </span>mushrooms</span><br><span class="line"><span class="keyword">Adding </span><span class="keyword">extra </span>cheese</span><br></pre></td></tr></table></figure></p>
+<h3 id="使用-if-语句处理列表"><a href="#使用-if-语句处理列表" class="headerlink" title="使用 if 语句处理列表"></a>使用 if 语句处理列表</h3><h5 id="检查特殊元素"><a href="#检查特殊元素" class="headerlink" title="检查特殊元素"></a>检查特殊元素</h5><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">requested_toppings = [<span class="string">'mushrooms'</span>,<span class="string">'green peppers'</span>,<span class="string">'extra cheese'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> requested_topping in requested_topping<span class="variable">s:</span></span><br><span class="line">	<span class="keyword">if</span> <span class="string">'green peppers'</span> == requested_toppin<span class="variable">g:</span></span><br><span class="line">		<span class="keyword">print</span>(<span class="string">"Sorry, we are out of green peppers right now"</span>)</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		<span class="keyword">print</span>(<span class="string">"Adding "</span> + requested_topping)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span>(<span class="string">"Finished making your pizza!"</span>)</span><br></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Adding </span>mushrooms</span><br><span class="line">Sorry, we are out of green peppers right now</span><br><span class="line"><span class="keyword">Adding </span><span class="keyword">extra </span>cheese</span><br><span class="line">Finished making your pizza!</span><br></pre></td></tr></table></figure></p>
+<h5 id="确定列表不是空的"><a href="#确定列表不是空的" class="headerlink" title="确定列表不是空的"></a>确定列表不是空的</h5><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">requested_toppings = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> requested_toppings:</span><br><span class="line">	<span class="keyword">for</span> requested_topping <span class="keyword">in</span> requested_toppings:</span><br><span class="line">		<span class="builtin-name">print</span>(<span class="string">"Adding "</span> + requested_topping)</span><br><span class="line">		<span class="builtin-name">print</span>(<span class="string">"Finished making your pizza!"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	<span class="builtin-name">print</span>(<span class="string">"Are you sure you want a plain pizza?"</span>)</span><br></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Are</span> you sure you want a plain pizza?</span><br></pre></td></tr></table></figure></p>
+<h5 id="使用多个列表"><a href="#使用多个列表" class="headerlink" title="使用多个列表"></a>使用多个列表</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">available_toppings = [<span class="string">'mushrooms'</span>,<span class="string">'olives'</span>,<span class="string">'green peppers'</span>,<span class="string">'pepperoni'</span>,<span class="string">'pineapple'</span>,<span class="string">'extra cheese'</span>]</span><br><span class="line"></span><br><span class="line">requested_toppings = [<span class="string">'mushrooms'</span>,<span class="string">'french fries'</span>,<span class="string">'extra cheese'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> requested_topping <span class="keyword">in</span> requested_toppings:</span><br><span class="line">	<span class="keyword">if</span> requested_topping <span class="keyword">in</span> available_toppings:</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">"Adding "</span> + requested_topping)</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">"Sorry, we don't have "</span> + requested_topping)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Finished making your pizza!"</span>)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Adding mushrooms</span><br><span class="line">Sorry, we don<span class="symbol">'t</span> have french fries</span><br><span class="line">Adding extra cheese</span><br><span class="line">Finished making your pizza!</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Python-系列//" class="article-tag-list-link color5">Python 系列</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/15/Python if 语句/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Python 元组" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/14/Python 元组/">Python 元组</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/14/Python 元组/" class="archive-article-date">
+  	<time datetime="2017-12-14T14:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Python : 3.6.3</p>
+<p>Python 中列表是可变的，列表的长度随着列表内元素的数量变化而变化，而要想创建一个长度不可变的存储数据集，可以使用元组。</p>
+<h4 id="定义元祖"><a href="#定义元祖" class="headerlink" title="定义元祖"></a>定义元祖</h4><p>元组和列表类似，只是使用的是圆括号而不是方括号：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">numbers = (<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(numbers[<span class="number">0</span>])</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(numbers[<span class="number">1</span>])</span></span></span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure></p>
+<p>元组支持和列表一样的操作，除了修改元祖的元素值：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">numbers</span> = (<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line"><span class="attr">numbers[0]</span> = <span class="number">20</span></span><br></pre></td></tr></table></figure></p>
+<p>上述的操作是错误的。</p>
+<p>但是元组支持整体的赋值：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">numbers</span> = (<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line"><span class="attr">numbers</span> = (<span class="number">10</span>,<span class="number">30</span>)</span><br></pre></td></tr></table></figure></p>
+<p>元组的其他操作可参考列表的操作</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Python-系列//" class="article-tag-list-link color5">Python 系列</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/14/Python 元组/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-Python 操作列表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1016,205 +1212,6 @@
 
 
   
-    <article id="post-SpringBoot 属性外置配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/05/SpringBoot 属性外置配置/">SpringBoot 属性外置配置</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/05/SpringBoot 属性外置配置/" class="archive-article-date">
-  	<time datetime="2017-12-05T14:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>SpringBoot：1.5.9.RELEASE<br>JDK：1.8<br>IDEA：2017.2</p>
-<h5 id="Value-注解读取-application-properties-文件中的属性"><a href="#Value-注解读取-application-properties-文件中的属性" class="headerlink" title="@Value 注解读取 application.properties 文件中的属性"></a>@Value 注解读取 application.properties 文件中的属性</h5><p>Controller：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">org</span><span class="selector-class">.springframework</span><span class="selector-class">.beans</span><span class="selector-class">.factory</span><span class="selector-class">.annotation</span><span class="selector-class">.Value</span>;</span><br><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">org</span><span class="selector-class">.springframework</span><span class="selector-class">.web</span><span class="selector-class">.bind</span><span class="selector-class">.annotation</span><span class="selector-class">.GetMapping</span>;</span><br><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">org</span><span class="selector-class">.springframework</span><span class="selector-class">.web</span><span class="selector-class">.bind</span><span class="selector-class">.annotation</span><span class="selector-class">.RestController</span>;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">RestController</span></span><br><span class="line"><span class="keyword">public</span> class ExConfigController &#123;</span><br><span class="line"></span><br><span class="line">	@<span class="keyword">Value</span>("$&#123;<span class="selector-tag">my</span><span class="selector-class">.user</span><span class="selector-class">.name</span>&#125;")</span><br><span class="line">	<span class="selector-tag">private</span> <span class="selector-tag">String</span> <span class="selector-tag">name</span>;</span><br><span class="line"></span><br><span class="line">	@<span class="keyword">GetMapping</span>("/<span class="keyword">user</span>/<span class="keyword">name</span>")</span><br><span class="line">	public String getUserName() &#123;</span><br><span class="line">		<span class="selector-tag">System</span><span class="selector-class">.out</span><span class="selector-class">.println</span>(<span class="selector-tag">name</span>);</span><br><span class="line">		<span class="selector-tag">return</span> <span class="selector-tag">name</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>application.properties：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my<span class="selector-class">.user</span><span class="selector-class">.name</span>=Hello-孙悟空</span><br></pre></td></tr></table></figure></p>
-<h6 id="中文乱码问题"><a href="#中文乱码问题" class="headerlink" title="中文乱码问题"></a>中文乱码问题</h6><p>该方式有时会遇到中文乱码问题，此时可能需要检查一下application.properties文件的编码格式。<br>以 IDEA 为例：<br>File -&gt; Settings -&gt; File Encoding<br>将Properties Files (*.properties)下的Default encoding for properties files设置为UTF-8，将Transparent native-to-ascii conversion前的勾选上。</p>
-<p>yml 默认就是 UTF-8 格式，所以天然支持中文。推荐使用 application.yml 替代 application.properties</p>
-<h5 id="ConfigurationProperties-注解及配置类读取-application-properties-或-application-yml-文件中的属性"><a href="#ConfigurationProperties-注解及配置类读取-application-properties-或-application-yml-文件中的属性" class="headerlink" title="@ConfigurationProperties 注解及配置类读取 application.properties 或 application.yml 文件中的属性"></a>@ConfigurationProperties 注解及配置类读取 application.properties 或 application.yml 文件中的属性</h5><p>application.yml：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">my<span class="selector-class">.book</span><span class="selector-class">.author</span>: 罗贯中</span><br><span class="line">my<span class="selector-class">.book</span><span class="selector-class">.name</span>: 三国演义</span><br><span class="line">my<span class="selector-class">.book</span><span class="selector-class">.price</span>: <span class="number">60</span></span><br></pre></td></tr></table></figure></p>
-<p>ExConfig :<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.ec.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"my.book"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> String author;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> price;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getAuthor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> author;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAuthor</span><span class="params">(String author)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.author = author;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPrice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> price;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPrice</span><span class="params">(<span class="keyword">int</span> price)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.price = price;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>ExConfigController：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">package</span> <span class="selector-tag">com</span><span class="selector-class">.example</span><span class="selector-class">.ec</span><span class="selector-class">.controller</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">com</span><span class="selector-class">.example</span><span class="selector-class">.ec</span><span class="selector-class">.config</span><span class="selector-class">.ExConfig</span>;</span><br><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">org</span><span class="selector-class">.springframework</span><span class="selector-class">.beans</span><span class="selector-class">.factory</span><span class="selector-class">.annotation</span><span class="selector-class">.Autowired</span>;</span><br><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">org</span><span class="selector-class">.springframework</span><span class="selector-class">.web</span><span class="selector-class">.bind</span><span class="selector-class">.annotation</span><span class="selector-class">.GetMapping</span>;</span><br><span class="line"><span class="selector-tag">import</span> <span class="selector-tag">org</span><span class="selector-class">.springframework</span><span class="selector-class">.web</span><span class="selector-class">.bind</span><span class="selector-class">.annotation</span><span class="selector-class">.RestController</span>;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">RestController</span></span><br><span class="line"><span class="keyword">public</span> class ExConfigController &#123;</span><br><span class="line"></span><br><span class="line">	@<span class="keyword">Autowired</span></span><br><span class="line">	private ExConfig exConfig;</span><br><span class="line"></span><br><span class="line">	@<span class="keyword">GetMapping</span>("/<span class="keyword">book</span>")</span><br><span class="line">	public String getBook() &#123;</span><br><span class="line">		<span class="selector-tag">return</span> <span class="selector-tag">exConfig</span><span class="selector-class">.getAuthor</span>() + " " + <span class="selector-tag">exConfig</span><span class="selector-class">.getName</span>() + " " + <span class="selector-tag">exConfig</span><span class="selector-class">.getPrice</span>();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>不同的 SpringBoot 版本使用方式又些许不同。一些低版本的需要在启动类中配置 @EnableConfigurationProperties 注解</p>
-<h5 id="ConfigurationProperties-注解及配置类读取-custom-properties-或-custom-yml-文件中的属性"><a href="#ConfigurationProperties-注解及配置类读取-custom-properties-或-custom-yml-文件中的属性" class="headerlink" title="@ConfigurationProperties 注解及配置类读取 custom.properties 或 custom.yml 文件中的属性"></a>@ConfigurationProperties 注解及配置类读取 custom.properties 或 custom.yml 文件中的属性</h5><p>读取自定义属性文件中的属性</p>
-<p>book.yml：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">my<span class="selector-class">.book</span><span class="selector-class">.author</span>: 罗贯中</span><br><span class="line">my<span class="selector-class">.book</span><span class="selector-class">.name</span>: 三国演义</span><br><span class="line">my<span class="selector-class">.book</span><span class="selector-class">.price</span>: <span class="number">60</span></span><br></pre></td></tr></table></figure></p>
-<p>ExConfig :<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.ec.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.PropertySource;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"my.book"</span>)</span><br><span class="line"><span class="meta">@PropertySource</span>(value = <span class="string">"book.yml"</span>, encoding = <span class="string">"UTF-8"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> String author;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> price;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getAuthor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> author;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAuthor</span><span class="params">(String author)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.author = author;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPrice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> price;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPrice</span><span class="params">(<span class="keyword">int</span> price)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.price = price;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>具体代码已上传<a href="https://github.com/lxmuse/lxmuse-spring-boot.git" target="_blank" rel="noopener">GitHub-lxmuse</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/SpringBoot//" class="article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/05/SpringBoot 属性外置配置/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java 多线程之常见方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/04/Java 多线程之常见方法/">Java 多线程之常见方法</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/04/Java 多线程之常见方法/" class="archive-article-date">
-  	<time datetime="2017-12-04T11:51:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="Thread-currentThread-方法"><a href="#Thread-currentThread-方法" class="headerlink" title="Thread.currentThread() 方法"></a>Thread.currentThread() 方法</h5><p>Thread.currentThread() 方法可以返回调用当前代码块的线程的信息。<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">CustomThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	public <span class="type">CustomThread</span>() &#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="type">System</span>.out.println(<span class="string">"构造方法："</span> + <span class="type">Thread</span>.currentThread().getName());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	public synchronized void run() &#123;</span><br><span class="line">		<span class="keyword">super</span>.run();</span><br><span class="line">		<span class="type">System</span>.out.println(<span class="string">"run() 方法："</span> + <span class="type">Thread</span>.currentThread().getName());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomThreadTest</span> &#123;</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		CustomThread customThread = <span class="keyword">new</span> CustomThread();</span><br><span class="line">		customThread.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Thread.currentThread() 方法可以返回是什么线程调用了CustomThread的构造方法，什么线程调用了CustomThread的run()方法：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">构造方法：main</span><br><span class="line"><span class="function"><span class="title">run</span><span class="params">()</span></span> 方法：Thread-<span class="number">0</span></span><br></pre></td></tr></table></figure></p>
-<p>main 线程调用了CustomThread的构造方法，一个名叫Thread-0的线程调用了CustomThread的run()方法（若线程没有指定名称，则会默认生成一个名称）</p>
-<h6 id="Thread-currentThread-getName-方法与-this-getName-方法"><a href="#Thread-currentThread-getName-方法与-this-getName-方法" class="headerlink" title="Thread.currentThread().getName() 方法与 this.getName() 方法"></a>Thread.currentThread().getName() 方法与 this.getName() 方法</h6><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">CustomThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	public <span class="type">CustomThread</span>() &#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="type">System</span>.out.println(<span class="string">"构造方法："</span> + <span class="type">Thread</span>.currentThread().getName());</span><br><span class="line">		<span class="type">System</span>.out.println(<span class="string">"构造方法："</span> + <span class="keyword">this</span>.getName());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	public synchronized void run() &#123;</span><br><span class="line">		<span class="keyword">super</span>.run();</span><br><span class="line">		<span class="type">System</span>.out.println(<span class="string">"run() 方法："</span> + <span class="type">Thread</span>.currentThread().getName());</span><br><span class="line">		<span class="type">System</span>.out.println(<span class="string">"run() 方法："</span> + <span class="keyword">this</span>.getName());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomThreadTest</span> &#123;</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		CustomThread customThread = <span class="keyword">new</span> CustomThread();</span><br><span class="line">		customThread.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">构造方法：main</span><br><span class="line">构造方法：Thread-<span class="number">0</span></span><br><span class="line"><span class="function"><span class="title">run</span><span class="params">()</span></span> 方法：Thread-<span class="number">0</span></span><br><span class="line"><span class="function"><span class="title">run</span><span class="params">()</span></span> 方法：Thread-<span class="number">0</span></span><br></pre></td></tr></table></figure></p>
-<p>可以发现this.getName() 方法两个结果是一样的，因为this实际是指代当前被调用的类实例是哪个：<br>当构造方法被调用时，main线程调用了CustomThread类实例，当run()方法被调用时，Thread-0 线程调用了CustomThead类实例</p>
-<h5 id="isAlive-方法"><a href="#isAlive-方法" class="headerlink" title="isAlive() 方法"></a>isAlive() 方法</h5><p>isAlive() 方法可以判断当前的线程是否处于活动状态。<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">CustomThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	public synchronized void run() &#123;</span><br><span class="line">		<span class="keyword">super</span>.run();</span><br><span class="line">		<span class="type">System</span>.out.println(<span class="string">"run() 方法："</span> + <span class="keyword">this</span>.isAlive());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CustomThreadTest</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">		CustomThread customThread = <span class="keyword">new</span> CustomThread();</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"before start："</span> + customThread.isAlive());</span><br><span class="line">		customThread.start();</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"before end："</span> + customThread.isAlive());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">before</span> start：<span class="literal">false</span></span><br><span class="line"><span class="keyword">before</span> <span class="keyword">end</span>：<span class="literal">true</span></span><br><span class="line"><span class="built_in">run</span>() 方法：<span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
-<p>若调用 main 线程调用customThread 执行 start() 方法后休眠一会：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CustomThreadTest</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) throws InterruptedException </span>&#123;</span><br><span class="line">		CustomThread customThread = <span class="keyword">new</span> CustomThread();</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"before start："</span> + customThread.isAlive());</span><br><span class="line">		customThread.start();</span><br><span class="line">		Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"before end："</span> + customThread.isAlive());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">before</span> start：<span class="literal">false</span></span><br><span class="line"><span class="built_in">run</span>() 方法：<span class="literal">true</span></span><br><span class="line"><span class="keyword">before</span> <span class="keyword">end</span>：<span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
-<p>因为经过休眠，customThread 线程已经执行完毕了</p>
-<h5 id="sleep-方法"><a href="#sleep-方法" class="headerlink" title="sleep() 方法"></a>sleep() 方法</h5><p>sleep() 方法的作用是在指定的毫秒数内让当前正在执行的线程休眠。<br>可参考上述例子。</p>
-<h5 id="getId-方法"><a href="#getId-方法" class="headerlink" title="getId() 方法"></a>getId() 方法</h5><p>获取线程的唯一标识</p>
-<h5 id="setName-方法"><a href="#setName-方法" class="headerlink" title="setName() 方法"></a>setName() 方法</h5><p>设置线程的名称</p>
-<h5 id="getName-方法"><a href="#getName-方法" class="headerlink" title="getName() 方法"></a>getName() 方法</h5><p>获取线程的名称</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Java-并发编程系列//" class="article-tag-list-link color2">Java 并发编程系列</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/04/Java 多线程之常见方法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
@@ -1314,14 +1311,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CI</a>
               </li>
              
@@ -1350,6 +1339,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
@@ -1370,11 +1367,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color3">Servlet</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Servlet</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1386,11 +1383,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">冒泡排序</a>
+                <a href="javascript:void(0)" class="js-tag color5">选择排序 插入排序</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">选择排序 插入排序</a>
+                <a href="javascript:void(0)" class="js-tag color5">冒泡排序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1418,15 +1415,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Ribbon</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring Framework</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">ExceptionHandler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Ribbon</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -55,8 +55,6 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -105,8 +103,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -121,9 +117,7 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
-		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 100%"><a href="/">主页</a></li>
 		        
 				</ul>
 			</nav>
@@ -139,6 +133,112 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-Java Servlet 概述" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/11/Java Servlet 概述/">Java Servlet 概述</a>
+    </h1>
+  
+
+        
+        <a href="/2016/01/11/Java Servlet 概述/" class="archive-article-date">
+  	<time datetime="2016-01-11T13:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Servlet : 3.1</p>
+<p>Servlet 是用 Java 编写的服务器端程序。主要功能在于交互式地浏览和修改数据，生成动态 Web 内网。<br>狭义的 Servlet 是指 Java 语言实现的一个接口，广义的 Servlet 是指任何实现了这个 Servlet 接口的类。</p>
+<p>绝大多数情况下 Servlet 只用于扩展基于 HTTP 协议的 Web 服务器。</p>
+<p>当 Servlet 被部署在应用服务器中（如 Tomcat）以后，将由容器控制 Servlet 的生命周期。<br>一般情况下，Servlet 只会在第一次请求的时候被加载和实例化。Servlet 一旦被加载，一般不会从容器中删除，当应用服务器关闭或重新启动时，Servlet 会被销毁。</p>
+<p>Java Servlet 源码：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">package javax.servlet;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">Servlet</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 初始化 Servlet，初始化参数被封装在 ServletConfig 中</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span>(<span class="params">ServletConfig var1</span>) throws ServletException</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Servlet 配置信息，包含初始化信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">ServletConfig <span class="title">getServletConfig</span>(<span class="params"></span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 接收 ServletRequest，返回 ServletResponse </span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">service</span>(<span class="params">ServletRequest var1, ServletResponse var2</span>) throws ServletException, IOException</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Servlet 信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">String <span class="title">getServletInfo</span>(<span class="params"></span>)</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 销毁方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">destroy</span>(<span class="params"></span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Servlet 是一个接口，其中包含的方法比较简单：</p>
+<ul>
+<li>生命周期方法：init，service，destroy </li>
+<li>非生命周期方法：getServletConfig，getServletInfo</li>
+</ul>
+<p>其中：</p>
+<ul>
+<li>init 方法只有 Servlet 被容器加载后接收第一次请求时被调用一次</li>
+<li>destroy 方法只有容器关闭或重启时，被调用一次</li>
+<li>service 方法当 Servlet 接收到请求时即会调用，可以无限次数调用</li>
+</ul>
+<p>Servlet 工作流程：</p>
+<p><img src="data:image/png;base64,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" alt=""></p>
+<p>Servlet 有一个抽象实现类：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> javax.servlet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"><span class="keyword">import</span> java.util.Enumeration;</span><br><span class="line"><span class="keyword">import</span> java.util.ResourceBundle;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericServlet</span> <span class="keyword">implements</span> <span class="title">Servlet</span>, <span class="title">ServletConfig</span>, <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String LSTRING_FILE = <span class="string">"javax.servlet.LocalStrings"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ResourceBundle lStrings = ResourceBundle.getBundle(<span class="string">"javax.servlet.LocalStrings"</span>);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">transient</span> ServletConfig config;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GenericServlet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function">String <span class="title">getInitParameter</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        ServletConfig sc = <span class="keyword">this</span>.getServletConfig();</span><br><span class="line">        <span class="keyword">if</span> (sc == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(lStrings.getString(<span class="string">"err.servlet_config_not_initialized"</span>));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="function"><span class="keyword">return</span> sc.<span class="title">getInitParameter</span><span class="params">(name)</span></span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Enumeration&lt;String&gt; getInitParameterNames() &#123;</span><br><span class="line">        ServletConfig sc = <span class="keyword">this</span>.getServletConfig();</span><br><span class="line">        <span class="keyword">if</span> (sc == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(lStrings.getString(<span class="string">"err.servlet_config_not_initialized"</span>));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="function"><span class="keyword">return</span> sc.<span class="title">getInitParameterNames</span><span class="params">()</span></span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function">ServletConfig <span class="title">getServletConfig</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.config;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function">ServletContext <span class="title">getServletContext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ServletConfig sc = <span class="keyword">this</span>.getServletConfig();</span><br><span class="line">        <span class="keyword">if</span> (sc == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(lStrings.getString(<span class="string">"err.servlet_config_not_initialized"</span>));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="function"><span class="keyword">return</span> sc.<span class="title">getServletContext</span><span class="params">()</span></span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function">String <span class="title">getServletInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(ServletConfig config)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.config = config;</span><br><span class="line">        <span class="keyword">this</span>.init();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">log</span><span class="params">(String msg)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.getServletContext().log(<span class="keyword">this</span>.getServletName() + <span class="string">": "</span> + msg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">log</span><span class="params">(String message, Throwable t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.getServletContext().log(<span class="keyword">this</span>.getServletName() + <span class="string">": "</span> + message, t);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="function"><span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest var1, ServletResponse var2)</span> <span class="keyword">throws</span> ServletException, IOException</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function">String <span class="title">getServletName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ServletConfig sc = <span class="keyword">this</span>.getServletConfig();</span><br><span class="line">        <span class="keyword">if</span> (sc == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(lStrings.getString(<span class="string">"err.servlet_config_not_initialized"</span>));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="function"><span class="keyword">return</span> sc.<span class="title">getServletName</span><span class="params">()</span></span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>GenerticServlet 仅仅提供了一些便捷的函数，未做具体处理。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Servlet</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Java-Servlet//" class="article-tag-list-link color3">Java Servlet</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/01/11/Java Servlet 概述/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-CentOS 6.5 64bit 安装 MySQL 5.6" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1381,7 +1481,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>MyBatis 版本：MyBatis 3.3.0</p>
-<p>MyBatis 官方网站（英文）：<a href="http://www.mybatis.org/mybatis-3/" target="_blank" rel="noopener">MyBatis 英文官网</a><br>MyBatis 官方网站（中文）：<a href="http://www.mybatis.org/mybatis-3/zh/" target="_blank" rel="noopener">MyBatis 中文官网</a><br>MyBatis 源码：<a href="https://github.com/mybatis/mybatis-3" target="_blank" rel="noopener">MyBatis 源码</a></p>
+<p>MyBatis 官方网站（英文）：<a href="http://www.mybatis.org/mybatis-3/" target="_blank" rel="noopener">MyBatis 英文官网</a> <br><br>MyBatis 官方网站（中文）：<a href="http://www.mybatis.org/mybatis-3/zh/" target="_blank" rel="noopener">MyBatis 中文官网</a> <br><br>MyBatis 源码：<a href="https://github.com/mybatis/mybatis-3" target="_blank" rel="noopener">MyBatis 源码</a> <br></p>
 <p>JDBC 编程示例：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">import java.io.Serializable;</span><br><span class="line">import java.sql.Connection;</span><br><span class="line">import java.sql.DriverManager;</span><br><span class="line">import java.sql.PreparedStatement;</span><br><span class="line">import java.sql.ResultSet;</span><br><span class="line">import java.sql.SQLException;</span><br><span class="line">import java.sql.Statement;</span><br><span class="line"></span><br><span class="line">public class JdbcExample &#123;</span><br><span class="line"></span><br><span class="line">	private static final String JDBC_DRIVER_NAME = <span class="string">"com.mysql.jdbc.Driver"</span>;</span><br><span class="line">	private static final String DB_URL = <span class="string">"jdbc:mysql://localhost:3306/mybatis"</span>;</span><br><span class="line">	private static final String DB_USERNAME = <span class="string">"root"</span>;</span><br><span class="line">	private static final String DB_PASSWORD = <span class="string">"123456"</span>;</span><br><span class="line"></span><br><span class="line">	private static final String GET_USER_SQL = <span class="string">"SELECT user_id, user_name, user_age FROM user WHERE user_id = ?"</span>;</span><br><span class="line"></span><br><span class="line">	public<span class="built_in"> User </span>getUser(Long userId) &#123;</span><br><span class="line">	<span class="built_in">	Connection connection </span>= getConnection();</span><br><span class="line">		PreparedStatement preparedStatement = <span class="literal">null</span>;</span><br><span class="line">		ResultSet resultSet = <span class="literal">null</span>;</span><br><span class="line">	<span class="built_in">	User user </span>= <span class="literal">null</span>;</span><br><span class="line">		try &#123;</span><br><span class="line">			preparedStatement = connection.prepareStatement(GET_USER_SQL);</span><br><span class="line">			preparedStatement.setLong(1, userId);</span><br><span class="line">			resultSet = preparedStatement.executeQuery();</span><br><span class="line">			<span class="keyword">while</span> (resultSet.next()) &#123;</span><br><span class="line">				String userName = resultSet.getString(<span class="string">"user_name"</span>);</span><br><span class="line">				int userAge = resultSet.getInt(<span class="string">"user_age"</span>);</span><br><span class="line">			<span class="built_in">	user </span>= new User(userId, userName, userAge);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; finally &#123;</span><br><span class="line">			closeConnection(resultSet, preparedStatement, connection);</span><br><span class="line">		&#125;</span><br><span class="line">		return user;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	private<span class="built_in"> Connection </span>getConnection()&#123;</span><br><span class="line">	<span class="built_in">	Connection connection </span>= <span class="literal">null</span>;</span><br><span class="line">		try &#123;</span><br><span class="line">			Class.forName(JDBC_DRIVER_NAME);</span><br><span class="line">		<span class="built_in">	connection </span>= DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);</span><br><span class="line">		&#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		return connection;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	private void closeConnection(ResultSet resultSet, Statement statement,<span class="built_in"> Connection </span>connection) &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			<span class="keyword">if</span> (resultSet != <span class="literal">null</span> &amp;&amp; !resultSet.isClosed()) &#123;</span><br><span class="line">				resultSet.close();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		try &#123;</span><br><span class="line">			<span class="keyword">if</span> (statement != <span class="literal">null</span> &amp;&amp; !statement.isClosed()) &#123;</span><br><span class="line">				statement.close();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		try &#123;</span><br><span class="line">			<span class="keyword">if</span> (connection != <span class="literal">null</span> &amp;&amp; !connection.isClosed()) &#123;</span><br><span class="line">				connection.close();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>JDBC 编程步骤：</p>
@@ -1662,14 +1762,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CI</a>
               </li>
              
@@ -1698,6 +1790,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
@@ -1718,11 +1818,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color3">Servlet</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Servlet</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1734,11 +1834,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">冒泡排序</a>
+                <a href="javascript:void(0)" class="js-tag color5">选择排序 插入排序</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">选择排序 插入排序</a>
+                <a href="javascript:void(0)" class="js-tag color5">冒泡排序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1766,15 +1866,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Ribbon</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring Framework</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">ExceptionHandler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Ribbon</a>
               </li>
              
               <li class="article-tag-list-item">

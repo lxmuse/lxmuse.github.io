@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>MyBatis 之 JDBC 编程 | LX Muse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网MyBatis 官方网站（中文）：MyBatis 中文官网MyBatis 源码：MyBatis 源码 JDBC 编程示例： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464">
+  <meta name="description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网 MyBatis 官方网站（中文）：MyBatis 中文官网 MyBatis 源码：MyBatis 源码  JDBC 编程示例： 123456789101112131415161718192021222324252627282930313233343536373839404142434445">
 <meta name="keywords" content="MyBatis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MyBatis 之 JDBC 编程">
 <meta property="og:url" content="http://yoursite.com/2015/08/10/MyBatis 之 JDBC 编程/index.html">
 <meta property="og:site_name" content="LX Muse">
-<meta property="og:description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网MyBatis 官方网站（中文）：MyBatis 中文官网MyBatis 源码：MyBatis 源码 JDBC 编程示例： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464">
+<meta property="og:description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网 MyBatis 官方网站（中文）：MyBatis 中文官网 MyBatis 源码：MyBatis 源码  JDBC 编程示例： 123456789101112131415161718192021222324252627282930313233343536373839404142434445">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-06T12:39:56.000Z">
+<meta property="og:updated_time" content="2018-05-06T16:07:17.733Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis 之 JDBC 编程">
-<meta name="twitter:description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网MyBatis 官方网站（中文）：MyBatis 中文官网MyBatis 源码：MyBatis 源码 JDBC 编程示例： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464">
+<meta name="twitter:description" content="MyBatis 版本：MyBatis 3.3.0 MyBatis 官方网站（英文）：MyBatis 英文官网 MyBatis 官方网站（中文）：MyBatis 中文官网 MyBatis 源码：MyBatis 源码  JDBC 编程示例： 123456789101112131415161718192021222324252627282930313233343536373839404142434445">
   
     <link rel="alternative" href="/atom.xml" title="LX Muse" type="application/atom+xml">
   
@@ -59,8 +59,6 @@
 			<ul>
 			
 				<li><a href="/">主页</a></li>
-	        
-				<li><a href="/tags/随笔/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -110,8 +108,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -126,9 +122,7 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
-		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 100%"><a href="/">主页</a></li>
 		        
 				</ul>
 			</nav>
@@ -164,7 +158,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>MyBatis 版本：MyBatis 3.3.0</p>
-<p>MyBatis 官方网站（英文）：<a href="http://www.mybatis.org/mybatis-3/" target="_blank" rel="noopener">MyBatis 英文官网</a><br>MyBatis 官方网站（中文）：<a href="http://www.mybatis.org/mybatis-3/zh/" target="_blank" rel="noopener">MyBatis 中文官网</a><br>MyBatis 源码：<a href="https://github.com/mybatis/mybatis-3" target="_blank" rel="noopener">MyBatis 源码</a></p>
+<p>MyBatis 官方网站（英文）：<a href="http://www.mybatis.org/mybatis-3/" target="_blank" rel="noopener">MyBatis 英文官网</a> <br><br>MyBatis 官方网站（中文）：<a href="http://www.mybatis.org/mybatis-3/zh/" target="_blank" rel="noopener">MyBatis 中文官网</a> <br><br>MyBatis 源码：<a href="https://github.com/mybatis/mybatis-3" target="_blank" rel="noopener">MyBatis 源码</a> <br></p>
 <p>JDBC 编程示例：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">import java.io.Serializable;</span><br><span class="line">import java.sql.Connection;</span><br><span class="line">import java.sql.DriverManager;</span><br><span class="line">import java.sql.PreparedStatement;</span><br><span class="line">import java.sql.ResultSet;</span><br><span class="line">import java.sql.SQLException;</span><br><span class="line">import java.sql.Statement;</span><br><span class="line"></span><br><span class="line">public class JdbcExample &#123;</span><br><span class="line"></span><br><span class="line">	private static final String JDBC_DRIVER_NAME = <span class="string">"com.mysql.jdbc.Driver"</span>;</span><br><span class="line">	private static final String DB_URL = <span class="string">"jdbc:mysql://localhost:3306/mybatis"</span>;</span><br><span class="line">	private static final String DB_USERNAME = <span class="string">"root"</span>;</span><br><span class="line">	private static final String DB_PASSWORD = <span class="string">"123456"</span>;</span><br><span class="line"></span><br><span class="line">	private static final String GET_USER_SQL = <span class="string">"SELECT user_id, user_name, user_age FROM user WHERE user_id = ?"</span>;</span><br><span class="line"></span><br><span class="line">	public<span class="built_in"> User </span>getUser(Long userId) &#123;</span><br><span class="line">	<span class="built_in">	Connection connection </span>= getConnection();</span><br><span class="line">		PreparedStatement preparedStatement = <span class="literal">null</span>;</span><br><span class="line">		ResultSet resultSet = <span class="literal">null</span>;</span><br><span class="line">	<span class="built_in">	User user </span>= <span class="literal">null</span>;</span><br><span class="line">		try &#123;</span><br><span class="line">			preparedStatement = connection.prepareStatement(GET_USER_SQL);</span><br><span class="line">			preparedStatement.setLong(1, userId);</span><br><span class="line">			resultSet = preparedStatement.executeQuery();</span><br><span class="line">			<span class="keyword">while</span> (resultSet.next()) &#123;</span><br><span class="line">				String userName = resultSet.getString(<span class="string">"user_name"</span>);</span><br><span class="line">				int userAge = resultSet.getInt(<span class="string">"user_age"</span>);</span><br><span class="line">			<span class="built_in">	user </span>= new User(userId, userName, userAge);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; finally &#123;</span><br><span class="line">			closeConnection(resultSet, preparedStatement, connection);</span><br><span class="line">		&#125;</span><br><span class="line">		return user;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	private<span class="built_in"> Connection </span>getConnection()&#123;</span><br><span class="line">	<span class="built_in">	Connection connection </span>= <span class="literal">null</span>;</span><br><span class="line">		try &#123;</span><br><span class="line">			Class.forName(JDBC_DRIVER_NAME);</span><br><span class="line">		<span class="built_in">	connection </span>= DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);</span><br><span class="line">		&#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; catch (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		return connection;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	private void closeConnection(ResultSet resultSet, Statement statement,<span class="built_in"> Connection </span>connection) &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			<span class="keyword">if</span> (resultSet != <span class="literal">null</span> &amp;&amp; !resultSet.isClosed()) &#123;</span><br><span class="line">				resultSet.close();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		try &#123;</span><br><span class="line">			<span class="keyword">if</span> (statement != <span class="literal">null</span> &amp;&amp; !statement.isClosed()) &#123;</span><br><span class="line">				statement.close();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		try &#123;</span><br><span class="line">			<span class="keyword">if</span> (connection != <span class="literal">null</span> &amp;&amp; !connection.isClosed()) &#123;</span><br><span class="line">				connection.close();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (SQLException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>JDBC 编程步骤：</p>
@@ -430,14 +424,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CI</a>
               </li>
              
@@ -466,6 +452,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
@@ -486,11 +480,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color3">Servlet</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Servlet</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -502,11 +496,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">冒泡排序</a>
+                <a href="javascript:void(0)" class="js-tag color5">选择排序 插入排序</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">选择排序 插入排序</a>
+                <a href="javascript:void(0)" class="js-tag color5">冒泡排序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -534,15 +528,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Ribbon</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring Framework</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">ExceptionHandler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Ribbon</a>
               </li>
              
               <li class="article-tag-list-item">
