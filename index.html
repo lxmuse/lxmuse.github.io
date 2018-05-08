@@ -156,7 +156,7 @@
       
         <p>MySQL 5.7+</p>
 <p>最近线上某个业务的单表关键字模糊查询一直比较缓慢，该业务需要通过关键字对多个字段同时进行模糊查询，故根据 MyBatis 动态 SQL 按如下实现方式实现：</p>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">if</span> test=<span class="string">"keywords != null"</span>&gt;</span><br><span class="line">	<span class="literal">AND</span> </span><br><span class="line">	(  </span><br><span class="line">	   materials_catalog.materials_name LIKE CONCAT(CONCAT(<span class="string">'%'</span>, <span class="meta">#&#123;keywords, jdbcType=VARCHAR&#125;), <span class="string">'%'</span>)</span></span><br><span class="line">	<span class="literal">OR</span> materials_catalog.materials_name_helper LIKE UPPER(CONCAT(CONCAT(<span class="string">'%'</span>, <span class="meta">#&#123;keywords, jdbcType=VARCHAR&#125;), <span class="string">'%'</span>))</span></span><br><span class="line">	<span class="literal">OR</span> materials_catalog.materials_sku LIKE CONCAT(CONCAT(<span class="string">'%'</span>, <span class="meta">#&#123;keywords, jdbcType=VARCHAR&#125;), <span class="string">'%'</span>)</span></span><br><span class="line">	<span class="literal">OR</span> materials_catalog.materials_sku_hepler LIKE UPPER(CONCAT(CONCAT(<span class="string">'%'</span>, <span class="meta">#&#123;keywords, jdbcType=VARCHAR&#125;), <span class="string">'%'</span>))</span></span><br><span class="line">	<span class="literal">OR</span> materials_catalog.materials_common_name LIKE CONCAT(CONCAT(<span class="string">'%'</span>, <span class="meta">#&#123;keywords, jdbcType=VARCHAR&#125;), <span class="string">'%'</span>)</span></span><br><span class="line">	<span class="literal">OR</span> materials_catalog.invite_no LIKE CONCAT(CONCAT(<span class="string">'%'</span>, <span class="meta">#&#123;keywords, jdbcType=VARCHAR&#125;), <span class="string">'%'</span>)</span></span><br><span class="line">	<span class="literal">OR</span> materials_catalog.factory_name LIKE CONCAT(CONCAT(<span class="string">'%'</span>, <span class="meta">#&#123;keywords, jdbcType=VARCHAR&#125;),<span class="string">'%'</span>)</span></span><br><span class="line">	<span class="literal">OR</span> materials_catalog.factory_name_helper LIKE UPPER(CONCAT(CONCAT(<span class="string">'%'</span>, <span class="meta">#&#123;keywords, jdbcType=VARCHAR&#125;), <span class="string">'%'</span>))</span></span><br><span class="line">	<span class="literal">OR</span> materials_catalog.certificate_no LIKE CONCAT(CONCAT(<span class="string">'%'</span>, <span class="meta">#&#123;keywords, jdbcType=VARCHAR&#125;), <span class="string">'%'</span>)</span></span><br><span class="line">	)</span><br><span class="line">&lt;/<span class="keyword">if</span>&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">if</span> test=<span class="string">"keywords != null"</span>&gt;</span><br><span class="line"><span class="literal">AND</span> </span><br><span class="line">(  </span><br><span class="line">materials_catalog.materials_name </span><br><span class="line">LIKE CONCAT(CONCAT(<span class="string">'%'</span>, <span class="meta">#&#123;keywords, jdbcType=VARCHAR&#125;), <span class="string">'%'</span>)</span></span><br><span class="line"><span class="literal">OR</span> materials_catalog.materials_name_helper </span><br><span class="line">LIKE UPPER(CONCAT(CONCAT(<span class="string">'%'</span>, <span class="meta">#&#123;keywords, jdbcType=VARCHAR&#125;), <span class="string">'%'</span>))</span></span><br><span class="line"><span class="literal">OR</span> materials_catalog.materials_sku </span><br><span class="line">LIKE CONCAT(CONCAT(<span class="string">'%'</span>, <span class="meta">#&#123;keywords, jdbcType=VARCHAR&#125;), <span class="string">'%'</span>)</span></span><br><span class="line"><span class="literal">OR</span> materials_catalog.materials_sku_hepler </span><br><span class="line">LIKE UPPER(CONCAT(CONCAT(<span class="string">'%'</span>, <span class="meta">#&#123;keywords, jdbcType=VARCHAR&#125;), <span class="string">'%'</span>))</span></span><br><span class="line"><span class="literal">OR</span> materials_catalog.materials_common_name </span><br><span class="line">LIKE CONCAT(CONCAT(<span class="string">'%'</span>, <span class="meta">#&#123;keywords, jdbcType=VARCHAR&#125;), <span class="string">'%'</span>)</span></span><br><span class="line"><span class="literal">OR</span> materials_catalog.invite_no </span><br><span class="line">LIKE CONCAT(CONCAT(<span class="string">'%'</span>, <span class="meta">#&#123;keywords, jdbcType=VARCHAR&#125;), <span class="string">'%'</span>)</span></span><br><span class="line"><span class="literal">OR</span> materials_catalog.factory_name </span><br><span class="line">LIKE CONCAT(CONCAT(<span class="string">'%'</span>, <span class="meta">#&#123;keywords, jdbcType=VARCHAR&#125;),<span class="string">'%'</span>)</span></span><br><span class="line"><span class="literal">OR</span> materials_catalog.factory_name_helper </span><br><span class="line">LIKE UPPER(CONCAT(CONCAT(<span class="string">'%'</span>, <span class="meta">#&#123;keywords, jdbcType=VARCHAR&#125;), <span class="string">'%'</span>))</span></span><br><span class="line"><span class="literal">OR</span> materials_catalog.certificate_no </span><br><span class="line">LIKE CONCAT(CONCAT(<span class="string">'%'</span>, <span class="meta">#&#123;keywords, jdbcType=VARCHAR&#125;), <span class="string">'%'</span>)</span></span><br><span class="line">)</span><br><span class="line">&lt;/<span class="keyword">if</span>&gt;</span><br></pre></td></tr></table></figure>
 <p>通过分析索引和数据，发现这些列都已经加了索引，可能导致的原因就是<strong>某些列存在值为 null 的情形</strong>。故将原因初步定位于 null 值列对 索引 的影响。</p>
 <p><strong>在维基百科中搜索到一篇资料</strong>：<a href="https://en.wikipedia.org/wiki/Null_(SQL" target="_blank" rel="noopener">NULL(SQL)</a>)<br>里面有这么一段话： <br></p>
 <p>Effect on index operation<br>Some SQL products do not index keys containing NULLs. For instance, PostgreSQL versions prior to 8.3 did not, with the documentation for a B-tree index stating that[21]</p>
@@ -1181,6 +1181,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CI</a>
               </li>
              
@@ -1197,23 +1205,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">CQRS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Event Sourcing</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1237,15 +1237,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Servlet</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">包装类</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1253,11 +1245,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">选择排序 插入排序</a>
+                <a href="javascript:void(0)" class="js-tag color3">Servlet</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">包装类</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">冒泡排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">选择排序 插入排序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1289,11 +1289,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ExceptionHandler</a>
+                <a href="javascript:void(0)" class="js-tag color2">Ribbon</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Ribbon</a>
+                <a href="javascript:void(0)" class="js-tag color2">ExceptionHandler</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1305,11 +1305,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

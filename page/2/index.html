@@ -921,6 +921,107 @@
 
 
   
+    <article id="post-Lambda 表达式方法引用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/11/Lambda 表达式方法引用/">Lambda 表达式方法引用</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/11/Lambda 表达式方法引用/" class="archive-article-date">
+  	<time datetime="2018-01-11T15:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Lambda 可以使用现成已经实现的方法。</p>
+<p><strong>要求被调用的方法的参数类型和返回值和 Lambda 表达式中函数接口中抽象方法的参数类型和返回值一致</strong></p>
+<p><strong>对象::实例方法名</strong></p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;<span class="keyword">String</span>&gt; consumer = x -&gt; <span class="keyword">System</span>.out.println(x);</span><br><span class="line">		</span><br><span class="line">PrintStream printStream = <span class="keyword">System</span>.out;</span><br><span class="line">Consumer&lt;<span class="keyword">String</span>&gt; consumer1 = printStream::<span class="keyword">print</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;<span class="keyword">String</span>&gt; consumer = x -&gt; <span class="keyword">System</span>.out.println(x);</span><br><span class="line">		</span><br><span class="line">Consumer&lt;<span class="keyword">String</span>&gt; consumer1 = <span class="keyword">System</span>.out::<span class="keyword">print</span>;</span><br></pre></td></tr></table></figure>
+<p><strong>类::静态方法名</strong></p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Comparator&lt;<span class="built_in">Integer</span>&gt; comparator = (x, y) -&gt; <span class="built_in">Integer</span>.<span class="keyword">compare</span>(x, y);</span><br><span class="line">comparator.<span class="keyword">compare</span>(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">	</span><br><span class="line">Comparator&lt;<span class="built_in">Integer</span>&gt; comparator1 = <span class="built_in">Integer</span>::<span class="keyword">compare</span>;</span><br><span class="line">comparator1.<span class="keyword">compare</span>(<span class="number">3</span>,<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>类::实例方法名</strong></p>
+<p>要求 第一个参数是实例方法的调用者，第二个参数是实例方法的参数</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">BiPredicate&lt;String, </span>String&gt; <span class="keyword">biPredicate </span>= (x, y) -&gt; x.equals(y)<span class="comment">;</span></span><br><span class="line"><span class="keyword">biPredicate.test("b", </span><span class="string">"b"</span>)<span class="comment">;</span></span><br><span class="line">	</span><br><span class="line"><span class="keyword">BiPredicate&lt;String, </span>String&gt; <span class="keyword">biPredicate1 </span>= String::equals<span class="comment">;</span></span><br><span class="line"><span class="keyword">biPredicate1.test("b", </span><span class="string">"b"</span>)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p><strong>构造函数引用</strong></p>
+<p>可以自动匹配对应的构造函数</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Supplier&lt;<span class="keyword">String</span>&gt; supplier = () -&gt; <span class="keyword">new</span> <span class="keyword">String</span>();</span><br><span class="line">System.out.<span class="built_in">println</span>(supplier);</span><br><span class="line">	</span><br><span class="line">Supplier&lt;<span class="keyword">String</span>&gt; supplier1 = <span class="keyword">String</span>::<span class="keyword">new</span>;</span><br><span class="line">System.out.<span class="built_in">println</span>(supplier1.<span class="built_in">get</span>());</span><br></pre></td></tr></table></figure>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Function</span>&lt;<span class="built_in">String</span>, <span class="built_in">String</span>&gt; <span class="keyword">function</span> = (x) -&gt; <span class="keyword">new</span> <span class="built_in">String</span>(x);</span><br><span class="line">System.<span class="keyword">out</span>.println(<span class="keyword">function</span>.apply(<span class="string">"a"</span>));</span><br><span class="line">	</span><br><span class="line"><span class="keyword">Function</span>&lt;<span class="built_in">String</span>, <span class="built_in">String</span>&gt; function1 = <span class="built_in">String</span>::<span class="keyword">new</span>;</span><br><span class="line">System.<span class="keyword">out</span>.println(function1.apply(<span class="string">"b"</span>));</span><br></pre></td></tr></table></figure>
+<p><strong>数组引用</strong></p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Function</span>&lt;<span class="built_in">Integer</span>, <span class="built_in">String</span>[]&gt; <span class="keyword">function</span> = (x) -&gt; <span class="keyword">new</span> <span class="built_in">String</span>[x];</span><br><span class="line">System.<span class="keyword">out</span>.println(<span class="keyword">function</span>.apply(<span class="number">5</span>).length);</span><br><span class="line">	</span><br><span class="line"><span class="keyword">Function</span>&lt;<span class="built_in">Integer</span>, <span class="built_in">String</span>[]&gt; function1 = <span class="built_in">String</span>[]::<span class="keyword">new</span>;</span><br><span class="line">System.<span class="keyword">out</span>.println(function1.apply(<span class="number">6</span>).length);</span><br></pre></td></tr></table></figure>
+<p>代码可参考<a href="https://github.com/lxmuse/lxmuse-jdk8-new-feature.git" target="_blank" rel="noopener">lxmuse-jdk8-new-feature-lambda-04</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JDK 8</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JDK-8-新特性//" class="article-tag-list-link color5">JDK 8 新特性</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/11/Lambda 表达式方法引用/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Spring Cloud Zuul 默认路由规则" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1007,107 +1108,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/01/11/Spring Cloud Zuul 默认路由规则/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Lambda 表达式方法引用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/11/Lambda 表达式方法引用/">Lambda 表达式方法引用</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/11/Lambda 表达式方法引用/" class="archive-article-date">
-  	<time datetime="2018-01-11T15:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Lambda 可以使用现成已经实现的方法。</p>
-<p><strong>要求被调用的方法的参数类型和返回值和 Lambda 表达式中函数接口中抽象方法的参数类型和返回值一致</strong></p>
-<p><strong>对象::实例方法名</strong></p>
-<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;<span class="keyword">String</span>&gt; consumer = x -&gt; <span class="keyword">System</span>.out.println(x);</span><br><span class="line">		</span><br><span class="line">PrintStream printStream = <span class="keyword">System</span>.out;</span><br><span class="line">Consumer&lt;<span class="keyword">String</span>&gt; consumer1 = printStream::<span class="keyword">print</span>;</span><br></pre></td></tr></table></figure>
-<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;<span class="keyword">String</span>&gt; consumer = x -&gt; <span class="keyword">System</span>.out.println(x);</span><br><span class="line">		</span><br><span class="line">Consumer&lt;<span class="keyword">String</span>&gt; consumer1 = <span class="keyword">System</span>.out::<span class="keyword">print</span>;</span><br></pre></td></tr></table></figure>
-<p><strong>类::静态方法名</strong></p>
-<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Comparator&lt;<span class="built_in">Integer</span>&gt; comparator = (x, y) -&gt; <span class="built_in">Integer</span>.<span class="keyword">compare</span>(x, y);</span><br><span class="line">comparator.<span class="keyword">compare</span>(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">	</span><br><span class="line">Comparator&lt;<span class="built_in">Integer</span>&gt; comparator1 = <span class="built_in">Integer</span>::<span class="keyword">compare</span>;</span><br><span class="line">comparator1.<span class="keyword">compare</span>(<span class="number">3</span>,<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
-<p><strong>类::实例方法名</strong></p>
-<p>要求 第一个参数是实例方法的调用者，第二个参数是实例方法的参数</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">BiPredicate&lt;String, </span>String&gt; <span class="keyword">biPredicate </span>= (x, y) -&gt; x.equals(y)<span class="comment">;</span></span><br><span class="line"><span class="keyword">biPredicate.test("b", </span><span class="string">"b"</span>)<span class="comment">;</span></span><br><span class="line">	</span><br><span class="line"><span class="keyword">BiPredicate&lt;String, </span>String&gt; <span class="keyword">biPredicate1 </span>= String::equals<span class="comment">;</span></span><br><span class="line"><span class="keyword">biPredicate1.test("b", </span><span class="string">"b"</span>)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
-<p><strong>构造函数引用</strong></p>
-<p>可以自动匹配对应的构造函数</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Supplier&lt;<span class="keyword">String</span>&gt; supplier = () -&gt; <span class="keyword">new</span> <span class="keyword">String</span>();</span><br><span class="line">System.out.<span class="built_in">println</span>(supplier);</span><br><span class="line">	</span><br><span class="line">Supplier&lt;<span class="keyword">String</span>&gt; supplier1 = <span class="keyword">String</span>::<span class="keyword">new</span>;</span><br><span class="line">System.out.<span class="built_in">println</span>(supplier1.<span class="built_in">get</span>());</span><br></pre></td></tr></table></figure>
-<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Function</span>&lt;<span class="built_in">String</span>, <span class="built_in">String</span>&gt; <span class="keyword">function</span> = (x) -&gt; <span class="keyword">new</span> <span class="built_in">String</span>(x);</span><br><span class="line">System.<span class="keyword">out</span>.println(<span class="keyword">function</span>.apply(<span class="string">"a"</span>));</span><br><span class="line">	</span><br><span class="line"><span class="keyword">Function</span>&lt;<span class="built_in">String</span>, <span class="built_in">String</span>&gt; function1 = <span class="built_in">String</span>::<span class="keyword">new</span>;</span><br><span class="line">System.<span class="keyword">out</span>.println(function1.apply(<span class="string">"b"</span>));</span><br></pre></td></tr></table></figure>
-<p><strong>数组引用</strong></p>
-<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Function</span>&lt;<span class="built_in">Integer</span>, <span class="built_in">String</span>[]&gt; <span class="keyword">function</span> = (x) -&gt; <span class="keyword">new</span> <span class="built_in">String</span>[x];</span><br><span class="line">System.<span class="keyword">out</span>.println(<span class="keyword">function</span>.apply(<span class="number">5</span>).length);</span><br><span class="line">	</span><br><span class="line"><span class="keyword">Function</span>&lt;<span class="built_in">Integer</span>, <span class="built_in">String</span>[]&gt; function1 = <span class="built_in">String</span>[]::<span class="keyword">new</span>;</span><br><span class="line">System.<span class="keyword">out</span>.println(function1.apply(<span class="number">6</span>).length);</span><br></pre></td></tr></table></figure>
-<p>代码可参考<a href="https://github.com/lxmuse/lxmuse-jdk8-new-feature.git" target="_blank" rel="noopener">lxmuse-jdk8-new-feature-lambda-04</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JDK 8</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JDK-8-新特性//" class="article-tag-list-link color5">JDK 8 新特性</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/11/Lambda 表达式方法引用/">展开全文 >></a>
         </p>
       
 
@@ -1236,6 +1236,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CI</a>
               </li>
              
@@ -1252,23 +1260,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">CQRS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Event Sourcing</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1292,15 +1292,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Servlet</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">包装类</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1308,11 +1300,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">选择排序 插入排序</a>
+                <a href="javascript:void(0)" class="js-tag color3">Servlet</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">包装类</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">冒泡排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">选择排序 插入排序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1344,11 +1344,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ExceptionHandler</a>
+                <a href="javascript:void(0)" class="js-tag color2">Ribbon</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Ribbon</a>
+                <a href="javascript:void(0)" class="js-tag color2">ExceptionHandler</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1360,11 +1360,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
