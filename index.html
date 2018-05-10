@@ -134,6 +134,361 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-MySQL 性能优化神器 Explain 使用分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/10/MySQL 性能优化神器 Explain 使用分析/">MySQL 性能优化神器 Explain 使用分析</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/10/MySQL 性能优化神器 Explain 使用分析/" class="archive-article-date">
+  	<time datetime="2018-05-10T15:57:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文转自<a href="https://segmentfault.com/a/1190000008131735" target="_blank" rel="noopener">MySQL 性能优化神器 Explain 使用分析</a></p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>MySQL</strong> 提供了一个 EXPLAIN 命令, 它可以对 <strong>SELECT</strong> 语句进行分析, 并输出 <strong>SELECT</strong> 执行的详细信息, 以供开发人员针对性优化.<br><strong>EXPLAIN</strong> 命令用法十分简单, 在 <strong>SELECT</strong> 语句前加上 <strong>Explain</strong> 就可以了, 例如:</p>
+<p><strong>EXPLAIN SELECT * from user_info WHERE id &lt; 300;</strong></p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>为了接下来方便演示 <strong>EXPLAIN</strong> 的使用, 首先我们需要建立两个测试用的表, 并添加相应的数据:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user_info`</span> (</span><br><span class="line">  <span class="string">`id`</span>   <span class="built_in">BIGINT</span>(<span class="number">20</span>)  <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`name`</span> <span class="built_in">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">''</span>,</span><br><span class="line">  <span class="string">`age`</span>  <span class="built_in">INT</span>(<span class="number">11</span>)              <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>),</span><br><span class="line">  <span class="keyword">KEY</span> <span class="string">`name_index`</span> (<span class="string">`name`</span>)</span><br><span class="line">)</span><br><span class="line">  <span class="keyword">ENGINE</span> = <span class="keyword">InnoDB</span></span><br><span class="line">  <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span> = utf8</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> user_info (<span class="keyword">name</span>, age) <span class="keyword">VALUES</span> (<span class="string">'xys'</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> user_info (<span class="keyword">name</span>, age) <span class="keyword">VALUES</span> (<span class="string">'a'</span>, <span class="number">21</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> user_info (<span class="keyword">name</span>, age) <span class="keyword">VALUES</span> (<span class="string">'b'</span>, <span class="number">23</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> user_info (<span class="keyword">name</span>, age) <span class="keyword">VALUES</span> (<span class="string">'c'</span>, <span class="number">50</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> user_info (<span class="keyword">name</span>, age) <span class="keyword">VALUES</span> (<span class="string">'d'</span>, <span class="number">15</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> user_info (<span class="keyword">name</span>, age) <span class="keyword">VALUES</span> (<span class="string">'e'</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> user_info (<span class="keyword">name</span>, age) <span class="keyword">VALUES</span> (<span class="string">'f'</span>, <span class="number">21</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> user_info (<span class="keyword">name</span>, age) <span class="keyword">VALUES</span> (<span class="string">'g'</span>, <span class="number">23</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> user_info (<span class="keyword">name</span>, age) <span class="keyword">VALUES</span> (<span class="string">'h'</span>, <span class="number">50</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> user_info (<span class="keyword">name</span>, age) <span class="keyword">VALUES</span> (<span class="string">'i'</span>, <span class="number">15</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`order_info`</span> (</span><br><span class="line">  <span class="string">`id`</span>           <span class="built_in">BIGINT</span>(<span class="number">20</span>)  <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`user_id`</span>      <span class="built_in">BIGINT</span>(<span class="number">20</span>)           <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`product_name`</span> <span class="built_in">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">''</span>,</span><br><span class="line">  <span class="string">`productor`</span>    <span class="built_in">VARCHAR</span>(<span class="number">30</span>)          <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>),</span><br><span class="line">  <span class="keyword">KEY</span> <span class="string">`user_product_detail_index`</span> (<span class="string">`user_id`</span>, <span class="string">`product_name`</span>, <span class="string">`productor`</span>)</span><br><span class="line">)</span><br><span class="line">  <span class="keyword">ENGINE</span> = <span class="keyword">InnoDB</span></span><br><span class="line">  <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span> = utf8</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> order_info (user_id, product_name, productor) <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">'p1'</span>, <span class="string">'WHH'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> order_info (user_id, product_name, productor) <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">'p2'</span>, <span class="string">'WL'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> order_info (user_id, product_name, productor) <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">'p1'</span>, <span class="string">'DX'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> order_info (user_id, product_name, productor) <span class="keyword">VALUES</span> (<span class="number">2</span>, <span class="string">'p1'</span>, <span class="string">'WHH'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> order_info (user_id, product_name, productor) <span class="keyword">VALUES</span> (<span class="number">2</span>, <span class="string">'p5'</span>, <span class="string">'WL'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> order_info (user_id, product_name, productor) <span class="keyword">VALUES</span> (<span class="number">3</span>, <span class="string">'p3'</span>, <span class="string">'MA'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> order_info (user_id, product_name, productor) <span class="keyword">VALUES</span> (<span class="number">4</span>, <span class="string">'p1'</span>, <span class="string">'WHH'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> order_info (user_id, product_name, productor) <span class="keyword">VALUES</span> (<span class="number">6</span>, <span class="string">'p1'</span>, <span class="string">'WHH'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> order_info (user_id, product_name, productor) <span class="keyword">VALUES</span> (<span class="number">9</span>, <span class="string">'p8'</span>, <span class="string">'TE'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="EXPLAIN-输出格式"><a href="#EXPLAIN-输出格式" class="headerlink" title="EXPLAIN 输出格式"></a>EXPLAIN 输出格式</h2><p><strong>EXPLAIN</strong> 命令的输出内容大致如下:</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; explain select * <span class="keyword">from</span> user_info where id = 2\G</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">           id: 1</span><br><span class="line">  select_type: SIMPLE</span><br><span class="line">        table: user_info</span><br><span class="line">   partitions: <span class="literal">NULL</span></span><br><span class="line">         type: const</span><br><span class="line">possible_keys: PRIMARY</span><br><span class="line">          key: PRIMARY</span><br><span class="line">      key_len: 8</span><br><span class="line">          ref: const</span><br><span class="line">         rows: 1</span><br><span class="line">     filtered: 100.00</span><br><span class="line">        Extra: <span class="literal">NULL</span></span><br><span class="line">1 row <span class="keyword">in</span> set, 1 <span class="builtin-name">warning</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>各列的含义如下:</p>
+<ul>
+<li><p>id: SELECT 查询的标识符. 每个 SELECT 都会自动分配一个唯一的标识符.</p>
+</li>
+<li><p>select_type: SELECT 查询的类型.</p>
+</li>
+<li><p>table: 查询的是哪个表</p>
+</li>
+<li><p>partitions: 匹配的分区</p>
+</li>
+<li><p>type: join 类型</p>
+</li>
+<li><p>possible_keys: 此次查询中可能选用的索引</p>
+</li>
+<li><p>key: 此次查询中确切使用到的索引.</p>
+</li>
+<li><p>ref: 哪个字段或常数与 key 一起被使用</p>
+</li>
+<li><p>rows: 显示此查询一共扫描了多少行. 这个是一个估计值.</p>
+</li>
+<li><p>filtered: 表示此查询条件所过滤的数据的百分比</p>
+</li>
+<li><p>extra: 额外的信息</p>
+</li>
+</ul>
+<p>接下来我们来重点看一下比较重要的几个字段.</p>
+<h3 id="select-type"><a href="#select-type" class="headerlink" title="select_type"></a>select_type</h3><p><strong>select_type</strong> 表示了查询的类型, 它的常用取值有:</p>
+<ul>
+<li><p>SIMPLE, 表示此查询不包含 UNION 查询或子查询</p>
+</li>
+<li><p>PRIMARY, 表示此查询是最外层的查询</p>
+</li>
+<li><p>UNION, 表示此查询是 UNION 的第二或随后的查询</p>
+</li>
+<li><p>DEPENDENT UNION, UNION 中的第二个或后面的查询语句, 取决于外面的查询</p>
+</li>
+<li><p>UNION RESULT, UNION 的结果</p>
+</li>
+<li><p>SUBQUERY, 子查询中的第一个 SELECT</p>
+</li>
+<li><p>DEPENDENT SUBQUERY: 子查询中的第一个 SELECT, 取决于外面的查询. 即子查询依赖于外层查询的结果.</p>
+</li>
+</ul>
+<p>最常见的查询类别应该是 <strong>SIMPLE</strong> 了, 比如当我们的查询没有子查询, 也没有 <strong>UNION</strong> 查询时, 那么通常就是 <strong>SIMPLE</strong> 类型, 例如:</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; explain select * <span class="keyword">from</span> user_info where id = 2\G</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">           id: 1</span><br><span class="line">  select_type: SIMPLE</span><br><span class="line">        table: user_info</span><br><span class="line">   partitions: <span class="literal">NULL</span></span><br><span class="line">         type: const</span><br><span class="line">possible_keys: PRIMARY</span><br><span class="line">          key: PRIMARY</span><br><span class="line">      key_len: 8</span><br><span class="line">          ref: const</span><br><span class="line">         rows: 1</span><br><span class="line">     filtered: 100.00</span><br><span class="line">        Extra: <span class="literal">NULL</span></span><br><span class="line">1 row <span class="keyword">in</span> set, 1 <span class="builtin-name">warning</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>如果我们使用了 <strong>UNION</strong> 查询, 那么 <strong>EXPLAIN</strong> 输出 的结果类似如下:</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; EXPLAIN (SELECT * FROM user_info  WHERE id IN (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line">    -&gt; UNION</span><br><span class="line">    -&gt; (SELECT * FROM user_info WHERE id IN (<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>));</span><br><span class="line">+----+--------------+------------+------------+-------+---------------+---------+---------+------+------+----------+-----------------+</span><br><span class="line">| <span class="type">id</span> | <span class="type">select_type</span>  | <span class="type">table</span>      | <span class="type">partitions</span> | <span class="type">type</span>  | <span class="type">possible_keys</span> | <span class="type">key</span>     | <span class="type">key_len</span> | <span class="type">ref</span>  | <span class="type">rows</span> | <span class="type">filtered</span> | <span class="type">Extra</span>           |<span class="type"></span></span><br><span class="line"><span class="type">+----+--------------+------------+------------+-------+---------------+---------+---------+------+------+----------+-----------------+</span></span><br><span class="line"><span class="type">|  1</span> | <span class="type">PRIMARY</span>      | <span class="type">user_info</span>  | <span class="type">NULL</span>       | <span class="type">range</span> | <span class="type">PRIMARY</span>       | <span class="type">PRIMARY</span> | <span class="type">8</span>       | <span class="type">NULL</span> |    <span class="type">3</span> |   <span class="type">100</span><span class="number">.00</span> | <span class="type">Using</span> <span class="keyword">where</span>     |<span class="type"></span></span><br><span class="line"><span class="type">|  2</span> | <span class="type">UNION</span>        | <span class="type">user_info</span>  | <span class="type">NULL</span>       | <span class="type">range</span> | <span class="type">PRIMARY</span>       | <span class="type">PRIMARY</span> | <span class="type">8</span>       | <span class="type">NULL</span> |    <span class="type">3</span> |   <span class="type">100</span><span class="number">.00</span> | <span class="type">Using</span> <span class="keyword">where</span>     |<span class="type"></span></span><br><span class="line"><span class="type">| NULL</span> | <span class="type">UNION</span> RESULT | <span class="type">&lt;union1</span>,<span class="number">2</span>&gt; | <span class="type">NULL</span>       | <span class="type">ALL</span>   | <span class="type">NULL</span>          | <span class="type">NULL</span>    | <span class="type">NULL</span>    | <span class="type">NULL</span> | <span class="type">NULL</span> |     <span class="type">NULL</span> | <span class="type">Using</span> temporary |<span class="type"></span></span><br><span class="line"><span class="type">+----+--------------+------------+------------+-------+---------------+---------+---------+------+------+----------+-----------------+</span></span><br><span class="line"><span class="type">3</span> rows <span class="built_in">in</span> <span class="built_in">set</span>, <span class="number">1</span> warning (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<h3 id="type"><a href="#type" class="headerlink" title="type"></a>type</h3><p><strong>type</strong> 字段比较重要, 它提供了判断查询是否高效的重要依据依据. 通过 <strong>type</strong> 字段, 我们判断此次查询是 全表扫描 还是 索引扫描 等.</p>
+<p><strong>type</strong> 常用的取值有:</p>
+<ul>
+<li><p>system: 表中只有一条数据. 这个类型是特殊的 const 类型.</p>
+</li>
+<li><p>const: 针对主键或唯一索引的等值查询扫描, 最多只返回一行数据. const 查询速度非常快, 因为它仅仅读取一次即可.<br>例如下面的这个查询, 它使用了主键索引, 因此 <strong>type</strong> 就是 <strong>const</strong> 类型的.</p>
+</li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; explain select * <span class="keyword">from</span> user_info where id = 2\G</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">           id: 1</span><br><span class="line">  select_type: SIMPLE</span><br><span class="line">        table: user_info</span><br><span class="line">   partitions: <span class="literal">NULL</span></span><br><span class="line">         type: const</span><br><span class="line">possible_keys: PRIMARY</span><br><span class="line">          key: PRIMARY</span><br><span class="line">      key_len: 8</span><br><span class="line">          ref: const</span><br><span class="line">         rows: 1</span><br><span class="line">     filtered: 100.00</span><br><span class="line">        Extra: <span class="literal">NULL</span></span><br><span class="line">1 row <span class="keyword">in</span> set, 1 <span class="builtin-name">warning</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>eq_ref: 此类型通常出现在多表的 <strong>join</strong> 查询, 表示对于前表的每一个结果, 都只能匹配到后表的一行结果. 并且查询的比较操作通常是 <strong>=</strong>, 查询效率较高. 例如:</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">mysql&gt;</span> <span class="string">EXPLAIN</span> <span class="string">SELECT</span> <span class="string">*</span> <span class="string">FROM</span> <span class="string">user_info,</span> <span class="string">order_info</span> <span class="string">WHERE</span> <span class="string">user_info.id</span> <span class="string">=</span> <span class="string">order_info.user_id\G</span></span><br><span class="line"><span class="string">***************************</span> <span class="number">1.</span> <span class="string">row</span> <span class="string">***************************</span></span><br><span class="line"><span class="attr">           id:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">  select_type:</span> <span class="string">SIMPLE</span></span><br><span class="line"><span class="attr">        table:</span> <span class="string">order_info</span></span><br><span class="line"><span class="attr">   partitions:</span> <span class="literal">NULL</span></span><br><span class="line"><span class="attr">         type:</span> <span class="string">index</span></span><br><span class="line"><span class="attr">possible_keys:</span> <span class="string">user_product_detail_index</span></span><br><span class="line"><span class="attr">          key:</span> <span class="string">user_product_detail_index</span></span><br><span class="line"><span class="attr">      key_len:</span> <span class="number">314</span></span><br><span class="line"><span class="attr">          ref:</span> <span class="literal">NULL</span></span><br><span class="line"><span class="attr">         rows:</span> <span class="number">9</span></span><br><span class="line"><span class="attr">     filtered:</span> <span class="number">100.00</span></span><br><span class="line"><span class="attr">        Extra:</span> <span class="string">Using</span> <span class="string">where;</span> <span class="string">Using</span> <span class="string">index</span></span><br><span class="line"><span class="string">***************************</span> <span class="number">2.</span> <span class="string">row</span> <span class="string">***************************</span></span><br><span class="line"><span class="attr">           id:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">  select_type:</span> <span class="string">SIMPLE</span></span><br><span class="line"><span class="attr">        table:</span> <span class="string">user_info</span></span><br><span class="line"><span class="attr">   partitions:</span> <span class="literal">NULL</span></span><br><span class="line"><span class="attr">         type:</span> <span class="string">eq_ref</span></span><br><span class="line"><span class="attr">possible_keys:</span> <span class="string">PRIMARY</span></span><br><span class="line"><span class="attr">          key:</span> <span class="string">PRIMARY</span></span><br><span class="line"><span class="attr">      key_len:</span> <span class="number">8</span></span><br><span class="line"><span class="attr">          ref:</span> <span class="string">test.order_info.user_id</span></span><br><span class="line"><span class="attr">         rows:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">     filtered:</span> <span class="number">100.00</span></span><br><span class="line"><span class="attr">        Extra:</span> <span class="literal">NULL</span></span><br><span class="line"><span class="number">2</span> <span class="string">rows</span> <span class="string">in</span> <span class="string">set,</span> <span class="number">1</span> <span class="string">warning</span> <span class="string">(0.00</span> <span class="string">sec)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>ref: 此类型通常出现在多表的 <strong>join</strong> 查询, 针对于非唯一或非主键索引, 或者是使用了 最左前缀 规则索引的查询.<br>例如下面这个例子中, 就使用到了 <strong>ref</strong> 类型的查询:</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">mysql&gt;</span> <span class="string">EXPLAIN</span> <span class="string">SELECT</span> <span class="string">*</span> <span class="string">FROM</span> <span class="string">user_info,</span> <span class="string">order_info</span> <span class="string">WHERE</span> <span class="string">user_info.id</span> <span class="string">=</span> <span class="string">order_info.user_id</span> <span class="string">AND</span> <span class="string">order_info.user_id</span> <span class="string">=</span> <span class="number">5</span><span class="string">\G</span></span><br><span class="line"><span class="string">***************************</span> <span class="number">1.</span> <span class="string">row</span> <span class="string">***************************</span></span><br><span class="line"><span class="attr">           id:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">  select_type:</span> <span class="string">SIMPLE</span></span><br><span class="line"><span class="attr">        table:</span> <span class="string">user_info</span></span><br><span class="line"><span class="attr">   partitions:</span> <span class="literal">NULL</span></span><br><span class="line"><span class="attr">         type:</span> <span class="string">const</span></span><br><span class="line"><span class="attr">possible_keys:</span> <span class="string">PRIMARY</span></span><br><span class="line"><span class="attr">          key:</span> <span class="string">PRIMARY</span></span><br><span class="line"><span class="attr">      key_len:</span> <span class="number">8</span></span><br><span class="line"><span class="attr">          ref:</span> <span class="string">const</span></span><br><span class="line"><span class="attr">         rows:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">     filtered:</span> <span class="number">100.00</span></span><br><span class="line"><span class="attr">        Extra:</span> <span class="literal">NULL</span></span><br><span class="line"><span class="string">***************************</span> <span class="number">2.</span> <span class="string">row</span> <span class="string">***************************</span></span><br><span class="line"><span class="attr">           id:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">  select_type:</span> <span class="string">SIMPLE</span></span><br><span class="line"><span class="attr">        table:</span> <span class="string">order_info</span></span><br><span class="line"><span class="attr">   partitions:</span> <span class="literal">NULL</span></span><br><span class="line"><span class="attr">         type:</span> <span class="string">ref</span></span><br><span class="line"><span class="attr">possible_keys:</span> <span class="string">user_product_detail_index</span></span><br><span class="line"><span class="attr">          key:</span> <span class="string">user_product_detail_index</span></span><br><span class="line"><span class="attr">      key_len:</span> <span class="number">9</span></span><br><span class="line"><span class="attr">          ref:</span> <span class="string">const</span></span><br><span class="line"><span class="attr">         rows:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">     filtered:</span> <span class="number">100.00</span></span><br><span class="line"><span class="attr">        Extra:</span> <span class="string">Using</span> <span class="string">index</span></span><br><span class="line"><span class="number">2</span> <span class="string">rows</span> <span class="string">in</span> <span class="string">set,</span> <span class="number">1</span> <span class="string">warning</span> <span class="string">(0.01</span> <span class="string">sec)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>range: 表示使用索引范围查询, 通过索引字段范围获取表中部分数据记录. 这个类型通常出现在 <strong>=</strong>, <strong>&lt;&gt;</strong>, <strong>&gt;</strong>, <strong>&gt;=</strong>, <strong>&lt;</strong>, <strong>&lt;=</strong>, <strong>IS NULL</strong>, <strong>&lt;=&gt;</strong>, <strong>BETWEEN</strong>, <strong>IN()</strong> 操作中. 当 <strong>type</strong> 是 <strong>range</strong> 时, 那么 <strong>EXPLAIN</strong> 输出的 <strong>ref</strong> 字段为 <strong>NULL</strong>, 并且 <strong>key_len</strong> 字段是此次查询中使用到的索引的最长的那个.</li>
+</ul>
+<p>例如下面的例子就是一个范围查询:</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; EXPLAIN SELECT *</span><br><span class="line">    -&gt;         <span class="keyword">FROM</span> user_info</span><br><span class="line">    -&gt;         WHERE id BETWEEN 2 <span class="keyword">AND</span> 8 \G</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">           id: 1</span><br><span class="line">  select_type: SIMPLE</span><br><span class="line">        table: user_info</span><br><span class="line">   partitions: <span class="literal">NULL</span></span><br><span class="line">         type: range</span><br><span class="line">possible_keys: PRIMARY</span><br><span class="line">          key: PRIMARY</span><br><span class="line">      key_len: 8</span><br><span class="line">          ref: <span class="literal">NULL</span></span><br><span class="line">         rows: 7</span><br><span class="line">     filtered: 100.00</span><br><span class="line">        Extra: Using where</span><br><span class="line">1 row <span class="keyword">in</span> set, 1 <span class="builtin-name">warning</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>index: 表示全索引扫描(<strong>full index scan</strong>), 和 <strong>ALL</strong> 类型类似, 只不过 <strong>ALL</strong> 类型是全表扫描, 而 <strong>index</strong> 类型则仅仅扫描所有的索引, 而不扫描数据.<br><strong>index</strong> 类型通常出现在: 所要查询的数据直接在索引树中就可以获取到, 而不需要扫描数据. 当是这种情况时, <strong>Extra</strong> 字段 会显示 <strong>Using index</strong>.</li>
+</ul>
+<p>例如:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">mysql&gt;</span> <span class="string">EXPLAIN</span> <span class="string">SELECT</span> <span class="string">name</span> <span class="string">FROM</span>  <span class="string">user_info</span> <span class="string">\G</span></span><br><span class="line"><span class="string">***************************</span> <span class="number">1.</span> <span class="string">row</span> <span class="string">***************************</span></span><br><span class="line"><span class="attr">           id:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">  select_type:</span> <span class="string">SIMPLE</span></span><br><span class="line"><span class="attr">        table:</span> <span class="string">user_info</span></span><br><span class="line"><span class="attr">   partitions:</span> <span class="literal">NULL</span></span><br><span class="line"><span class="attr">         type:</span> <span class="string">index</span></span><br><span class="line"><span class="attr">possible_keys:</span> <span class="literal">NULL</span></span><br><span class="line"><span class="attr">          key:</span> <span class="string">name_index</span></span><br><span class="line"><span class="attr">      key_len:</span> <span class="number">152</span></span><br><span class="line"><span class="attr">          ref:</span> <span class="literal">NULL</span></span><br><span class="line"><span class="attr">         rows:</span> <span class="number">10</span></span><br><span class="line"><span class="attr">     filtered:</span> <span class="number">100.00</span></span><br><span class="line"><span class="attr">        Extra:</span> <span class="string">Using</span> <span class="string">index</span></span><br><span class="line"><span class="number">1</span> <span class="string">row</span> <span class="string">in</span> <span class="string">set,</span> <span class="number">1</span> <span class="string">warning</span> <span class="string">(0.00</span> <span class="string">sec)</span></span><br></pre></td></tr></table></figure>
+<p>上面的例子中, 我们查询的 name 字段恰好是一个索引, 因此我们直接从索引中获取数据就可以满足查询的需求了, 而不需要查询表中的数据. 因此这样的情况下, <strong>type</strong> 的值是 <strong>index</strong>, 并且 <strong>Extra</strong> 的值是 <strong>Using index</strong>.</p>
+<ul>
+<li>ALL: 表示全表扫描, 这个类型的查询是性能最差的查询之一. 通常来说, 我们的查询不应该出现 <strong>ALL</strong> 类型的查询, 因为这样的查询在数据量大的情况下, 对数据库的性能是巨大的灾难. 如一个查询是 <strong>ALL</strong> 类型查询, 那么一般来说可以对相应的字段添加索引来避免.<br>下面是一个全表扫描的例子, 可以看到, 在全表扫描时, <strong>possible_keys</strong> 和 <strong>key</strong> 字段都是 <strong>NULL</strong>, 表示没有使用到索引, 并且 <strong>rows</strong> 十分巨大, 因此整个查询效率是十分低下的.</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">mysql&gt;</span> <span class="string">EXPLAIN</span> <span class="string">SELECT</span> <span class="string">age</span> <span class="string">FROM</span>  <span class="string">user_info</span> <span class="string">WHERE</span> <span class="string">age</span> <span class="string">=</span> <span class="number">20</span> <span class="string">\G</span></span><br><span class="line"><span class="string">***************************</span> <span class="number">1.</span> <span class="string">row</span> <span class="string">***************************</span></span><br><span class="line"><span class="attr">           id:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">  select_type:</span> <span class="string">SIMPLE</span></span><br><span class="line"><span class="attr">        table:</span> <span class="string">user_info</span></span><br><span class="line"><span class="attr">   partitions:</span> <span class="literal">NULL</span></span><br><span class="line"><span class="attr">         type:</span> <span class="string">ALL</span></span><br><span class="line"><span class="attr">possible_keys:</span> <span class="literal">NULL</span></span><br><span class="line"><span class="attr">          key:</span> <span class="literal">NULL</span></span><br><span class="line"><span class="attr">      key_len:</span> <span class="literal">NULL</span></span><br><span class="line"><span class="attr">          ref:</span> <span class="literal">NULL</span></span><br><span class="line"><span class="attr">         rows:</span> <span class="number">10</span></span><br><span class="line"><span class="attr">     filtered:</span> <span class="number">10.00</span></span><br><span class="line"><span class="attr">        Extra:</span> <span class="string">Using</span> <span class="string">where</span></span><br><span class="line"><span class="number">1</span> <span class="string">row</span> <span class="string">in</span> <span class="string">set,</span> <span class="number">1</span> <span class="string">warning</span> <span class="string">(0.00</span> <span class="string">sec)</span></span><br></pre></td></tr></table></figure>
+<p>type 类型的性能比较<br>通常来说, 不同的 type 类型的性能关系如下:</p>
+<p><code>ALL &lt; index &lt; range ~ index_merge &lt; ref &lt; eq_ref &lt; const &lt; system</code></p>
+<p><strong>ALL</strong> 类型因为是全表扫描, 因此在相同的查询条件下, 它是速度最慢的.<br>而 <strong>index</strong> 类型的查询虽然不是全表扫描, 但是它扫描了所有的索引, 因此比 <strong>ALL</strong> 类型的稍快.<br>后面的几种类型都是利用了索引来查询数据, 因此可以过滤部分或大部分数据, 因此查询效率就比较高了.</p>
+<h3 id="possible-keys"><a href="#possible-keys" class="headerlink" title="possible_keys"></a>possible_keys</h3><p><strong>possible_keys</strong> 表示 <strong>MySQL</strong> 在查询时, 能够使用到的索引. 注意, 即使有些索引在 <strong>possible_keys</strong> 中出现, 但是并不表示此索引会真正地被 <strong>MySQL</strong> 使用到. <strong>MySQL</strong> 在查询时具体使用了哪些索引, 由 <strong>key</strong> 字段决定.</p>
+<h3 id="key"><a href="#key" class="headerlink" title="key"></a>key</h3><p>此字段是 <strong>MySQL</strong> 在当前查询时所真正使用到的索引.</p>
+<h3 id="key-len"><a href="#key-len" class="headerlink" title="key_len"></a>key_len</h3><p>表示查询优化器使用了索引的字节数. 这个字段可以评估组合索引是否完全被使用, 或只有最左部分字段被使用到. 的计算规则如下:</p>
+<p><strong>字符串</strong></p>
+<ul>
+<li><p>char(n): n 字节长度</p>
+</li>
+<li><p>varchar(n): 如果是 utf8 编码, 则是 3 n + 2字节; 如果是 utf8mb4 编码, 则是 4 n + 2 字节.</p>
+</li>
+</ul>
+<p><strong>数值类型</strong></p>
+<ul>
+<li><p>TINYINT: 1字节</p>
+</li>
+<li><p>SMALLINT: 2字节</p>
+</li>
+<li><p>MEDIUMINT: 3字节</p>
+</li>
+<li><p>INT: 4字节</p>
+</li>
+<li><p>BIGINT: 8字节</p>
+</li>
+</ul>
+<p><strong>时间类型</strong></p>
+<ul>
+<li><p>DATE: 3字节</p>
+</li>
+<li><p>TIMESTAMP: 4字节</p>
+</li>
+<li><p>DATETIME: 8字节</p>
+</li>
+</ul>
+<p><strong>字段属性</strong></p>
+<p>NULL 属性 占用一个字节. 如果一个字段是 NOT NULL 的, 则没有此属性.</p>
+<p>我们来举两个简单的栗子:</p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">EXPLAIN</span> <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> order_info <span class="keyword">WHERE</span> user_id &lt; <span class="number">3</span> <span class="keyword">AND</span> product_name = <span class="string">'p1'</span> <span class="keyword">AND</span> productor = <span class="string">'WHH'</span> \G</span><br><span class="line">*************************** <span class="number">1.</span> row ***************************</span><br><span class="line">           id: <span class="number">1</span></span><br><span class="line">  select_type: SIMPLE</span><br><span class="line">        table: order_info</span><br><span class="line">   partitions: <span class="literal">NULL</span></span><br><span class="line">         <span class="built_in">type</span>: range</span><br><span class="line">possible_keys: user_product_detail_index</span><br><span class="line">          <span class="keyword">key</span>: user_product_detail_index</span><br><span class="line">      key_len: <span class="number">9</span></span><br><span class="line">          ref: <span class="literal">NULL</span></span><br><span class="line">         rows: <span class="number">5</span></span><br><span class="line">     filtered: <span class="number">11.11</span></span><br><span class="line">        Extra: <span class="keyword">Using</span> <span class="keyword">where</span>; Using <span class="keyword">index</span></span><br><span class="line"><span class="number">1</span> row <span class="keyword">in</span> <span class="keyword">set</span>, <span class="number">1</span> warning (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<p>上面的例子是从表 <code>order_info</code> 中查询指定的内容, 而我们从此表的建表语句中可以知道, 表 order_info 有一个联合索引:</p>
+<p>KEY <code>user_product_detail_index</code> (<code>user_id</code>, <code>product_name</code>, <code>productor</code>)<br>不过此查询语句 WHERE user_id &lt; 3 AND product_name = ‘p1’ AND productor = ‘WHH’ 中, 因为先进行 user_id 的范围查询, 而根据 最左前缀匹配 原则, 当遇到范围查询时, 就停止索引的匹配, 因此实际上我们使用到的索引的字段只有 user_id, 因此在 EXPLAIN 中, 显示的 key_len 为 9. 因为 user_id 字段是 BIGINT, 占用 8 字节, 而 NULL 属性占用一个字节, 因此总共是 9 个字节. 若我们将user_id 字段改为 BIGINT(20) NOT NULL DEFAULT ‘0’, 则 key_length 应该是8.</p>
+<p>上面因为 最左前缀匹配 原则, 我们的查询仅仅使用到了联合索引的 user_id 字段, 因此效率不算高.</p>
+<p>接下来我们来看一下下一个例子:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">mysql&gt;</span> <span class="string">EXPLAIN</span> <span class="string">SELECT</span> <span class="string">*</span> <span class="string">FROM</span> <span class="string">order_info</span> <span class="string">WHERE</span> <span class="string">user_id</span> <span class="string">=</span> <span class="number">1</span> <span class="string">AND</span> <span class="string">product_name</span> <span class="string">=</span> <span class="string">'p1'</span> <span class="string">\G;</span></span><br><span class="line"><span class="string">***************************</span> <span class="number">1.</span> <span class="string">row</span> <span class="string">***************************</span></span><br><span class="line"><span class="attr">           id:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">  select_type:</span> <span class="string">SIMPLE</span></span><br><span class="line"><span class="attr">        table:</span> <span class="string">order_info</span></span><br><span class="line"><span class="attr">   partitions:</span> <span class="literal">NULL</span></span><br><span class="line"><span class="attr">         type:</span> <span class="string">ref</span></span><br><span class="line"><span class="attr">possible_keys:</span> <span class="string">user_product_detail_index</span></span><br><span class="line"><span class="attr">          key:</span> <span class="string">user_product_detail_index</span></span><br><span class="line"><span class="attr">      key_len:</span> <span class="number">161</span></span><br><span class="line"><span class="attr">          ref:</span> <span class="string">const,const</span></span><br><span class="line"><span class="attr">         rows:</span> <span class="number">2</span></span><br><span class="line"><span class="attr">     filtered:</span> <span class="number">100.00</span></span><br><span class="line"><span class="attr">        Extra:</span> <span class="string">Using</span> <span class="string">index</span></span><br><span class="line"><span class="number">1</span> <span class="string">row</span> <span class="string">in</span> <span class="string">set,</span> <span class="number">1</span> <span class="string">warning</span> <span class="string">(0.00</span> <span class="string">sec)</span></span><br></pre></td></tr></table></figure>
+<p>这次的查询中, 我们没有使用到范围查询, key_len 的值为 161. 为什么呢? 因为我们的查询条件 WHERE user_id = 1 AND product_name = ‘p1’ 中, 仅仅使用到了联合索引中的前两个字段, 因此 keyLen(user_id) + keyLen(product_name) = 9 + 50 * 3 + 2 = 161</p>
+<h3 id="rows"><a href="#rows" class="headerlink" title="rows"></a>rows</h3><p>rows 也是一个重要的字段. MySQL 查询优化器根据统计信息, 估算 SQL 要查找到结果集需要扫描读取的数据行数.<br>这个值非常直观显示 SQL 的效率好坏, 原则上 rows 越少越好.</p>
+<h3 id="Extra"><a href="#Extra" class="headerlink" title="Extra"></a>Extra</h3><p>EXplain 中的很多额外的信息会在 Extra 字段显示, 常见的有以下几种内容:</p>
+<p>Using filesort<br>当 <code>Extra</code>中有 <code>Using filesort</code>时, 表示 <strong>MySQL</strong> 需额外的排序操作, 不能通过索引顺序达到排序效果. 一般有 <code>Using filesort</code>, 都建议优化去掉, 因为这样的查询 CPU 资源消耗大.</p>
+<p>例如下面的例子:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">mysql&gt;</span> <span class="string">EXPLAIN</span> <span class="string">SELECT</span> <span class="string">*</span> <span class="string">FROM</span> <span class="string">order_info</span> <span class="string">ORDER</span> <span class="string">BY</span> <span class="string">product_name</span> <span class="string">\G</span></span><br><span class="line"><span class="string">***************************</span> <span class="number">1.</span> <span class="string">row</span> <span class="string">***************************</span></span><br><span class="line"><span class="attr">           id:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">  select_type:</span> <span class="string">SIMPLE</span></span><br><span class="line"><span class="attr">        table:</span> <span class="string">order_info</span></span><br><span class="line"><span class="attr">   partitions:</span> <span class="literal">NULL</span></span><br><span class="line"><span class="attr">         type:</span> <span class="string">index</span></span><br><span class="line"><span class="attr">possible_keys:</span> <span class="literal">NULL</span></span><br><span class="line"><span class="attr">          key:</span> <span class="string">user_product_detail_index</span></span><br><span class="line"><span class="attr">      key_len:</span> <span class="number">253</span></span><br><span class="line"><span class="attr">          ref:</span> <span class="literal">NULL</span></span><br><span class="line"><span class="attr">         rows:</span> <span class="number">9</span></span><br><span class="line"><span class="attr">     filtered:</span> <span class="number">100.00</span></span><br><span class="line"><span class="attr">        Extra:</span> <span class="string">Using</span> <span class="string">index;</span> <span class="string">Using</span> <span class="string">filesort</span></span><br><span class="line"><span class="number">1</span> <span class="string">row</span> <span class="string">in</span> <span class="string">set,</span> <span class="number">1</span> <span class="string">warning</span> <span class="string">(0.00</span> <span class="string">sec)</span></span><br></pre></td></tr></table></figure>
+<p>我们的索引是</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KEY `user_product_detail_index` (`user_id`, `product_name`, `productor`)</span><br></pre></td></tr></table></figure>
+<p>但是上面的查询中根据 <code>product_name</code> 来排序, 因此不能使用索引进行优化, 进而会产生<code>Using filesort.</code> 如果我们将排序依据改为 <code>ORDER BY user_id, product_name,</code>那么就不会出现 <code>Using filesort</code>了. 例如:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">mysql&gt;</span> <span class="string">EXPLAIN</span> <span class="string">SELECT</span> <span class="string">*</span> <span class="string">FROM</span> <span class="string">order_info</span> <span class="string">ORDER</span> <span class="string">BY</span> <span class="string">user_id,</span> <span class="string">product_name</span> <span class="string">\G</span></span><br><span class="line"><span class="string">***************************</span> <span class="number">1.</span> <span class="string">row</span> <span class="string">***************************</span></span><br><span class="line"><span class="attr">           id:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">  select_type:</span> <span class="string">SIMPLE</span></span><br><span class="line"><span class="attr">        table:</span> <span class="string">order_info</span></span><br><span class="line"><span class="attr">   partitions:</span> <span class="literal">NULL</span></span><br><span class="line"><span class="attr">         type:</span> <span class="string">index</span></span><br><span class="line"><span class="attr">possible_keys:</span> <span class="literal">NULL</span></span><br><span class="line"><span class="attr">          key:</span> <span class="string">user_product_detail_index</span></span><br><span class="line"><span class="attr">      key_len:</span> <span class="number">253</span></span><br><span class="line"><span class="attr">          ref:</span> <span class="literal">NULL</span></span><br><span class="line"><span class="attr">         rows:</span> <span class="number">9</span></span><br><span class="line"><span class="attr">     filtered:</span> <span class="number">100.00</span></span><br><span class="line"><span class="attr">        Extra:</span> <span class="string">Using</span> <span class="string">index</span></span><br><span class="line"><span class="number">1</span> <span class="string">row</span> <span class="string">in</span> <span class="string">set,</span> <span class="number">1</span> <span class="string">warning</span> <span class="string">(0.00</span> <span class="string">sec)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Using index</p>
+<p>“覆盖索引扫描”, 表示查询在索引树中就可查找所需数据, 不用扫描表数据文件, 往往说明性能不错</p>
+</li>
+<li><p>Using temporary</p>
+<p>查询有使用临时表, 一般出现于排序, 分组和多表 join 的情况, 查询效率不高, 建议优化.</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/MySQL//" class="article-tag-list-link color1">MySQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/10/MySQL 性能优化神器 Explain 使用分析/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-MySQL 查询优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/10/MySQL 查询优化/">MySQL 查询优化</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/10/MySQL 查询优化/" class="archive-article-date">
+  	<time datetime="2018-05-10T14:57:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>MySQL 5.7+</p>
+<p>如果把查询看作是一个任务，那么它由一系列子任务组成，每个子任务都会消耗一定的时间。<br><br>如果要优化查询，实际上要优化其子任务，优化的方式如下：<br></p>
+<ul>
+<li>要么消除其中一些子任务</li>
+<li>要么减少子任务的执行次数</li>
+<li>要么让子任务执行的更快</li>
+</ul>
+<h3 id="优化数据访问"><a href="#优化数据访问" class="headerlink" title="优化数据访问"></a>优化数据访问</h3><ul>
+<li>确认应用程序是否在检索大量超过需要的数据。这通常意味着访问了太多的行，但有时候也可能是访问了太多的列。</li>
+<li>确认 MySQL 服务器层是否在分析大量超过需求的数据行。</li>
+</ul>
+<p><strong>是否向数据库请求了不需要的数据</strong></p>
+<ul>
+<li>查询不需要的计量</li>
+<li>多表关联时返回全部的列</li>
+<li>总是取出全部列</li>
+<li>重复查询相同的数据</li>
+</ul>
+<p><strong>MySQL 是否在扫描额外的计量</strong></p>
+<ul>
+<li>响应时间</li>
+<li>扫描的行数</li>
+<li>返回的行数</li>
+</ul>
+<h3 id="重构查询的方式"><a href="#重构查询的方式" class="headerlink" title="重构查询的方式"></a>重构查询的方式</h3><ul>
+<li>一个复杂查询还是多个简单查询</li>
+<li>切分查询</li>
+<li>分解关联查询</li>
+</ul>
+<p><strong>分解关联查询的优势</strong>：</p>
+<ul>
+<li>让缓存的效率更高</li>
+<li>将查询分解后，执行单个查询可以减少锁的竞争</li>
+<li>在应用层做关联，可以更容易对数据库进行拆分，更容易做到高性能和可扩展</li>
+<li>查询本身效率也可能会有所提升</li>
+<li>可以减少冗余计量的查询</li>
+<li>相当于在应用中实现了哈希关联，而不是使用 MySQL 的嵌套循环关联</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/MySQL//" class="article-tag-list-link color1">MySQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/10/MySQL 查询优化/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-记一次 MySQL 关键字多字段模糊查询优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -450,6 +805,98 @@
 
 
   
+    <article id="post-集合框架基础之迭代器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/09/集合框架基础之迭代器/">集合框架基础之迭代器</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/09/集合框架基础之迭代器/" class="archive-article-date">
+  	<time datetime="2018-04-09T14:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>迭代器（Iterator）是一个接口，是 Java 集合框架中的一员。</p>
+<p>Java 8 中的 Iterator 相比于 Java 7 中 有了些许变化：</p>
+<p>Java 7 Iterator：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>Iterator&lt;E&gt; &#123;</span><br><span class="line">    </span><br><span class="line">    boolean hasNext();</span><br><span class="line"></span><br><span class="line">    E next();</span><br><span class="line"></span><br><span class="line">    void <span class="builtin-name">remove</span>();</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Java 8 Iterator：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>Iterator&lt;E&gt; &#123;</span><br><span class="line">    </span><br><span class="line">    boolean hasNext();</span><br><span class="line"></span><br><span class="line">    E next();</span><br><span class="line"></span><br><span class="line">   <span class="built_in"> default </span>void <span class="builtin-name">remove</span>() &#123;</span><br><span class="line">        throw new UnsupportedOperationException(<span class="string">"remove"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   <span class="built_in"> default </span>void forEachRemaining(Consumer&lt;? super E&gt; action) &#123;</span><br><span class="line">        Objects.requireNonNull(action);</span><br><span class="line">        <span class="keyword">while</span> (hasNext())</span><br><span class="line">            action.accept(next());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 Java 8 中将 remove 方法默认实现了，并且添加了一个默认的 forEachRemaining 方法用于遍历集合。</p>
+<p>迭代器的方法从字面上即可理解方法的用途。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Iterator</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JDK-源码-1-8-0-161//" class="article-tag-list-link color2">JDK 源码 1.8.0_161</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/09/集合框架基础之迭代器/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-编程中对象的分类和命名" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -535,98 +982,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/04/09/编程中对象的分类和命名/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-集合框架基础之迭代器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/09/集合框架基础之迭代器/">集合框架基础之迭代器</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/09/集合框架基础之迭代器/" class="archive-article-date">
-  	<time datetime="2018-04-09T14:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>迭代器（Iterator）是一个接口，是 Java 集合框架中的一员。</p>
-<p>Java 8 中的 Iterator 相比于 Java 7 中 有了些许变化：</p>
-<p>Java 7 Iterator：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>Iterator&lt;E&gt; &#123;</span><br><span class="line">    </span><br><span class="line">    boolean hasNext();</span><br><span class="line"></span><br><span class="line">    E next();</span><br><span class="line"></span><br><span class="line">    void <span class="builtin-name">remove</span>();</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Java 8 Iterator：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>Iterator&lt;E&gt; &#123;</span><br><span class="line">    </span><br><span class="line">    boolean hasNext();</span><br><span class="line"></span><br><span class="line">    E next();</span><br><span class="line"></span><br><span class="line">   <span class="built_in"> default </span>void <span class="builtin-name">remove</span>() &#123;</span><br><span class="line">        throw new UnsupportedOperationException(<span class="string">"remove"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   <span class="built_in"> default </span>void forEachRemaining(Consumer&lt;? super E&gt; action) &#123;</span><br><span class="line">        Objects.requireNonNull(action);</span><br><span class="line">        <span class="keyword">while</span> (hasNext())</span><br><span class="line">            action.accept(next());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在 Java 8 中将 remove 方法默认实现了，并且添加了一个默认的 forEachRemaining 方法用于遍历集合。</p>
-<p>迭代器的方法从字面上即可理解方法的用途。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Iterator</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JDK-源码-1-8-0-161//" class="article-tag-list-link color2">JDK 源码 1.8.0_161</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/09/集合框架基础之迭代器/">展开全文 >></a>
         </p>
       
 
@@ -913,178 +1268,9 @@
 
 
   
-    <article id="post-Java 集合框架 modCount 属性和 fast-fail 机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/09/Java 集合框架 modCount 属性和 fast-fail 机制/">Java 集合框架 modCount 属性和 fast-fail 机制</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/09/Java 集合框架 modCount 属性和 fast-fail 机制/" class="archive-article-date">
-  	<time datetime="2018-03-09T15:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="modCount-属性"><a href="#modCount-属性" class="headerlink" title="modCount 属性"></a>modCount 属性</h2><p>在 AbstractCollection 中存在一个 modCount 属性：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">  * The <span class="built_in">number</span> <span class="keyword">of</span> <span class="keyword">times</span> this <span class="built_in">list</span> has been &lt;i&gt;structurally modified&lt;/i&gt;.</span><br><span class="line">  * 表示 List 结构被修改的次数。</span><br><span class="line">  *</span><br><span class="line">  * Structural modifications are those <span class="keyword">that</span> change <span class="keyword">the</span> size <span class="keyword">of</span> <span class="keyword">the</span></span><br><span class="line">  * <span class="built_in">list</span>, <span class="keyword">or</span> otherwise perturb <span class="keyword">it</span> <span class="keyword">in</span> such a fashion <span class="keyword">that</span> iterations <span class="keyword">in</span></span><br><span class="line">  * progress may yield incorrect results.</span><br><span class="line">  * 结构被修改主要是指容量的变化，可能对迭代器迭代产生错误的结果</span><br><span class="line">  *</span><br><span class="line">  *</span><br><span class="line">  * &lt;p&gt;This field <span class="keyword">is</span> used <span class="keyword">by</span> <span class="keyword">the</span> iterator <span class="keyword">and</span> <span class="built_in">list</span> iterator implementation</span><br><span class="line">  * returned <span class="keyword">by</span> <span class="keyword">the</span> &#123;@code iterator&#125; <span class="keyword">and</span> &#123;@code listIterator&#125; methods.</span><br><span class="line">  * 主要由 iterator 和 <span class="built_in">list</span> 的 iterator 方法返回的迭代器使用</span><br><span class="line">  * </span><br><span class="line">  * If <span class="keyword">the</span> value <span class="keyword">of</span> this field changes unexpectedly, <span class="keyword">the</span> iterator (<span class="keyword">or</span> <span class="built_in">list</span></span><br><span class="line">  * iterator) will throw a &#123;@code ConcurrentModificationException&#125; <span class="keyword">in</span></span><br><span class="line">  * response <span class="keyword">to</span> <span class="keyword">the</span> &#123;@code next&#125;, &#123;@code remove&#125;, &#123;@code previous&#125;,</span><br><span class="line">  * &#123;@code <span class="keyword">set</span>&#125; <span class="keyword">or</span> &#123;@code add&#125; operations.  </span><br><span class="line">  * 如果此值发生改变，那么迭代器在进行 next, remove, previous, <span class="keyword">set</span>, add 等操作时将抛</span><br><span class="line">  * 出 ConcurrentModificationException 异常。</span><br><span class="line">  * </span><br><span class="line">  * This provides</span><br><span class="line">  * &lt;i&gt;fail-fast&lt;/i&gt; behavior, rather than non-deterministic behavior <span class="keyword">in</span></span><br><span class="line">  * <span class="keyword">the</span> face <span class="keyword">of</span> concurrent modification during iteration.</span><br><span class="line">  * 提供了 fail-fast 机制，防止在并发迭代时可能产生的不确定性问题。</span><br><span class="line">  *</span><br><span class="line">  * &lt;p&gt;&lt;b&gt;Use <span class="keyword">of</span> this field <span class="keyword">by</span> subclasses <span class="keyword">is</span> optional.&lt;/b&gt; </span><br><span class="line">  * 字段是否使用此字段是可选的。</span><br><span class="line">  * </span><br><span class="line">  * If a subclass wishes <span class="keyword">to</span> provide fail-fast iterators (<span class="keyword">and</span> <span class="built_in">list</span> iterators), </span><br><span class="line">  * <span class="keyword">then</span> <span class="keyword">it</span> merely has <span class="keyword">to</span> increment this field <span class="keyword">in</span> <span class="keyword">its</span> &#123;@code add(int, E)&#125; <span class="keyword">and</span></span><br><span class="line">  * &#123;@code remove(int)&#125; methods (<span class="keyword">and</span> any other methods <span class="keyword">that</span> <span class="keyword">it</span> overrides</span><br><span class="line">  * <span class="keyword">that</span> <span class="literal">result</span> <span class="keyword">in</span> structural modifications <span class="keyword">to</span> <span class="keyword">the</span> <span class="built_in">list</span>).  </span><br><span class="line">  * 如果子类希望提供 fast-fail 机制，则需要在 add，remove, 或其他可修改集合结构的操作时</span><br><span class="line">  * 对其自增</span><br><span class="line">  * </span><br><span class="line">  * A single call <span class="keyword">to</span> &#123;@code add(int, E)&#125; <span class="keyword">or</span> &#123;@code remove(int)&#125; must add no </span><br><span class="line">  * more than one <span class="keyword">to</span> this field, <span class="keyword">or</span> <span class="keyword">the</span> iterators (<span class="keyword">and</span> <span class="built_in">list</span> iterators) will </span><br><span class="line">  * throw bogus &#123;@code ConcurrentModificationExceptions&#125;.  </span><br><span class="line"></span><br><span class="line">  * If an implementation <span class="keyword">does</span> <span class="keyword">not</span> wish <span class="keyword">to</span> provide fail-fast iterators, this </span><br><span class="line">  * field may be ignored.</span><br><span class="line">  * 如果实现类不想提供 fast-fail 机制，可以忽略此属性</span><br><span class="line">  */</span><br><span class="line"> protected transient int modCount = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="ConcurrentModificationException-和-fast-fail-机制"><a href="#ConcurrentModificationException-和-fast-fail-机制" class="headerlink" title="ConcurrentModificationException 和 fast-fail 机制"></a>ConcurrentModificationException 和 fast-fail 机制</h2><p>以 ArrayList 的 迭代器为例：</p>
-<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Iterator&lt;E&gt; iterator() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Itr();</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">private</span> class Itr implements Iterator&lt;E&gt; &#123;</span><br><span class="line">    <span class="built_in">int</span> <span class="built_in">cursor</span>;       <span class="comment">// index of next element to return</span></span><br><span class="line">    <span class="built_in">int</span> lastRet = <span class="number">-1</span>; <span class="comment">// index of last element returned; -1 if no such</span></span><br><span class="line">    <span class="built_in">int</span> expectedModCount = modCount;</span><br><span class="line"></span><br><span class="line">    Itr() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">boolean</span> hasNext() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">cursor</span> != <span class="built_in">size</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @SuppressWarnings(<span class="string">"unchecked"</span>)</span><br><span class="line">    <span class="keyword">public</span> E next() &#123;</span><br><span class="line">        checkForComodification();</span><br><span class="line">        <span class="built_in">int</span> i = <span class="built_in">cursor</span>;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= <span class="built_in">size</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</span><br><span class="line">        <span class="keyword">Object</span>[] elementData = ArrayList.<span class="keyword">this</span>.elementData;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= elementData.length)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">        <span class="built_in">cursor</span> = i + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> (E) elementData[lastRet = i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> remove() &#123;</span><br><span class="line">        <span class="keyword">if</span> (lastRet &lt; <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException();</span><br><span class="line">        checkForComodification();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ArrayList.<span class="keyword">this</span>.remove(lastRet);</span><br><span class="line">            <span class="built_in">cursor</span> = lastRet;</span><br><span class="line">            lastRet = <span class="number">-1</span>;</span><br><span class="line">            expectedModCount = modCount;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IndexOutOfBoundsException ex) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    @SuppressWarnings(<span class="string">"unchecked"</span>)</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> forEachRemaining(Consumer&lt;? <span class="keyword">super</span> E&gt; consumer) &#123;</span><br><span class="line">        Objects.requireNonNull(consumer);</span><br><span class="line">        <span class="keyword">final</span> <span class="built_in">int</span> <span class="built_in">size</span> = ArrayList.<span class="keyword">this</span>.<span class="built_in">size</span>;</span><br><span class="line">        <span class="built_in">int</span> i = <span class="built_in">cursor</span>;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= <span class="built_in">size</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">Object</span>[] elementData = ArrayList.<span class="keyword">this</span>.elementData;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= elementData.length) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (i != <span class="built_in">size</span> &amp;&amp; modCount == expectedModCount) &#123;</span><br><span class="line">            consumer.accept((E) elementData[i++]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// update once at end of iteration to reduce heap write traffic</span></span><br><span class="line">        <span class="built_in">cursor</span> = i;</span><br><span class="line">        lastRet = i - <span class="number">1</span>;</span><br><span class="line">        checkForComodification();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">void</span> checkForComodification() &#123;</span><br><span class="line">        <span class="keyword">if</span> (modCount != expectedModCount)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>迭代器进行实例化时，迭代器 expectedModeCount 属性初始值是被迭代的集合中的 modCount。<br>在迭代器调用 next 和 remove 方法时，会统一调用 checkForComdification 方法，该方法会每次检查 expectedModeCount 和当前被迭代的集合中的 modCount 值是否相等，不相等即抛出 ConcurrentModificationException 异常。</p>
-<p>即迭代的时候，为了防止有其他线程在并发操作集合时，采用了该机制来防止多线程安全问题的产生。<br>利用 modCount 属性，在可以修改集合结构的方法内修改 modCount 值，并且在迭代的时候不断检查。<br>而这正是 fast-fail 机制。</p>
-<h2 id="解决-fast-fail"><a href="#解决-fast-fail" class="headerlink" title="解决 fast-fail"></a>解决 fast-fail</h2><p>fast-fail 机制是防止多线程问题的一种手段，那么要解决该问题，只要遵循多线程并发问题的解决方法即可。</p>
-<ul>
-<li>涉及到 modCount 方法上加 synchronized 关键字</li>
-<li>使用 Collections.synchronizedList </li>
-<li>使用并发包下的 CopyOnWriteArrayList 替换 ArrayList</li>
-</ul>
-<p>CopyOnWriteArrayList 是首选，后续有机会会分析 CopyOnWriteArrayList 如何避免 fast-fail 机制的原理。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JDK-源码-1-8-0-161//" class="article-tag-list-link color2">JDK 源码 1.8.0_161</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/09/Java 集合框架 modCount 属性和 fast-fail 机制/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java 集合框架概述" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/09/Java 集合框架概述/">Java 集合框架概述</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/09/Java 集合框架概述/" class="archive-article-date">
-  	<time datetime="2018-03-09T14:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Java集合工具包位于Java.util包下，包含了很多常用的数据结构，如数组、链表、栈、队列、集合、哈希表等。学习Java集合框架下大致可以分为如下五个部分：List列表、Set集合、Map映射、迭代器（Iterator、Enumeration）、工具类（Arrays、Collections）</p>
-<p>Java 集合框架如下：<br><img src="data:image/gif;base64,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" alt=""></p>
-<p>从上图中可以看出，集合类主要分为两大类：Collection和Map。</p>
-<p>Collection是集合高度抽象的接口，它定义了集合的基本操作，主要分为两大部分：List和Set。</p>
-<p>List接口表示一个列表（数组、队列、链表、栈等），其中的元素可以重复，常用实现类为ArrayList和LinkedList，另外还有不常用的Vector。另外，LinkedList还是实现了Queue接口，因此也可以作为队列使用。</p>
-<p>Set接口表示一个集，其中的元素不允许重复（通过hashcode和equals函数保证），常用实现类有HashSet和TreeSet，HashSet是通过Map中的HashMap实现的，而TreeSet是通过Map中的TreeMap实现的。另外，TreeSet还实现了SortedSet接口，因此是有序的集合（集合中的元素要实现Comparable接口，并覆写Compartor函数才行）。</p>
-<p>抽象类AbstractCollection、AbstractList和AbstractSet分别实现了Collection、List和Set接口，用这些抽象类去实现接口，在抽象类中实现接口中的若干或全部方法，这样下面的一些类只需直接继承该抽象类，并实现自己需要的方法即可，而不用实现接口中的全部抽象方法。</p>
-<p>Map是一个映射接口，其中的每个元素都是一个key-value键值对，同样抽象类AbstractMap实现了Map接口中的大部分函数，TreeMap、HashMap、WeakHashMap等实现类都通过继承AbstractMap来实现，另外，不常用的HashTable直接实现了Map接口，它和Vector都是JDK1.0就引入的集合类。</p>
-<p>Iterator是遍历集合的迭代器（不能遍历Map，只用来遍历Collection），Collection的实现类都实现了iterator()函数，它返回一个Iterator对象，用来遍历集合，ListIterator则专门用来遍历List。而Enumeration则是JDK1.0时引入的，作用与Iterator相同，但它的功能比Iterator要少，它只能再Hashtable、Vector和Stack中使用。</p>
-<p>Arrays和Collections是用来操作数组、集合的两个工具类，例如在ArrayList和Vector中大量调用了Arrays.Copyof()方法，而Collections中有很多静态方法可以返回各集合类的synchronized版本，即线程安全的版本，当然了，如果要用线程安全的结合类，首选Concurrent并发包下的对应的集合类。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JDK-源码-1-8-0-161//" class="article-tag-list-link color2">JDK 源码 1.8.0_161</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/09/Java 集合框架概述/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1181,11 +1367,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">编程</a>
+                <a href="javascript:void(0)" class="js-tag color3">CI 持续集成</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1201,14 +1391,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CI 持续集成</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">CQRS</a>
               </li>
              
@@ -1218,6 +1400,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1241,15 +1427,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Servlet</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">包装类</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1285,15 +1467,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring Framework</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Ribbon</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring Framework</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">ExceptionHandler</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">包装类</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1305,11 +1491,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
