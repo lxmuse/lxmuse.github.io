@@ -134,6 +134,512 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Java 包装类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/13/Java 包装类/">Java 包装类</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/13/Java 包装类/" class="archive-article-date">
+  	<time datetime="2017-03-13T13:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Java 中每个原始类型都有一个对应的包装类型：</p>
+<table>
+<thead>
+<tr>
+<th>基本类型</th>
+<th>包装类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>boolean</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>Byte </td>
+</tr>
+<tr>
+<td>short</td>
+<td>Short</td>
+</tr>
+<tr>
+<td>int</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>long</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>float</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>double</td>
+<td>Double</td>
+</tr>
+<tr>
+<td>char</td>
+<td>Char</td>
+</tr>
+</tbody>
+</table>
+<p>包装类的必要性：</p>
+<ul>
+<li>Java 很多代码只能操作对象，为了方便操作基本类型，需要包装类</li>
+<li>包装类提供了很多方便的方法便于对数据的操作</li>
+</ul>
+<h2 id="包装类的基本用法"><a href="#包装类的基本用法" class="headerlink" title="包装类的基本用法"></a>包装类的基本用法</h2><p><strong>包装类与基本类型的转换</strong></p>
+<p>包装类与基本类型的转换代码结构都是类似的，每种包装类都有一个静态方法 valueOf() 接受基本类型，返回引用类型，也有一个实例方法 xxValue() 方法返回对应的基本类型。</p>
+<p>以 boolean 和 Boolean 转换为例：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean </span><span class="keyword">b1 </span>= false<span class="comment">;</span></span><br><span class="line"><span class="keyword">Boolean </span><span class="keyword">bObject </span>= <span class="keyword">Boolean.valueOf(b1);</span></span><br><span class="line"><span class="keyword">boolean </span><span class="keyword">b2 </span>= <span class="keyword">bObject.booleanValue();</span></span><br></pre></td></tr></table></figure>
+<p>装箱：将基本类型转换为包装类型的过程<br>拆箱：将包装类型转换为基本类型的过程</p>
+<p>Java 5 引入了自动装箱和自动拆箱的机制，该机制由编译器提供，实际依旧调用了对应的valueOf()方法和 xxxValue() 方法。</p>
+<p>每种包装类也支持通过构造函数实例化，但是不推荐使用，构造函数会创建一个新对象，而很多包装类内部都会缓存包装类对象。</p>
+<p><strong>包装类的共同点</strong></p>
+<ul>
+<li>所有包装类都重写了 Object 类的 equals 方法</li>
+<li>所有包装类都重写了 Object 类的 hashCode 方法</li>
+<li>所有包装类都重写了 Object 类的 toString 方法</li>
+<li>所有包装类都实现了 Comparable 接口</li>
+<li>所有包装类都有一个 valueOf(String) 方法</li>
+<li>所有包装类都有一个 parseOf(String) 方法</li>
+<li>所有包装类还定义了一些常用常量</li>
+</ul>
+<p><strong>Number类</strong></p>
+<p>Number 类是所有包装类的抽象类，定义了如下方法，用于包装类返回任意类型的基本数据类型：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">byte</span> <span class="title">byteValue</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">short</span> <span class="title">shortValue</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">intValue</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">longValue</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">float</span> <span class="title">floatValue</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">doubleValue</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<p><strong>不可变性</strong></p>
+<p>包装类都是不可变类：</p>
+<ul>
+<li>所有包装类都声明为 final , 不能被继承</li>
+<li>内部基本类型值都是私有的，且声明为 final</li>
+<li>没有定义的 setter 方法</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">包装类</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Java-编程逻辑//" class="article-tag-list-link color5">Java 编程逻辑</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/13/Java 包装类/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spring Framework Bean 生命周期" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/26/Spring Framework Bean 生命周期/">Spring Framework Bean 生命周期</a>
+    </h1>
+  
+
+        
+        <a href="/2017/01/26/Spring Framework Bean 生命周期/" class="archive-article-date">
+  	<time datetime="2017-01-26T12:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Spring Framework：4.3.14.RELEASE</p>
+<p>Spring IOC 容器可以管理容器中 Bean 的生命周期。</p>
+<p>容器中 Bean 的生命周期：</p>
+<ul>
+<li>通过构造器或工厂方法创建 Bean 实例</li>
+<li>为 Bean 的属性设置属性值和属性引用</li>
+<li>调用 Bean 指定的 init 方法</li>
+<li>提供 Bean 正常使用</li>
+<li>容器关闭时，调用 Bean 指定的 destroy 方法</li>
+</ul>
+<p>这样一个类：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Car</span> &#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Car</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"Car's Constructor..."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> String brand;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBrand</span>(<span class="params">String brand</span>) </span>&#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"setBrand..."</span>);</span><br><span class="line">		<span class="keyword">this</span>.brand = brand;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"init..."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"destroy..."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span> <span class="meta">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xsi:schemaLocation</span>=<span class="string">"</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!--配置 Bean--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"car"</span> <span class="attr">class</span>=<span class="string">"com.example.spring.Car"</span> <span class="attr">init-method</span>=<span class="string">"init"</span> <span class="attr">destroy-method</span>=<span class="string">"destroy"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"brand"</span>  <span class="attr">value</span>=<span class="string">"BMW"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在容器启动时，可以看到 构造函数 Car() 最先被执行，然后是 SetBrand() 方法被执行，其次是 init() 方法被执行，当容器被关闭时，destrory() 方法被执行。</p>
+<p>Spring Framework 中 bean 标签中有 init-method 属性和 destroy-method 属性分别用于指定 Bean 的 init 方法和 destroy 方法。</p>
+<p>Spring Framework 在 beans 标签还提供了 default-init-method 属性和 default-destroy-method 属性用于批量指定 Bean 的默认 init 方法和 destroy 方法。</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Foo</span> &#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"Foo's Constructor..."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> String brand;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBrand</span>(<span class="params">String brand</span>) </span>&#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"Foo's setBrand..."</span>);</span><br><span class="line">		<span class="keyword">this</span>.brand = brand;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">defaultInit</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"Foo's default init..."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">defaultDestroy</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"Foo's default destroy..."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span> <span class="meta">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xsi:schemaLocation</span>=<span class="string">"</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/beans/spring-beans.xsd"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">default-init-method</span>=<span class="string">"defaultInit"</span> <span class="attr">default-destroy-method</span>=<span class="string">"defaultDestroy"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!--配置 Bean--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"foo"</span> <span class="attr">class</span>=<span class="string">"com.example.spring.Foo"</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"brand"</span>  <span class="attr">value</span>=<span class="string">"BMW"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>但是如果两者一起使用，那么 default-init-method 和 default-destroy-method 方法会被忽略</p>
+<p>Spring Framework 还提供了 InitializingBean 接口，用于在 Bean 实例化完成后进行额外处理。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.InitializingBean;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Smart</span> <span class="keyword">implements</span> <span class="title">InitializingBean</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Smart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Smart's Constructor..."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> String brand;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBrand</span><span class="params">(String brand)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Smart's setBrand..."</span>);</span><br><span class="line">		<span class="keyword">this</span>.brand = brand;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterPropertiesSet</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Smart's afterPropertiesSet..."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在容器启动时，可以看到 构造函数 Smart() 最先被执行，然后是 SetBrand() 方法被执行，之后 afterPropertiesSet 也会被执行。</p>
+<p>那么 InitializingBean 和 default-init-method、default-destroy-method 可否一起作用呢？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.spring;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.InitializingBean;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Ford</span> <span class="keyword">implements</span> <span class="title">InitializingBean</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Ford</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Ford's Constructor..."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> String brand;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBrand</span><span class="params">(String brand)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Ford's setBrand..."</span>);</span><br><span class="line">		<span class="keyword">this</span>.brand = brand;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">defaultInit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Ford's default init..."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">defaultDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Ford's default destroy..."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterPropertiesSet</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Smart's afterPropertiesSet..."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过测试，发现两者可以一起工作，且 afterPropertiesSet() 方法会优先执行。</p>
+<p>那么 InitializingBean 和 init-method、destroy-method 可否一起作用呢？</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">import org.springframework.beans.factory.InitializingBean;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Toyd</span> <span class="title">implements</span> <span class="title">InitializingBean</span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Toyd</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"Toyd's Constructor..."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> String brand;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBrand</span>(<span class="params">String brand</span>) </span>&#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"Toyd's setBrand..."</span>);</span><br><span class="line">		<span class="keyword">this</span>.brand = brand;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"Toyd's init..."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"Toyd's destroy..."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	@Override</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterPropertiesSet</span>(<span class="params"></span>) throws Exception </span>&#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"Smart's afterPropertiesSet..."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过测试，发现两者可以一起工作，且 afterPropertiesSet() 方法会优先执行。</p>
+<p>同理 Spring Framework 还提供了 DisposableBean 接口 做类似的 destroy-method 方法和 default-destroy-method 方法 </p>
+<p>总结：</p>
+<p><strong>Initialization callbacks</strong> </p>
+<ol>
+<li>优先级最高的是通过实现 org.springframework.beans.factory.InitializingBean 接口的 afterPropertiesSet() 方法</li>
+<li>次一级优先级是 bean 标签里的 init-method 属性指定的方法，但是可以和org.springframework.beans.factory.InitializingBean 接口的 afterPropertiesSet() 方法共存</li>
+<li>最次优先级的是 beans 标签里的 default-init-method ，可以和org.springframework.beans.factory.InitializingBean 接口的 afterPropertiesSet() 方法共存，但不能和 bean 标签里的 init-method 属性指定的方法共存</li>
+</ol>
+<p><strong>Destruction callbacks</strong></p>
+<ol>
+<li>优先级最高的是通过实现 org.springframework.beans.factory.DisposableBean 接口的 destroy() 方法</li>
+<li>次一级优先级是 bean 标签里的 destroy-method 属性指定的方法，但是可以和org.springframework.beans.factory.DisposableBean 接口的 destroy() 方法共存</li>
+<li>最次优先级的是 beans 标签里的 default-destroy-method ，可以和org.springframework.beans.factory.DisposableBean 接口的 destroy() 方法共存，但不能和 bean 标签里的 destroy-method 属性指定的方法共存</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Framework</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Spring-Framework//" class="article-tag-list-link color2">Spring Framework</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/26/Spring Framework Bean 生命周期/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spring Framework 依赖注入高级特性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/16/Spring Framework 依赖注入高级特性/">Spring Framework 依赖注入高级特性</a>
+    </h1>
+  
+
+        
+        <a href="/2017/01/16/Spring Framework 依赖注入高级特性/" class="archive-article-date">
+  	<time datetime="2017-01-16T12:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Spring Framework：4.3.14.RELEASE</p>
+<p><strong>p 命名空间</strong></p>
+<p>p 命名空间是简化 property 标签的</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;beans xmlns=<span class="string">"http://www.springframework.org/schema/beans"</span> xmlns:xsi=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> xmlns:p=<span class="string">"http://www.springframework.org/schema/p"</span> xsi:schemaLocation=<span class="string">"http://www.springframework.org/schema/beans</span></span><br><span class="line"><span class="string">        http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span><br><span class="line">	&lt;bean <span class="built_in">name</span>=<span class="string">"classic"</span> <span class="built_in">class</span>=<span class="string">"com.example.ExampleBean"</span>&gt; </span><br><span class="line">		&lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"email"</span> value=<span class="string">"foo@bar.com"</span>/&gt;</span><br><span class="line">	&lt;/bean&gt;</span><br><span class="line">	&lt;bean <span class="built_in">name</span>=<span class="string">"p-namespace"</span> <span class="built_in">class</span>=<span class="string">"com.example.ExampleBean"</span> p:email=<span class="string">"foo@bar.com"</span>/&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<p>包含引用属性：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;beans xmlns=<span class="string">"http://www.springframework.org/schema/beans"</span> xmlns:xsi=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> xmlns:p=<span class="string">"http://www.springframework.org/schema/p"</span> xsi:schemaLocation=<span class="string">"http://www.springframework.org/schema/beans</span></span><br><span class="line"><span class="string">        http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span><br><span class="line">	&lt;bean <span class="built_in">name</span>=<span class="string">"john-classic"</span> <span class="built_in">class</span>=<span class="string">"com.example.Person"</span>&gt; </span><br><span class="line">		&lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"name"</span> value=<span class="string">"John Doe"</span>/&gt; </span><br><span class="line">		&lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"spouse"</span> <span class="keyword">ref</span>=<span class="string">"jane"</span>/&gt;</span><br><span class="line">	&lt;/bean&gt;</span><br><span class="line">	&lt;bean <span class="built_in">name</span>=<span class="string">"john-modern"</span> <span class="built_in">class</span>=<span class="string">"com.example.Person"</span> p:<span class="built_in">name</span>=<span class="string">"John Doe"</span> p:spouse-<span class="keyword">ref</span>=<span class="string">"jane"</span>/&gt;</span><br><span class="line">	&lt;bean <span class="built_in">name</span>=<span class="string">"jane"</span> <span class="built_in">class</span>=<span class="string">"com.example.Person"</span>&gt; </span><br><span class="line">		&lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"name"</span> value=<span class="string">"Jane Doe"</span>/&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>c 命名空间</strong></p>
+<p>c 命名空间是简化 constructor-arg 标签</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;beans xmlns=<span class="string">"http://www.springframework.org/schema/beans"</span> xmlns:xsi=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> xmlns:c=<span class="string">"http://www.springframework.org/schema/c"</span> xsi:schemaLocation=<span class="string">"http://www.springframework.org/schema/beans</span></span><br><span class="line"><span class="string">        http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span><br><span class="line">	&lt;bean <span class="built_in">id</span>=<span class="string">"bar"</span> <span class="built_in">class</span>=<span class="string">"x.y.Bar"</span>/&gt; &lt;bean <span class="built_in">id</span>=<span class="string">"baz"</span> <span class="built_in">class</span>=<span class="string">"x.y.Baz"</span>/&gt;</span><br><span class="line">	&lt;bean <span class="built_in">id</span>=<span class="string">"foo"</span> <span class="built_in">class</span>=<span class="string">"x.y.Foo"</span>&gt; </span><br><span class="line">		&lt;constructor-arg <span class="keyword">ref</span>=<span class="string">"bar"</span>/&gt; </span><br><span class="line">		&lt;constructor-arg <span class="keyword">ref</span>=<span class="string">"baz"</span>/&gt; </span><br><span class="line">		&lt;constructor-arg value=<span class="string">"foo@bar.com"</span>/&gt;</span><br><span class="line">	&lt;/bean&gt;	</span><br><span class="line">	&lt;bean <span class="built_in">id</span>=<span class="string">"foo"</span> <span class="built_in">class</span>=<span class="string">"x.y.Foo"</span> c:bar-<span class="keyword">ref</span>=<span class="string">"bar"</span> c:baz-<span class="keyword">ref</span>=<span class="string">"baz"</span> c:email=<span class="string">"foo@bar.com"</span>/&gt; </span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<p>使用索引：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean <span class="attribute">id</span>=<span class="string">"foo"</span> <span class="attribute">class</span>=<span class="string">"x.y.Foo"</span> c:<span class="attribute">_0-ref</span>=<span class="string">"bar"</span> c:<span class="attribute">_1-ref</span>=<span class="string">"baz"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>级联属性</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=<span class="string">"foo"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"foo.Bar"</span>&gt;</span><br><span class="line">	&lt;property name=<span class="string">"fred.bob.sammy"</span> value=<span class="string">"123"</span> /&gt;</span><br><span class="line">&lt;<span class="regexp">/bean&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>depends-on属性</strong></p>
+<p>depends-on 属性用于显式声明依赖初始化的先后顺序</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean <span class="built_in">id</span>=<span class="string">"beanOne"</span> <span class="built_in">class</span>=<span class="string">"ExampleBean"</span> depends-<span class="keyword">on</span>=<span class="string">"manager"</span>/&gt; </span><br><span class="line">&lt;bean <span class="built_in">id</span>=<span class="string">"manager"</span> <span class="built_in">class</span>=<span class="string">"ManagerBean"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>上述说明在实例化 beanOne 前需要先实例化 manager</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean <span class="built_in">id</span>=<span class="string">"beanOne"</span> <span class="built_in">class</span>=<span class="string">"ExampleBean"</span> depends-<span class="keyword">on</span>=<span class="string">"manager,accountDao"</span>&gt; </span><br><span class="line">	&lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"manager"</span> <span class="keyword">ref</span>=<span class="string">"manager"</span> /&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line">&lt;bean <span class="built_in">id</span>=<span class="string">"manager"</span> <span class="built_in">class</span>=<span class="string">"ManagerBean"</span> /&gt;</span><br><span class="line">&lt;bean <span class="built_in">id</span>=<span class="string">"accountDao"</span> <span class="built_in">class</span>=<span class="string">"x.y.jdbc.JdbcAccountDao"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>lazy-init属性</strong></p>
+<p>容器启动时默认对 Bean 进行初始化。 lazy-init 可以对 Bean 设置延迟初始化，当第一次访问时再去初始化。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean <span class="attribute">id</span>=<span class="string">"lazy"</span> <span class="attribute">class</span>=<span class="string">"com.foo.ExpensiveToCreateBean"</span> <span class="attribute">lazy-init</span>=<span class="string">"true"</span>/&gt; </span><br><span class="line">&lt;bean <span class="attribute">name</span>=<span class="string">"not.lazy"</span> <span class="attribute">class</span>=<span class="string">"com.foo.AnotherBean"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>还可以批量设置启用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;beans <span class="keyword">default</span>-lazy-init=<span class="string">"true"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;<span class="regexp">/beans&gt;</span></span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Framework</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Spring-Framework//" class="article-tag-list-link color2">Spring Framework</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/16/Spring Framework 依赖注入高级特性/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spring Framework 依赖注入详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/15/Spring Framework 依赖注入详解/">Spring Framework 依赖注入详解</a>
+    </h1>
+  
+
+        
+        <a href="/2017/01/15/Spring Framework 依赖注入详解/" class="archive-article-date">
+  	<time datetime="2017-01-15T12:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Spring Framework：4.3.14.RELEASE</p>
+<p>在了解了依赖注入后接着来详细演示不同情景的依赖注入。</p>
+<p><strong>属性值直接注入</strong></p>
+<p>原始类型，字符串等可以直接属性值注入</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean <span class="built_in">id</span>=<span class="string">"myDataSource"</span> <span class="built_in">class</span>=<span class="string">"org.apache.commons.dbcp.BasicDataSource"</span> destroy-method=<span class="string">"close"</span>&gt;</span><br><span class="line">	&lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"driverClassName"</span> value=<span class="string">"com.mysql.jdbc.Driver"</span>/&gt;</span><br><span class="line">	&lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"url"</span> value=<span class="string">"jdbc:mysql://localhost:3306/mydb"</span>/&gt;</span><br><span class="line">	&lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"username"</span> value=<span class="string">"root"</span>/&gt;</span><br><span class="line">	&lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"password"</span> value=<span class="string">"masterkaoli"</span>/&gt; </span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>Spring Framework 可以自动将字符串的属性值按最佳的匹配方式为对应的属性进行转换</p>
+<p>为了简化配置，Spring Framework 提供了 P 属性命名空间：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;beans xmlns=<span class="string">"http://www.springframework.org/schema/beans"</span> xmlns:xsi=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> xmlns:p=<span class="string">"http://www.springframework.org/schema/p"</span> xsi:schemaLocation=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span><br><span class="line">	&lt;bean id=<span class="string">"myDataSource"</span> class=<span class="string">"org.apache.commons.dbcp.BasicDataSource"</span> destroy-method=<span class="string">"close"</span></span><br><span class="line">		<span class="selector-tag">p</span>:driverClassName=<span class="string">"com.mysql.jdbc.Driver"</span> </span><br><span class="line">		<span class="selector-tag">p</span>:url=<span class="string">"jdbc:mysql://localhost:3306/mydb"</span></span><br><span class="line">		<span class="selector-tag">p</span>:username=<span class="string">"root"</span> </span><br><span class="line">		<span class="selector-tag">p</span>:password=<span class="string">"masterkaoli"</span>/&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<p>Spring Framework 还支持 Properties 属性方式注入：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=<span class="string">"mappings"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"</span>&gt;</span><br><span class="line">    &lt;!-- typed <span class="keyword">as</span> a java.util.Properties --&gt;</span><br><span class="line">	&lt;property name=<span class="string">"properties"</span>&gt; </span><br><span class="line">		&lt;value&gt;</span><br><span class="line">            jdbc.driver.className=com.mysql.jdbc.Driver</span><br><span class="line">            jdbc.url=jdbc:mysql:<span class="comment">//localhost:3306/mydb</span></span><br><span class="line">       &lt;<span class="regexp">/value&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>property&gt;</span><br><span class="line">&lt;<span class="regexp">/bean&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>引用属性注入</strong></p>
+<p>使用 ref 属性：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean <span class="built_in">id</span>=<span class="string">"user"</span> <span class="built_in">class</span>=<span class="string">"com.example.spring.User"</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"name"</span> value=<span class="string">"Spring Framework"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean <span class="built_in">id</span>=<span class="string">"foo"</span> <span class="built_in">class</span>=<span class="string">"com.example.spring.Foo"</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"user"</span> <span class="keyword">ref</span>=<span class="string">"user"</span>&gt;&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>使用 ref 子标签：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean <span class="built_in">id</span>=<span class="string">"theTargetBean"</span> <span class="built_in">class</span>=<span class="string">"..."</span>/&gt;</span><br><span class="line">&lt;bean <span class="built_in">id</span>=<span class="string">"theClientBean"</span> <span class="built_in">class</span>=<span class="string">"..."</span>&gt; </span><br><span class="line">	&lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"targetName"</span>&gt;</span><br><span class="line">		&lt;<span class="keyword">ref</span> bean=<span class="string">"theTargetBean"</span>/&gt; </span><br><span class="line">	&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>使用 idref 子标签：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean <span class="built_in">id</span>=<span class="string">"theTargetBean"</span> <span class="built_in">class</span>=<span class="string">"..."</span>/&gt;</span><br><span class="line">&lt;bean <span class="built_in">id</span>=<span class="string">"theClientBean"</span> <span class="built_in">class</span>=<span class="string">"..."</span>&gt; </span><br><span class="line">	&lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"targetName"</span>&gt;</span><br><span class="line">		&lt;idref bean=<span class="string">"theTargetBean"</span>/&gt; </span><br><span class="line">	&lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>直接使用 value 属性：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean <span class="built_in">id</span>=<span class="string">"theTargetBean"</span> <span class="built_in">class</span>=<span class="string">"..."</span> /&gt;</span><br><span class="line">&lt;bean <span class="built_in">id</span>=<span class="string">"client"</span> <span class="built_in">class</span>=<span class="string">"..."</span>&gt;</span><br><span class="line">	&lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"targetName"</span> value=<span class="string">"theTargetBean"</span>/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>内部类</strong></p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean <span class="built_in">id</span>=<span class="string">"outer"</span> <span class="built_in">class</span>=<span class="string">"..."</span>&gt;</span><br><span class="line">	&lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"target"</span>&gt;</span><br><span class="line">		&lt;bean <span class="built_in">class</span>=<span class="string">"com.example.Person"</span>&gt; </span><br><span class="line">			&lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"name"</span> value=<span class="string">"Fiona Apple"</span>/&gt;</span><br><span class="line">			&lt;<span class="keyword">property</span> <span class="built_in">name</span>=<span class="string">"age"</span> value=<span class="string">"25"</span>/&gt;</span><br><span class="line">        &lt;/bean&gt;</span><br><span class="line">    &lt;/<span class="keyword">property</span>&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>内部类 Bean 没有 id 属性，不可以被其他 Bean 引用</p>
+<p><strong>集合注入</strong></p>
+<p>集合注入支持 list、 set、 map、 properteis<br>集合元素可以是原始类型和引用类型</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=<span class="string">"moreComplexObject"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"example.ComplexObject"</span>&gt;</span><br><span class="line">	&lt;property name=<span class="string">"adminEmails"</span>&gt;</span><br><span class="line">		&lt;props&gt;</span><br><span class="line">			&lt;prop key=<span class="string">"administrator"</span>&gt;administrator@example.org&lt;<span class="regexp">/prop&gt; </span></span><br><span class="line"><span class="regexp">			&lt;prop key="support"&gt;support@example.org&lt;/</span>prop&gt;</span><br><span class="line">			&lt;prop key=<span class="string">"development"</span>&gt;development@example.org&lt;<span class="regexp">/prop&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>props&gt;</span><br><span class="line">    &lt;<span class="regexp">/property&gt;</span></span><br><span class="line"><span class="regexp">    </span></span><br><span class="line"><span class="regexp">	&lt;property name="someList"&gt; </span></span><br><span class="line"><span class="regexp">		&lt;list&gt;</span></span><br><span class="line"><span class="regexp">			&lt;value&gt;a list element followed by a reference&lt;/</span>value&gt;</span><br><span class="line">			&lt;ref bean=<span class="string">"myDataSource"</span> /&gt; </span><br><span class="line">		&lt;<span class="regexp">/list&gt;</span></span><br><span class="line"><span class="regexp">	&lt;/</span>property&gt;</span><br><span class="line">   </span><br><span class="line">	&lt;property name=<span class="string">"someMap"</span>&gt; </span><br><span class="line">		&lt;map&gt;</span><br><span class="line">			&lt;entry key=<span class="string">"an entry"</span> value=<span class="string">"just some string"</span>/&gt;</span><br><span class="line">			&lt;entry key =<span class="string">"a ref"</span> value-ref=<span class="string">"myDataSource"</span>/&gt; </span><br><span class="line">		&lt;<span class="regexp">/map&gt;</span></span><br><span class="line"><span class="regexp">	&lt;/</span>property&gt;</span><br><span class="line">    </span><br><span class="line">	&lt;property name=<span class="string">"someSet"</span>&gt; </span><br><span class="line">		&lt;set&gt;</span><br><span class="line">			&lt;value&gt;just some string&lt;<span class="regexp">/value&gt;</span></span><br><span class="line"><span class="regexp">			&lt;ref bean="myDataSource" /</span>&gt; </span><br><span class="line">		&lt;<span class="regexp">/set&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>property&gt;</span><br><span class="line">&lt;<span class="regexp">/bean&gt;</span></span><br></pre></td></tr></table></figure>
+<p>支持集合合并：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">beans</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"parent"</span> <span class="attr">abstract</span>=<span class="string">"true"</span> <span class="attr">class</span>=<span class="string">"example.ComplexObject"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"adminEmails"</span>&gt;</span> <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"administrator"</span>&gt;</span>administrator@example.com<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"support"</span>&gt;</span>support@example.com<span class="tag">&lt;/<span class="name">prop</span>&gt;</span> <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"child"</span> <span class="attr">parent</span>=<span class="string">"parent"</span>&gt;</span> </span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"adminEmails"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">props</span> <span class="attr">merge</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"sales"</span>&gt;</span>sales@example.com<span class="tag">&lt;/<span class="name">prop</span>&gt;</span> </span><br><span class="line">				<span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"support"</span>&gt;</span>support@example.co.uk<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">   		<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>同理 list map set 均可以支持集合合并，且子集会继承并覆盖父集的值<br><strong>必须在子集上指定 merge 属性值为 true</strong></p>
+<p><strong>null 和 空字符串注入</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean <span class="class"><span class="keyword">class</span></span>=<span class="string">"ExampleBean"</span>&gt;</span><br><span class="line">	&lt;property name=<span class="string">"email"</span> value=<span class="string">""</span>/&gt;</span><br><span class="line">&lt;<span class="regexp">/bean&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean <span class="class"><span class="keyword">class</span></span>=<span class="string">"ExampleBean"</span>&gt; </span><br><span class="line">	&lt;property name=<span class="string">"email"</span>&gt;</span><br><span class="line">        &lt;<span class="literal">null</span>/&gt;</span><br><span class="line">    &lt;<span class="regexp">/property&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>bean&gt;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Framework</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Spring-Framework//" class="article-tag-list-link color2">Spring Framework</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/15/Spring Framework 依赖注入详解/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Spring Framework 依赖注入" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -781,392 +1287,6 @@
 
 
   
-    <article id="post-Java Comparable VS Comparator " class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/03/Java Comparable VS Comparator /">Java Comparable VS Comparator</a>
-    </h1>
-  
-
-        
-        <a href="/2016/12/03/Java Comparable VS Comparator /" class="archive-article-date">
-  	<time datetime="2016-12-03T01:51:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Comparable 和 Comparator 均是 Java Core API。</p>
-<p>Comparable 和 Comparator 都是用于实现集合或数组中元素的排序的。</p>
-<p>Comparable 在元素内部定义的方法实现的自身和其他元素的排序，其自然排序只可以选择升序或降序一种。<br>Comparator 在元素外部定义的类实现的两个元素之间的排序，单一比较器内部排序规则只可以选择升序或降序一种，但是可通过多个比较器实现不同的排序规则。</p>
-<h5 id="Comparable-接口"><a href="#Comparable-接口" class="headerlink" title="Comparable 接口"></a>Comparable 接口</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">User</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> String idCard;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getIdCard</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> idCard;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setIdCard</span><span class="params">(String idCard)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.idCard = idCard;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(User o)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> getIdCard().compareTo(o.getIdCard());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"User&#123;"</span> +</span><br><span class="line">			<span class="string">"name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">			<span class="string">", idCard='"</span> + idCard + <span class="string">'\''</span> +</span><br><span class="line">			<span class="string">'&#125;'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">User <span class="keyword">user</span>A = new User();</span><br><span class="line"><span class="keyword">user</span>A.<span class="built_in">set</span>IdCard(<span class="string">"1234567"</span>);</span><br><span class="line"><span class="keyword">user</span>A.<span class="built_in">set</span>Name(<span class="string">"a"</span>);</span><br><span class="line"></span><br><span class="line">User <span class="keyword">user</span>B = new User();</span><br><span class="line"><span class="keyword">user</span>B.<span class="built_in">set</span>IdCard(<span class="string">"2234567"</span>);</span><br><span class="line"><span class="keyword">user</span>B.<span class="built_in">set</span>Name(<span class="string">"b"</span>);</span><br><span class="line"></span><br><span class="line">List<span class="variable">&lt;User&gt;</span> <span class="keyword">user</span>List = new ArrayList<span class="variable">&lt;User&gt;</span>(<span class="number">8</span>);</span><br><span class="line"><span class="keyword">user</span>List.add(<span class="keyword">user</span>B);</span><br><span class="line"><span class="keyword">user</span>List.add(<span class="keyword">user</span>A);</span><br><span class="line"></span><br><span class="line">System.<span class="keyword">out</span>.println(<span class="keyword">user</span>List.<span class="keyword">to</span>String());</span><br><span class="line"></span><br><span class="line">Collections.sort(<span class="keyword">user</span>List);</span><br><span class="line"></span><br><span class="line">System.<span class="keyword">out</span>.println(<span class="keyword">user</span>List.<span class="keyword">to</span>String());</span><br></pre></td></tr></table></figure>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[User&#123;<span class="attribute">name</span>=<span class="string">'b'</span>, <span class="attribute">idCard</span>=<span class="string">'2234567'</span>&#125;, User&#123;<span class="attribute">name</span>=<span class="string">'a'</span>, <span class="attribute">idCard</span>=<span class="string">'1234567'</span>&#125;]</span><br><span class="line">[User&#123;<span class="attribute">name</span>=<span class="string">'a'</span>, <span class="attribute">idCard</span>=<span class="string">'1234567'</span>&#125;, User&#123;<span class="attribute">name</span>=<span class="string">'b'</span>, <span class="attribute">idCard</span>=<span class="string">'2234567'</span>&#125;]</span><br></pre></td></tr></table></figure>
-<p>如果想实现降序的自然排序，只能修改 User 类的 compareTo 方法：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="keyword">compareTo</span>(User o) &#123;</span><br><span class="line">    <span class="keyword">return</span> o.getIdCard().<span class="keyword">compareTo</span>(getIdCard());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>若想实现多样性的比较和排序，需要依赖于 Comparator。</p>
-<h5 id="Comparator-接口"><a href="#Comparator-接口" class="headerlink" title="Comparator 接口"></a>Comparator 接口</h5><p>Comparator 使用策略模式，实现比较方式的多样性和排序的多样性。在使用时选择不同的 Comparator 比较器即可。</p>
-<p>升序排序：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class UserAsoSortComparator implements Comparator&lt;User&gt; &#123;</span><br><span class="line"></span><br><span class="line">	public int compare(User o1,<span class="built_in"> User </span>o2) &#123;</span><br><span class="line">		return o1.getIdCard().compareTo(o2.getIdCard());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>降序序排序：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class UserDesoSortComparator implements Comparator&lt;User&gt; &#123;</span><br><span class="line"></span><br><span class="line">	public int compare(User o1,<span class="built_in"> User </span>o2) &#123;</span><br><span class="line">		return o2.getIdCard().compareTo(o1.getIdCard());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>使用时指定 Comparator：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Collections.<span class="keyword">sort</span>(userList, <span class="keyword">new</span> UserAsoSortComparator());</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Java-Core-API//" class="article-tag-list-link color4">Java Core API</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/03/Java Comparable VS Comparator /">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-CentOS 6.5 64bit 安装 JDK 7" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/10/CentOS 6.5 64bit 安装 JDK 7/">CentOS 6.5 64bit 安装 JDK 7</a>
-    </h1>
-  
-
-        
-        <a href="/2016/08/10/CentOS 6.5 64bit 安装 JDK 7/" class="archive-article-date">
-  	<time datetime="2016-08-10T14:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>执行安装：</p>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@localhost</span> ~]<span class="meta"># rpm -ivh jdk-7u60-linux-x64.rpm</span></span><br></pre></td></tr></table></figure>
-<p>配置环境变量：</p>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@localhost</span> ~]<span class="meta">#vim /etc/profile</span></span><br></pre></td></tr></table></figure>
-<p>添加如下内容：</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#set jdk environment</span></span><br><span class="line">export JAVA_HOME=<span class="regexp">/usr/java</span><span class="regexp">/jdk1.7.0_60</span></span><br><span class="line"><span class="regexp">export PATH=$PATH:$JAVA_HOME/bin</span></span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/<span class="class"><span class="keyword">lib</span>/<span class="title">dt</span>.<span class="title">jar</span>:$<span class="title">JAVA_HOME</span>/<span class="title">lib</span>/<span class="title">tools</span>.<span class="title">jar</span></span></span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JDK</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/开发管理系列//" class="article-tag-list-link color2">开发管理系列</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/08/10/CentOS 6.5 64bit 安装 JDK 7/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ZooKeeper Standalones 模式安装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/10/ZooKeeper Standalones 模式安装/">ZooKeeper Standalones 模式安装</a>
-    </h1>
-  
-
-        
-        <a href="/2016/08/10/ZooKeeper Standalones 模式安装/" class="archive-article-date">
-  	<time datetime="2016-08-10T14:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="ZooKeeper介绍"><a href="#ZooKeeper介绍" class="headerlink" title="ZooKeeper介绍"></a>ZooKeeper介绍</h5><p>在单机中，系统协作大都是进程级的操作。分布式系统中，服务协作都是跨服务器才能完成的。在ZooKeeper之前，我们对于协作服务大都使用消息中间件，随着分布式系统的普及，用消息中间件完成协作，会有大量的程序开发。</p>
-<p>Apache ZooKeeper 是由Apache Hadoop的子项目发展而来，于2010年11月正式成为了Apache的顶级项目。ZooKeeper是一个为分布式应用所设计的分布的、开源的协调服务，它主要是用来解决分布式应用中经常遇到的一些数据管理问题，简化分布式应用协调及其管理的难度，提供高性能的分布式服务。ZooKeeper本身可以以Standalone模式安装运行，不过它的长处在于通过分布式ZooKeeper集群（一个Leader，多个Follower），基于一定的策略来保证ZooKeeper集群的稳定性和可用性，从而实现分布式应用的可靠性。</p>
-<p>ZooKeeper作为分布式协调服务，是不需要依赖于Hadoop的环境，也可以为其他的分布式环境提供服务。</p>
-<h5 id="系统环境（本次环境）"><a href="#系统环境（本次环境）" class="headerlink" title="系统环境（本次环境）"></a>系统环境（本次环境）</h5><p>准备一台Linux服务器，系统要求如下：</p>
-<ul>
-<li>Linux: CentOS 6.5 64bit Server</li>
-<li>Java: 1.7.0_60 64-Bit Server VM</li>
-<li>zookeeper：zookeeper-3.4.5.tar.gz</li>
-</ul>
-<p>ZooKeeper 使用Java语言编写，运行环境需要Java环境支持，建议使用JDK1.6以上版本</p>
-<h5 id="解压-ZooKeeper"><a href="#解压-ZooKeeper" class="headerlink" title="解压 ZooKeeper"></a>解压 ZooKeeper</h5><p>安装目录：/usr/local/zookeeper-3.4.5<br>在 /usr/local/ 目录下解压 zookeeper-3.4.5.tar.gz ：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[root@localhost local]</span># <span class="selector-tag">tar</span> <span class="selector-tag">zxvf</span> <span class="selector-tag">zookeeper-3</span><span class="selector-class">.4</span><span class="selector-class">.5</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span></span><br></pre></td></tr></table></figure></p>
-<h5 id="配置-ZooKeeper"><a href="#配置-ZooKeeper" class="headerlink" title="配置 ZooKeeper"></a>配置 ZooKeeper</h5><h6 id="创建数据目录："><a href="#创建数据目录：" class="headerlink" title="创建数据目录："></a>创建数据目录：</h6><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@localhost</span> ~]<span class="meta"># mkdir /var/zookeeperdata</span></span><br></pre></td></tr></table></figure>
-<h6 id="准备配置文件："><a href="#准备配置文件：" class="headerlink" title="准备配置文件："></a>准备配置文件：</h6><p>因为ZooKeeper启动时默认加载名为zoo.cfg配置文件，所有需要将zoo_sample.cfg复制一份并命名为zoo.cfg。<br>配置文件目录 zookeeper-3.4.5/conf 。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[root@localhost conf]</span># <span class="selector-tag">cp</span> <span class="selector-tag">zoo_sample</span><span class="selector-class">.cfg</span> <span class="selector-tag">zoo</span><span class="selector-class">.cfg</span></span><br></pre></td></tr></table></figure></p>
-<h6 id="编辑配置文件："><a href="#编辑配置文件：" class="headerlink" title="编辑配置文件："></a>编辑配置文件：</h6><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@localhost</span> conf]<span class="meta"># vim zoo.cfg</span></span><br></pre></td></tr></table></figure>
-<p>添加数据目录配置：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dataDir</span>=/var/zookeeperdata</span><br></pre></td></tr></table></figure></p>
-<h6 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h6><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@localhost</span> ~]<span class="meta"># vim /etc/profile</span></span><br></pre></td></tr></table></figure>
-<p>添加如下内容：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">ZOOKEEPER_HOME</span>=/usr/local/zookeeper-3.4.5</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="variable">$PATH</span>:$ZOOKEEPER_HOME/bin:$ZOOKEEPER_HOME/conf</span><br></pre></td></tr></table></figure></p>
-<h5 id="启动-ZooKeeper"><a href="#启动-ZooKeeper" class="headerlink" title="启动 ZooKeeper"></a>启动 ZooKeeper</h5>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ZooKeeper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/ZooKeeper-系列//" class="article-tag-list-link color3">ZooKeeper 系列</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/08/10/ZooKeeper Standalones 模式安装/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-10 步让你成为更优秀的程序员" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/17/10 步让你成为更优秀的程序员/">10 步让你成为更优秀的程序员</a>
-    </h1>
-  
-
-        
-        <a href="/2016/02/17/10 步让你成为更优秀的程序员/" class="archive-article-date">
-  	<time datetime="2016-02-17T14:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-02-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>英文原文：<a href="https://wildbunny.co.uk/blog/2012/11/01/10-steps-to-becoming-a-better-programmer/" target="_blank" rel="noopener">10 steps to becoming a better programmer</a></p>
-<h5 id="永远不要复制代码"><a href="#永远不要复制代码" class="headerlink" title="永远不要复制代码"></a>永远不要复制代码</h5><p>不惜任何代价避免重复的代码。如果一个常用的代码片段出现在了程序中的几个不同地方，重构它，把它放到一个自己的函数里。重复的代码会导致你的同事在读你的代码时产生困惑。而重复的代码如果在一个地方修改，在另外一个地方忘记修改，就会产生到处是bug，它还会使你的代码体积变得臃肿。现代的编程语言提供了很好的方法来解决这些问题，例如，下面这个问题在以前很难解决，而如今使用lambdas却很好实现：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 一些函数含有部分重复代码</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">OriginalA</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	DoThingsA();</span><br><span class="line"></span><br><span class="line">	<span class="comment">// unique code</span></span><br><span class="line"></span><br><span class="line">	DoThingsB();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 另外一个含有部分重复代码的函数</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">OriginalB</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	DoThingsA();</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 没有重复的代码</span></span><br><span class="line"></span><br><span class="line">	DoThingsB();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>现在我们重构含有部分相同代码的函数，用delegate模式重写它们：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> Encapsulate shared functionality</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="action"&gt;</span>User defined action<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">UniqueWrapper</span>(<span class="params">Action action</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	DoThingsA();</span><br><span class="line"></span><br><span class="line">	action();</span><br><span class="line"></span><br><span class="line">	DoThingsB();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> New implmentation of A</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">NewA</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	UniqueWrapper(() =&gt;</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// unique code</span></span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> New implementation of B</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">NewB</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	UniqueWrapper(() =&gt;</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// unique code</span></span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h5 id="留意你开始分心的时候"><a href="#留意你开始分心的时候" class="headerlink" title="留意你开始分心的时候"></a>留意你开始分心的时候</h5><p>当你发现自己在浏览facebook或微博、而不是在解决问题，这通常是一种你需要短暂休息的信号。离开办公桌，去喝一杯咖啡，或去跟同事聊5分钟。尽管这样做看起来有点反直觉，但长久去看，它会提高你的工作效率。</p>
-<h5 id="不要匆忙赶任务而放弃原则"><a href="#不要匆忙赶任务而放弃原则" class="headerlink" title="不要匆忙赶任务而放弃原则"></a>不要匆忙赶任务而放弃原则</h5><p>当带着压力去解决一个问题或修改一个bug，你很容易失去自制，发现自己匆匆忙忙，甚至完全忘了一直坚持的重要的测试过程。这通常会导致更多的问题，会让你在老板或同事眼里显得很不专业。</p>
-<h5 id="测试你完成的代码"><a href="#测试你完成的代码" class="headerlink" title="测试你完成的代码"></a>测试你完成的代码</h5><p>你知道你的代码能做什么，而且试了一下，它确实好用，但你实际上需要充分的验证它。分析所有可能的边界情况，测试在所有可能的条件下它都能如期的工作。如果有参数，传递一些预期范围外的值。传递一个null值。如果可能，让同事看看你的代码，问他们能否弄坏它。单元测试是到达这种目的的常规方法。</p>
-<h5 id="代码审查"><a href="#代码审查" class="headerlink" title="代码审查"></a>代码审查</h5><p>提交你的代码之前，找个同事一起坐下来，向他解释你做了哪些修改。通常，这样做的过程中你就能发现代码中的错误，而不需要同事说一句话。这比自己审查自己的代码要有效的多得多。</p>
-<h5 id="让代码更少"><a href="#让代码更少" class="headerlink" title="让代码更少"></a>让代码更少</h5><p>如果你发现写了大量的代码来解决一个简单的问题，你很可能做错了。下面的boolean用法是一个很好的例子：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (numMines &gt; 0)&#123;</span><br><span class="line">   <span class="attribute">enabled</span>=<span class="literal">true</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   <span class="attribute">enabled</span>=<span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这时你应该写成这样：<br><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">enabled</span> = numMines &gt; <span class="number">0</span><span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
-<p>代码越少越好。这会使bug更少，重构可能性更小，出错的几率更小。要适度。可读性同等重要，你可不能这样做而使代码丧失可读性。</p>
-<h5 id="为优雅的代码而努力"><a href="#为优雅的代码而努力" class="headerlink" title="为优雅的代码而努力"></a>为优雅的代码而努力</h5><p>优雅的代码非常的易读，只用手边很少的代码、让机器做很少的运算就能解决问题。在各种环境中都做到代码优雅是很难的，但经过一段时间的编程，你会对优雅的代码是个什么样子有个初步的感觉。优雅的代码不会通过重构来获得。当你看到优雅的代码是会很高兴。你会为它自豪。例如，下面就是一个我认为是优雅的方式来计算多边形面积的方法：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">static public double GetConvexPolygonArea(Vector2[] vertices)</span><br><span class="line">&#123;</span><br><span class="line">	double<span class="built_in"> area </span>= 0;</span><br><span class="line">	<span class="keyword">for</span> (int i = 0; i &lt; vertices.Length; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		Vector2 P0 = vertices[i];</span><br><span class="line">		Vector2 P1 = vertices[(i + 1) % vertices.Length];</span><br><span class="line"></span><br><span class="line">	<span class="built_in">	area </span>+= P0.Wedge(P1);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return<span class="built_in"> area </span>/ 2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h5 id="编写不言自明的代码"><a href="#编写不言自明的代码" class="headerlink" title="编写不言自明的代码"></a>编写不言自明的代码</h5><p>勿庸置疑，注释是编程中很重要的一部分，但能够不言自明的代码跟胜一筹，因为它能让你在看代码时就能理解它。函数名变量名要慎重选择，好的变量/方法名字放到语言语义环境中时，不懂编程的人都能看懂。例如：<br><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">void DamagePlayer(<span class="built_in">Player</span> <span class="built_in">player</span>, int damageAmount)&#123;</span><br><span class="line">	<span class="keyword">if</span> (!<span class="built_in">player</span>.m_IsInvincible &amp;&amp; !<span class="built_in">player</span>.m_IsDead)&#123;</span><br><span class="line">		<span class="built_in">player</span>.InflictDamage( damageAmount );</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>能自我说明的代码不能代替注释。注释是用来解释“为什么”的，而自我说明的代码是来描述“是什么”的。</p>
-<h5 id="不要使用纯数字"><a href="#不要使用纯数字" class="headerlink" title="不要使用纯数字"></a>不要使用纯数字</h5><p>直接把数字嵌入代码中是一种恶习，因为无法说明它们是代表什么的。当有重复时更糟糕——相同的数字在代码的多个地方出现。如果只修改了一个，而忘记了其它的。这就导致bug。一定要用一个命名常量来代表你要表达的数字，即使它在代码里只出现一次。</p>
-<h5 id="不要做手工劳动"><a href="#不要做手工劳动" class="headerlink" title="不要做手工劳动"></a>不要做手工劳动</h5><p>当做一系列动作时，人类总是喜欢犯错误。如果你在做部署工作，并且不是一步能完成的，那你就是在做错事。尽量的让工作能自动化的完成，减少人为错误。当做工作量很大的任务时，这尤其重要。</p>
-<h5 id="避免过早优化"><a href="#避免过早优化" class="headerlink" title="避免过早优化"></a>避免过早优化</h5><p>当你要去优化一个已经好用的功能代码时，你很有可能会改坏它。优化只能发生在有性能分析报告指示需要优化的时候，通常是在一个项目开发的最后阶段。性能分析之前的优化活动纯属浪费时间，并且会导致bug出现。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/杂谈//" class="article-tag-list-link color3">杂谈</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/02/17/10 步让你成为更优秀的程序员/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
@@ -1266,15 +1386,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CI 持续集成</a>
+                <a href="javascript:void(0)" class="js-tag color3">编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">CQRS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Event Sourcing</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1290,19 +1414,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CQRS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Event Sourcing</a>
+                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JDK</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1314,15 +1430,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CI 持续集成</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JDK 8</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1334,11 +1450,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">包装类</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">冒泡排序</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">选择排序 插入排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1378,15 +1502,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">包装类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ZooKeeper</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Java虚拟机</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Shadowsocks</a>
               </li>
              
               <li class="article-tag-list-item">
