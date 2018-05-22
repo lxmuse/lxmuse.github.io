@@ -134,6 +134,480 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-CentOS 6.5 64bit 安装 MySQL 5.6" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/27/CentOS 6.5 64bit 安装 MySQL 5.6/">CentOS 6.5 64bit 安装 MySQL 5.6</a>
+    </h1>
+  
+
+        
+        <a href="/2015/11/27/CentOS 6.5 64bit 安装 MySQL 5.6/" class="archive-article-date">
+  	<time datetime="2015-11-27T14:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-11-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="卸载低版本-MySQL"><a href="#卸载低版本-MySQL" class="headerlink" title="卸载低版本 MySQL"></a>卸载低版本 MySQL</h5><p>安装之前需要卸载系统预先安装的低版本的MySQL：<br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@localhost</span> ~]<span class="meta"># rpm -qa|grep mysql</span></span><br><span class="line">mysql-libs<span class="number">-5.1</span><span class="number">.71</span><span class="number">-1.</span>el6.x86_64</span><br><span class="line">[root<span class="symbol">@localhost</span> ~]<span class="meta"># rpm -e --nodeps mysql-libs-5.1.71-1.el6.x86_64</span></span><br><span class="line">[root<span class="symbol">@localhost</span> ~]<span class="meta"># rpm -qa|grep mysql</span></span><br><span class="line">[root<span class="symbol">@localhost</span> ~]<span class="meta">#</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="安装-MySQL"><a href="#安装-MySQL" class="headerlink" title="安装 MySQL"></a>安装 MySQL</h5><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# rpm -ivh MySQL-client<span class="number">-5.6</span><span class="number">.22</span><span class="number">-1.</span>linux_glibc2<span class="number">.5</span>.x86_64.rpm</span><br><span class="line">Preparing...                ########################################### [<span class="number">100</span>%]</span><br><span class="line">   <span class="number">1</span>:MySQL-client           ########################################### [<span class="number">100</span>%]</span><br><span class="line">[root@localhost ~]# rpm -ivh MySQL-server<span class="number">-5.6</span><span class="number">.22</span><span class="number">-1.</span>linux_glibc2<span class="number">.5</span>.x86_64.rpm</span><br><span class="line">Preparing...                ########################################### [<span class="number">100</span>%]</span><br><span class="line">   <span class="number">1</span>:MySQL-server           ########################################### [<span class="number">100</span>%]</span><br></pre></td></tr></table></figure>
+<p>安装完毕：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">A RANDOM PASSWORD HAS BEEN <span class="keyword">SET</span> <span class="keyword">FOR</span> THE MySQL root <span class="keyword">USER</span> !</span><br><span class="line">You will find that <span class="keyword">password</span> <span class="keyword">in</span> <span class="string">'/root/.mysql_secret'</span>.</span><br><span class="line"></span><br><span class="line">You must <span class="keyword">change</span> that <span class="keyword">password</span> <span class="keyword">on</span> your <span class="keyword">first</span> <span class="keyword">connect</span>,</span><br><span class="line"><span class="keyword">no</span> other <span class="keyword">statement</span> but <span class="string">'SET PASSWORD'</span> will be accepted.</span><br><span class="line">See the <span class="keyword">manual</span> <span class="keyword">for</span> the semantics <span class="keyword">of</span> the <span class="string">'password expired'</span> flag.</span><br><span class="line"></span><br><span class="line">Also, the <span class="keyword">account</span> <span class="keyword">for</span> the anonymous <span class="keyword">user</span> has been removed.</span><br><span class="line"></span><br><span class="line"><span class="keyword">In</span> addition, you can run:</span><br><span class="line"></span><br><span class="line">  /usr/<span class="keyword">bin</span>/mysql_secure_installation</span><br><span class="line"></span><br><span class="line">which will also give you the <span class="keyword">option</span> <span class="keyword">of</span> removing the <span class="keyword">test</span> database.</span><br><span class="line">This <span class="keyword">is</span> strongly recommended <span class="keyword">for</span> production servers.</span><br><span class="line"></span><br><span class="line">See the <span class="keyword">manual</span> <span class="keyword">for</span> more instructions.</span><br><span class="line"></span><br><span class="line">Please report <span class="keyword">any</span> problems <span class="keyword">at</span> <span class="keyword">http</span>://bugs.mysql.com/</span><br><span class="line"></span><br><span class="line">The latest information about MySQL <span class="keyword">is</span> available <span class="keyword">on</span> the web <span class="keyword">at</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">http</span>://www.mysql.com</span><br><span class="line"></span><br><span class="line">Support MySQL <span class="keyword">by</span> buying support/licenses <span class="keyword">at</span> <span class="keyword">http</span>://shop.mysql.com</span><br><span class="line"></span><br><span class="line"><span class="keyword">New</span> <span class="keyword">default</span> config <span class="keyword">file</span> was created <span class="keyword">as</span> /usr/my.cnf <span class="keyword">and</span></span><br><span class="line">will be used <span class="keyword">by</span> <span class="keyword">default</span> <span class="keyword">by</span> the <span class="keyword">server</span> <span class="keyword">when</span> you <span class="keyword">start</span> it.</span><br><span class="line">You may edit this <span class="keyword">file</span> <span class="keyword">to</span> <span class="keyword">change</span> <span class="keyword">server</span> <span class="keyword">settings</span></span><br></pre></td></tr></table></figure></p>
+<p>默认的配置文件目录：/usr/my.cnf<br>默认的登录随机密码：/root/.mysql_secret</p>
+<h5 id="修改-MySQL-字符集"><a href="#修改-MySQL-字符集" class="headerlink" title="修改 MySQL 字符集"></a>修改 MySQL 字符集</h5><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@localhost</span> ~]<span class="meta"># vim /usr/my.cnf</span></span><br></pre></td></tr></table></figure>
+<p>添加如下内容：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[client]</span></span><br><span class="line"><span class="attr">default-character-set</span> = utf8</span><br><span class="line"></span><br><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="attr">character-set-server</span> = utf8</span><br></pre></td></tr></table></figure></p>
+<h5 id="启动-MySQL"><a href="#启动-MySQL" class="headerlink" title="启动 MySQL"></a>启动 MySQL</h5><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]#<span class="built_in"> service </span>mysql start</span><br><span class="line">Starting MySQL. SUCCESS!</span><br></pre></td></tr></table></figure>
+<h5 id="修改-Root-账号密码"><a href="#修改-Root-账号密码" class="headerlink" title="修改 Root 账号密码"></a>修改 Root 账号密码</h5><p>先使用随机密码登录MySQL：<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># mysql -u root -p</span></span><br><span class="line">Enter password: </span><br><span class="line">Welcome to the MySQ<span class="class">L monitor.  Commands end with ;</span><span class="built_in"> or </span>\g.</span><br><span class="line">Your MySQL connection id is 1</span><br><span class="line">Server version: 5.6.22</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2014, Oracle<span class="built_in"> and/or </span>its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation<span class="built_in"> and/or </span>its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type 'help;'<span class="built_in"> or </span>'\h' for help. Type '\c' to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure></p>
+<p>利用 set 命令修改登录密码：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="builtin-name">set</span> <span class="attribute">password</span>=password('123456');</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br></pre></td></tr></table></figure></p>
+<p>但是默认只是修改了 host 为 localhost 的root 账号信息：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use mysql;</span><br><span class="line">Reading table information <span class="keyword">for</span> completion of table <span class="keyword">and</span> column names</span><br><span class="line">You can turn off this feature <span class="keyword">to</span> <span class="builtin-name">get</span> a quicker startup with -A</span><br><span class="line"></span><br><span class="line">Database changed</span><br><span class="line">mysql&gt; select user,host,password <span class="keyword">from</span> user;</span><br><span class="line">+------+-----------------------+-------------------------------------------+</span><br><span class="line">|<span class="built_in"> user </span>| host                  | password                                  |</span><br><span class="line">+------+-----------------------+-------------------------------------------+</span><br><span class="line">| root | localhost             | <span class="number">*6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9</span> |</span><br><span class="line">| root | localhost.localdomain | <span class="number">*18F4A8EA07BDF2E0F5D54946F7CC4EDA905AB9DF</span> |</span><br><span class="line">| root | 127.0.0.1             | <span class="number">*18F4A8EA07BDF2E0F5D54946F7CC4EDA905AB9DF</span> |</span><br><span class="line">| root | ::1                   | <span class="number">*18F4A8EA07BDF2E0F5D54946F7CC4EDA905AB9DF</span> |</span><br><span class="line">+------+-----------------------+-------------------------------------------+</span><br><span class="line">4 rows <span class="keyword">in</span> <span class="builtin-name">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<p>修改所有 root 账号：<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> <span class="keyword">password</span>=<span class="keyword">password</span>(<span class="string">'123456'</span>) <span class="keyword">where</span> <span class="keyword">user</span> = <span class="string">'root'</span>;</span><br><span class="line">Query OK, 3 rows affected (0.01 sec)</span><br><span class="line">Rows matched: 4  Changed: 3  Warnings: 0</span><br><span class="line"></span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br></pre></td></tr></table></figure></p>
+<h5 id="添加新用户并赋权"><a href="#添加新用户并赋权" class="headerlink" title="添加新用户并赋权"></a>添加新用户并赋权</h5><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create user <span class="emphasis">'mysql'</span>@<span class="emphasis">'%'</span> identified by <span class="emphasis">'123456'</span>;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select user,host,password from user;</span><br><span class="line"><span class="code">+-------+</span>-----------------------<span class="code">+-------------------------------------------+</span></span><br><span class="line">| user  | host                  | password                                  |</span><br><span class="line"><span class="code">+-------+</span>-----------------------<span class="code">+-------------------------------------------+</span></span><br><span class="line">| root  | localhost             | <span class="strong">*6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9 |</span></span><br><span class="line"><span class="strong">| root  | localhost.localdomain | *</span>6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9 |</span><br><span class="line">| root  | 127.0.0.1             | <span class="strong">*6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9 |</span></span><br><span class="line"><span class="strong">| root  | ::1                   | *</span>6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9 |</span><br><span class="line">| mysql | %                     | <span class="strong">*6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9 |</span></span><br><span class="line"><span class="strong">+-------+-----------------------+-------------------------------------------+</span></span><br><span class="line"><span class="strong">5 rows in set (0.00 sec)</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">mysql&gt; flush privileges;</span></span><br><span class="line"><span class="strong">Query OK, 0 rows affected (0.01 sec)</span></span><br></pre></td></tr></table></figure>
+<h5 id="防火墙添加-MySQL-端口"><a href="#防火墙添加-MySQL-端口" class="headerlink" title="防火墙添加 MySQL 端口"></a>防火墙添加 MySQL 端口</h5><p>编辑防火墙文件：<br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@localhost</span> ~]<span class="meta"># vim /etc/sysconfig/iptables</span></span><br></pre></td></tr></table></figure></p>
+<p>添加如下内容：<br><figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-A INPUT -m <span class="keyword">state</span> --state NEW -m tcp -p tcp --dport <span class="number">3306</span> -j ACCEPT</span><br></pre></td></tr></table></figure></p>
+<p>重启防火墙服务：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]#<span class="built_in"> service </span>iptables restart</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/MySQL-系列//" class="article-tag-list-link color4">MySQL 系列</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/11/27/CentOS 6.5 64bit 安装 MySQL 5.6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-MyBatis 之 映射器 ResultMap 元素入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/13/MyBatis 之 映射器 ResultMap 元素入门/">MyBatis 之 映射器 ResultMap 元素入门</a>
+    </h1>
+  
+
+        
+        <a href="/2015/08/13/MyBatis 之 映射器 ResultMap 元素入门/" class="archive-article-date">
+  	<time datetime="2015-08-13T02:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-08-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>MyBatis 版本：MyBatis 3.3.0</p>
+<p>MyBatis 官方网站（英文）：<a href="http://www.mybatis.org/mybatis-3/" target="_blank" rel="noopener">MyBatis 英文官网</a><br>MyBatis 官方网站（中文）：<a href="http://www.mybatis.org/mybatis-3/zh/" target="_blank" rel="noopener">MyBatis 中文官网</a><br>MyBatis 源码：<a href="https://github.com/mybatis/mybatis-3" target="_blank" rel="noopener">MyBatis 源码</a></p>
+<h5 id="映射器元素"><a href="#映射器元素" class="headerlink" title="映射器元素"></a>映射器元素</h5><table>
+<thead>
+<tr>
+<th>元素名称</th>
+<th>描述</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>select</td>
+<td>查询语句</td>
+<td>可以自定义参数，返回结果集等</td>
+</tr>
+<tr>
+<td>insert</td>
+<td>插入语句</td>
+<td>执行后返回一个整数，代表插入的条数</td>
+</tr>
+<tr>
+<td>update</td>
+<td>更新语句</td>
+<td>执行后返回一个整数，代表更新的条数</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>删除语句</td>
+<td>执行后返回一个整数，代表删除的条数</td>
+</tr>
+<tr>
+<td>parameterMap</td>
+<td>定义参数映射关系</td>
+<td>不推荐使用</td>
+</tr>
+<tr>
+<td>sql</td>
+<td>允许定义一部分的SQL，方便引用</td>
+<td></td>
+</tr>
+<tr>
+<td>resultMap</td>
+<td>描述从数据库结果集中来加载对象</td>
+<td></td>
+</tr>
+<tr>
+<td>cache</td>
+<td>给定命名空间的缓存配置</td>
+<td></td>
+</tr>
+<tr>
+<td>cache-ref</td>
+<td>其他命名空间的缓存配置的引用</td>
+</tr>
+</tbody>
+</table>
+<h5 id="ResultMap-元素"><a href="#ResultMap-元素" class="headerlink" title="ResultMap 元素"></a>ResultMap 元素</h5>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MyBatis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/MyBatis-实践系列//" class="article-tag-list-link color3">MyBatis 实践系列</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/08/13/MyBatis 之 映射器 ResultMap 元素入门/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-MyBatis 之 映射器 select 元素" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/12/MyBatis 之 映射器 select 元素/">MyBatis 之 映射器 select 元素</a>
+    </h1>
+  
+
+        
+        <a href="/2015/08/12/MyBatis 之 映射器 select 元素/" class="archive-article-date">
+  	<time datetime="2015-08-12T02:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-08-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>MyBatis 版本：MyBatis 3.3.0</p>
+<p>MyBatis 官方网站（英文）：<a href="http://www.mybatis.org/mybatis-3/" target="_blank" rel="noopener">MyBatis 英文官网</a><br>MyBatis 官方网站（中文）：<a href="http://www.mybatis.org/mybatis-3/zh/" target="_blank" rel="noopener">MyBatis 中文官网</a><br>MyBatis 源码：<a href="https://github.com/mybatis/mybatis-3" target="_blank" rel="noopener">MyBatis 源码</a></p>
+<h5 id="映射器元素"><a href="#映射器元素" class="headerlink" title="映射器元素"></a>映射器元素</h5><table>
+<thead>
+<tr>
+<th>元素名称</th>
+<th>描述</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>select</td>
+<td>查询语句</td>
+<td>可以自定义参数，返回结果集等</td>
+</tr>
+<tr>
+<td>insert</td>
+<td>插入语句</td>
+<td>执行后返回一个整数，代表插入的条数</td>
+</tr>
+<tr>
+<td>update</td>
+<td>更新语句</td>
+<td>执行后返回一个整数，代表更新的条数</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>删除语句</td>
+<td>执行后返回一个整数，代表删除的条数</td>
+</tr>
+<tr>
+<td>parameterMap</td>
+<td>定义参数映射关系</td>
+<td>不推荐使用</td>
+</tr>
+<tr>
+<td>sql</td>
+<td>允许定义一部分的SQL，方便引用</td>
+<td></td>
+</tr>
+<tr>
+<td>resultMap</td>
+<td>描述从数据库结果集中来加载对象</td>
+<td></td>
+</tr>
+<tr>
+<td>cache</td>
+<td>给定命名空间的缓存配置</td>
+<td></td>
+</tr>
+<tr>
+<td>cache-ref</td>
+<td>其他命名空间的缓存配置的引用</td>
+</tr>
+</tbody>
+</table>
+<h5 id="select-元素"><a href="#select-元素" class="headerlink" title="select 元素"></a>select 元素</h5><table>
+<thead>
+<tr>
+<th>元素名称</th>
+<th>描述</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>和 Mapper 命名空间一起组合唯一性</td>
+<td></td>
+</tr>
+<tr>
+<td>parameterType</td>
+<td>可以是类全限定名或类别名</td>
+<td></td>
+</tr>
+<tr>
+<td>parameterMap</td>
+<td>不推荐使用</td>
+<td></td>
+</tr>
+<tr>
+<td>resultType</td>
+<td>类的全限定名或类别名，可依据 JavaBean 的规范映射</td>
+<td>不可以和 resultMap 同时使用</td>
+</tr>
+<tr>
+<td>resultMap</td>
+<td>映射集的引用</td>
+<td>不可以和 resultType 同时使用</td>
+</tr>
+<tr>
+<td>flushCache</td>
+<td>在调用 SQL 后，是否要求 MyBatis 清空之前查询的本地缓存和二级缓存</td>
+<td>布尔值，默认值 false</td>
+</tr>
+<tr>
+<td>useCache</td>
+<td>启动二级缓存的开关，是否要求 MyBatis 将此次结果缓存</td>
+<td>布尔值，默认值 true</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>设置超时时间，单位为秒</td>
+<td>默认值是 JDBC 驱动所设置的秒数</td>
+</tr>
+<tr>
+<td>fetchSize</td>
+<td>获取记录的总条数设定</td>
+<td>默认值是 JDBC 驱动所设置的条数</td>
+</tr>
+<tr>
+<td>statementType</td>
+<td>JDBC Statement，取值为 STATEMENT（Statement），PREPARED（PreparedStatement），CallableStatement</td>
+<td>默认值是 PREPARED</td>
+</tr>
+<tr>
+<td>resultType</td>
+<td>JDBC resultSet，取值为 FORWARD_ONLY（游标允许向前访问），SCROLL_SENSITIVE（双向滚动，但不及时更新），SCROLL_INSENSITIVE（双向滚动，及时更新）</td>
+<td>默认值是 JDBC 驱动所设置的</td>
+</tr>
+<tr>
+<td>databaseId</td>
+<td>参考 databaseIdProvider</td>
+<td>一般不需要修改</td>
+</tr>
+<tr>
+<td>resultOrdered</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>resultSets</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="select-元素传递多个参数"><a href="#select-元素传递多个参数" class="headerlink" title="select 元素传递多个参数"></a>select 元素传递多个参数</h5><h6 id="使用-Map-传递参数"><a href="#使用-Map-传递参数" class="headerlink" title="使用 Map 传递参数"></a>使用 Map 传递参数</h6><p>Mapper：<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">List</span>&lt;User&gt; findUserByMap(<span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="built_in">String</span>&gt; <span class="keyword">params</span>)</span><br></pre></td></tr></table></figure></p>
+<p>Mapper XML：<br><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">select</span> id=<span class="string">"findUserByMap"</span> parameterType=<span class="string">"map"</span> resultMap=<span class="string">"BaseResultMap"</span>&gt;</span><br><span class="line">	<span class="keyword">SELECT</span> id, user_name <span class="keyword">FROM</span> user_info</span><br><span class="line">    <span class="keyword">WHERE</span> user_name <span class="keyword">LIKE</span> CONCAT(<span class="comment">'%', #&#123;userName&#125;, '%')</span></span><br><span class="line">&lt;/<span class="keyword">select</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>使用：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; paramsMap = <span class="keyword">new</span> HashMap&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt;();</span><br><span class="line">paramsMap.<span class="built_in">put</span>(<span class="string">"userName"</span>, <span class="string">"me"</span>)；</span><br><span class="line">userMapper.findUserByMap(paramsMap);</span><br></pre></td></tr></table></figure></p>
+<p>该方式存在一个弊端：业务可读性不强</p>
+<h6 id="使用注解传递参数"><a href="#使用注解传递参数" class="headerlink" title="使用注解传递参数"></a>使用注解传递参数</h6><p>注解接口 @Param (org.apache.ibatis.annotations.Param)</p>
+<p>Mapper：<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">List</span>&lt;User&gt; findUserByAnnotations(<span class="meta">@Param</span>(<span class="string">"userName"</span>) <span class="built_in">String</span> userName)</span><br></pre></td></tr></table></figure></p>
+<p>Mapper XML：<br><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">select</span> id=<span class="string">"findUserByAnnotations"</span> parameterType=<span class="string">"map"</span> resultMap=<span class="string">"BaseResultMap"</span>&gt;</span><br><span class="line">	<span class="keyword">SELECT</span> id, user_name <span class="keyword">FROM</span> user_info</span><br><span class="line">    <span class="keyword">WHERE</span> user_name <span class="keyword">LIKE</span> CONCAT(<span class="comment">'%', #&#123;userName&#125;, '%')</span></span><br><span class="line">&lt;/<span class="keyword">select</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>使用：<br><figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String <span class="keyword">user</span>Name = <span class="string">"me"</span>;</span><br><span class="line"><span class="keyword">user</span>Mapper.findUserByAnnotations(<span class="keyword">user</span>Name);</span><br></pre></td></tr></table></figure></p>
+<p>该方式存在一个弊端：当参数数量很多时，可读性将下降</p>
+<h6 id="使用-JavaBean-传递参数"><a href="#使用-JavaBean-传递参数" class="headerlink" title="使用 JavaBean 传递参数"></a>使用 JavaBean 传递参数</h6><p>Mapper：<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;User&gt; findUserByParams(<span class="name">UserParam</span> userParam)</span><br></pre></td></tr></table></figure></p>
+<p>Mapper XML：<br><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">select</span> id=<span class="string">"findUserByParams"</span> parameterType=<span class="string">"com.example.param.UserParam"</span> resultMap=<span class="string">"BaseResultMap"</span>&gt;</span><br><span class="line">	<span class="keyword">SELECT</span> id, user_name <span class="keyword">FROM</span> user_info</span><br><span class="line">    <span class="keyword">WHERE</span> user_name <span class="keyword">LIKE</span> CONCAT(<span class="comment">'%', #&#123;userName&#125;, '%')</span></span><br><span class="line">&lt;/<span class="keyword">select</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>使用：<br><figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UserParam <span class="keyword">user</span>Param = new UserParam();</span><br><span class="line"><span class="keyword">user</span>Param.<span class="built_in">set</span>UserName(<span class="string">"me"</span>);</span><br><span class="line"><span class="keyword">user</span>Mapper.findUserByParams(<span class="keyword">user</span>Param);</span><br></pre></td></tr></table></figure></p>
+<p>当参数少于等于 3 个时可以使用注解方式传递参数，反之使用 JavaBean 方式传递参数</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MyBatis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/MyBatis-实践系列//" class="article-tag-list-link color3">MyBatis 实践系列</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/08/12/MyBatis 之 映射器 select 元素/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-MyBatis 之 配置文件 TypeHandler 元素" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1190,14 +1664,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CQRS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Event Sourcing</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CI</a>
               </li>
              
@@ -1210,23 +1676,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CI 持续集成</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JDK</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+                <a href="javascript:void(0)" class="js-tag color5">CQRS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GS1</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">UDI</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CI 持续集成</a>
+                <a href="javascript:void(0)" class="js-tag color5">Event Sourcing</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1238,11 +1700,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Servlet</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color3">Servlet</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1250,7 +1712,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">冒泡排序</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1258,11 +1720,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color5">冒泡排序</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1282,6 +1748,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GS1</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">UDI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring Cloud</a>
               </li>
              
@@ -1298,15 +1772,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Shadowsocks</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ZooKeeper</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Java虚拟机</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Shadowsocks</a>
               </li>
              
               <li class="article-tag-list-item">

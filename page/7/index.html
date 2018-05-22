@@ -134,6 +134,294 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Python 元组" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/14/Python 元组/">Python 元组</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/14/Python 元组/" class="archive-article-date">
+  	<time datetime="2017-12-14T14:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Python : 3.6.3</p>
+<p>Python 中列表是可变的，列表的长度随着列表内元素的数量变化而变化，而要想创建一个长度不可变的存储数据集，可以使用元组。</p>
+<h4 id="定义元祖"><a href="#定义元祖" class="headerlink" title="定义元祖"></a>定义元祖</h4><p>元组和列表类似，只是使用的是圆括号而不是方括号：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">numbers = (<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(numbers[<span class="number">0</span>])</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(numbers[<span class="number">1</span>])</span></span></span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure></p>
+<p>元组支持和列表一样的操作，除了修改元祖的元素值：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">numbers</span> = (<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line"><span class="attr">numbers[0]</span> = <span class="number">20</span></span><br></pre></td></tr></table></figure></p>
+<p>上述的操作是错误的。</p>
+<p>但是元组支持整体的赋值：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">numbers</span> = (<span class="number">1</span>,<span class="number">3</span>)</span><br><span class="line"><span class="attr">numbers</span> = (<span class="number">10</span>,<span class="number">30</span>)</span><br></pre></td></tr></table></figure></p>
+<p>元组的其他操作可参考列表的操作</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Python-系列//" class="article-tag-list-link color5">Python 系列</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/14/Python 元组/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Python 操作列表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/14/Python 操作列表/">Python 操作列表</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/14/Python 操作列表/" class="archive-article-date">
+  	<time datetime="2017-12-14T11:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Python : 3.6.3</p>
+<h4 id="遍历列表"><a href="#遍历列表" class="headerlink" title="遍历列表"></a>遍历列表</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cars = [<span class="string">"BMW"</span>, <span class="string">"Jeep"</span>, <span class="string">"Ford"</span>, <span class="string">"Smart"</span>]</span><br><span class="line"><span class="keyword">for</span> car <span class="keyword">in</span> cars:</span><br><span class="line">	<span class="builtin-name">print</span>(car)</span><br><span class="line"><span class="builtin-name">print</span>(cars)</span><br></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BMW</span><br><span class="line">Jeep</span><br><span class="line">Ford</span><br><span class="line">Smart</span><br><span class="line">['BMW', 'Jeep', 'Ford', 'Smart']</span><br></pre></td></tr></table></figure></p>
+<p>Python 的 for 循环语法有点特殊：<br>（1）语法格式：for [变量名] in [集合]：<br>（2）for 循环以冒号结尾<br>（3）for 循环后的代码缩进都表示使循环体内部语句<br>（4）变量名可以任意命名<br>（5）for 循环后没有缩进的代码表示循环结束</p>
+<h4 id="创建数值列表"><a href="#创建数值列表" class="headerlink" title="创建数值列表"></a>创建数值列表</h4><p>Python 的 range() 方法可以轻松地生成一系列的数字。而且也可以指定生成的数值范围：<br><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for <span class="keyword">value</span> <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">5</span>):</span><br><span class="line">	<span class="built_in">print</span>(<span class="keyword">value</span>)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<p>其数值范围默认使左闭右开的，即包含左边的数值，但不包含右边的数值。</p>
+<p>要创建数值列表，可以在 list() 方法内通过设定参数来生成：<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">numbers = list(<span class="name">range</span>(<span class="number">1</span>,<span class="number">5</span>))</span><br><span class="line">print(<span class="name">numbers</span>)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure></p>
+<p>也可以手动往列表里面添加数值：<br><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numbers = []</span><br><span class="line">for <span class="keyword">value</span> <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">10</span>):</span><br><span class="line">	numbers.append(<span class="keyword">value</span>)</span><br><span class="line"><span class="built_in">print</span>(numbers)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br></pre></td></tr></table></figure></p>
+<h4 id="数值列表的统计计算"><a href="#数值列表的统计计算" class="headerlink" title="数值列表的统计计算"></a>数值列表的统计计算</h4><p>求数值列表的最小值、最大值、总和：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numbers = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">0</span>]</span><br><span class="line">print(min(numbers))</span><br><span class="line">print(max(numbers))</span><br><span class="line">print(sum(numbers))</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">9</span></span><br><span class="line"><span class="number">45</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="列表解析"><a href="#列表解析" class="headerlink" title="列表解析"></a>列表解析</h4><p>Python 支持将for循环和创建新元素的代码合并成一行，并自动附加新元素：<br><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">numbers = [<span class="keyword">value</span>**<span class="number">2</span> for <span class="keyword">value</span> <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">5</span>)]</span><br><span class="line"><span class="built_in">print</span>(numbers)</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>]</span><br></pre></td></tr></table></figure></p>
+<h4 id="取列表的一部分"><a href="#取列表的一部分" class="headerlink" title="取列表的一部分"></a>取列表的一部分</h4><p>Python 可以从列表中获取一部分元素，称为切片：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">numbers = [value**<span class="number">2</span> <span class="keyword">for</span> value <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">5</span>)]</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(numbers)</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(numbers[<span class="number">0</span>:<span class="number">3</span>])</span></span></span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>]</span><br></pre></td></tr></table></figure></p>
+<p>起始索引可以都不指定，也可以只指定开始索引，也可以只指定结束索引，还可以使用负数：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">numbers = [value**<span class="number">2</span> <span class="keyword">for</span> value <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">5</span>)]</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(numbers)</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(numbers[:])</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(numbers[<span class="number">1</span>:])</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(numbers[:<span class="number">3</span>])</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(numbers[<span class="number">2</span>:<span class="number">3</span>])</span></span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(numbers[-<span class="number">2</span>:])</span></span></span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>]</span><br><span class="line">[<span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>]</span><br><span class="line">[<span class="number">9</span>]</span><br><span class="line">[<span class="number">9</span>, <span class="number">16</span>]</span><br></pre></td></tr></table></figure></p>
+<h4 id="遍历切片"><a href="#遍历切片" class="headerlink" title="遍历切片"></a>遍历切片</h4><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numbers = [<span class="keyword">value</span>**<span class="number">2</span> for <span class="keyword">value</span> <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">5</span>)]</span><br><span class="line"><span class="built_in">print</span>(numbers)</span><br><span class="line">for <span class="keyword">number</span> <span class="keyword">in</span> numbers[<span class="number">1</span>:<span class="number">3</span>]:</span><br><span class="line">	<span class="built_in">print</span>(<span class="keyword">number</span>)</span><br></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>]</span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">9</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="利用切片复制列表"><a href="#利用切片复制列表" class="headerlink" title="利用切片复制列表"></a>利用切片复制列表</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numbers = [value**<span class="number">2</span> <span class="keyword">for</span> value <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">5</span>)]</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(numbers)</span></span></span><br><span class="line">values = numbers[:]</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(values)</span></span></span><br></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>]</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Python-系列//" class="article-tag-list-link color5">Python 系列</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/14/Python 操作列表/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spring Cloud 工程搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/13/Spring Cloud 工程搭建/">Spring Cloud 工程搭建</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/13/Spring Cloud 工程搭建/" class="archive-article-date">
+  	<time datetime="2017-12-13T13:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Spring-Cloud-版本选择"><a href="#Spring-Cloud-版本选择" class="headerlink" title="Spring Cloud 版本选择"></a>Spring Cloud 版本选择</h2><p><strong>Spring Boot: 1.5.10.RELEASE</strong> <br><br><strong>Spring Cloud: Dalston.SR5</strong></p>
+<h2 id="Maven-工程"><a href="#Maven-工程" class="headerlink" title="Maven 工程"></a>Maven 工程</h2><p>利用 Maven 父子工程进行工程聚合，使用 <strong>dependencyManagement</strong> 标签统一管理依赖版本：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!--spring-cloud--&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>Dalston.SR5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!--spring-boot--&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.5.10.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>配置构建插件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">encoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">encoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-resources-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">encoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">encoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-surefire-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">skipTests</span>&gt;</span>true<span class="tag">&lt;/<span class="name">skipTests</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-source-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>attach-sources<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">goal</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Spring Cloud</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Spring-Cloud//" class="article-tag-list-link color3">Spring Cloud</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/13/Spring Cloud 工程搭建/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Java 排序算法之选择排序和插入排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -911,311 +1199,6 @@
 
 
   
-    <article id="post-Java 多线程之常见方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/04/Java 多线程之常见方法/">Java 多线程之常见方法</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/04/Java 多线程之常见方法/" class="archive-article-date">
-  	<time datetime="2017-12-04T11:51:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="Thread-currentThread-方法"><a href="#Thread-currentThread-方法" class="headerlink" title="Thread.currentThread() 方法"></a>Thread.currentThread() 方法</h5><p>Thread.currentThread() 方法可以返回调用当前代码块的线程的信息。<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">CustomThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	public <span class="type">CustomThread</span>() &#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="type">System</span>.out.println(<span class="string">"构造方法："</span> + <span class="type">Thread</span>.currentThread().getName());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	public synchronized void run() &#123;</span><br><span class="line">		<span class="keyword">super</span>.run();</span><br><span class="line">		<span class="type">System</span>.out.println(<span class="string">"run() 方法："</span> + <span class="type">Thread</span>.currentThread().getName());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomThreadTest</span> &#123;</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		CustomThread customThread = <span class="keyword">new</span> CustomThread();</span><br><span class="line">		customThread.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Thread.currentThread() 方法可以返回是什么线程调用了CustomThread的构造方法，什么线程调用了CustomThread的run()方法：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">构造方法：main</span><br><span class="line"><span class="function"><span class="title">run</span><span class="params">()</span></span> 方法：Thread-<span class="number">0</span></span><br></pre></td></tr></table></figure></p>
-<p>main 线程调用了CustomThread的构造方法，一个名叫Thread-0的线程调用了CustomThread的run()方法（若线程没有指定名称，则会默认生成一个名称）</p>
-<h6 id="Thread-currentThread-getName-方法与-this-getName-方法"><a href="#Thread-currentThread-getName-方法与-this-getName-方法" class="headerlink" title="Thread.currentThread().getName() 方法与 this.getName() 方法"></a>Thread.currentThread().getName() 方法与 this.getName() 方法</h6><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">CustomThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	public <span class="type">CustomThread</span>() &#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="type">System</span>.out.println(<span class="string">"构造方法："</span> + <span class="type">Thread</span>.currentThread().getName());</span><br><span class="line">		<span class="type">System</span>.out.println(<span class="string">"构造方法："</span> + <span class="keyword">this</span>.getName());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	public synchronized void run() &#123;</span><br><span class="line">		<span class="keyword">super</span>.run();</span><br><span class="line">		<span class="type">System</span>.out.println(<span class="string">"run() 方法："</span> + <span class="type">Thread</span>.currentThread().getName());</span><br><span class="line">		<span class="type">System</span>.out.println(<span class="string">"run() 方法："</span> + <span class="keyword">this</span>.getName());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomThreadTest</span> &#123;</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		CustomThread customThread = <span class="keyword">new</span> CustomThread();</span><br><span class="line">		customThread.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">构造方法：main</span><br><span class="line">构造方法：Thread-<span class="number">0</span></span><br><span class="line"><span class="function"><span class="title">run</span><span class="params">()</span></span> 方法：Thread-<span class="number">0</span></span><br><span class="line"><span class="function"><span class="title">run</span><span class="params">()</span></span> 方法：Thread-<span class="number">0</span></span><br></pre></td></tr></table></figure></p>
-<p>可以发现this.getName() 方法两个结果是一样的，因为this实际是指代当前被调用的类实例是哪个：<br>当构造方法被调用时，main线程调用了CustomThread类实例，当run()方法被调用时，Thread-0 线程调用了CustomThead类实例</p>
-<h5 id="isAlive-方法"><a href="#isAlive-方法" class="headerlink" title="isAlive() 方法"></a>isAlive() 方法</h5><p>isAlive() 方法可以判断当前的线程是否处于活动状态。<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">CustomThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	public synchronized void run() &#123;</span><br><span class="line">		<span class="keyword">super</span>.run();</span><br><span class="line">		<span class="type">System</span>.out.println(<span class="string">"run() 方法："</span> + <span class="keyword">this</span>.isAlive());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CustomThreadTest</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">		CustomThread customThread = <span class="keyword">new</span> CustomThread();</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"before start："</span> + customThread.isAlive());</span><br><span class="line">		customThread.start();</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"before end："</span> + customThread.isAlive());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">before</span> start：<span class="literal">false</span></span><br><span class="line"><span class="keyword">before</span> <span class="keyword">end</span>：<span class="literal">true</span></span><br><span class="line"><span class="built_in">run</span>() 方法：<span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
-<p>若调用 main 线程调用customThread 执行 start() 方法后休眠一会：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CustomThreadTest</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) throws InterruptedException </span>&#123;</span><br><span class="line">		CustomThread customThread = <span class="keyword">new</span> CustomThread();</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"before start："</span> + customThread.isAlive());</span><br><span class="line">		customThread.start();</span><br><span class="line">		Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"before end："</span> + customThread.isAlive());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">before</span> start：<span class="literal">false</span></span><br><span class="line"><span class="built_in">run</span>() 方法：<span class="literal">true</span></span><br><span class="line"><span class="keyword">before</span> <span class="keyword">end</span>：<span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
-<p>因为经过休眠，customThread 线程已经执行完毕了</p>
-<h5 id="sleep-方法"><a href="#sleep-方法" class="headerlink" title="sleep() 方法"></a>sleep() 方法</h5><p>sleep() 方法的作用是在指定的毫秒数内让当前正在执行的线程休眠。<br>可参考上述例子。</p>
-<h5 id="getId-方法"><a href="#getId-方法" class="headerlink" title="getId() 方法"></a>getId() 方法</h5><p>获取线程的唯一标识</p>
-<h5 id="setName-方法"><a href="#setName-方法" class="headerlink" title="setName() 方法"></a>setName() 方法</h5><p>设置线程的名称</p>
-<h5 id="getName-方法"><a href="#getName-方法" class="headerlink" title="getName() 方法"></a>getName() 方法</h5><p>获取线程的名称</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Java-并发编程系列//" class="article-tag-list-link color2">Java 并发编程系列</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/04/Java 多线程之常见方法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java 多线程之实例变量与线程安全" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/03/Java 多线程之实例变量与线程安全/">Java 多线程之实例变量与线程安全</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/03/Java 多线程之实例变量与线程安全/" class="archive-article-date">
-  	<time datetime="2017-12-03T11:51:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一个自定义的线程类，其也是一个普通的类，不同的使用方式，其实例变量对调用其的线程来说存在共享和不共享的情形。<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">CustomThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> int count = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">	public <span class="type">CustomThread</span>() &#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	public void run() &#123;</span><br><span class="line">		<span class="keyword">super</span>.run();</span><br><span class="line">		<span class="keyword">while</span> (count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="type">System</span>.out.println(<span class="keyword">this</span>.currentThread().getId() + <span class="string">" 计算，count="</span> + count);</span><br><span class="line">            count--;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h6 id="不共享的情形"><a href="#不共享的情形" class="headerlink" title="不共享的情形"></a>不共享的情形</h6><p>不共享实例变量的情形是创建多个自定义线程类的实例：<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomThreadTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">		CustomThread customThreadA = <span class="keyword">new</span> <span class="type">CustomThread</span>();</span><br><span class="line">		CustomThread customThreadB = <span class="keyword">new</span> <span class="type">CustomThread</span>();</span><br><span class="line">		CustomThread customThreadC = <span class="keyword">new</span> <span class="type">CustomThread</span>();</span><br><span class="line">		customThreadA.start();</span><br><span class="line">		customThreadB.start();</span><br><span class="line">		customThreadC.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>结果可能：<br><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">11 </span>计算，count=<span class="number">3</span></span><br><span class="line"><span class="symbol">11 </span>计算，count=<span class="number">2</span></span><br><span class="line"><span class="symbol">11 </span>计算，count=<span class="number">1</span></span><br><span class="line"><span class="symbol">12 </span>计算，count=<span class="number">3</span></span><br><span class="line"><span class="symbol">12 </span>计算，count=<span class="number">2</span></span><br><span class="line"><span class="symbol">12 </span>计算，count=<span class="number">1</span></span><br><span class="line"><span class="symbol">13 </span>计算，count=<span class="number">3</span></span><br><span class="line"><span class="symbol">13 </span>计算，count=<span class="number">2</span></span><br><span class="line"><span class="symbol">13 </span>计算，count=<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
-<p>结果可能：<br><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">11 </span>计算，count=<span class="number">3</span></span><br><span class="line"><span class="symbol">13 </span>计算，count=<span class="number">3</span></span><br><span class="line"><span class="symbol">12 </span>计算，count=<span class="number">3</span></span><br><span class="line"><span class="symbol">13 </span>计算，count=<span class="number">2</span></span><br><span class="line"><span class="symbol">12 </span>计算，count=<span class="number">2</span></span><br><span class="line"><span class="symbol">13 </span>计算，count=<span class="number">1</span></span><br><span class="line"><span class="symbol">12 </span>计算，count=<span class="number">1</span></span><br><span class="line"><span class="symbol">11 </span>计算，count=<span class="number">2</span></span><br><span class="line"><span class="symbol">11 </span>计算，count=<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
-<p>虽然由于线程执行顺序的随机性，但是每个线程实例均各自计算各自的实例变量 count</p>
-<h6 id="共享的情形"><a href="#共享的情形" class="headerlink" title="共享的情形"></a>共享的情形</h6><p>共享实例变量的情形是创建一个自定义线程类的实例，然后多个其他线程实例调用自定义线程类实例（此时自定义线程类相当于一个普通的类）：<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomThreadTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">		CustomThread customThread = <span class="keyword">new</span> <span class="type">CustomThread</span>();</span><br><span class="line">		Thread threadA = <span class="keyword">new</span> <span class="type">Thread</span>(customThread);</span><br><span class="line">		Thread threadB = <span class="keyword">new</span> <span class="type">Thread</span>(customThread);</span><br><span class="line">		Thread threadC = <span class="keyword">new</span> <span class="type">Thread</span>(customThread);</span><br><span class="line">		threadA.start();</span><br><span class="line">		threadB.start();</span><br><span class="line">		threadC.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>结果可能：<br><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">12 </span>计算，count=<span class="number">3</span></span><br><span class="line"><span class="symbol">13 </span>计算，count=<span class="number">3</span></span><br><span class="line"><span class="symbol">12 </span>计算，count=<span class="number">2</span></span><br><span class="line"><span class="symbol">13 </span>计算，count=<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
-<p>结果可能：<br><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">12 </span>计算，count=<span class="number">3</span></span><br><span class="line"><span class="symbol">14 </span>计算，count=<span class="number">3</span></span><br><span class="line"><span class="symbol">13 </span>计算，count=<span class="number">3</span></span><br><span class="line"><span class="symbol">14 </span>计算，count=<span class="number">1</span></span><br><span class="line"><span class="symbol">12 </span>计算，count=<span class="number">2</span></span><br></pre></td></tr></table></figure></p>
-<p>结果可能：<br><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">13 </span>计算，count=<span class="number">3</span></span><br><span class="line"><span class="symbol">13 </span>计算，count=<span class="number">2</span></span><br><span class="line"><span class="symbol">13 </span>计算，count=<span class="number">1</span></span><br><span class="line"><span class="symbol">14 </span>计算，count=<span class="number">3</span></span><br><span class="line"><span class="symbol">12 </span>计算，count=-<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
-<p>虽然由于线程执行顺序的随机性，但是每个线程实例均计算了 CustomThread 实例 customThread 的实例变量 count。<br>而且上述结果，看起来非常奇怪，与期望的相差甚远！这就是线程安全问题！</p>
-<p>以上述例子为例，某些 JVM 中，i– 实际是三步操作：<br>1）获取原 i 值<br>2）计算 i-1<br>3) 对 i 进行赋值</p>
-<p>正是因为分步操作，可能在执行完第一步以后，线程执行就会切换，导致执行结果千奇百怪，和期望不符。</p>
-<p>若想解决线程安全问题，则需要执行线程同步策略。</p>
-<p>synchronized 关键字修改线程内的方法，可以使其即使被多个线程调用，其也是按顺序执行，从而保证线程安全。<br>使用 synchronized 关键字修饰 run() 方法：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">CustomThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> int count = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">	public <span class="type">CustomThread</span>() &#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	public synchronized void run() &#123;</span><br><span class="line">		<span class="keyword">super</span>.run();</span><br><span class="line">		<span class="keyword">while</span> (count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="type">System</span>.out.println(<span class="keyword">this</span>.currentThread().getId() + <span class="string">" 计算，count="</span> + count);</span><br><span class="line">			count--;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>结果可能是：<br><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">12 </span>计算，count=<span class="number">3</span></span><br><span class="line"><span class="symbol">12 </span>计算，count=<span class="number">2</span></span><br><span class="line"><span class="symbol">12 </span>计算，count=<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
-<p>结果可能是:<br><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">14 </span>计算，count=<span class="number">3</span></span><br><span class="line"><span class="symbol">14 </span>计算，count=<span class="number">2</span></span><br><span class="line"><span class="symbol">14 </span>计算，count=<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
-<p>执行结果只是因为线程执行的随机而不同，但是计算过程是与期望一致的：count 计算三次</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Java-并发编程系列//" class="article-tag-list-link color2">Java 并发编程系列</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/03/Java 多线程之实例变量与线程安全/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java 多线程基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/03/Java 多线程基础/">Java 多线程基础</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/03/Java 多线程基础/" class="archive-article-date">
-  	<time datetime="2017-12-03T01:51:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h4><p>借鉴维基百科中的解释：</p>
-<h6 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h6><p>进程（Process），是计算机中已运行程序的实体。<br>在面向进程设计的系统，进程是程序的基本执行实体；而在面向线程设计的系统（当今多数操作系统）中，进程本身不是基本运行单位，而是线程的容器。<br>程序本身只是指令、数据及其组织形式的描述，进程才是程序（指令和数据）的真正运行实例。<br>若干进程有可能与同一个程序相关系，且每个进程皆可以同步或异步的方式独立运行。<br>现代计算机系统可在同一时段时间内以进程的形式将多个程序加载到内存中，并借由时间共享，以在一个处理器上表现出同时运行的感觉。<br>使用多线程技术的操作系统或计算机结构，同样程序的平行线程，可在多CPU主机或网络上真正同时运行。</p>
-<h6 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h6><p>线程（Thread），是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运行单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。<br>同一进程中的多条线程将共享该进程中的全部系统资源，如虚拟地址空间，文件描述符和信号处理等等。但同一进程中的多个线程有各自的调用栈（call stack），自己的寄存器环境（register context），自己的线程本地存储（thread-local storage）。<br>一个进程可以有很多线程，每条线程并行执行不同的任务。<br>在多核或多CPU，或支持Hyper-threading的CPU上使用多线程程序设计的好处是显而易见，即提高了程序的执行吞吐率。在单CPU单核的计算机上，使用多线程技术，也可以把进程中负责IO处理、人机交互而常被阻塞的部分与密集计算的部分分开来执行，编写专门的workhorse线程执行密集计算，从而提高了程序的执行效率。</p>
-<h4 id="自定义-Java-线程"><a href="#自定义-Java-线程" class="headerlink" title="自定义 Java 线程"></a>自定义 Java 线程</h4><p>在 Java 的 JDK 开发包中，已经自带了对多线程技术的支持，可以很方便地进行多线程编程。实现多线程编程的方式主要有两种：</p>
-<ul>
-<li>继承 Thread 类</li>
-<li>实现 Runnable 接口</li>
-</ul>
-<h6 id="继承-Thread-类"><a href="#继承-Thread-类" class="headerlink" title="继承 Thread 类"></a>继承 Thread 类</h6><p>Java 提供 Thread 类，自定义线程只需要继承自 Thread ，并且重写 run 方法即可：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">CustomThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	public void run() &#123;</span><br><span class="line">		<span class="keyword">super</span>.run();</span><br><span class="line">		<span class="type">System</span>.out.printf(<span class="string">"通过继承 Thread 类自定义线程"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>使用自定义的线程类：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CustomThreadTest</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">		CustomThread customThread = <span class="keyword">new</span> CustomThread();</span><br><span class="line">		customThread.start();</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"运行自定义线程结束"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h6 id="实现-Runnable-接口"><a href="#实现-Runnable-接口" class="headerlink" title="实现 Runnable 接口"></a>实现 Runnable 接口</h6><p>Java 提供 Runnable 接口，自定义线程只需要实现 Runnable ，并且实现 run 方法即可：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomRunnable</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.printf(<span class="string">"通过实现 Runnable 接口自定义线程"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>使用自定义的线程类：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CustomRunnableTest</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">		CustomRunnable customRunnable = <span class="keyword">new</span> CustomRunnable();</span><br><span class="line">		Thread thread = <span class="keyword">new</span> Thread(customRunnable);</span><br><span class="line">		thread.start();</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"运行自定义线程结束"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>两者在使用时有些许差别，通过实现 Runnable 接口的线程类使用时需要通过 Thread 类。而通过继承 Thread 类的线程类使用时不需要通过 Thread 类。<br>因为 Thread 已经实现了 Runnable 接口：<br><figure class="highlight monkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Thread</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span></span><br></pre></td></tr></table></figure></p>
-<p>Thread 类有两个常用的构造函数：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="title">Thread</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    init(<span class="keyword">null</span>, <span class="keyword">null</span>, <span class="string">"Thread-"</span> + nextThreadNum(), <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Thread</span><span class="params">(Runnable <span class="keyword">target</span>)</span> </span>&#123;</span><br><span class="line">    init(<span class="keyword">null</span>, <span class="keyword">target</span>, <span class="string">"Thread-"</span> + nextThreadNum(), <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>其分别对应了上述两种情形。<br>因为 Java 单继承的局限性，在实际使用中，优先推荐通过实现 Runnable 接口自定义线程。</p>
-<h4 id="线程运行随机性"><a href="#线程运行随机性" class="headerlink" title="线程运行随机性"></a>线程运行随机性</h4><p>运行上述自定义线程，其输出结果可能是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">运行自定义线程结束</span><br><span class="line">自定义线程</span><br></pre></td></tr></table></figure></p>
-<p>可能是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">自定义线程</span><br><span class="line">运行自定义线程结束</span><br></pre></td></tr></table></figure></p>
-<p>一个线程的运行依赖其被其他线程调用 start()方法，start() 方法调用线程内的 run() 方法（如果直接调用 run() 方法其和普通的 Java 类没有任何区别）。Java 应用程序最少也会有一个运行 main() 方法的线程，称为主线程。<br>上述运行结果中: “运行自定义线程结束”即主线程调用执行 main() 方法后，main() 方法输出的信息，”自定义线程”即主线程调用自定义线程的 start() 方法后，自定义线程 start() 方法调用其 run() 方法后，run() 方法输出的信息。<br>之所以出现上述情况，是因为线程作为操作系统运行的最小单位，CPU 以分时共享的方式调用，其调用是不确定的。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Java-并发编程系列//" class="article-tag-list-link color2">Java 并发编程系列</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/03/Java 多线程基础/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
@@ -1323,14 +1306,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CQRS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Event Sourcing</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CI</a>
               </li>
              
@@ -1343,23 +1318,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CI 持续集成</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JDK</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+                <a href="javascript:void(0)" class="js-tag color5">CQRS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GS1</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">UDI</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">CI 持续集成</a>
+                <a href="javascript:void(0)" class="js-tag color5">Event Sourcing</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1371,11 +1342,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Servlet</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color3">Servlet</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1383,7 +1354,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">冒泡排序</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1391,11 +1362,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color5">冒泡排序</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1415,6 +1390,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GS1</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">UDI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring Cloud</a>
               </li>
              
@@ -1431,15 +1414,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Shadowsocks</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ZooKeeper</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Java虚拟机</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Shadowsocks</a>
               </li>
              
               <li class="article-tag-list-item">
